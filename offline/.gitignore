@@ -1,0 +1,6 @@
+data/
+demo_data/
+.env
+.key
+__pycache__/
+*.pyc
