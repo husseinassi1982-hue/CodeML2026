@@ -49,6 +49,10 @@ def process_queue(store: RecordStore, net: Connectivity, extract_fn,
             report["waiting"].append(rid)  # stays PENDING_AI, tried again next time
             continue
         except Exception as exc:
+            if getattr(exc, "permanent", False):  # e.g. unreadable photo: retrying won't help
+                store.transition(rid, State.PROCESSING_FAILED, error=str(exc), note="cannot be processed")
+                report["failed"].append(rid)
+                continue
             attempts = store.bump_attempts(rid)
             if attempts >= max_attempts:
                 store.transition(rid, State.PROCESSING_FAILED, error=str(exc),

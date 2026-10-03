@@ -5,3 +5,8 @@ __pycache__/
 # participant package (not ours to redistribute) and generated eval artefacts
 /data
 /eval_out/
+
+# python envs and local app data
+venv/
+.pytest_cache/
+backend/app_data/

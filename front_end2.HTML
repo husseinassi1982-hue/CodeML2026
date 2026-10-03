@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DayOne Agent — WhatsApp Simulation</title>
+    <title>DayOne Agent — WhatsApp prototype</title>
     <style>
       * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -319,23 +319,41 @@
     </div>
 
     <script>
-      /* ================= State & mock schema ================= */
-      const STATES = ["CAPTURED", "PENDING_AI", "AI_PROCESSED", "NEEDS_REVIEW", "VALIDATED", "PATIENT_MATCHED", "SYNCED"];
+      /* DayOne chat, wired to the real backend (backend/main.py).
+         Opened from http://localhost:8000 it talks to the same server; opened from disk
+         (file://) it talks to http://localhost:8000. */
+      const API = location.protocol === "file:" ? "http://localhost:8000" : "";
 
-      let FIELDS;
-      function defaultFields() {
-        return {
-          age:      { label: "Age", value: "32", conf: 0.98, status: "KNOWN" },
-          village:  { label: "Village", value: "Koubri", conf: 0.96, status: "KNOWN" },
-          grav:     { label: "Gravidity · Parity", value: "G4 · P3", conf: 0.95, status: "KNOWN" },
-          hiv:      { label: "HIV test", value: "Negative", conf: 0.92, status: "KNOWN" },
-          edd:      { label: "Expected delivery date", value: "12 Feb 2027", conf: 0.91, status: "KNOWN" },
-          bp:       { label: "Blood pressure", value: "12/8", conf: 0.62, status: "NEEDS_REVIEW" }
-        };
+      const STATES = ["CAPTURED", "PENDING_AI", "AI_PROCESSED", "TO_REVIEW", "VALIDATED", "PATIENT_LINKED", "SAVED", "SYNCED"];
+      const ASK_FIRST = 5; // review questions asked one by one before offering a shortcut
+
+      const S = { online: true, aiNeedsNetwork: false, extractor: "?", flowActive: false, awaitingPhoto: false,
+                  waiter: null, rec: null, sampleIdx: 0 };
+
+      /* ================= API ================= */
+      async function api(method, path, body, isForm) {
+        let res;
+        try {
+          res = await fetch(API + path, {
+            method,
+            headers: isForm || !body ? {} : { "Content-Type": "application/json" },
+            body: isForm ? body : body ? JSON.stringify(body) : undefined
+          });
+        } catch (e) {
+          throw { offline: true, detail: "Can't reach the DayOne server. Is it running? (cd backend && uvicorn main:app)" };
+        }
+        let data = null;
+        try { data = await res.json(); } catch (e) { /* no body */ }
+        if (!res.ok) throw Object.assign({ status: res.status }, data || { detail: res.statusText });
+        return data;
       }
-      FIELDS = defaultFields();
 
-      const S = { online: true, flowActive: false, awaitingPhoto: false, waiter: null, pendingAI: 0, pendingSync: 0 };
+      function errText(e) {
+        if (!e) return "unknown error";
+        if (typeof e.detail === "string") return e.detail;
+        if (Array.isArray(e.detail)) return e.detail.map(d => d.msg).join("; ");
+        return String(e.message || e);
+      }
 
       /* ================= DOM helpers ================= */
       const chat = document.getElementById("chat");
@@ -389,16 +407,21 @@
       }
 
       function addTyping() {
-        const w = addMsg("in", '<span class="dots"><i></i><i></i><i></i></span>');
-        return w;
+        return addMsg("in", '<span class="dots"><i></i><i></i><i></i></span>');
       }
 
       async function agentSay(html, opts) {
         opts = opts || {};
         const t = addTyping();
-        await delay(opts.fast ? 450 : 950);
+        await delay(opts.fast ? 350 : 700);
         t.remove();
         addMsg("in", html);
+      }
+
+      // Shows the typing dots while a slow call (the OCR) runs.
+      async function working(promise) {
+        const t = addTyping();
+        try { return await promise; } finally { t.remove(); }
       }
 
       function askButtons(list) {
@@ -411,6 +434,7 @@
             el.innerHTML = b.label;
             el.onclick = () => {
               document.querySelectorAll(".btns").forEach(e => e.remove());
+              addMsg("out", b.label);
               res(b.value);
             };
             wrap.appendChild(el);
@@ -443,92 +467,100 @@
         const chips = chipsBox.querySelectorAll(".chip");
         const idx = s ? STATES.indexOf(s) : -1;
         chips.forEach((c, i) => {
-          c.className = "chip" + (i < idx ? " done" : i === idx ? " active" : "");
+          c.className = "chip" + (idx >= 0 && i < idx ? " done" : i === idx ? " active" : "");
         });
       }
 
-      function updateBadge() {
-        const n = S.pendingAI + S.pendingSync;
-        qbadge.style.display = n > 0 ? "inline-block" : "none";
-        if (n > 0) qbadge.textContent = "⏳ " + S.pendingAI + " AI · " + S.pendingSync + " sync queued";
+      async function refreshStatus() {
+        try {
+          const st = await api("GET", "/status");
+          S.online = st.online;
+          S.aiNeedsNetwork = st.ai_needs_network;
+          S.extractor = st.extractor;
+          const ai = st.counts.PENDING_AI, sync = st.counts.SAVED + st.counts.SYNC_FAILED;
+          qbadge.style.display = ai + sync > 0 ? "inline-block" : "none";
+          if (ai + sync > 0) qbadge.textContent = "⏳ " + ai + " AI · " + sync + " sync queued";
+          updateConn();
+          return st;
+        } catch (e) {
+          statusline.textContent = "⚠️ server not reachable";
+          return null;
+        }
       }
 
       /* ================= Connection toggle ================= */
       function updateConn() {
         connBtn.textContent = S.online ? "📶 Online" : "✈️ Offline";
         connBtn.className = S.online ? "" : "off";
-        statusline.textContent = S.online ? "online" : "offline — queuing on device";
+        statusline.textContent = (S.online ? "online" : "offline — queuing on device") +
+          (S.extractor === "fixture" ? " · demo extractor" : "");
       }
       connBtn.onclick = () => setOnline(!S.online);
 
       async function setOnline(v) {
+        try { await api("POST", "/connectivity", { online: v }); }
+        catch (e) { await agentSay("⚠️ " + esc(errText(e))); return; }
         S.online = v;
         updateConn();
-        if (v) {
-          sysMsg("📶 Connection restored");
-          if (S.pendingAI > 0) {
-            S.pendingAI = 0;
-            updateBadge();
-            await agentSay("Processing the queued photo…");
-            await runExtraction();
-          } else if (S.pendingSync > 0) {
-            S.pendingSync = 0;
-            updateBadge();
-            const t = addTyping();
-            await delay(800);
-            t.remove();
-            setState("SYNCED");
-            await agentSay("📤 Syncing queued record… done ✅", { fast: true });
-          }
-        } else {
-          sysMsg("✈️ Connection lost");
+        if (!v) { sysMsg("✈️ Connection lost"); await refreshStatus(); return; }
+        sysMsg("📶 Connection restored");
+        const st = await refreshStatus();
+        if (!st) return;
+        if (st.counts.PENDING_AI > 0) {
+          await agentSay("Processing " + st.counts.PENDING_AI + " queued photo(s)…", { fast: true });
+          await working(api("POST", "/queue/process"));
+          if (S.rec && S.rec.state === "PENDING_AI") { await continueRecord(S.rec.id); return; }
         }
+        await syncNow();
       }
 
-      /* ================= Synthetic sample registry page ================= */
-      function sampleRegistry() {
+      async function syncNow() {
+        const st = await refreshStatus();
+        if (!st || st.counts.SAVED + st.counts.SYNC_FAILED === 0) return;
+        const r = await working(api("POST", "/sync"));
+        if (r.synced.length) {
+          if (S.rec && r.synced.includes(S.rec.id)) setState("SYNCED");
+          await agentSay("📤 " + r.synced.length + " record(s) <b>SYNCED</b> to the health system ✅", { fast: true });
+        }
+        if (r.waiting.length) await agentSay("📴 " + r.waiting.length + " record(s) waiting for the connection.", { fast: true });
+        await refreshStatus();
+      }
+
+      /* ================= Synthetic sample pages ================= */
+      // The sample button doesn't run OCR on the drawing: it asks the server for a saved real
+      // extractor output on fictional patient 1 (fixtures/), so the demo works on any laptop.
+      const SAMPLES = [
+        { page: "cover_photo", title: "FICHE DE SURVEILLANCE", rows: [
+          ["N° de la fiche :", "2026-823-001"], ["Région :", "Rabat-Salé-Kénitra"], ["Province :", "Kénitra"],
+          ["Établissement :", "CSCA Al Wifaq"], ["Type :", "CSCA"], ["Mode :", "Fixe"]] },
+        { page: "current_pregnancy_photo", title: "GROSSESSE ACTUELLE", rows: [
+          ["DDR :", "18/04/2026"], ["DPA :", "23/01/2027"], ["Poids (kg) :", "64"],
+          ["TA :", "11/7"], ["BCF :", "+"], ["Sérologie VIH :", "nég"]] }
+      ];
+
+      function sampleRegistry(sample) {
         const c = document.createElement("canvas");
         c.width = 520; c.height = 680;
         const x = c.getContext("2d");
-
-        // paper
         x.fillStyle = "#f7f2e4";
         x.fillRect(0, 0, 520, 680);
-
-        // low-light vignette (field-like photo degradation)
         const g = x.createLinearGradient(0, 0, 520, 680);
         g.addColorStop(0, "rgba(40,40,40,0.18)");
         g.addColorStop(0.5, "rgba(0,0,0,0)");
         g.addColorStop(1, "rgba(20,20,20,0.28)");
         x.fillStyle = g;
         x.fillRect(0, 0, 520, 680);
-
-        // title
         x.fillStyle = "#1f3a5f";
         x.font = "bold 21px Georgia";
-        x.fillText("REGISTRE MATERNEL — CPN", 28, 52);
-
-        const rows = [
-          ["Âge :", "32"],
-          ["Village / Zone :", "Koubri"],
-          ["Gestité (G) :", "4"],
-          ["Parité (P) :", "3"],
-          ["Tension (TA) :", "12/8"],
-          ["Test VIH :", "Négatif"],
-          ["DPA :", "12/02/2027"]
-        ];
-
-        rows.forEach((r, i) => {
-          const y = 110 + i * 76;
-          // printed label
+        x.fillText(sample.title, 28, 52);
+        sample.rows.forEach((r, i) => {
+          const y = 110 + i * 80;
           x.fillStyle = "#33475b";
           x.font = "16px Georgia";
           x.fillText(r[0], 30, y);
-          // handwritten value
           x.fillStyle = "#25456e";
           x.font = '25px "Segoe Script", "Comic Sans MS", cursive';
-          x.fillText(r[1], 230, y + 2);
-          // ruled line
+          x.fillText(r[1], 200, y + 2);
           x.strokeStyle = "rgba(80,100,120,0.45)";
           x.lineWidth = 1;
           x.beginPath();
@@ -536,156 +568,295 @@
           x.lineTo(492, y + 14);
           x.stroke();
         });
-
-        // midwife code box
-        x.strokeStyle = "#33475b";
-        x.strokeRect(300, 616, 190, 40);
-        x.fillStyle = "#33475b";
-        x.font = "13px Georgia";
-        x.fillText("Code sage-femme :", 30, 641);
-        x.fillStyle = "#25456e";
-        x.font = '22px "Segoe Script", "Comic Sans MS", cursive';
-        x.fillText("M-4821", 340, 642);
-
+        // a timestamp makes every sample photo different (the same photo twice is flagged as a duplicate)
+        x.fillStyle = "rgba(0,0,0,0.35)";
+        x.font = "11px monospace";
+        x.fillText("photo " + new Date().toISOString(), 30, 660);
         return c.toDataURL("image/jpeg", 0.72);
       }
 
       /* ================= Agent flows ================= */
-      function summaryHtml() {
-        const rows = Object.keys(FIELDS).map(k => {
-          const f = FIELDS[k];
-          let flag;
-          if (f.status === "UNKNOWN") flag = "◻️ UNKNOWN";
-          else if (f.status === "NEEDS_REVIEW") flag = "⚠️ NEEDS_REVIEW";
-          else flag = "✅";
-          const c = f.conf != null ? " · conf " + f.conf.toFixed(2) : "";
-          return "• " + esc(f.label) + ": <b>" + esc(f.value) + "</b> " + flag + c;
-        }).join("<br>");
-        return "📋 <b>Extracted — page 1</b> (status + confidence per field):<br>" + rows +
+      async function startFromPhoto(dataUrl, demoPage) {
+        S.flowActive = true;
+        const blob = await (await fetch(dataUrl)).blob();
+        const form = new FormData();
+        form.append("photo", blob, "page.jpg");
+        form.append("midwife_id", "mw-demo");
+        if (demoPage) form.append("demo_page", demoPage);
+        let rec;
+        try { rec = await api("POST", "/records", form, true); }
+        catch (e) { await agentSay("⚠️ " + esc(errText(e))); S.flowActive = false; return; }
+        S.rec = rec;
+        setState("CAPTURED");
+        await agentSay("Photo received — stored <b>encrypted</b> on this device. Names, ID numbers and phone numbers are never read 🔒", { fast: true });
+
+        if (rec.state === "SUSPECTED_DUPLICATE") {
+          await agentSay("🤔 I've already received <b>this exact photo</b> before. Is it really a new page?");
+          const c = await askButtons([
+            { label: "📸 Yes, process it", value: "go" },
+            { label: "🗑️ No, it's a duplicate", value: "drop" }
+          ]);
+          if (c === "drop") { await agentSay("OK, I've set it aside 👍", { fast: true }); return finish(false); }
+          rec = await api("POST", "/records/" + rec.id + "/retry");
+        }
+        S.rec = rec;
+        setState("PENDING_AI");
+        if (S.aiNeedsNetwork && !S.online) {
+          await refreshStatus();
+          await agentSay("📴 No connection. Saved in the offline queue: <b>Pending AI processing</b>. Nothing is lost — I'll read it when the connection returns.");
+          return;
+        }
+        await continueRecord(rec.id);
+      }
+
+      async function continueRecord(id) {
+        try {
+          await working(api("POST", "/queue/process"));
+          S.rec = await api("GET", "/records/" + id);
+        } catch (e) { await agentSay("⚠️ " + esc(errText(e))); return; }
+        await refreshStatus();
+        const rec = S.rec;
+        if (rec.state === "PENDING_AI") {
+          await agentSay("⏳ Still waiting to be processed (" + esc(rec.last_error || "will retry") + ").");
+          return;
+        }
+        if (rec.state === "PROCESSING_FAILED") {
+          await agentSay("😕 I couldn't read this photo" + (rec.last_error ? " (<span class='mut'>" + esc(rec.last_error) + "</span>)" : "") + ".");
+          return retakeOrManual();
+        }
+        if (rec.state === "MANUAL_REVIEW_REQUIRED") {
+          await agentSay("🤔 I don't recognise which registry page this is.");
+          return retakeOrManual();
+        }
+        setState("AI_PROCESSED");
+        await agentSay(summaryHtml(rec), { fast: true });
+        setState("TO_REVIEW");
+        await reviewQuestions();
+      }
+
+      async function retakeOrManual() {
+        const c = await askButtons([
+          { label: "📸 Retake photo", value: "retake" },
+          { label: "⌨️ Type it myself", value: "manual" }
+        ]);
+        if (c === "retake") {
+          S.awaitingPhoto = true;
+          await agentSay("Send the photo again (tap 📎). Flat page, good light, whole page in the frame 🙂");
+          return;
+        }
+        const pages = [["cover", "Cover"], ["identification", "Identification"], ["current_pregnancy", "Current pregnancy"],
+                       ["delivery", "Delivery"], ["postpartum_early_mother", "Postpartum (mother, early)"],
+                       ["postpartum_early_newborn", "Postpartum (newborn, early)"],
+                       ["postpartum_late_mother", "Postpartum (mother, late)"], ["postpartum_late_newborn", "Postpartum (newborn, late)"]];
+        await agentSay("Which page is it?", { fast: true });
+        const p = await askButtons(pages.map(x => ({ label: x[1], value: x[0] })));
+        try { S.rec = await api("POST", "/records/" + S.rec.id + "/manual", { page_type: p }); }
+        catch (e) { await agentSay("⚠️ " + esc(errText(e))); return; }
+        await agentSay("OK — tap <b>✏️ Correct a field</b> to enter values, then confirm. Empty fields stay <b>NOT_PROVIDED</b>.", { fast: true });
+        S.rec.state = "MANUAL_REVIEW_REQUIRED";
+        await reviewMenu();
+      }
+
+      function flag(f) {
+        if (f.status === "UNKNOWN") return "◻️ UNKNOWN";
+        if (f.status === "NOT_APPLICABLE") return "— N/A";
+        if (f.status === "NEEDS_REVIEW") return "⚠️ NEEDS_REVIEW";
+        if (f.status === "ILLEGIBLE") return "❓ ILLEGIBLE";
+        return f.corrected_by_midwife ? "✏️" : "✅";
+      }
+
+      function summaryHtml(rec) {
+        const shown = rec.filled.slice(0, 8).map(f =>
+          "• " + esc(f.label_en) + ": <b>" + esc(f.display ?? "—") + "</b> " + flag(f) +
+          " · conf " + Number(f.confidence).toFixed(2)).join("<br>");
+        const more = rec.filled.length > 8 ? "<br><span class='mut'>…and " + (rec.filled.length - 8) + " more filled fields</span>" : "";
+        const counts = Object.entries(rec.summary || {}).map(([k, v]) => v + " " + k).join(" · ");
+        const quality = rec.image_quality && rec.image_quality.issues && rec.image_quality.issues.length
+          ? "<br>📷 Photo: " + esc(rec.image_quality.issues.join(", ")) : "";
+        return "📋 <b>" + esc(rec.page_type_label || rec.page_type) + "</b><br>" + shown + more +
+               "<br><span class='mut'>" + esc(counts) + quality + "</span>" +
                '<br><span class="mut">🔒 No direct identifiers stored</span>';
       }
 
-      async function startFromPhoto(dataUrl, shown) {
-        S.flowActive = true;
-        if (!shown) addMsg("out", "Registry page 📸", { img: dataUrl });
-        setState("CAPTURED");
-        await agentSay("Photo received — stored <b>encrypted</b> on device. Direct identifiers (names, IDs, phone) are ignored and redacted 🔒", { fast: true });
+      async function sendAnswers(answers) {
+        try {
+          S.rec = await api("PATCH", "/records/" + S.rec.id + "/fields", { answers });
+          return true;
+        } catch (e) { await agentSay("⚠️ " + esc(errText(e))); return false; }
+      }
 
-        if (!S.online) {
-          S.pendingAI += 1;
-          updateBadge();
-          setState("PENDING_AI");
-          await agentSay("📴 No connection. Added to the offline queue: <b>Pending AI processing</b> (" + S.pendingAI + " in queue). Nothing is lost — I'll process it when the connection returns.");
+      async function askOne(f) {
+        const seen = f.display != null && f.display !== "" ? " I read <b>" + esc(f.display) + "</b>" : " I couldn't read it";
+        const why = f.issues && f.issues.length ? " <span class='mut'>(" + esc(f.issues.join("; ")) + ")</span>" : "";
+        await agentSay("⚠️ <b>" + esc(f.label_en) + "</b>:" + seen + " — confidence " + Number(f.confidence).toFixed(2) + why +
+                       "<br><span class='mut'>" + esc(f.question_fr) + "</span>");
+        const opts = [];
+        if (f.display != null && f.display !== "") opts.push({ label: "✅ That's right", value: "confirm" });
+        opts.push({ label: "⌨️ Type the value", value: "type" }, { label: "◻️ Unknown", value: "unknown" },
+                  { label: "⏭️ Skip", value: "skip" });
+        const c = await askButtons(opts);
+        if (c === "skip") return;
+        if (c === "confirm") return sendAnswers({ [f.key]: { confirm: true } });
+        if (c === "unknown") {
+          if (await sendAnswers({ [f.key]: { status: "UNKNOWN" } }))
+            await agentSay("Marked as <b>UNKNOWN</b> — missing info is a real answer, not an error 👌", { fast: true });
           return;
         }
-        await runExtraction();
+        await agentSay("Type the value for <b>" + esc(f.label_en) + "</b>:", { fast: true });
+        await typeUntilAccepted(f.key, f.label_en);
       }
 
-      async function runExtraction() {
-        setState("PENDING_AI");
-        const t = addTyping();
-        await delay(1200);
-        t.remove();
-        setState("AI_PROCESSED");
-        await agentSay(summaryHtml(), { fast: true });
-        setState("NEEDS_REVIEW");
+      // Keeps asking until the server accepts the value (a date must be a date, Pos/Neg must be Pos/Neg...).
+      async function typeUntilAccepted(key, label) {
+        for (;;) {
+          const v = await waitText();
+          if (await sendAnswers({ [key]: { text: v } })) {
+            const nf = (await api("GET", "/records/" + S.rec.id)).fields[key];
+            await agentSay(esc(label) + " = <b>" + esc(nf.display ?? v) + "</b> ✓ <span class='mut'>(entered by midwife)</span>", { fast: true });
+            return;
+          }
+          await agentSay("Try again, or send <b>?</b> if it's unknown.", { fast: true });
+        }
+      }
 
-        if (FIELDS.bp.status === "NEEDS_REVIEW") {
-          await agentSay("⚠️ I couldn't read the <b>blood pressure</b> with confidence (0.62). Could you type the value for me?");
+      async function reviewQuestions() {
+        const queue = S.rec.needs_review.slice();
+        if (!queue.length) {
+          await agentSay("Everything was read with confidence ✅", { fast: true });
+          return reviewMenu();
+        }
+        await agentSay(queue.length + " field(s) need your eyes. Least confident first:", { fast: true });
+        for (const f of queue.slice(0, ASK_FIRST)) await askOne(f);
+        const rest = S.rec.needs_review.filter(f => !queue.slice(0, ASK_FIRST).some(q => q.key === f.key));
+        if (rest.length) {
+          await agentSay(rest.length + " more field(s) are flagged.");
           const c = await askButtons([
-            { label: "⌨️ Type the value", value: "type" },
-            { label: "◻️ Leave as UNKNOWN", value: "unknown" }
+            { label: "🔍 Go through them", value: "all" },
+            { label: "✅ They're right as read", value: "confirm" },
+            { label: "⚠️ Leave them flagged", value: "leave" }
           ]);
-          if (c === "type") {
-            const v = await waitText();
-            FIELDS.bp.value = v;
-            FIELDS.bp.conf = 1;
-            FIELDS.bp.status = "KNOWN";
-            await agentSay("Blood pressure set to <b>" + esc(v) + "</b> ✓ (manual entry — confidence 1.00)", { fast: true });
-          } else {
-            FIELDS.bp.value = "—";
-            FIELDS.bp.conf = null;
-            FIELDS.bp.status = "UNKNOWN";
-            await agentSay("Marked as <b>UNKNOWN</b> — missing info is a first-class state, not an error 👌", { fast: true });
+          if (c === "all") for (const f of rest) await askOne(f);
+          else if (c === "confirm") {
+            const ans = {};
+            rest.forEach(f => { ans[f.key] = f.display ? { confirm: true } : { status: "ILLEGIBLE" }; });
+            await sendAnswers(ans);
           }
         }
-        review();
+        await reviewMenu();
       }
 
-      async function review() {
+      async function reviewMenu() {
         const c = await askButtons([
           { label: "✅ Confirm all", value: "confirm" },
           { label: "✏️ Correct a field", value: "correct" },
           { label: "📸 Retake photo", value: "retake" }
         ]);
-        if (c === "confirm") {
-          setState("VALIDATED");
-          await agentSay("Record <b>validated</b> ✅ Thank you! Now — is this visit for a new or existing patient?", { fast: true });
-          linking();
-        } else if (c === "correct") {
-          const k = await askButtons(Object.keys(FIELDS).map(key => ({ label: FIELDS[key].label, value: key })));
-          await agentSay("Send the correct value for <b>" + esc(FIELDS[k].label) + "</b>:");
-          const v = await waitText();
-          FIELDS[k].value = v;
-          FIELDS[k].conf = 1;
-          FIELDS[k].status = "KNOWN";
-          await agentSay("Updated: <b>" + esc(FIELDS[k].label) + " = " + esc(v) + "</b> ✓ (manual entry — confidence 1.00)", { fast: true });
-          review();
-        } else {
+        if (c === "retake") {
           S.awaitingPhoto = true;
-          await agentSay("No problem — send the photo again (tap 📎) or tap 📄 for a synthetic sample page.");
+          await agentSay("No problem — send the photo again (tap 📎) or tap 📄 for a sample page.");
+          return;
         }
+        if (c === "correct") return correctField();
+        try {
+          if (S.rec.state === "MANUAL_REVIEW_REQUIRED") { await agentSay("Enter at least one value first ✏️", { fast: true }); return reviewMenu(); }
+          S.rec = await api("POST", "/records/" + S.rec.id + "/validate");
+        } catch (e) { await agentSay("⚠️ " + esc(errText(e))); return reviewMenu(); }
+        setState("VALIDATED");
+        await agentSay("Record <b>validated</b> ✅ Now, which patient is this?", { fast: true });
+        linking();
+      }
+
+      async function correctField() {
+        const full = await api("GET", "/records/" + S.rec.id);
+        const all = Object.values(full.fields);
+        await agentSay("Type part of the field name (e.g. <i>tension</i>, <i>weight</i>, <i>DPA</i>):", { fast: true });
+        const q = (await waitText()).toLowerCase();
+        const hits = all.filter(f => (f.label_en + " " + f.label_fr + " " + f.key).toLowerCase().includes(q)).slice(0, 8);
+        if (!hits.length) {
+          await agentSay("No field matches “" + esc(q) + "”.", { fast: true });
+          return reviewMenu();
+        }
+        const k = await askButtons(hits.map(f => ({
+          label: esc(f.label_en) + (f.key.includes(".") ? " <span class='mut'>(" + esc(f.key) + ")</span>" : ""), value: f.key })));
+        const f = full.fields[k];
+        await agentSay("Send the correct value for <b>" + esc(f.label_en) + "</b>" +
+                       (f.display ? " (now: " + esc(f.display) + ")" : "") + ":", { fast: true });
+        await typeUntilAccepted(k, f.label_en);
+        reviewMenu();
+      }
+
+      function patientCard(p) {
+        const when = p.last_visit ? new Date(p.last_visit).toLocaleDateString() : "—";
+        const near = p.distance > 0 ? " <span class='mut'>(1 character different)</span>" : "";
+        return '<div class="pcard"><b>👤 ' + esc(p.code) + "</b>" + near + "<br>" + p.visits + " page(s) on file · " +
+               esc((p.pages || []).join(", ") || "—") + '<br><span class="mut">last visit: ' + esc(when) + "</span></div>";
+      }
+
+      async function link(code, create) {
+        try {
+          S.rec = await api("POST", "/records/" + S.rec.id + "/link", { patient_code: code, create });
+        } catch (e) { await agentSay("⚠️ " + esc(errText(e))); return false; }
+        setState("PATIENT_LINKED");
+        await delay(250);
+        setState("SAVED");
+        return true;
       }
 
       async function linking() {
-        const c = await askButtons([
-          { label: "🆕 New patient", value: "new" },
-          { label: "🔗 I have a code", value: "code" }
-        ]);
-        if (c === "new") {
-          const code = "M-" + (1000 + Math.floor(Math.random() * 9000));
-          setState("PATIENT_MATCHED");
-          await agentSay("Created profile <b>" + code + "</b> 🔗 Write this code on the registry page — the next visit will link automatically.", { fast: true });
-          finish();
-        } else {
-          await agentSay("Great — send me the patient's code:");
-          const code = await waitText();
-          await agentSay("2 profiles match code <b>" + esc(code) + "</b>:", { fast: true });
-          addMsg("in", '<div class="pcard"><b>👤 Patient A</b><br>age 32 · Koubri<br><span class="mut">last visit: 12 Sep · 3 previous visits</span></div>');
-          addMsg("in", '<div class="pcard"><b>👤 Patient B</b><br>age 30 · Saaba<br><span class="mut">last visit: 30 Aug · 1 previous visit</span></div>');
-          const m = await askButtons([
-            { label: "👤 Link to Patient A", value: "A" },
-            { label: "👤 Link to Patient B", value: "B" },
-            { label: "None of these — create new", value: "none" },
-            { label: "🤷 I'm not sure", value: "unsure" }
-          ]);
-          if (m === "A" || m === "B") {
-            setState("PATIENT_MATCHED");
-            await agentSay("Visit linked to <b>Patient " + m + "</b>'s profile ✅", { fast: true });
-          } else if (m === "none") {
-            const code2 = "M-" + (1000 + Math.floor(Math.random() * 9000));
-            setState("PATIENT_MATCHED");
-            await agentSay("Created new profile <b>" + code2 + "</b> 🔗 (I never auto-create a patient when a match is plausible — you decide.)", { fast: true });
-          } else {
-            await agentSay("Kept <b>unlinked</b> for now — a supervisor can merge profiles later. Better safe than duplicated 👍", { fast: true });
-          }
-          finish();
+        const opts = [];
+        if (S.rec.record_number) {
+          await agentSay("The page says patient code <b>" + esc(S.rec.record_number) + "</b>.", { fast: true });
+          opts.push({ label: "👍 Use " + esc(S.rec.record_number), value: "page" });
         }
+        opts.push({ label: "🔗 I have a code", value: "code" }, { label: "🆕 New patient", value: "new" });
+        const c = await askButtons(opts);
+        if (c === "new") {
+          const { code } = await api("GET", "/patients/new-code");
+          if (await link(code, true))
+            await agentSay("Created profile <b>" + esc(code) + "</b> 🔗 Write this code on the registry page — the next visit will link to it.", { fast: true });
+          return finish(true);
+        }
+        let code = S.rec.record_number;
+        if (c === "code") {
+          await agentSay("Send me the patient's code:", { fast: true });
+          code = await waitText();
+        }
+        const matches = await api("GET", "/patients?code=" + encodeURIComponent(code));
+        const exact = matches.find(m => m.distance === 0);
+        if (!matches.length) {
+          await agentSay("No profile has code <b>" + esc(code) + "</b> yet.", { fast: true });
+          const m = await askButtons([
+            { label: "🆕 Create profile " + esc(code), value: "create" },
+            { label: "🤷 Leave unlinked for now", value: "unsure" }
+          ]);
+          if (m === "create" && await link(code, true))
+            await agentSay("Created profile <b>" + esc(S.rec.patient_code) + "</b> and linked this page ✅", { fast: true });
+          return finish(m === "create");
+        }
+        await agentSay(matches.length === 1 && exact ? "Found this profile:" :
+                       matches.length + " profile(s) match <b>" + esc(code) + "</b>. A misread digit could link the wrong woman, so you choose:", { fast: true });
+        matches.forEach(p => addMsg("in", patientCard(p)));
+        const m = await askButtons(matches.map(p => ({ label: "👤 Link to " + esc(p.code), value: p.code })).concat(
+          exact ? [] : [{ label: "🆕 None — create " + esc(code), value: "__new" }],
+          [{ label: "🤷 I'm not sure", value: "__unsure" }]));
+        if (m === "__unsure") {
+          await agentSay("Kept <b>unlinked</b> for now — a supervisor can link it later. Better safe than mixed up 👍", { fast: true });
+          return finish(false);
+        }
+        const ok = m === "__new" ? await link(code, true) : await link(m, false);
+        if (ok) await agentSay("Page linked to <b>" + esc(S.rec.patient_code) + "</b>'s profile ✅", { fast: true });
+        finish(ok);
       }
 
-      async function finish() {
-        if (S.online) {
-          const t = addTyping();
-          await delay(800);
-          t.remove();
-          setState("SYNCED");
-          await agentSay("📤 Record <b>SYNCED</b> to the health system ✅", { fast: true });
-        } else {
-          S.pendingSync += 1;
-          updateBadge();
-          await agentSay("📴 Queued for sync (" + S.pendingSync + " waiting). It will upload when the connection returns.");
+      async function finish(saved) {
+        if (saved) {
+          if (S.online) await syncNow();
+          else {
+            await refreshStatus();
+            await agentSay("📴 Saved on the device and queued for sync. It will upload when the connection returns.");
+          }
         }
-        const c = await askButtons([{ label: "🔄 Start a new visit", value: "new" }]);
+        const c = await askButtons([{ label: "🔄 Next page", value: "new" }]);
         if (c === "new") reset();
       }
 
@@ -693,18 +864,17 @@
         S.flowActive = false;
         S.awaitingPhoto = false;
         S.waiter = null;
-        S.pendingAI = 0;
-        S.pendingSync = 0;
-        FIELDS = defaultFields();
-        updateBadge();
+        S.rec = null;
+        document.querySelectorAll(".btns").forEach(e => e.remove());
         setState(null);
-        sysMsg("New visit");
+        refreshStatus();
+        sysMsg("New page");
         greeting();
       }
 
       async function greeting() {
         await agentSay("👋 Hello! I'm the <b>DayOne agent</b> — the pregnancy registry, digitized.", { fast: true });
-        await agentSay("📸 Send a photo of a registry page (tap 📎) or tap 📄 for a synthetic sample page. Toggle <b>✈️ offline mode</b> in the header to see the queue in action. Send <b>/new</b> anytime to start over.");
+        await agentSay("📸 Send a photo of a registry page (tap 📎) or tap 📄 for a sample page. Toggle <b>✈️ offline mode</b> in the header to see the queue in action. Send <b>/new</b> anytime to start over.");
       }
 
       /* ================= Image preview & send ================= */
@@ -712,9 +882,11 @@
       const pimg = document.getElementById("pimg");
       const pcaption = document.getElementById("pcaption");
       let pendingImage = null;
+      let pendingDemo = null;
 
-      function showPreview(dataUrl) {
+      function showPreview(dataUrl, demoPage) {
         pendingImage = dataUrl;
+        pendingDemo = demoPage || null;
         pimg.src = dataUrl;
         pcaption.value = "";
         preview.style.display = "flex";
@@ -723,6 +895,7 @@
       }
       function clearPreview() {
         pendingImage = null;
+        pendingDemo = null;
         preview.style.display = "none";
       }
       document.getElementById("pclear").onclick = clearPreview;
@@ -732,11 +905,11 @@
       function sendPendingImage() {
         if (!pendingImage) return;
         const cap = pcaption.value.trim() || input.value.trim() || "Registry page 📸";
-        const url = pendingImage;
+        const url = pendingImage, demo = pendingDemo;
         clearPreview();
         input.value = "";
         addMsg("out", esc(cap), { img: url });
-        onPhoto(url, true);
+        onPhoto(url, demo);
       }
 
       /* ================= User input ================= */
@@ -755,45 +928,49 @@
         }
         if (S.flowActive && !S.awaitingPhoto) {
           agentSay("Tap a button to continue 🙂 or send <b>/new</b> to start over.", { fast: true });
-        } else if (S.awaitingPhoto) {
-          agentSay("I'm waiting for a photo 📸 — tap 📎 to upload one, or 📄 for a sample page.", { fast: true });
         } else {
-          agentSay("I'm a simulated prototype 🤖 Send a photo of a registry page (tap 📎) or tap 📄 to generate a synthetic sample page.", { fast: true });
+          agentSay("Send a photo of a registry page (tap 📎) or tap 📄 for a sample page 📸", { fast: true });
         }
       }
 
-      function onPhoto(dataUrl, shown) {
+      function onPhoto(dataUrl, demoPage) {
         if (S.awaitingPhoto) {
           S.awaitingPhoto = false;
-          startFromPhoto(dataUrl, shown);
+          startFromPhoto(dataUrl, demoPage);
           return;
         }
-        if (S.flowActive && S.pendingAI > 0) {
-          agentSay("One photo is already waiting for AI processing offline. Restore the connection first 📶", { fast: true });
+        if (S.flowActive && S.rec && S.rec.state === "PENDING_AI") {
+          agentSay("This page is saved and waiting for processing. Send <b>/new</b> to photograph the next one — it will be processed later 📥", { fast: true });
           return;
         }
         if (S.flowActive) {
-          agentSay("I'm still working on one record — finish this visit (or send <b>/new</b>) before starting another.", { fast: true });
+          agentSay("I'm still working on one page — finish it (or send <b>/new</b>) before starting another.", { fast: true });
           return;
         }
-        startFromPhoto(dataUrl, shown);
+        startFromPhoto(dataUrl, demoPage);
       }
 
       document.getElementById("send").onclick = sendText;
       input.addEventListener("keydown", e => { if (e.key === "Enter") sendText(); });
       document.getElementById("attach").onclick = () => document.getElementById("file").click();
-      document.getElementById("sample").onclick = () => showPreview(sampleRegistry());
+      document.getElementById("sample").onclick = () => {
+        const s = SAMPLES[S.sampleIdx % SAMPLES.length];
+        S.sampleIdx += 1;
+        showPreview(sampleRegistry(s), s.page);
+      };
       document.getElementById("file").addEventListener("change", e => {
         const f = e.target.files[0];
         if (!f) return;
         const r = new FileReader();
-        r.onload = () => showPreview(r.result);
+        r.onload = () => showPreview(r.result, null);
         r.readAsDataURL(f);
         e.target.value = "";
       });
 
       /* ================= Init ================= */
-      updateConn();
+      refreshStatus().then(st => {
+        if (!st) addMsg("in", "⚠️ Can't reach the DayOne server. Start it with <b>cd backend &amp;&amp; uvicorn main:app</b>, then reload.");
+      });
       greeting();
     </script>
   </body>

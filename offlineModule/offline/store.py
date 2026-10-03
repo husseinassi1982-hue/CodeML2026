@@ -14,6 +14,7 @@ import hashlib
 import json
 import os
 import sqlite3
+import threading
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
@@ -46,12 +47,24 @@ def load_key(root: Path) -> bytes:
     return key_file.read_bytes()
 
 
+def _locked(method):
+    def wrapper(self, *args, **kwargs):
+        with self._lock:
+            return method(self, *args, **kwargs)
+    wrapper.__name__ = method.__name__
+    wrapper.__doc__ = method.__doc__
+    return wrapper
+
+
 class RecordStore:
     def __init__(self, root="data", key: bytes | None = None):
         self.root = Path(root)
         (self.root / "images").mkdir(parents=True, exist_ok=True)
         self.fernet = Fernet(key or load_key(self.root))
-        self.db = sqlite3.connect(self.root / "records.db")
+        # check_same_thread=False + one re-entrant lock: the API serves requests from a
+        # thread pool, and sqlite3 refuses cross-thread use by default.
+        self._lock = threading.RLock()
+        self.db = sqlite3.connect(self.root / "records.db", check_same_thread=False)
         self.db.row_factory = sqlite3.Row
         self.db.execute("PRAGMA journal_mode=WAL")  # safer if the app dies mid-write
         self._create_tables()
@@ -81,6 +94,7 @@ class RecordStore:
                 )""")
 
     # ---------- capture ----------
+    @_locked
     def capture(self, image_bytes: bytes, midwife_id: str) -> str:
         """Save the photo + a new record. Returns the record id.
 
@@ -123,6 +137,7 @@ class RecordStore:
         return record_id
 
     # ---------- reading ----------
+    @_locked
     def get(self, record_id: str) -> dict:
         row = self.db.execute("SELECT * FROM records WHERE id = ?", (record_id,)).fetchone()
         if row is None:
@@ -133,6 +148,7 @@ class RecordStore:
         rec["state"] = State(rec["state"])
         return rec
 
+    @_locked
     def list_by_state(self, *states: State) -> list[dict]:
         marks = ",".join("?" for _ in states)
         rows = self.db.execute(
@@ -141,6 +157,7 @@ class RecordStore:
         ).fetchall()
         return [self.get(r["id"]) for r in rows]
 
+    @_locked
     def history(self, record_id: str) -> list[dict]:
         rows = self.db.execute(
             "SELECT at, old_state, new_state, note FROM history WHERE record_id = ? ORDER BY id",
@@ -149,6 +166,7 @@ class RecordStore:
         return [dict(r) for r in rows]
 
     # ---------- changing ----------
+    @_locked
     def transition(self, record_id: str, new_state: State, note: str | None = None,
                    error: str | None = None) -> None:
         """The ONLY way to change a record's state. Illegal moves raise."""
@@ -168,6 +186,7 @@ class RecordStore:
                 (record_id, now, old.value, new_state.value, note or error),
             )
 
+    @_locked
     def update_fields(self, record_id: str, fields: dict) -> None:
         """Merge fields (from the AI or from the midwife's corrections) into the record."""
         current = self.get(record_id)["fields"]
@@ -179,11 +198,23 @@ class RecordStore:
                 (enc, _now(), record_id),
             )
 
+    @_locked
+    def set_fields(self, record_id: str, fields: dict) -> None:
+        """Replace the stored fields entirely (used after the midwife edits them)."""
+        enc = self.fernet.encrypt(json.dumps(fields, ensure_ascii=False).encode())
+        with self.db:
+            self.db.execute(
+                "UPDATE records SET fields_enc = ?, updated_at = ? WHERE id = ?",
+                (enc, _now(), record_id),
+            )
+
+    @_locked
     def bump_attempts(self, record_id: str) -> int:
         with self.db:
             self.db.execute("UPDATE records SET attempts = attempts + 1 WHERE id = ?", (record_id,))
         return self.get(record_id)["attempts"]
 
+    @_locked
     def reset_attempts(self, record_id: str) -> None:
         with self.db:
             self.db.execute("UPDATE records SET attempts = 0 WHERE id = ?", (record_id,))
@@ -192,10 +223,12 @@ class RecordStore:
     def _image_path(self, record_id: str) -> Path:
         return self.root / "images" / f"{record_id}.enc"
 
+    @_locked
     def load_image_for_processing(self, record_id: str) -> bytes:
         """For the pipeline itself (extraction). Not exposed to end users."""
         return self.fernet.decrypt(self._image_path(record_id).read_bytes())
 
+    @_locked
     def get_image(self, record_id: str, role: str) -> bytes:
         """For anyone asking on behalf of a user: role-checked."""
         if role not in IMAGE_ROLES:

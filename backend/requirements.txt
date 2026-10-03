@@ -1,5 +1,10 @@
 fastapi
 uvicorn[standard]
 python-multipart
-sqlalchemy
-pydantic
+pydantic>=2
+cryptography
+# tests
+pytest
+httpx
+# The OCR itself: also install ../requirements-extraction.txt (pymupdf included, it's
+# imported at runtime). Without it the API still runs, using saved outputs in fixtures/.
