@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DayOne Agent — WhatsApp Simulation</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: "Segoe UI", Helvetica, system-ui, sans-serif;
+        background: #1b2a33;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .phone {
+        width: 100%;
+        max-width: 430px;
+        height: 92vh;
+        min-height: 620px;
+        display: flex;
+        flex-direction: column;
+        background: #ece5dd;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.55);
+      }
+
+      /* ===== Header ===== */
+      header {
+        background: #075e54;
+        color: #fff;
+        padding: 10px 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .avatar {
+        width: 38px; height: 38px;
+        border-radius: 50%;
+        background: #25d366;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 19px;
+        flex-shrink: 0;
+      }
+      .hname { font-weight: 600; font-size: 15px; }
+      .hstatus { font-size: 11px; opacity: 0.85; }
+      #conn {
+        margin-left: auto;
+        border: none;
+        border-radius: 14px;
+        padding: 5px 10px;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+        color: #053a30;
+        background: #a5f0c5;
+      }
+      #conn.off { background: #f6c9a8; color: #5a2c0b; }
+
+      /* ===== Status strip (record lifecycle) ===== */
+      .strip {
+        background: #074a43;
+        color: #cfe9e2;
+        font-size: 10px;
+        padding: 6px 10px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 4px;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .chip {
+        background: rgba(255, 255, 255, 0.12);
+        padding: 2px 6px;
+        border-radius: 8px;
+        white-space: nowrap;
+      }
+      .chip.done { background: rgba(37, 211, 102, 0.4); color: #eafff3; }
+      .chip.active { background: #25d366; color: #05312a; font-weight: 700; }
+      .sep { opacity: 0.4; }
+      #qbadge {
+        margin-left: auto;
+        background: #b7791f;
+        color: #fff;
+        padding: 2px 8px;
+        border-radius: 8px;
+        font-weight: 700;
+        display: none;
+      }
+      .lock {
+        width: 100%;
+        opacity: 0.65;
+        font-size: 9px;
+        padding-top: 2px;
+      }
+
+      /* ===== Chat area ===== */
+      #chat {
+        flex: 1;
+        overflow-y: auto;
+        padding: 14px 10px 6px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        background-color: #ece5dd;
+        background-image: radial-gradient(rgba(0, 0, 0, 0.045) 1.5px, transparent 1.5px);
+        background-size: 20px 20px;
+      }
+
+      .msg { display: flex; }
+      .msg.in { justify-content: flex-start; }
+      .msg.out { justify-content: flex-end; }
+
+      .bubble {
+        position: relative;
+        max-width: 82%;
+        padding: 7px 10px 16px;
+        border-radius: 10px;
+        font-size: 13.5px;
+        line-height: 1.45;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.14);
+        word-wrap: break-word;
+        animation: pop 0.18s ease-out;
+      }
+      @keyframes pop {
+        from { opacity: 0; transform: translateY(6px); }
+        to { opacity: 1; transform: none; }
+      }
+      .msg.in .bubble { background: #fff; border-top-left-radius: 2px; }
+      .msg.out .bubble { background: #d9fdd3; border-top-right-radius: 2px; }
+
+      .meta {
+        position: absolute;
+        right: 8px; bottom: 3px;
+        font-size: 9.5px;
+        color: #8a9291;
+        display: flex; gap: 3px; align-items: center;
+      }
+      .ticks { color: #34b7f1; font-size: 10px; }
+
+      .photo {
+        display: block;
+        max-width: 210px;
+        width: 100%;
+        border-radius: 7px;
+        margin-bottom: 4px;
+      }
+
+      .mut { color: #6b7472; font-size: 11.5px; }
+      .pcard {
+        background: #f4f6f7;
+        border-left: 3px solid #25d366;
+        padding: 8px 10px;
+        border-radius: 8px;
+        font-size: 12.5px;
+      }
+
+      /* typing indicator */
+      .dots { display: inline-flex; gap: 4px; padding: 4px 2px; }
+      .dots i {
+        width: 7px; height: 7px;
+        background: #9aa5a3;
+        border-radius: 50%;
+        animation: blink 1.1s infinite;
+      }
+      .dots i:nth-child(2) { animation-delay: 0.2s; }
+      .dots i:nth-child(3) { animation-delay: 0.4s; }
+      @keyframes blink { 0%, 60%, 100% { opacity: 0.3; } 30% { opacity: 1; } }
+
+      .sys {
+        align-self: center;
+        background: #fdf3c4;
+        color: #5c5433;
+        font-size: 11px;
+        padding: 4px 12px;
+        border-radius: 9px;
+        margin: 2px 0;
+      }
+
+      /* ===== Quick-reply buttons ===== */
+      .btns {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        align-self: flex-start;
+        max-width: 82%;
+        margin-bottom: 6px;
+      }
+      .qr {
+        background: #fff;
+        border: 1px solid #ddd;
+        color: #0084ff;
+        font-size: 13px;
+        padding: 8px 14px;
+        border-radius: 16px;
+        cursor: pointer;
+        text-align: left;
+        animation: pop 0.18s ease-out;
+        transition: background 0.15s;
+      }
+      .qr:hover { background: #f0f8ff; }
+
+      /* ===== Composer ===== */
+      .composer {
+        background: #f0f0f0;
+        padding: 8px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .cbtn {
+        width: 40px; height: 40px;
+        border-radius: 50%;
+        border: none;
+        background: #fff;
+        font-size: 18px;
+        cursor: pointer;
+        flex-shrink: 0;
+        color: #444;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      }
+      .cbtn:hover { background: #f0f8ff; }
+      #input {
+        flex: 1;
+        border: none;
+        border-radius: 20px;
+        padding: 10px 16px;
+        font-size: 14px;
+        outline: none;
+        background: #fff;
+      }
+      #send { background: #25d366; color: #fff; }
+    </style>
+  </head>
+  <body>
+    <div class="phone">
+      <header>
+        <div class="avatar">🩺</div>
+        <div>
+          <div class="hname">DayOne Agent</div>
+          <div class="hstatus" id="statusline">online</div>
+        </div>
+        <button id="conn">📶 Online</button>
+      </header>
+
+      <div class="strip">
+        <div id="chips" style="display: contents"></div>
+        <span id="qbadge"></span>
+        <div class="lock">🔒 Encrypted local storage · names &amp; identifiers never stored · paper registry stays the reference</div>
+      </div>
+
+      <div id="chat"></div>
+
+      <div class="composer">
+        <button class="cbtn" id="attach" title="Send a registry photo">📎</button>
+        <button class="cbtn" id="sample" title="Generate a synthetic registry page">📄</button>
+        <input id="input" placeholder="Type a message…" autocomplete="off" />
+        <button class="cbtn" id="send" title="Send">➤</button>
+        <input type="file" id="file" accept="image/*" hidden />
+      </div>
+    </div>
+
+    <script>
+      /* ================= State & mock schema ================= */
+      const STATES = ["CAPTURED", "PENDING_AI", "AI_PROCESSED", "NEEDS_REVIEW", "VALIDATED", "PATIENT_MATCHED", "SYNCED"];
+
+      let FIELDS;
+      function defaultFields() {
+        return {
+          age:      { label: "Age", value: "32", conf: 0.98, status: "KNOWN" },
+          village:  { label: "Village", value: "Koubri", conf: 0.96, status: "KNOWN" },
+          grav:     { label: "Gravidity · Parity", value: "G4 · P3", conf: 0.95, status: "KNOWN" },
+          hiv:      { label: "HIV test", value: "Negative", conf: 0.92, status: "KNOWN" },
+          edd:      { label: "Expected delivery date", value: "12 Feb 2027", conf: 0.91, status: "KNOWN" },
+          bp:       { label: "Blood pressure", value: "12/8", conf: 0.62, status: "NEEDS_REVIEW" }
+        };
+      }
+      FIELDS = defaultFields();
+
+      const S = { online: true, flowActive: false, awaitingPhoto: false, waiter: null, pendingAI: 0, pendingSync: 0 };
+
+      /* ================= DOM helpers ================= */
+      const chat = document.getElementById("chat");
+      const input = document.getElementById("input");
+      const qbadge = document.getElementById("qbadge");
+      const connBtn = document.getElementById("conn");
+      const statusline = document.getElementById("statusline");
+
+      function now() {
+        const d = new Date();
+        return String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0");
+      }
+      function esc(t) {
+        return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      }
+      function scroll() { chat.scrollTop = chat.scrollHeight; }
+      function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+      function addMsg(side, html, opts) {
+        opts = opts || {};
+        const wrap = document.createElement("div");
+        wrap.className = "msg " + side;
+        const b = document.createElement("div");
+        b.className = "bubble";
+        if (opts.img) {
+          const i = document.createElement("img");
+          i.className = "photo";
+          i.src = opts.img;
+          i.alt = "registry page photo";
+          b.appendChild(i);
+        }
+        const t = document.createElement("div");
+        t.innerHTML = html;
+        b.appendChild(t);
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        meta.innerHTML = "<span>" + now() + "</span>" + (side === "out" ? '<span class="ticks">✓✓</span>' : "");
+        b.appendChild(meta);
+        wrap.appendChild(b);
+        chat.appendChild(wrap);
+        scroll();
+        return wrap;
+      }
+
+      function sysMsg(text) {
+        const s = document.createElement("div");
+        s.className = "sys";
+        s.textContent = text;
+        chat.appendChild(s);
+        scroll();
+      }
+
+      function addTyping() {
+        const w = addMsg("in", '<span class="dots"><i></i><i></i><i></i></span>');
+        return w;
+      }
+
+      async function agentSay(html, opts) {
+        opts = opts || {};
+        const t = addTyping();
+        await delay(opts.fast ? 450 : 950);
+        t.remove();
+        addMsg("in", html);
+      }
+
+      function askButtons(list) {
+        return new Promise(res => {
+          const wrap = document.createElement("div");
+          wrap.className = "btns";
+          list.forEach(b => {
+            const el = document.createElement("button");
+            el.className = "qr";
+            el.innerHTML = b.label;
+            el.onclick = () => {
+              document.querySelectorAll(".btns").forEach(e => e.remove());
+              res(b.value);
+            };
+            wrap.appendChild(el);
+          });
+          chat.appendChild(wrap);
+          scroll();
+        });
+      }
+
+      function waitText() {
+        return new Promise(res => { S.waiter = res; });
+      }
+
+      /* ================= Lifecycle chips ================= */
+      const chipsBox = document.getElementById("chips");
+      STATES.forEach((s, i) => {
+        const c = document.createElement("span");
+        c.className = "chip";
+        c.textContent = s;
+        chipsBox.appendChild(c);
+        if (i < STATES.length - 1) {
+          const sep = document.createElement("span");
+          sep.className = "sep";
+          sep.textContent = "→";
+          chipsBox.appendChild(sep);
+        }
+      });
+
+      function setState(s) {
+        const chips = chipsBox.querySelectorAll(".chip");
+        const idx = s ? STATES.indexOf(s) : -1;
+        chips.forEach((c, i) => {
+          c.className = "chip" + (i < idx ? " done" : i === idx ? " active" : "");
+        });
+      }
+
+      function updateBadge() {
+        const n = S.pendingAI + S.pendingSync;
+        qbadge.style.display = n > 0 ? "inline-block" : "none";
+        if (n > 0) qbadge.textContent = "⏳ " + S.pendingAI + " AI · " + S.pendingSync + " sync queued";
+      }
+
+      /* ================= Connection toggle ================= */
+      function updateConn() {
+        connBtn.textContent = S.online ? "📶 Online" : "✈️ Offline";
+        connBtn.className = S.online ? "" : "off";
+        statusline.textContent = S.online ? "online" : "offline — queuing on device";
+      }
+      connBtn.onclick = () => setOnline(!S.online);
+
+      async function setOnline(v) {
+        S.online = v;
+        updateConn();
+        if (v) {
+          sysMsg("📶 Connection restored");
+          if (S.pendingAI > 0) {
+            S.pendingAI = 0;
+            updateBadge();
+            await agentSay("Processing the queued photo…");
+            await runExtraction();
+          } else if (S.pendingSync > 0) {
+            S.pendingSync = 0;
+            updateBadge();
+            const t = addTyping();
+            await delay(800);
+            t.remove();
+            setState("SYNCED");
+            await agentSay("📤 Syncing queued record… done ✅", { fast: true });
+          }
+        } else {
+          sysMsg("✈️ Connection lost");
+        }
+      }
+
+      /* ================= Synthetic sample registry page ================= */
+      function sampleRegistry() {
+        const c = document.createElement("canvas");
+        c.width = 520; c.height = 680;
+        const x = c.getContext("2d");
+
+        // paper
+        x.fillStyle = "#f7f2e4";
+        x.fillRect(0, 0, 520, 680);
+
+        // low-light vignette (field-like photo degradation)
+        const g = x.createLinearGradient(0, 0, 520, 680);
+        g.addColorStop(0, "rgba(40,40,40,0.18)");
+        g.addColorStop(0.5, "rgba(0,0,0,0)");
+        g.addColorStop(1, "rgba(20,20,20,0.28)");
+        x.fillStyle = g;
+        x.fillRect(0, 0, 520, 680);
+
+        // title
+        x.fillStyle = "#1f3a5f";
+        x.font = "bold 21px Georgia";
+        x.fillText("REGISTRE MATERNEL — CPN", 28, 52);
+
+        const rows = [
+          ["Âge :", "32"],
+          ["Village / Zone :", "Koubri"],
+          ["Gestité (G) :", "4"],
+          ["Parité (P) :", "3"],
+          ["Tension (TA) :", "12/8"],
+          ["Test VIH :", "Négatif"],
+          ["DPA :", "12/02/2027"]
+        ];
+
+        rows.forEach((r, i) => {
+          const y = 110 + i * 76;
+          // printed label
+          x.fillStyle = "#33475b";
+          x.font = "16px Georgia";
+          x.fillText(r[0], 30, y);
+          // handwritten value
+          x.fillStyle = "#25456e";
+          x.font = '25px "Segoe Script", "Comic Sans MS", cursive';
+          x.fillText(r[1], 230, y + 2);
+          // ruled line
+          x.strokeStyle = "rgba(80,100,120,0.45)";
+          x.lineWidth = 1;
+          x.beginPath();
+          x.moveTo(28, y + 14);
+          x.lineTo(492, y + 14);
+          x.stroke();
+        });
+
+        // midwife code box
+        x.strokeStyle = "#33475b";
+        x.strokeRect(300, 616, 190, 40);
+        x.fillStyle = "#33475b";
+        x.font = "13px Georgia";
+        x.fillText("Code sage-femme :", 30, 641);
+        x.fillStyle = "#25456e";
+        x.font = '22px "Segoe Script", "Comic Sans MS", cursive';
+        x.fillText("M-4821", 340, 642);
+
+        return c.toDataURL("image/jpeg", 0.72);
+      }
+
+      /* ================= Agent flows ================= */
+      function summaryHtml() {
+        const rows = Object.keys(FIELDS).map(k => {
+          const f = FIELDS[k];
+          let flag;
+          if (f.status === "UNKNOWN") flag = "◻️ UNKNOWN";
+          else if (f.status === "NEEDS_REVIEW") flag = "⚠️ NEEDS_REVIEW";
+          else flag = "✅";
+          const c = f.conf != null ? " · conf " + f.conf.toFixed(2) : "";
+          return "• " + esc(f.label) + ": <b>" + esc(f.value) + "</b> " + flag + c;
+        }).join("<br>");
+        return "📋 <b>Extracted — page 1</b> (status + confidence per field):<br>" + rows +
+               '<br><span class="mut">🔒 No direct identifiers stored</span>';
+      }
+
+      async function startFromPhoto(dataUrl) {
+        S.flowActive = true;
+        addMsg("out", "Registry page 📸", { img: dataUrl });
+        setState("CAPTURED");
+        await agentSay("Photo received — stored <b>encrypted</b> on device. Direct identifiers (names, IDs, phone) are ignored and redacted 🔒", { fast: true });
+
+        if (!S.online) {
+          S.pendingAI += 1;
+          updateBadge();
+          setState("PENDING_AI");
+          await agentSay("📴 No connection. Added to the offline queue: <b>Pending AI processing</b> (" + S.pendingAI + " in queue). Nothing is lost — I'll process it when the connection returns.");
+          return;
+        }
+        await runExtraction();
+      }
+
+      async function runExtraction() {
+        setState("PENDING_AI");
+        const t = addTyping();
+        await delay(1200);
+        t.remove();
+        setState("AI_PROCESSED");
+        await agentSay(summaryHtml(), { fast: true });
+        setState("NEEDS_REVIEW");
+
+        if (FIELDS.bp.status === "NEEDS_REVIEW") {
+          await agentSay("⚠️ I couldn't read the <b>blood pressure</b> with confidence (0.62). Could you type the value for me?");
+          const c = await askButtons([
+            { label: "⌨️ Type the value", value: "type" },
+            { label: "◻️ Leave as UNKNOWN", value: "unknown" }
+          ]);
+          if (c === "type") {
+            const v = await waitText();
+            FIELDS.bp.value = v;
+            FIELDS.bp.conf = 1;
+            FIELDS.bp.status = "KNOWN";
+            await agentSay("Blood pressure set to <b>" + esc(v) + "</b> ✓ (manual entry — confidence 1.00)", { fast: true });
+          } else {
+            FIELDS.bp.value = "—";
+            FIELDS.bp.conf = null;
+            FIELDS.bp.status = "UNKNOWN";
+            await agentSay("Marked as <b>UNKNOWN</b> — missing info is a first-class state, not an error 👌", { fast: true });
+          }
+        }
+        review();
+      }
+
+      async function review() {
+        const c = await askButtons([
+          { label: "✅ Confirm all", value: "confirm" },
+          { label: "✏️ Correct a field", value: "correct" },
+          { label: "📸 Retake photo", value: "retake" }
+        ]);
+        if (c === "confirm") {
+          setState("VALIDATED");
+          await agentSay("Record <b>validated</b> ✅ Thank you! Now — is this visit for a new or existing patient?", { fast: true });
+          linking();
+        } else if (c === "correct") {
+          const k = await askButtons(Object.keys(FIELDS).map(key => ({ label: FIELDS[key].label, value: key })));
+          await agentSay("Send the correct value for <b>" + esc(FIELDS[k].label) + "</b>:");
+          const v = await waitText();
+          FIELDS[k].value = v;
+          FIELDS[k].conf = 1;
+          FIELDS[k].status = "KNOWN";
+          await agentSay("Updated: <b>" + esc(FIELDS[k].label) + " = " + esc(v) + "</b> ✓ (manual entry — confidence 1.00)", { fast: true });
+          review();
+        } else {
+          S.awaitingPhoto = true;
+          await agentSay("No problem — send the photo again (tap 📎) or tap 📄 for a synthetic sample page.");
+        }
+      }
+
+      async function linking() {
+        const c = await askButtons([
+          { label: "🆕 New patient", value: "new" },
+          { label: "🔗 I have a code", value: "code" }
+        ]);
+        if (c === "new") {
+          const code = "M-" + (1000 + Math.floor(Math.random() * 9000));
+          setState("PATIENT_MATCHED");
+          await agentSay("Created profile <b>" + code + "</b> 🔗 Write this code on the registry page — the next visit will link automatically.", { fast: true });
+          finish();
+        } else {
+          await agentSay("Great — send me the patient's code:");
+          const code = await waitText();
+          await agentSay("2 profiles match code <b>" + esc(code) + "</b>:", { fast: true });
+          addMsg("in", '<div class="pcard"><b>👤 Patient A</b><br>age 32 · Koubri<br><span class="mut">last visit: 12 Sep · 3 previous visits</span></div>');
+          addMsg("in", '<div class="pcard"><b>👤 Patient B</b><br>age 30 · Saaba<br><span class="mut">last visit: 30 Aug · 1 previous visit</span></div>');
+          const m = await askButtons([
+            { label: "👤 Link to Patient A", value: "A" },
+            { label: "👤 Link to Patient B", value: "B" },
+            { label: "None of these — create new", value: "none" },
+            { label: "🤷 I'm not sure", value: "unsure" }
+          ]);
+          if (m === "A" || m === "B") {
+            setState("PATIENT_MATCHED");
+            await agentSay("Visit linked to <b>Patient " + m + "</b>'s profile ✅", { fast: true });
+          } else if (m === "none") {
+            const code2 = "M-" + (1000 + Math.floor(Math.random() * 9000));
+            setState("PATIENT_MATCHED");
+            await agentSay("Created new profile <b>" + code2 + "</b> 🔗 (I never auto-create a patient when a match is plausible — you decide.)", { fast: true });
+          } else {
+            await agentSay("Kept <b>unlinked</b> for now — a supervisor can merge profiles later. Better safe than duplicated 👍", { fast: true });
+          }
+          finish();
+        }
+      }
+
+      async function finish() {
+        if (S.online) {
+          const t = addTyping();
+          await delay(800);
+          t.remove();
+          setState("SYNCED");
+          await agentSay("📤 Record <b>SYNCED</b> to the health system ✅", { fast: true });
+        } else {
+          S.pendingSync += 1;
+          updateBadge();
+          await agentSay("📴 Queued for sync (" + S.pendingSync + " waiting). It will upload when the connection returns.");
+        }
+        const c = await askButtons([{ label: "🔄 Start a new visit", value: "new" }]);
+        if (c === "new") reset();
+      }
+
+      function reset() {
+        S.flowActive = false;
+        S.awaitingPhoto = false;
+        S.waiter = null;
+        S.pendingAI = 0;
+        S.pendingSync = 0;
+        FIELDS = defaultFields();
+        updateBadge();
+        setState(null);
+        sysMsg("New visit");
+        greeting();
+      }
+
+      async function greeting() {
+        await agentSay("👋 Hello! I'm the <b>DayOne agent</b> — the pregnancy registry, digitized.", { fast: true });
+        await agentSay("📸 Send a photo of a registry page (tap 📎) or tap 📄 for a synthetic sample page. Toggle <b>✈️ offline mode</b> in the header to see the queue in action. Send <b>/new</b> anytime to start over.");
+      }
+
+      /* ================= User input ================= */
+      function sendText() {
+        const v = input.value.trim();
+        if (!v) return;
+        input.value = "";
+        addMsg("out", esc(v));
+        if (v.toLowerCase() === "/new") { reset(); return; }
+        if (S.waiter) {
+          const w = S.waiter;
+          S.waiter = null;
+          w(v);
+          return;
+        }
+        if (S.flowActive && !S.awaitingPhoto) {
+          agentSay("Tap a button to continue 🙂 or send <b>/new</b> to start over.", { fast: true });
+        } else if (S.awaitingPhoto) {
+          agentSay("I'm waiting for a photo 📸 — tap 📎 to upload one, or 📄 for a sample page.", { fast: true });
+        } else {
+          agentSay("I'm a simulated prototype 🤖 Send a photo of a registry page (tap 📎) or tap 📄 to generate a synthetic sample page.", { fast: true });
+        }
+      }
+
+      function onPhoto(dataUrl) {
+        if (S.awaitingPhoto) {
+          S.awaitingPhoto = false;
+          startFromPhoto(dataUrl);
+          return;
+        }
+        if (S.flowActive && S.pendingAI > 0) {
+          agentSay("One photo is already waiting for AI processing offline. Restore the connection first 📶", { fast: true });
+          return;
+        }
+        if (S.flowActive) {
+          agentSay("I'm still working on one record — finish this visit (or send <b>/new</b>) before starting another.", { fast: true });
+          return;
+        }
+        startFromPhoto(dataUrl);
+      }
+
+      document.getElementById("send").onclick = sendText;
+      input.addEventListener("keydown", e => { if (e.key === "Enter") sendText(); });
+      document.getElementById("attach").onclick = () => document.getElementById("file").click();
+      document.getElementById("sample").onclick = () => onPhoto(sampleRegistry());
+      document.getElementById("file").addEventListener("change", e => {
+        const f = e.target.files[0];
+        if (!f) return;
+        const r = new FileReader();
+        r.onload = () => onPhoto(r.result);
+        r.readAsDataURL(f);
+        e.target.value = "";
+      });
+
+      /* ================= Init ================= */
+      updateConn();
+      greeting();
+    </script>
+  </body>
+</html>
