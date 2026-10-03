@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+# participant package (not ours to redistribute) and generated eval artefacts
+/data
+/eval_out/

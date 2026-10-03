@@ -1,0 +1,12 @@
+# Person 1 - extraction pipeline (CPU only, Python >= 3.10)
+numpy==2.5.3
+opencv-python-headless==5.0.0.93
+pillow==12.3.0
+pydantic==2.13.5
+rapidocr==3.9.2
+onnxruntime==1.30.0
+RapidFuzz==3.14.6
+# only to rebuild templates / ground truth from the specimen PDF
+pymupdf==1.28.2
+# only for the optional Claude backend
+anthropic==1.11.0

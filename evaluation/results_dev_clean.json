@@ -1,0 +1,163 @@
+{
+  "overall": {
+    "fields": 3948,
+    "field_accuracy": 0.9889,
+    "value_accuracy_on_written": 0.9899,
+    "status_accuracy": 0.9909,
+    "review_rate_on_written": 0.0147,
+    "silent_error_rate": 0.0034,
+    "silent_errors": 8
+  },
+  "by_kind": {
+    "text": {
+      "fields": 539,
+      "field_accuracy": 0.9425,
+      "value_accuracy_on_written": 0.96,
+      "status_accuracy": 0.9536,
+      "review_rate_on_written": 0.0565,
+      "silent_error_rate": 0.015,
+      "silent_errors": 6
+    },
+    "cell": {
+      "fields": 2303,
+      "field_accuracy": 0.9944,
+      "value_accuracy_on_written": 0.9918,
+      "status_accuracy": 0.9952,
+      "review_rate_on_written": 0.0129,
+      "silent_error_rate": 0.0024,
+      "silent_errors": 2
+    },
+    "check": {
+      "fields": 938,
+      "field_accuracy": 1.0,
+      "value_accuracy_on_written": 1.0,
+      "status_accuracy": 1.0,
+      "review_rate_on_written": 0.0,
+      "silent_error_rate": 0.0,
+      "silent_errors": 0
+    },
+    "radio": {
+      "fields": 168,
+      "field_accuracy": 1.0,
+      "value_accuracy_on_written": 1.0,
+      "status_accuracy": 1.0,
+      "review_rate_on_written": 0.0,
+      "silent_error_rate": 0.0,
+      "silent_errors": 0
+    }
+  },
+  "by_page_type": {
+    "cover": {
+      "fields": 112,
+      "field_accuracy": 0.9286,
+      "value_accuracy_on_written": 0.9905,
+      "status_accuracy": 0.9286,
+      "review_rate_on_written": 0.0762,
+      "silent_error_rate": 0.0,
+      "silent_errors": 0
+    },
+    "current_pregnancy": {
+      "fields": 1932,
+      "field_accuracy": 0.9933,
+      "value_accuracy_on_written": 0.9902,
+      "status_accuracy": 0.9943,
+      "review_rate_on_written": 0.0154,
+      "silent_error_rate": 0.0028,
+      "silent_errors": 2
+    },
+    "delivery": {
+      "fields": 182,
+      "field_accuracy": 0.978,
+      "value_accuracy_on_written": 0.9872,
+      "status_accuracy": 0.978,
+      "review_rate_on_written": 0.0256,
+      "silent_error_rate": 0.0,
+      "silent_errors": 0
+    },
+    "identification": {
+      "fields": 546,
+      "field_accuracy": 0.989,
+      "value_accuracy_on_written": 0.9936,
+      "status_accuracy": 0.989,
+      "review_rate_on_written": 0.016,
+      "silent_error_rate": 0.0,
+      "silent_errors": 0
+    },
+    "postpartum_early_mother": {
+      "fields": 301,
+      "field_accuracy": 0.9867,
+      "value_accuracy_on_written": 0.9852,
+      "status_accuracy": 0.99,
+      "review_rate_on_written": 0.0111,
+      "silent_error_rate": 0.0037,
+      "silent_errors": 1
+    },
+    "postpartum_early_newborn": {
+      "fields": 287,
+      "field_accuracy": 0.993,
+      "value_accuracy_on_written": 0.9964,
+      "status_accuracy": 0.9965,
+      "review_rate_on_written": 0.0036,
+      "silent_error_rate": 0.0036,
+      "silent_errors": 1
+    },
+    "postpartum_late_mother": {
+      "fields": 301,
+      "field_accuracy": 0.9934,
+      "value_accuracy_on_written": 0.9922,
+      "status_accuracy": 1.0,
+      "review_rate_on_written": 0.0,
+      "silent_error_rate": 0.0078,
+      "silent_errors": 2
+    },
+    "postpartum_late_newborn": {
+      "fields": 287,
+      "field_accuracy": 0.9826,
+      "value_accuracy_on_written": 0.9821,
+      "status_accuracy": 0.9895,
+      "review_rate_on_written": 0.0107,
+      "silent_error_rate": 0.0072,
+      "silent_errors": 2
+    }
+  },
+  "page_type_accuracy": 1.0,
+  "seconds_per_page": 2.61,
+  "calibration": {
+    "0.2-0.3": {
+      "n": 2,
+      "accuracy": 0.0
+    },
+    "0.3-0.4": {
+      "n": 7,
+      "accuracy": 0.714
+    },
+    "0.4-0.5": {
+      "n": 7,
+      "accuracy": 0.143
+    },
+    "0.5-0.6": {
+      "n": 2,
+      "accuracy": 0.0
+    },
+    "0.6-0.7": {
+      "n": 4,
+      "accuracy": 0.5
+    },
+    "0.7-0.8": {
+      "n": 13,
+      "accuracy": 0.923
+    },
+    "0.8-0.9": {
+      "n": 66,
+      "accuracy": 1.0
+    },
+    "0.9-1.0": {
+      "n": 1179,
+      "accuracy": 0.992
+    }
+  },
+  "run": {
+    "name": "dev_clean",
+    "pages": 56
+  }
+}

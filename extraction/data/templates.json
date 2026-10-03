@@ -1,0 +1,12601 @@
+{
+ "cover": {
+  "page_type": "cover",
+  "width": 595.2755737304688,
+  "height": 841.8897705078125,
+  "labels": [
+   {
+    "text": "FICHE DE SURVEILLANCE DE LA GROSSESSE ET DU POST-PARTUM",
+    "bbox": [
+     41.14,
+     29.45,
+     409.11,
+     45.71
+    ],
+    "ink": [
+     42.0,
+     28.25,
+     410.0,
+     46.5
+    ]
+   },
+   {
+    "text": "SPÉCIMEN — DONNÉES FICTIVES",
+    "bbox": [
+     401.43,
+     30.75,
+     533.49,
+     42.17
+    ],
+    "ink": [
+     400.5,
+     31.75,
+     533.25,
+     42.25
+    ]
+   },
+   {
+    "text": "Modèle de formulaire neutre (spécimen)",
+    "bbox": [
+     41.1,
+     46.62,
+     182.96,
+     58.04
+    ],
+    "ink": [
+     41.75,
+     49.25,
+     182.25,
+     57.25
+    ]
+   },
+   {
+    "text": "N° de la fiche :",
+    "bbox": [
+     50.94,
+     100.65,
+     105.31,
+     111.81
+    ],
+    "ink": [
+     51.5,
+     103.5,
+     102.75,
+     109.5
+    ]
+   },
+   {
+    "text": "Région :",
+    "bbox": [
+     50.83,
+     135.65,
+     82.88,
+     146.74
+    ],
+    "ink": [
+     51.5,
+     138.25,
+     80.25,
+     146.0
+    ]
+   },
+   {
+    "text": "Province :",
+    "bbox": [
+     320.83,
+     136.47,
+     358.66,
+     147.58
+    ],
+    "ink": [
+     321.5,
+     139.25,
+     356.0,
+     145.25
+    ]
+   },
+   {
+    "text": "Nom de l'établissement sanitaire :",
+    "bbox": [
+     50.73,
+     170.65,
+     172.77,
+     182.01
+    ],
+    "ink": [
+     51.25,
+     173.5,
+     170.0,
+     179.75
+    ]
+   },
+   {
+    "text": "Type de l'établissement sanitaire :",
+    "bbox": [
+     50.62,
+     205.65,
+     171.34,
+     217.01
+    ],
+    "ink": [
+     50.75,
+     208.5,
+     171.0,
+     216.0
+    ]
+   },
+   {
+    "text": "DR",
+    "bbox": [
+     62.53,
+     235.68,
+     74.11,
+     246.71
+    ],
+    "ink": [
+     63.25,
+     238.5,
+     73.75,
+     244.25
+    ]
+   },
+   {
+    "text": "CSC",
+    "bbox": [
+     202.53,
+     236.11,
+     219.45,
+     247.15
+    ],
+    "ink": [
+     202.75,
+     238.75,
+     219.0,
+     245.0
+    ]
+   },
+   {
+    "text": "CSU",
+    "bbox": [
+     322.53,
+     236.47,
+     339.45,
+     247.52
+    ],
+    "ink": [
+     322.75,
+     239.25,
+     338.75,
+     245.25
+    ]
+   },
+   {
+    "text": "CSCA",
+    "bbox": [
+     62.44,
+     265.68,
+     84.69,
+     276.74
+    ],
+    "ink": [
+     62.75,
+     268.25,
+     84.5,
+     274.5
+    ]
+   },
+   {
+    "text": "CSUA",
+    "bbox": [
+     202.44,
+     266.11,
+     224.69,
+     277.17
+    ],
+    "ink": [
+     202.75,
+     268.75,
+     224.5,
+     275.0
+    ]
+   },
+   {
+    "text": "Fixe",
+    "bbox": [
+     102.27,
+     320.81,
+     117.42,
+     331.84
+    ],
+    "ink": [
+     103.0,
+     323.5,
+     117.25,
+     329.75
+    ]
+   },
+   {
+    "text": "Mobile",
+    "bbox": [
+     242.27,
+     321.23,
+     265.86,
+     332.29
+    ],
+    "ink": [
+     242.75,
+     324.0,
+     265.5,
+     330.0
+    ]
+   },
+   {
+    "text": "Nom/Prénom de la parturiente :",
+    "bbox": [
+     50.1,
+     375.65,
+     163.96,
+     386.99
+    ],
+    "ink": [
+     50.75,
+     378.5,
+     161.25,
+     386.25
+    ]
+   },
+   {
+    "text": "Grossesse classée à risque :",
+    "bbox": [
+     74.91,
+     438.76,
+     184.78,
+     450.11
+    ],
+    "ink": [
+     75.25,
+     441.5,
+     184.25,
+     449.5
+    ]
+   },
+   {
+    "text": "Si grossesse à risque, préciser le type de risque :",
+    "bbox": [
+     59.84,
+     460.68,
+     234.61,
+     472.2
+    ],
+    "ink": [
+     60.25,
+     463.25,
+     234.25,
+     471.5
+    ]
+   },
+   {
+    "text": "Anémie",
+    "bbox": [
+     76.77,
+     485.73,
+     103.92,
+     496.8
+    ],
+    "ink": [
+     77.0,
+     488.5,
+     103.75,
+     494.5
+    ]
+   },
+   {
+    "text": "Métrorragie",
+    "bbox": [
+     301.77,
+     486.41,
+     342.7,
+     497.53
+    ],
+    "ink": [
+     302.25,
+     489.0,
+     342.5,
+     497.0
+    ]
+   },
+   {
+    "text": "H.T.A",
+    "bbox": [
+     76.71,
+     503.73,
+     97.2,
+     514.78
+    ],
+    "ink": [
+     77.25,
+     506.5,
+     97.0,
+     512.5
+    ]
+   },
+   {
+    "text": "Infection",
+    "bbox": [
+     301.71,
+     504.41,
+     331.99,
+     515.5
+    ],
+    "ink": [
+     302.5,
+     507.0,
+     331.5,
+     513.25
+    ]
+   },
+   {
+    "text": "Diabète",
+    "bbox": [
+     76.66,
+     521.73,
+     104.26,
+     532.8
+    ],
+    "ink": [
+     77.25,
+     524.5,
+     104.0,
+     530.5
+    ]
+   },
+   {
+    "text": "Pré-éclampsie",
+    "bbox": [
+     301.66,
+     522.41,
+     352.81,
+     533.56
+    ],
+    "ink": [
+     302.25,
+     525.0,
+     352.5,
+     533.0
+    ]
+   },
+   {
+    "text": "Cardiopathie",
+    "bbox": [
+     76.6,
+     539.73,
+     121.99,
+     550.86
+    ],
+    "ink": [
+     77.0,
+     542.5,
+     121.75,
+     550.25
+    ]
+   },
+   {
+    "text": "Eclampsie",
+    "bbox": [
+     301.6,
+     540.41,
+     338.53,
+     551.52
+    ],
+    "ink": [
+     302.25,
+     543.25,
+     338.25,
+     551.0
+    ]
+   },
+   {
+    "text": "Autres à préciser : ......................................",
+    "bbox": [
+     289.55,
+     559.38,
+     441.23,
+     570.83
+    ],
+    "ink": [
+     289.75,
+     562.0,
+     440.5,
+     570.0
+    ]
+   },
+   {
+    "text": "Document synthétique généré pour l'entraînement de modèles — aucune donnée réelle — ne pas utiliser comme dossier médical.",
+    "bbox": [
+     38.76,
+     818.77,
+     384.42,
+     828.06
+    ],
+    "ink": [
+     39.25,
+     820.75,
+     384.0,
+     827.25
+    ]
+   }
+  ],
+  "fields": {
+   "record_number": {
+    "region": [
+     107.31,
+     97.73,
+     565.0,
+     114.73
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "region": {
+    "region": [
+     84.88,
+     132.69,
+     318.83,
+     149.69
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "province": {
+    "region": [
+     360.66,
+     133.52,
+     565.0,
+     150.52
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "facility_name": {
+    "region": [
+     174.77,
+     167.83,
+     565.0,
+     184.83
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "facility_type": {
+    "options": {
+     "DR": [
+      90.53,
+      237.37,
+      98.56,
+      245.39
+     ],
+     "CSC": [
+      230.53,
+      237.8,
+      238.56,
+      245.82
+     ],
+     "CSU": [
+      350.53,
+      238.16,
+      358.56,
+      246.18
+     ],
+     "CSCA": [
+      90.44,
+      267.37,
+      98.47,
+      275.39
+     ],
+     "CSUA": [
+      230.44,
+      267.8,
+      238.47,
+      275.82
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "coverage_mode": {
+    "options": {
+     "fixed": [
+      90.27,
+      322.37,
+      98.3,
+      330.39
+     ],
+     "mobile": [
+      230.27,
+      322.79,
+      238.3,
+      330.82
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "patient_name": {
+    "region": [
+     165.96,
+     372.82,
+     565.0,
+     389.82
+    ],
+    "kind": "text",
+    "pii": true
+   },
+   "high_risk": {
+    "box": [
+     59.92,
+     440.28,
+     67.94,
+     448.3
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "risk.anemia": {
+    "box": [
+     64.77,
+     487.29,
+     72.8,
+     495.32
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "risk.hypertension": {
+    "box": [
+     64.72,
+     505.29,
+     72.74,
+     513.32
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "risk.diabetes": {
+    "box": [
+     64.66,
+     523.29,
+     72.69,
+     531.32
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "risk.cardiopathy": {
+    "box": [
+     64.61,
+     541.29,
+     72.63,
+     549.32
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "risk.metrorrhagia": {
+    "box": [
+     289.77,
+     487.98,
+     297.8,
+     496.0
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "risk.infection": {
+    "box": [
+     289.72,
+     505.98,
+     297.74,
+     514.0
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "risk.preeclampsia": {
+    "box": [
+     289.66,
+     523.98,
+     297.69,
+     532.0
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "risk.eclampsia": {
+    "box": [
+     289.61,
+     541.98,
+     297.63,
+     550.0
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "risk.other": {
+    "region": [
+     443.23,
+     556.6,
+     565.0,
+     573.6
+    ],
+    "kind": "text",
+    "pii": false
+   }
+  }
+ },
+ "identification": {
+  "page_type": "identification",
+  "width": 595.2755737304688,
+  "height": 841.8897705078125,
+  "labels": [
+   {
+    "text": "IDENTIFICATION ET ANTÉCÉDENTS",
+    "bbox": [
+     42.4,
+     28.59,
+     233.17,
+     44.96
+    ],
+    "ink": [
+     43.0,
+     31.0,
+     232.75,
+     41.75
+    ]
+   },
+   {
+    "text": "SPÉCIMEN — DONNÉES FICTIVES",
+    "bbox": [
+     402.7,
+     31.1,
+     534.79,
+     42.96
+    ],
+    "ink": [
+     403.0,
+     32.25,
+     534.5,
+     40.75
+    ]
+   },
+   {
+    "text": "Age :",
+    "bbox": [
+     50.1,
+     79.81,
+     71.08,
+     90.94
+    ],
+    "ink": [
+     50.25,
+     82.5,
+     68.5,
+     90.25
+    ]
+   },
+   {
+    "text": "CIN :",
+    "bbox": [
+     302.1,
+     81.42,
+     322.61,
+     92.54
+    ],
+    "ink": [
+     302.5,
+     84.0,
+     320.0,
+     90.25
+    ]
+   },
+   {
+    "text": "Niveau d'instruction :",
+    "bbox": [
+     49.96,
+     101.81,
+     126.25,
+     113.29
+    ],
+    "ink": [
+     50.5,
+     104.5,
+     123.5,
+     111.0
+    ]
+   },
+   {
+    "text": "Profession :",
+    "bbox": [
+     301.96,
+     103.42,
+     346.49,
+     114.7
+    ],
+    "ink": [
+     302.75,
+     106.25,
+     343.75,
+     112.5
+    ]
+   },
+   {
+    "text": "Adresse :",
+    "bbox": [
+     49.82,
+     123.81,
+     85.91,
+     135.03
+    ],
+    "ink": [
+     50.0,
+     126.5,
+     83.25,
+     132.75
+    ]
+   },
+   {
+    "text": "Téléphone :",
+    "bbox": [
+     301.82,
+     125.42,
+     346.36,
+     136.7
+    ],
+    "ink": [
+     302.0,
+     128.0,
+     343.75,
+     136.0
+    ]
+   },
+   {
+    "text": "Nom du Mari :",
+    "bbox": [
+     49.68,
+     145.81,
+     102.21,
+     157.14
+    ],
+    "ink": [
+     50.25,
+     148.5,
+     99.5,
+     154.75
+    ]
+   },
+   {
+    "text": "Profession :",
+    "bbox": [
+     301.68,
+     147.42,
+     346.21,
+     158.7
+    ],
+    "ink": [
+     302.5,
+     150.25,
+     343.5,
+     156.5
+    ]
+   },
+   {
+    "text": "Consanguinité",
+    "bbox": [
+     61.51,
+     171.89,
+     112.72,
+     183.21
+    ],
+    "ink": [
+     61.75,
+     174.5,
+     112.5,
+     182.5
+    ]
+   },
+   {
+    "text": "Grossesse désirée",
+    "bbox": [
+     313.51,
+     173.5,
+     380.27,
+     184.91
+    ],
+    "ink": [
+     313.75,
+     176.25,
+     380.0,
+     182.75
+    ]
+   },
+   {
+    "text": "ANTÉCÉDENTS HÉRÉDITAIRES ET FAMILIAUX",
+    "bbox": [
+     41.35,
+     197.8,
+     221.42,
+     209.96
+    ],
+    "ink": [
+     41.75,
+     199.0,
+     221.25,
+     207.75
+    ]
+   },
+   {
+    "text": "ANTÉCÉDENTS DE LA FEMME",
+    "bbox": [
+     311.34,
+     199.52,
+     428.75,
+     211.29
+    ],
+    "ink": [
+     311.75,
+     200.75,
+     428.5,
+     208.75
+    ]
+   },
+   {
+    "text": "Famille de la femme",
+    "bbox": [
+     136.25,
+     215.98,
+     194.82,
+     225.28
+    ],
+    "ink": [
+     136.75,
+     218.25,
+     194.5,
+     223.5
+    ]
+   },
+   {
+    "text": "Mari/famille",
+    "bbox": [
+     216.25,
+     216.49,
+     249.52,
+     225.63
+    ],
+    "ink": [
+     216.75,
+     218.75,
+     249.25,
+     223.75
+    ]
+   },
+   {
+    "text": "Médicaux",
+    "bbox": [
+     316.24,
+     216.59,
+     346.26,
+     226.4
+    ],
+    "ink": [
+     316.75,
+     219.0,
+     346.0,
+     224.5
+    ]
+   },
+   {
+    "text": "Chirurgicaux",
+    "bbox": [
+     381.24,
+     217.0,
+     420.59,
+     226.87
+    ],
+    "ink": [
+     381.5,
+     219.25,
+     420.25,
+     226.25
+    ]
+   },
+   {
+    "text": "Gynécologiques",
+    "bbox": [
+     459.24,
+     217.5,
+     509.49,
+     227.44
+    ],
+    "ink": [
+     459.5,
+     219.75,
+     509.25,
+     226.75
+    ]
+   },
+   {
+    "text": "HTA",
+    "bbox": [
+     45.1,
+     237.32,
+     60.17,
+     247.72
+    ],
+    "ink": [
+     45.75,
+     239.75,
+     60.0,
+     245.5
+    ]
+   },
+   {
+    "text": "Diabète",
+    "bbox": [
+     44.97,
+     257.32,
+     70.88,
+     267.79
+    ],
+    "ink": [
+     45.5,
+     259.75,
+     70.5,
+     265.75
+    ]
+   },
+   {
+    "text": "Maladies héréditaires",
+    "bbox": [
+     44.85,
+     277.32,
+     116.18,
+     288.08
+    ],
+    "ink": [
+     45.5,
+     279.75,
+     115.75,
+     286.0
+    ]
+   },
+   {
+    "text": "Malformations",
+    "bbox": [
+     44.72,
+     297.32,
+     91.88,
+     307.93
+    ],
+    "ink": [
+     45.25,
+     299.75,
+     91.5,
+     305.75
+    ]
+   },
+   {
+    "text": "Allergie(s)",
+    "bbox": [
+     44.59,
+     317.32,
+     78.41,
+     327.84
+    ],
+    "ink": [
+     44.75,
+     319.75,
+     77.75,
+     327.25
+    ]
+   },
+   {
+    "text": "ANTÉCÉDENTS OBSTÉTRICAUX — Anomalies des grossesses antérieures",
+    "bbox": [
+     40.42,
+     343.8,
+     326.33,
+     356.64
+    ],
+    "ink": [
+     40.75,
+     345.0,
+     326.0,
+     355.5
+    ]
+   },
+   {
+    "text": "Nature",
+    "bbox": [
+     44.3,
+     362.86,
+     65.37,
+     372.61
+    ],
+    "ink": [
+     44.75,
+     365.25,
+     65.0,
+     370.75
+    ]
+   },
+   {
+    "text": "Nombre",
+    "bbox": [
+     154.3,
+     363.56,
+     179.25,
+     373.34
+    ],
+    "ink": [
+     154.75,
+     366.0,
+     179.0,
+     371.5
+    ]
+   },
+   {
+    "text": "Date",
+    "bbox": [
+     224.3,
+     364.01,
+     239.15,
+     373.72
+    ],
+    "ink": [
+     225.0,
+     366.25,
+     239.0,
+     371.75
+    ]
+   },
+   {
+    "text": "Lieu",
+    "bbox": [
+     334.3,
+     364.71,
+     347.59,
+     374.41
+    ],
+    "ink": [
+     334.75,
+     367.0,
+     347.0,
+     372.5
+    ]
+   },
+   {
+    "text": "Age gestationnel (SA)",
+    "bbox": [
+     424.3,
+     365.28,
+     492.45,
+     375.33
+    ],
+    "ink": [
+     424.25,
+     367.5,
+     492.0,
+     374.75
+    ]
+   },
+   {
+    "text": "Avortement",
+    "bbox": [
+     44.18,
+     381.86,
+     80.03,
+     391.7
+    ],
+    "ink": [
+     44.5,
+     384.25,
+     79.75,
+     389.75
+    ]
+   },
+   {
+    "text": "Accouchement prématuré",
+    "bbox": [
+     44.06,
+     401.86,
+     124.26,
+     411.99
+    ],
+    "ink": [
+     44.25,
+     404.25,
+     124.0,
+     411.25
+    ]
+   },
+   {
+    "text": "Mort fœtale in utéro",
+    "bbox": [
+     43.93,
+     421.86,
+     105.06,
+     431.86
+    ],
+    "ink": [
+     44.5,
+     424.25,
+     104.75,
+     430.0
+    ]
+   },
+   {
+    "text": "Autres à préciser :",
+    "bbox": [
+     43.8,
+     441.86,
+     100.66,
+     451.84
+    ],
+    "ink": [
+     44.0,
+     444.25,
+     100.25,
+     451.0
+    ]
+   },
+   {
+    "text": "DÉROULEMENT DES ACCOUCHEMENTS ANTÉRIEURS",
+    "bbox": [
+     39.61,
+     469.79,
+     250.79,
+     482.16
+    ],
+    "ink": [
+     40.25,
+     470.75,
+     250.5,
+     479.75
+    ]
+   },
+   {
+    "text": "Accouch. 1",
+    "bbox": [
+     152.51,
+     489.09,
+     184.72,
+     498.22
+    ],
+    "ink": [
+     152.75,
+     491.25,
+     183.25,
+     496.5
+    ]
+   },
+   {
+    "text": "Accouch. 2",
+    "bbox": [
+     233.5,
+     489.6,
+     265.72,
+     498.74
+    ],
+    "ink": [
+     233.75,
+     491.75,
+     265.25,
+     497.0
+    ]
+   },
+   {
+    "text": "Accouch. 3",
+    "bbox": [
+     314.5,
+     490.12,
+     346.71,
+     499.26
+    ],
+    "ink": [
+     314.75,
+     492.25,
+     346.25,
+     497.5
+    ]
+   },
+   {
+    "text": "Accouch. 4",
+    "bbox": [
+     395.5,
+     490.64,
+     427.71,
+     499.77
+    ],
+    "ink": [
+     395.75,
+     492.75,
+     427.5,
+     498.0
+    ]
+   },
+   {
+    "text": "Accouch. 5",
+    "bbox": [
+     476.5,
+     491.16,
+     508.71,
+     500.29
+    ],
+    "ink": [
+     476.75,
+     493.25,
+     508.25,
+     498.5
+    ]
+   },
+   {
+    "text": "Accouchement",
+    "bbox": [
+     43.41,
+     503.39,
+     86.46,
+     512.6
+    ],
+    "ink": [
+     43.5,
+     505.5,
+     86.25,
+     510.75
+    ]
+   },
+   {
+    "text": "Date",
+    "bbox": [
+     43.23,
+     531.39,
+     57.02,
+     540.41
+    ],
+    "ink": [
+     43.75,
+     533.5,
+     56.75,
+     538.75
+    ]
+   },
+   {
+    "text": "Modalité d'extraction",
+    "bbox": [
+     43.05,
+     559.39,
+     102.51,
+     568.7
+    ],
+    "ink": [
+     43.5,
+     561.5,
+     102.0,
+     567.0
+    ]
+   },
+   {
+    "text": "Si césarienne : indication",
+    "bbox": [
+     42.88,
+     587.39,
+     115.19,
+     596.78
+    ],
+    "ink": [
+     43.25,
+     589.5,
+     114.75,
+     595.0
+    ]
+   },
+   {
+    "text": "Complication (type)",
+    "bbox": [
+     42.7,
+     615.39,
+     98.74,
+     624.68
+    ],
+    "ink": [
+     43.0,
+     617.5,
+     98.25,
+     624.25
+    ]
+   },
+   {
+    "text": "Poids nouveau-né(s)",
+    "bbox": [
+     42.52,
+     643.39,
+     102.54,
+     652.7
+    ],
+    "ink": [
+     43.0,
+     645.5,
+     102.0,
+     652.25
+    ]
+   },
+   {
+    "text": "Compl. nouveau-né (type)",
+    "bbox": [
+     42.34,
+     671.39,
+     117.53,
+     680.8
+    ],
+    "ink": [
+     42.75,
+     673.5,
+     117.0,
+     680.25
+    ]
+   },
+   {
+    "text": "Gestation :",
+    "bbox": [
+     38.05,
+     714.75,
+     79.03,
+     726.0
+    ],
+    "ink": [
+     38.5,
+     717.5,
+     76.25,
+     723.75
+    ]
+   },
+   {
+    "text": "Parité :",
+    "bbox": [
+     158.05,
+     715.52,
+     185.68,
+     726.68
+    ],
+    "ink": [
+     158.75,
+     718.25,
+     183.0,
+     724.5
+    ]
+   },
+   {
+    "text": "Nombre d'enfants vivants :",
+    "bbox": [
+     278.04,
+     716.28,
+     374.79,
+     727.89
+    ],
+    "ink": [
+     278.5,
+     719.0,
+     372.0,
+     725.5
+    ]
+   },
+   {
+    "text": "VAT :",
+    "bbox": [
+     37.9,
+     737.75,
+     57.98,
+     748.87
+    ],
+    "ink": [
+     38.25,
+     740.5,
+     57.5,
+     746.5
+    ]
+   },
+   {
+    "text": "1",
+    "bbox": [
+     84.9,
+     738.05,
+     89.42,
+     749.07
+    ],
+    "ink": [
+     85.75,
+     740.75,
+     87.75,
+     746.75
+    ]
+   },
+   {
+    "text": "2",
+    "bbox": [
+     124.9,
+     738.3,
+     129.42,
+     749.32
+    ],
+    "ink": [
+     125.25,
+     741.0,
+     129.0,
+     747.0
+    ]
+   },
+   {
+    "text": "3",
+    "bbox": [
+     164.9,
+     738.56,
+     169.42,
+     749.58
+    ],
+    "ink": [
+     165.0,
+     741.25,
+     169.0,
+     747.25
+    ]
+   },
+   {
+    "text": "4",
+    "bbox": [
+     204.9,
+     738.82,
+     209.42,
+     749.84
+    ],
+    "ink": [
+     205.0,
+     741.5,
+     209.0,
+     747.5
+    ]
+   },
+   {
+    "text": "5",
+    "bbox": [
+     244.9,
+     739.07,
+     249.42,
+     750.09
+    ],
+    "ink": [
+     245.25,
+     742.0,
+     249.0,
+     747.75
+    ]
+   },
+   {
+    "text": "Vaccinée contre la rubéole",
+    "bbox": [
+     49.77,
+     757.83,
+     144.55,
+     769.42
+    ],
+    "ink": [
+     50.0,
+     760.5,
+     144.25,
+     767.25
+    ]
+   },
+   {
+    "text": "Le",
+    "bbox": [
+     297.77,
+     759.41,
+     308.96,
+     770.47
+    ],
+    "ink": [
+     298.25,
+     762.25,
+     306.5,
+     768.25
+    ]
+   },
+   {
+    "text": "Vaccinée contre l'hépatite B",
+    "bbox": [
+     49.67,
+     773.83,
+     148.65,
+     785.45
+    ],
+    "ink": [
+     50.0,
+     776.5,
+     148.25,
+     784.75
+    ]
+   },
+   {
+    "text": "Le",
+    "bbox": [
+     297.67,
+     775.41,
+     308.86,
+     786.47
+    ],
+    "ink": [
+     298.25,
+     778.25,
+     306.25,
+     784.25
+    ]
+   },
+   {
+    "text": "Frottis cervical / IVA (moins de 3 ans) :",
+    "bbox": [
+     37.56,
+     791.75,
+     177.23,
+     803.63
+    ],
+    "ink": [
+     38.25,
+     794.5,
+     174.5,
+     802.75
+    ]
+   },
+   {
+    "text": "Document synthétique généré pour l'entraînement de modèles — aucune donnée réelle — ne pas utiliser comme dossier médical.",
+    "bbox": [
+     37.41,
+     817.9,
+     383.08,
+     828.35
+    ],
+    "ink": [
+     37.75,
+     820.0,
+     382.5,
+     827.25
+    ]
+   }
+  ],
+  "fields": {
+   "age": {
+    "region": [
+     73.08,
+     76.88,
+     300.1,
+     93.88
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "national_id": {
+    "region": [
+     324.61,
+     78.48,
+     565.0,
+     95.48
+    ],
+    "kind": "text",
+    "pii": true
+   },
+   "education_level": {
+    "region": [
+     128.25,
+     99.05,
+     299.96,
+     116.05
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "profession": {
+    "region": [
+     348.49,
+     100.56,
+     565.0,
+     117.56
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "address": {
+    "region": [
+     87.91,
+     120.92,
+     299.82,
+     137.92
+    ],
+    "kind": "text",
+    "pii": true
+   },
+   "phone": {
+    "region": [
+     348.36,
+     122.56,
+     565.0,
+     139.56
+    ],
+    "kind": "text",
+    "pii": true
+   },
+   "husband_name": {
+    "region": [
+     104.21,
+     142.98,
+     299.68,
+     159.98
+    ],
+    "kind": "text",
+    "pii": true
+   },
+   "husband_profession": {
+    "region": [
+     348.21,
+     144.56,
+     565.0,
+     161.56
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "consanguinity": {
+    "box": [
+     49.52,
+     173.41,
+     57.57,
+     181.46
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "desired_pregnancy": {
+    "box": [
+     301.52,
+     175.02,
+     309.57,
+     183.07
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "family_history.woman_family.hypertension": {
+    "region": [
+     134.75,
+     232.96,
+     212.75,
+     252.09
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "family_history.woman_family.diabetes": {
+    "region": [
+     134.75,
+     252.99,
+     212.75,
+     272.12
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "family_history.woman_family.hereditary": {
+    "region": [
+     134.75,
+     273.14,
+     212.75,
+     292.26
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "family_history.woman_family.malformations": {
+    "region": [
+     134.75,
+     293.06,
+     212.75,
+     312.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "family_history.woman_family.allergies": {
+    "region": [
+     134.75,
+     313.02,
+     212.75,
+     332.14
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "family_history.husband_family.hypertension": {
+    "region": [
+     214.75,
+     232.96,
+     312.74,
+     252.09
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "family_history.husband_family.diabetes": {
+    "region": [
+     214.75,
+     252.99,
+     312.74,
+     272.12
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "family_history.husband_family.hereditary": {
+    "region": [
+     214.75,
+     273.14,
+     312.74,
+     292.26
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "family_history.husband_family.malformations": {
+    "region": [
+     214.75,
+     293.06,
+     312.74,
+     312.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "family_history.husband_family.allergies": {
+    "region": [
+     214.75,
+     313.02,
+     312.74,
+     332.14
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "woman_history.medical.hypertension": {
+    "region": [
+     314.74,
+     233.52,
+     377.74,
+     251.52
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "woman_history.surgical.hypertension": {
+    "region": [
+     379.74,
+     233.52,
+     455.74,
+     251.52
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "woman_history.gynecological.hypertension": {
+    "region": [
+     457.74,
+     233.52,
+     565.0,
+     251.52
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "obstetric_anomalies.count.abortion": {
+    "region": [
+     152.8,
+     377.21,
+     220.8,
+     396.35
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "obstetric_anomalies.count.premature_delivery": {
+    "region": [
+     152.8,
+     397.35,
+     220.8,
+     416.49
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "obstetric_anomalies.count.fetal_death": {
+    "region": [
+     152.8,
+     417.29,
+     220.8,
+     436.43
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "obstetric_anomalies.count.other": {
+    "region": [
+     152.8,
+     437.28,
+     220.8,
+     456.42
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "obstetric_anomalies.date.abortion": {
+    "region": [
+     222.8,
+     377.21,
+     330.8,
+     396.35
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "obstetric_anomalies.date.premature_delivery": {
+    "region": [
+     222.8,
+     397.35,
+     330.8,
+     416.49
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "obstetric_anomalies.date.fetal_death": {
+    "region": [
+     222.8,
+     417.29,
+     330.8,
+     436.43
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "obstetric_anomalies.date.other": {
+    "region": [
+     222.8,
+     437.28,
+     330.8,
+     456.42
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "obstetric_anomalies.place.abortion": {
+    "region": [
+     332.8,
+     377.21,
+     420.8,
+     396.35
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "obstetric_anomalies.place.premature_delivery": {
+    "region": [
+     332.8,
+     397.35,
+     420.8,
+     416.49
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "obstetric_anomalies.place.fetal_death": {
+    "region": [
+     332.8,
+     417.29,
+     420.8,
+     436.43
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "obstetric_anomalies.place.other": {
+    "region": [
+     332.8,
+     437.28,
+     420.8,
+     456.42
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "obstetric_anomalies.gestational_age.abortion": {
+    "region": [
+     422.8,
+     377.21,
+     565.0,
+     396.35
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "obstetric_anomalies.gestational_age.premature_delivery": {
+    "region": [
+     422.8,
+     397.35,
+     565.0,
+     416.49
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "obstetric_anomalies.gestational_age.fetal_death": {
+    "region": [
+     422.8,
+     417.29,
+     565.0,
+     436.43
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "obstetric_anomalies.gestational_age.other": {
+    "region": [
+     422.8,
+     437.28,
+     565.0,
+     456.42
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.1.date": {
+    "region": [
+     151.01,
+     522.49,
+     230.0,
+     549.32
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.1.mode": {
+    "region": [
+     151.01,
+     550.63,
+     230.0,
+     577.46
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.1.cesarean_indication": {
+    "region": [
+     151.01,
+     578.67,
+     230.0,
+     605.5
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.1.complication": {
+    "region": [
+     151.01,
+     606.62,
+     230.0,
+     633.45
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.1.newborn_weight_g": {
+    "region": [
+     151.01,
+     634.63,
+     230.0,
+     661.46
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.1.newborn_complication": {
+    "region": [
+     151.01,
+     662.68,
+     230.0,
+     689.51
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.2.date": {
+    "region": [
+     232.0,
+     522.49,
+     311.0,
+     549.32
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.2.mode": {
+    "region": [
+     232.0,
+     550.63,
+     311.0,
+     577.46
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.2.cesarean_indication": {
+    "region": [
+     232.0,
+     578.67,
+     311.0,
+     605.5
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.2.complication": {
+    "region": [
+     232.0,
+     606.62,
+     311.0,
+     633.45
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.2.newborn_weight_g": {
+    "region": [
+     232.0,
+     634.63,
+     311.0,
+     661.46
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.2.newborn_complication": {
+    "region": [
+     232.0,
+     662.68,
+     311.0,
+     689.51
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.3.date": {
+    "region": [
+     313.0,
+     522.49,
+     392.0,
+     549.32
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.3.mode": {
+    "region": [
+     313.0,
+     550.63,
+     392.0,
+     577.46
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.3.cesarean_indication": {
+    "region": [
+     313.0,
+     578.67,
+     392.0,
+     605.5
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.3.complication": {
+    "region": [
+     313.0,
+     606.62,
+     392.0,
+     633.45
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.3.newborn_weight_g": {
+    "region": [
+     313.0,
+     634.63,
+     392.0,
+     661.46
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.3.newborn_complication": {
+    "region": [
+     313.0,
+     662.68,
+     392.0,
+     689.51
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.4.date": {
+    "region": [
+     394.0,
+     522.49,
+     473.0,
+     549.32
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.4.mode": {
+    "region": [
+     394.0,
+     550.63,
+     473.0,
+     577.46
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.4.cesarean_indication": {
+    "region": [
+     394.0,
+     578.67,
+     473.0,
+     605.5
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.4.complication": {
+    "region": [
+     394.0,
+     606.62,
+     473.0,
+     633.45
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.4.newborn_weight_g": {
+    "region": [
+     394.0,
+     634.63,
+     473.0,
+     661.46
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.4.newborn_complication": {
+    "region": [
+     394.0,
+     662.68,
+     473.0,
+     689.51
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.5.date": {
+    "region": [
+     475.0,
+     522.49,
+     565.0,
+     549.32
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.5.mode": {
+    "region": [
+     475.0,
+     550.63,
+     565.0,
+     577.46
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.5.cesarean_indication": {
+    "region": [
+     475.0,
+     578.67,
+     565.0,
+     605.5
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.5.complication": {
+    "region": [
+     475.0,
+     606.62,
+     565.0,
+     633.45
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.5.newborn_weight_g": {
+    "region": [
+     475.0,
+     634.63,
+     565.0,
+     661.46
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "previous_delivery.5.newborn_complication": {
+    "region": [
+     475.0,
+     662.68,
+     565.0,
+     689.51
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "gravidity": {
+    "region": [
+     81.03,
+     711.88,
+     156.05,
+     728.88
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "parity": {
+    "region": [
+     187.68,
+     712.6,
+     276.04,
+     729.6
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "living_children": {
+    "region": [
+     376.79,
+     713.59,
+     565.0,
+     730.59
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "tetanus_dose_1": {
+    "box": [
+     72.91,
+     739.57,
+     80.96,
+     747.62
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "tetanus_dose_2": {
+    "box": [
+     112.91,
+     739.83,
+     120.96,
+     747.88
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "tetanus_dose_3": {
+    "box": [
+     152.91,
+     740.08,
+     160.96,
+     748.13
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "tetanus_dose_4": {
+    "box": [
+     192.91,
+     740.34,
+     200.96,
+     748.39
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "tetanus_dose_5": {
+    "box": [
+     232.91,
+     740.59,
+     240.96,
+     748.64
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "rubella_vaccinated": {
+    "box": [
+     37.78,
+     759.35,
+     45.83,
+     767.4
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "rubella_vaccination_date": {
+    "region": [
+     310.96,
+     756.44,
+     565.0,
+     773.44
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "hepatitis_b_vaccinated": {
+    "box": [
+     37.68,
+     775.35,
+     45.73,
+     783.4
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "hepatitis_b_vaccination_date": {
+    "region": [
+     310.86,
+     772.44,
+     565.0,
+     789.44
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "cervical_screening": {
+    "region": [
+     179.23,
+     789.19,
+     565.0,
+     806.19
+    ],
+    "kind": "text",
+    "pii": false
+   }
+  }
+ },
+ "current_pregnancy": {
+  "page_type": "current_pregnancy",
+  "width": 595.2755737304688,
+  "height": 841.8897705078125,
+  "labels": [
+   {
+    "text": "GROSSESSE ACTUELLE",
+    "bbox": [
+     39.86,
+     30.28,
+     170.66,
+     45.47
+    ],
+    "ink": [
+     40.25,
+     34.0,
+     170.25,
+     42.5
+    ]
+   },
+   {
+    "text": "SPÉCIMEN — DONNÉES FICTIVES",
+    "bbox": [
+     400.13,
+     30.35,
+     532.16,
+     41.42
+    ],
+    "ink": [
+     400.25,
+     31.25,
+     532.0,
+     39.25
+    ]
+   },
+   {
+    "text": "DDR :",
+    "bbox": [
+     39.87,
+     69.49,
+     63.87,
+     80.49
+    ],
+    "ink": [
+     40.5,
+     72.25,
+     61.25,
+     78.25
+    ]
+   },
+   {
+    "text": "Taille :",
+    "bbox": [
+     189.87,
+     69.43,
+     215.66,
+     80.43
+    ],
+    "ink": [
+     190.0,
+     72.0,
+     213.0,
+     78.25
+    ]
+   },
+   {
+    "text": "Groupage :",
+    "bbox": [
+     319.87,
+     69.38,
+     359.9,
+     80.38
+    ],
+    "ink": [
+     320.25,
+     72.0,
+     359.5,
+     79.75
+    ]
+   },
+   {
+    "text": "A",
+    "bbox": [
+     386.87,
+     69.37,
+     392.21,
+     80.36
+    ],
+    "ink": [
+     387.0,
+     72.0,
+     392.0,
+     78.0
+    ]
+   },
+   {
+    "text": "B",
+    "bbox": [
+     418.87,
+     69.35,
+     424.21,
+     80.35
+    ],
+    "ink": [
+     419.5,
+     72.0,
+     424.0,
+     78.0
+    ]
+   },
+   {
+    "text": "O",
+    "bbox": [
+     450.87,
+     69.34,
+     457.1,
+     80.34
+    ],
+    "ink": [
+     451.25,
+     72.0,
+     456.75,
+     78.25
+    ]
+   },
+   {
+    "text": "AB",
+    "bbox": [
+     482.87,
+     69.33,
+     493.55,
+     80.32
+    ],
+    "ink": [
+     483.0,
+     72.0,
+     493.25,
+     78.0
+    ]
+   },
+   {
+    "text": "Rh-",
+    "bbox": [
+     516.87,
+     69.31,
+     529.76,
+     80.31
+    ],
+    "ink": [
+     517.5,
+     72.0,
+     529.5,
+     78.0
+    ]
+   },
+   {
+    "text": "Rh+",
+    "bbox": [
+     516.88,
+     83.31,
+     531.78,
+     94.31
+    ],
+    "ink": [
+     517.5,
+     86.0,
+     531.5,
+     92.0
+    ]
+   },
+   {
+    "text": "DATE PRÉVUE D'ACCOUCHEMENT :",
+    "bbox": [
+     39.88,
+     86.44,
+     180.98,
+     97.49
+    ],
+    "ink": [
+     40.5,
+     87.5,
+     178.25,
+     95.25
+    ]
+   },
+   {
+    "text": "DATE DE DÉPASSEMENT DE TERME :",
+    "bbox": [
+     269.88,
+     86.36,
+     417.46,
+     97.4
+    ],
+    "ink": [
+     270.5,
+     87.5,
+     414.75,
+     95.25
+    ]
+   },
+   {
+    "text": "2ème trimestre",
+    "bbox": [
+     308.31,
+     110.49,
+     358.11,
+     120.14
+    ],
+    "ink": [
+     308.5,
+     112.75,
+     358.0,
+     118.25
+    ]
+   },
+   {
+    "text": "3ème trimestre",
+    "bbox": [
+     442.74,
+     110.44,
+     492.54,
+     120.1
+    ],
+    "ink": [
+     443.0,
+     112.75,
+     492.25,
+     118.25
+    ]
+   },
+   {
+    "text": "1er trimestre",
+    "bbox": [
+     173.89,
+     110.54,
+     216.3,
+     120.19
+    ],
+    "ink": [
+     174.25,
+     112.75,
+     216.0,
+     118.25
+    ]
+   },
+   {
+    "text": "Prestations / Visites",
+    "bbox": [
+     43.89,
+     124.58,
+     110.42,
+     134.24
+    ],
+    "ink": [
+     44.25,
+     127.0,
+     110.25,
+     132.25
+    ]
+   },
+   {
+    "text": "7ème mois",
+    "bbox": [
+     422.74,
+     126.49,
+     452.09,
+     134.75
+    ],
+    "ink": [
+     423.0,
+     128.5,
+     452.0,
+     133.25
+    ]
+   },
+   {
+    "text": "8ème mois",
+    "bbox": [
+     467.55,
+     126.48,
+     496.89,
+     134.73
+    ],
+    "ink": [
+     467.75,
+     128.5,
+     496.75,
+     133.0
+    ]
+   },
+   {
+    "text": "9ème mois",
+    "bbox": [
+     512.36,
+     126.46,
+     541.7,
+     134.71
+    ],
+    "ink": [
+     512.5,
+     128.5,
+     541.5,
+     133.0
+    ]
+   },
+   {
+    "text": "Visite 1",
+    "bbox": [
+     153.89,
+     126.6,
+     173.57,
+     134.85
+    ],
+    "ink": [
+     154.0,
+     128.5,
+     172.5,
+     133.25
+    ]
+   },
+   {
+    "text": "Visite 2",
+    "bbox": [
+     198.7,
+     126.58,
+     218.38,
+     134.83
+    ],
+    "ink": [
+     199.0,
+     128.5,
+     218.0,
+     133.25
+    ]
+   },
+   {
+    "text": "Visite 3",
+    "bbox": [
+     243.51,
+     126.56,
+     263.19,
+     134.81
+    ],
+    "ink": [
+     243.75,
+     128.5,
+     263.0,
+     133.25
+    ]
+   },
+   {
+    "text": "Visite 1",
+    "bbox": [
+     288.32,
+     126.55,
+     307.99,
+     134.8
+    ],
+    "ink": [
+     288.5,
+     128.5,
+     306.75,
+     133.25
+    ]
+   },
+   {
+    "text": "Visite 2",
+    "bbox": [
+     333.13,
+     126.53,
+     352.8,
+     134.78
+    ],
+    "ink": [
+     333.25,
+     128.5,
+     352.5,
+     133.25
+    ]
+   },
+   {
+    "text": "Visite 3",
+    "bbox": [
+     377.93,
+     126.51,
+     397.61,
+     134.76
+    ],
+    "ink": [
+     378.0,
+     128.5,
+     397.25,
+     133.25
+    ]
+   },
+   {
+    "text": "Rendez-vous",
+    "bbox": [
+     43.9,
+     142.77,
+     83.96,
+     152.13
+    ],
+    "ink": [
+     44.5,
+     145.25,
+     83.75,
+     150.25
+    ]
+   },
+   {
+    "text": "Venue le",
+    "bbox": [
+     43.9,
+     160.57,
+     70.75,
+     169.93
+    ],
+    "ink": [
+     44.0,
+     163.0,
+     70.5,
+     168.0
+    ]
+   },
+   {
+    "text": "Visites de relance",
+    "bbox": [
+     43.91,
+     178.36,
+     97.58,
+     187.73
+    ],
+    "ink": [
+     44.0,
+     180.75,
+     97.25,
+     186.0
+    ]
+   },
+   {
+    "text": "Age probable",
+    "bbox": [
+     43.92,
+     196.17,
+     84.37,
+     205.53
+    ],
+    "ink": [
+     44.0,
+     198.5,
+     84.25,
+     205.0
+    ]
+   },
+   {
+    "text": "EXAMEN CLINIQUE",
+    "bbox": [
+     43.92,
+     214.32,
+     104.6,
+     223.29
+    ],
+    "ink": [
+     44.25,
+     216.5,
+     104.25,
+     221.5
+    ]
+   },
+   {
+    "text": "Poids (kg)",
+    "bbox": [
+     43.93,
+     231.77,
+     74.54,
+     241.13
+    ],
+    "ink": [
+     44.5,
+     234.25,
+     74.0,
+     240.75
+    ]
+   },
+   {
+    "text": "TA",
+    "bbox": [
+     43.94,
+     249.58,
+     52.63,
+     258.93
+    ],
+    "ink": [
+     44.0,
+     252.0,
+     52.5,
+     257.0
+    ]
+   },
+   {
+    "text": "Anomalies squelette",
+    "bbox": [
+     43.94,
+     267.36,
+     105.17,
+     276.73
+    ],
+    "ink": [
+     44.0,
+     269.75,
+     105.0,
+     276.25
+    ]
+   },
+   {
+    "text": "État des conjonctives",
+    "bbox": [
+     43.95,
+     285.16,
+     108.21,
+     294.53
+    ],
+    "ink": [
+     44.5,
+     286.0,
+     108.0,
+     294.0
+    ]
+   },
+   {
+    "text": "Examen des seins",
+    "bbox": [
+     43.96,
+     302.96,
+     99.52,
+     312.33
+    ],
+    "ink": [
+     44.5,
+     305.25,
+     99.25,
+     310.5
+    ]
+   },
+   {
+    "text": "Œdèmes",
+    "bbox": [
+     43.96,
+     320.77,
+     71.17,
+     330.13
+    ],
+    "ink": [
+     44.25,
+     323.0,
+     71.0,
+     328.25
+    ]
+   },
+   {
+    "text": "Mouvements actifs",
+    "bbox": [
+     43.97,
+     338.56,
+     100.66,
+     347.93
+    ],
+    "ink": [
+     44.5,
+     340.75,
+     100.5,
+     346.0
+    ]
+   },
+   {
+    "text": "HU (cm)",
+    "bbox": [
+     43.98,
+     356.37,
+     69.28,
+     365.73
+    ],
+    "ink": [
+     44.5,
+     358.75,
+     68.75,
+     365.25
+    ]
+   },
+   {
+    "text": "BCF",
+    "bbox": [
+     43.98,
+     374.18,
+     57.59,
+     383.53
+    ],
+    "ink": [
+     44.5,
+     376.5,
+     57.25,
+     381.75
+    ]
+   },
+   {
+    "text": "Examen au spéculum",
+    "bbox": [
+     43.99,
+     391.96,
+     109.37,
+     401.33
+    ],
+    "ink": [
+     44.5,
+     394.25,
+     109.0,
+     400.75
+    ]
+   },
+   {
+    "text": "TV : état du col",
+    "bbox": [
+     44.0,
+     409.77,
+     89.74,
+     419.13
+    ],
+    "ink": [
+     44.0,
+     412.0,
+     89.25,
+     417.25
+    ]
+   },
+   {
+    "text": "TV : présentation",
+    "bbox": [
+     44.0,
+     427.56,
+     95.79,
+     436.93
+    ],
+    "ink": [
+     44.0,
+     429.75,
+     95.25,
+     436.5
+    ]
+   },
+   {
+    "text": "TV : bassin",
+    "bbox": [
+     44.01,
+     445.37,
+     78.03,
+     454.73
+    ],
+    "ink": [
+     44.0,
+     447.75,
+     77.5,
+     453.0
+    ]
+   },
+   {
+    "text": "EXAMEN BIOLOGIQUE",
+    "bbox": [
+     44.02,
+     463.51,
+     115.17,
+     472.49
+    ],
+    "ink": [
+     44.5,
+     465.75,
+     115.0,
+     470.75
+    ]
+   },
+   {
+    "text": "Glucosurie",
+    "bbox": [
+     44.02,
+     480.97,
+     76.52,
+     490.33
+    ],
+    "ink": [
+     44.25,
+     483.25,
+     76.25,
+     488.5
+    ]
+   },
+   {
+    "text": "Albuminurie",
+    "bbox": [
+     44.03,
+     498.77,
+     79.93,
+     508.13
+    ],
+    "ink": [
+     44.25,
+     501.25,
+     79.75,
+     506.25
+    ]
+   },
+   {
+    "text": "Rubéole",
+    "bbox": [
+     44.04,
+     516.57,
+     69.36,
+     525.93
+    ],
+    "ink": [
+     44.5,
+     518.75,
+     69.25,
+     524.0
+    ]
+   },
+   {
+    "text": "Toxoplasmose",
+    "bbox": [
+     44.04,
+     534.37,
+     88.26,
+     543.73
+    ],
+    "ink": [
+     44.0,
+     536.75,
+     88.0,
+     543.25
+    ]
+   },
+   {
+    "text": "Syphilis (TPHA/VDRL)",
+    "bbox": [
+     44.05,
+     552.16,
+     112.06,
+     561.53
+    ],
+    "ink": [
+     44.25,
+     554.5,
+     111.5,
+     561.0
+    ]
+   },
+   {
+    "text": "Ag HBs",
+    "bbox": [
+     44.05,
+     569.97,
+     67.11,
+     579.33
+    ],
+    "ink": [
+     44.0,
+     572.25,
+     67.0,
+     578.75
+    ]
+   },
+   {
+    "text": "Sérologie VIH",
+    "bbox": [
+     44.06,
+     587.77,
+     86.01,
+     597.13
+    ],
+    "ink": [
+     44.5,
+     590.0,
+     85.5,
+     596.75
+    ]
+   },
+   {
+    "text": "Hémoglobine",
+    "bbox": [
+     44.07,
+     605.57,
+     84.13,
+     614.93
+    ],
+    "ink": [
+     44.75,
+     607.75,
+     84.0,
+     614.5
+    ]
+   },
+   {
+    "text": "Plaquettes",
+    "bbox": [
+     44.07,
+     623.37,
+     76.21,
+     632.73
+    ],
+    "ink": [
+     44.75,
+     625.75,
+     76.0,
+     632.25
+    ]
+   },
+   {
+    "text": "Bilan glycémique",
+    "bbox": [
+     44.08,
+     641.16,
+     95.48,
+     650.53
+    ],
+    "ink": [
+     44.5,
+     643.5,
+     95.25,
+     650.0
+    ]
+   },
+   {
+    "text": "RAI (si Rh négatif)",
+    "bbox": [
+     44.09,
+     658.96,
+     99.64,
+     668.33
+    ],
+    "ink": [
+     44.75,
+     661.25,
+     99.25,
+     667.75
+    ]
+   },
+   {
+    "text": "TRAITEMENT",
+    "bbox": [
+     44.09,
+     677.12,
+     85.98,
+     686.09
+    ],
+    "ink": [
+     44.25,
+     679.25,
+     86.0,
+     684.25
+    ]
+   },
+   {
+    "text": "Fer",
+    "bbox": [
+     44.1,
+     694.58,
+     54.3,
+     703.93
+    ],
+    "ink": [
+     44.75,
+     697.0,
+     54.25,
+     702.0
+    ]
+   },
+   {
+    "text": "EXAMEN FAIT PAR",
+    "bbox": [
+     44.11,
+     712.72,
+     103.7,
+     721.69
+    ],
+    "ink": [
+     44.5,
+     714.75,
+     103.25,
+     719.75
+    ]
+   },
+   {
+    "text": "Examen fait par",
+    "bbox": [
+     44.11,
+     730.17,
+     91.74,
+     739.53
+    ],
+    "ink": [
+     44.75,
+     732.5,
+     91.75,
+     739.0
+    ]
+   },
+   {
+    "text": "Document synthétique généré pour l'entraînement de modèles — aucune donnée réelle — ne pas utiliser comme dossier médical.",
+    "bbox": [
+     40.15,
+     819.52,
+     385.78,
+     827.89
+    ],
+    "ink": [
+     40.5,
+     821.5,
+     385.25,
+     827.5
+    ]
+   }
+  ],
+  "fields": {
+   "lmp_date": {
+    "region": [
+     65.87,
+     66.49,
+     187.87,
+     83.49
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "height_cm": {
+    "region": [
+     217.66,
+     66.43,
+     317.87,
+     83.43
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "blood_group": {
+    "options": {
+     "A": [
+      374.87,
+      70.97,
+      382.87,
+      78.97
+     ],
+     "B": [
+      406.87,
+      70.96,
+      414.87,
+      78.96
+     ],
+     "O": [
+      438.87,
+      70.95,
+      446.87,
+      78.95
+     ],
+     "AB": [
+      470.87,
+      70.93,
+      478.87,
+      78.94
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "rhesus": {
+    "options": {
+     "negative": [
+      504.87,
+      70.92,
+      512.87,
+      78.92
+     ],
+     "positive": [
+      504.88,
+      84.92,
+      512.88,
+      92.92
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "expected_delivery_date": {
+    "region": [
+     182.98,
+     83.46,
+     267.88,
+     100.46
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "term_exceeded_date": {
+    "region": [
+     419.46,
+     83.38,
+     502.88,
+     100.38
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "visits.t1_v1.appointment_date": {
+    "region": [
+     152.39,
+     138.91,
+     195.2,
+     155.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.attended_date": {
+    "region": [
+     152.39,
+     156.71,
+     195.2,
+     173.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.reminder_visit": {
+    "region": [
+     152.39,
+     174.51,
+     195.2,
+     191.58
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.gestational_age_weeks": {
+    "region": [
+     152.39,
+     192.31,
+     195.2,
+     209.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.weight_kg": {
+    "region": [
+     152.39,
+     227.91,
+     195.2,
+     244.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.blood_pressure": {
+    "region": [
+     152.39,
+     245.71,
+     195.2,
+     262.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.skeletal_anomalies": {
+    "region": [
+     152.39,
+     263.5,
+     195.2,
+     280.58
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.conjunctivae": {
+    "region": [
+     152.39,
+     281.3,
+     195.2,
+     298.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.breast_exam": {
+    "region": [
+     152.39,
+     299.11,
+     195.2,
+     316.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.edema": {
+    "region": [
+     152.39,
+     316.91,
+     195.2,
+     333.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.fetal_movements": {
+    "region": [
+     152.39,
+     334.71,
+     195.2,
+     351.78
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.fundal_height_cm": {
+    "region": [
+     152.39,
+     352.51,
+     195.2,
+     369.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.fetal_heart_rate": {
+    "region": [
+     152.39,
+     370.31,
+     195.2,
+     387.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.speculum_exam": {
+    "region": [
+     152.39,
+     388.1,
+     195.2,
+     405.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.cervix": {
+    "region": [
+     152.39,
+     405.91,
+     195.2,
+     422.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.presentation": {
+    "region": [
+     152.39,
+     423.71,
+     195.2,
+     440.78
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.pelvis": {
+    "region": [
+     152.39,
+     441.51,
+     195.2,
+     458.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.glycosuria": {
+    "region": [
+     152.39,
+     477.11,
+     195.2,
+     494.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.albuminuria": {
+    "region": [
+     152.39,
+     494.91,
+     195.2,
+     511.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.rubella": {
+    "region": [
+     152.39,
+     512.71,
+     195.2,
+     529.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.toxoplasmosis": {
+    "region": [
+     152.39,
+     530.51,
+     195.2,
+     547.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.syphilis": {
+    "region": [
+     152.39,
+     548.3,
+     195.2,
+     565.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.hepatitis_b": {
+    "region": [
+     152.39,
+     566.11,
+     195.2,
+     583.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.hiv": {
+    "region": [
+     152.39,
+     583.91,
+     195.2,
+     600.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.hemoglobin_g_dl": {
+    "region": [
+     152.39,
+     601.71,
+     195.2,
+     618.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.platelets": {
+    "region": [
+     152.39,
+     619.51,
+     195.2,
+     636.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.glycemia_g_l": {
+    "region": [
+     152.39,
+     637.31,
+     195.2,
+     654.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.rai": {
+    "region": [
+     152.39,
+     655.11,
+     195.2,
+     672.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.iron": {
+    "region": [
+     152.39,
+     690.71,
+     195.2,
+     707.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v1.examined_by": {
+    "region": [
+     152.39,
+     726.31,
+     195.2,
+     743.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.appointment_date": {
+    "region": [
+     197.2,
+     138.91,
+     240.01,
+     155.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.attended_date": {
+    "region": [
+     197.2,
+     156.71,
+     240.01,
+     173.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.reminder_visit": {
+    "region": [
+     197.2,
+     174.51,
+     240.01,
+     191.58
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.gestational_age_weeks": {
+    "region": [
+     197.2,
+     192.31,
+     240.01,
+     209.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.weight_kg": {
+    "region": [
+     197.2,
+     227.91,
+     240.01,
+     244.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.blood_pressure": {
+    "region": [
+     197.2,
+     245.71,
+     240.01,
+     262.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.skeletal_anomalies": {
+    "region": [
+     197.2,
+     263.5,
+     240.01,
+     280.58
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.conjunctivae": {
+    "region": [
+     197.2,
+     281.3,
+     240.01,
+     298.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.breast_exam": {
+    "region": [
+     197.2,
+     299.11,
+     240.01,
+     316.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.edema": {
+    "region": [
+     197.2,
+     316.91,
+     240.01,
+     333.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.fetal_movements": {
+    "region": [
+     197.2,
+     334.71,
+     240.01,
+     351.78
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.fundal_height_cm": {
+    "region": [
+     197.2,
+     352.51,
+     240.01,
+     369.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.fetal_heart_rate": {
+    "region": [
+     197.2,
+     370.31,
+     240.01,
+     387.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.speculum_exam": {
+    "region": [
+     197.2,
+     388.1,
+     240.01,
+     405.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.cervix": {
+    "region": [
+     197.2,
+     405.91,
+     240.01,
+     422.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.presentation": {
+    "region": [
+     197.2,
+     423.71,
+     240.01,
+     440.78
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.pelvis": {
+    "region": [
+     197.2,
+     441.51,
+     240.01,
+     458.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.glycosuria": {
+    "region": [
+     197.2,
+     477.11,
+     240.01,
+     494.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.albuminuria": {
+    "region": [
+     197.2,
+     494.91,
+     240.01,
+     511.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.rubella": {
+    "region": [
+     197.2,
+     512.71,
+     240.01,
+     529.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.toxoplasmosis": {
+    "region": [
+     197.2,
+     530.51,
+     240.01,
+     547.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.syphilis": {
+    "region": [
+     197.2,
+     548.3,
+     240.01,
+     565.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.hepatitis_b": {
+    "region": [
+     197.2,
+     566.11,
+     240.01,
+     583.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.hiv": {
+    "region": [
+     197.2,
+     583.91,
+     240.01,
+     600.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.hemoglobin_g_dl": {
+    "region": [
+     197.2,
+     601.71,
+     240.01,
+     618.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.platelets": {
+    "region": [
+     197.2,
+     619.51,
+     240.01,
+     636.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.glycemia_g_l": {
+    "region": [
+     197.2,
+     637.31,
+     240.01,
+     654.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.rai": {
+    "region": [
+     197.2,
+     655.11,
+     240.01,
+     672.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.iron": {
+    "region": [
+     197.2,
+     690.71,
+     240.01,
+     707.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v2.examined_by": {
+    "region": [
+     197.2,
+     726.31,
+     240.01,
+     743.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.appointment_date": {
+    "region": [
+     242.01,
+     138.91,
+     284.82,
+     155.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.attended_date": {
+    "region": [
+     242.01,
+     156.71,
+     284.82,
+     173.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.reminder_visit": {
+    "region": [
+     242.01,
+     174.51,
+     284.82,
+     191.58
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.gestational_age_weeks": {
+    "region": [
+     242.01,
+     192.31,
+     284.82,
+     209.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.weight_kg": {
+    "region": [
+     242.01,
+     227.91,
+     284.82,
+     244.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.blood_pressure": {
+    "region": [
+     242.01,
+     245.71,
+     284.82,
+     262.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.skeletal_anomalies": {
+    "region": [
+     242.01,
+     263.5,
+     284.82,
+     280.58
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.conjunctivae": {
+    "region": [
+     242.01,
+     281.3,
+     284.82,
+     298.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.breast_exam": {
+    "region": [
+     242.01,
+     299.11,
+     284.82,
+     316.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.edema": {
+    "region": [
+     242.01,
+     316.91,
+     284.82,
+     333.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.fetal_movements": {
+    "region": [
+     242.01,
+     334.71,
+     284.82,
+     351.78
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.fundal_height_cm": {
+    "region": [
+     242.01,
+     352.51,
+     284.82,
+     369.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.fetal_heart_rate": {
+    "region": [
+     242.01,
+     370.31,
+     284.82,
+     387.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.speculum_exam": {
+    "region": [
+     242.01,
+     388.1,
+     284.82,
+     405.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.cervix": {
+    "region": [
+     242.01,
+     405.91,
+     284.82,
+     422.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.presentation": {
+    "region": [
+     242.01,
+     423.71,
+     284.82,
+     440.78
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.pelvis": {
+    "region": [
+     242.01,
+     441.51,
+     284.82,
+     458.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.glycosuria": {
+    "region": [
+     242.01,
+     477.11,
+     284.82,
+     494.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.albuminuria": {
+    "region": [
+     242.01,
+     494.91,
+     284.82,
+     511.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.rubella": {
+    "region": [
+     242.01,
+     512.71,
+     284.82,
+     529.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.toxoplasmosis": {
+    "region": [
+     242.01,
+     530.51,
+     284.82,
+     547.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.syphilis": {
+    "region": [
+     242.01,
+     548.3,
+     284.82,
+     565.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.hepatitis_b": {
+    "region": [
+     242.01,
+     566.11,
+     284.82,
+     583.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.hiv": {
+    "region": [
+     242.01,
+     583.91,
+     284.82,
+     600.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.hemoglobin_g_dl": {
+    "region": [
+     242.01,
+     601.71,
+     284.82,
+     618.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.platelets": {
+    "region": [
+     242.01,
+     619.51,
+     284.82,
+     636.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.glycemia_g_l": {
+    "region": [
+     242.01,
+     637.31,
+     284.82,
+     654.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.rai": {
+    "region": [
+     242.01,
+     655.11,
+     284.82,
+     672.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.iron": {
+    "region": [
+     242.01,
+     690.71,
+     284.82,
+     707.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t1_v3.examined_by": {
+    "region": [
+     242.01,
+     726.31,
+     284.82,
+     743.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.appointment_date": {
+    "region": [
+     286.82,
+     138.91,
+     329.63,
+     155.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.attended_date": {
+    "region": [
+     286.82,
+     156.71,
+     329.63,
+     173.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.reminder_visit": {
+    "region": [
+     286.82,
+     174.51,
+     329.63,
+     191.58
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.gestational_age_weeks": {
+    "region": [
+     286.82,
+     192.31,
+     329.63,
+     209.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.weight_kg": {
+    "region": [
+     286.82,
+     227.91,
+     329.63,
+     244.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.blood_pressure": {
+    "region": [
+     286.82,
+     245.71,
+     329.63,
+     262.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.skeletal_anomalies": {
+    "region": [
+     286.82,
+     263.5,
+     329.63,
+     280.58
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.conjunctivae": {
+    "region": [
+     286.82,
+     281.3,
+     329.63,
+     298.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.breast_exam": {
+    "region": [
+     286.82,
+     299.11,
+     329.63,
+     316.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.edema": {
+    "region": [
+     286.82,
+     316.91,
+     329.63,
+     333.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.fetal_movements": {
+    "region": [
+     286.82,
+     334.71,
+     329.63,
+     351.78
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.fundal_height_cm": {
+    "region": [
+     286.82,
+     352.51,
+     329.63,
+     369.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.fetal_heart_rate": {
+    "region": [
+     286.82,
+     370.31,
+     329.63,
+     387.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.speculum_exam": {
+    "region": [
+     286.82,
+     388.1,
+     329.63,
+     405.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.cervix": {
+    "region": [
+     286.82,
+     405.91,
+     329.63,
+     422.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.presentation": {
+    "region": [
+     286.82,
+     423.71,
+     329.63,
+     440.78
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.pelvis": {
+    "region": [
+     286.82,
+     441.51,
+     329.63,
+     458.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.glycosuria": {
+    "region": [
+     286.82,
+     477.11,
+     329.63,
+     494.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.albuminuria": {
+    "region": [
+     286.82,
+     494.91,
+     329.63,
+     511.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.rubella": {
+    "region": [
+     286.82,
+     512.71,
+     329.63,
+     529.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.toxoplasmosis": {
+    "region": [
+     286.82,
+     530.51,
+     329.63,
+     547.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.syphilis": {
+    "region": [
+     286.82,
+     548.3,
+     329.63,
+     565.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.hepatitis_b": {
+    "region": [
+     286.82,
+     566.11,
+     329.63,
+     583.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.hiv": {
+    "region": [
+     286.82,
+     583.91,
+     329.63,
+     600.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.hemoglobin_g_dl": {
+    "region": [
+     286.82,
+     601.71,
+     329.63,
+     618.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.platelets": {
+    "region": [
+     286.82,
+     619.51,
+     329.63,
+     636.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.glycemia_g_l": {
+    "region": [
+     286.82,
+     637.31,
+     329.63,
+     654.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.rai": {
+    "region": [
+     286.82,
+     655.11,
+     329.63,
+     672.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.iron": {
+    "region": [
+     286.82,
+     690.71,
+     329.63,
+     707.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v1.examined_by": {
+    "region": [
+     286.82,
+     726.31,
+     329.63,
+     743.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.appointment_date": {
+    "region": [
+     331.63,
+     138.91,
+     374.43,
+     155.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.attended_date": {
+    "region": [
+     331.63,
+     156.71,
+     374.43,
+     173.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.reminder_visit": {
+    "region": [
+     331.63,
+     174.51,
+     374.43,
+     191.58
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.gestational_age_weeks": {
+    "region": [
+     331.63,
+     192.31,
+     374.43,
+     209.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.weight_kg": {
+    "region": [
+     331.63,
+     227.91,
+     374.43,
+     244.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.blood_pressure": {
+    "region": [
+     331.63,
+     245.71,
+     374.43,
+     262.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.skeletal_anomalies": {
+    "region": [
+     331.63,
+     263.5,
+     374.43,
+     280.58
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.conjunctivae": {
+    "region": [
+     331.63,
+     281.3,
+     374.43,
+     298.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.breast_exam": {
+    "region": [
+     331.63,
+     299.11,
+     374.43,
+     316.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.edema": {
+    "region": [
+     331.63,
+     316.91,
+     374.43,
+     333.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.fetal_movements": {
+    "region": [
+     331.63,
+     334.71,
+     374.43,
+     351.78
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.fundal_height_cm": {
+    "region": [
+     331.63,
+     352.51,
+     374.43,
+     369.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.fetal_heart_rate": {
+    "region": [
+     331.63,
+     370.31,
+     374.43,
+     387.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.speculum_exam": {
+    "region": [
+     331.63,
+     388.1,
+     374.43,
+     405.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.cervix": {
+    "region": [
+     331.63,
+     405.91,
+     374.43,
+     422.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.presentation": {
+    "region": [
+     331.63,
+     423.71,
+     374.43,
+     440.78
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.pelvis": {
+    "region": [
+     331.63,
+     441.51,
+     374.43,
+     458.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.glycosuria": {
+    "region": [
+     331.63,
+     477.11,
+     374.43,
+     494.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.albuminuria": {
+    "region": [
+     331.63,
+     494.91,
+     374.43,
+     511.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.rubella": {
+    "region": [
+     331.63,
+     512.71,
+     374.43,
+     529.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.toxoplasmosis": {
+    "region": [
+     331.63,
+     530.51,
+     374.43,
+     547.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.syphilis": {
+    "region": [
+     331.63,
+     548.3,
+     374.43,
+     565.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.hepatitis_b": {
+    "region": [
+     331.63,
+     566.11,
+     374.43,
+     583.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.hiv": {
+    "region": [
+     331.63,
+     583.91,
+     374.43,
+     600.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.hemoglobin_g_dl": {
+    "region": [
+     331.63,
+     601.71,
+     374.43,
+     618.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.platelets": {
+    "region": [
+     331.63,
+     619.51,
+     374.43,
+     636.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.glycemia_g_l": {
+    "region": [
+     331.63,
+     637.31,
+     374.43,
+     654.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.rai": {
+    "region": [
+     331.63,
+     655.11,
+     374.43,
+     672.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.iron": {
+    "region": [
+     331.63,
+     690.71,
+     374.43,
+     707.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v2.examined_by": {
+    "region": [
+     331.63,
+     726.31,
+     374.43,
+     743.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.appointment_date": {
+    "region": [
+     376.43,
+     138.91,
+     419.24,
+     155.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.attended_date": {
+    "region": [
+     376.43,
+     156.71,
+     419.24,
+     173.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.reminder_visit": {
+    "region": [
+     376.43,
+     174.51,
+     419.24,
+     191.58
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.gestational_age_weeks": {
+    "region": [
+     376.43,
+     192.31,
+     419.24,
+     209.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.weight_kg": {
+    "region": [
+     376.43,
+     227.91,
+     419.24,
+     244.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.blood_pressure": {
+    "region": [
+     376.43,
+     245.71,
+     419.24,
+     262.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.skeletal_anomalies": {
+    "region": [
+     376.43,
+     263.5,
+     419.24,
+     280.58
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.conjunctivae": {
+    "region": [
+     376.43,
+     281.3,
+     419.24,
+     298.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.breast_exam": {
+    "region": [
+     376.43,
+     299.11,
+     419.24,
+     316.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.edema": {
+    "region": [
+     376.43,
+     316.91,
+     419.24,
+     333.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.fetal_movements": {
+    "region": [
+     376.43,
+     334.71,
+     419.24,
+     351.78
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.fundal_height_cm": {
+    "region": [
+     376.43,
+     352.51,
+     419.24,
+     369.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.fetal_heart_rate": {
+    "region": [
+     376.43,
+     370.31,
+     419.24,
+     387.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.speculum_exam": {
+    "region": [
+     376.43,
+     388.1,
+     419.24,
+     405.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.cervix": {
+    "region": [
+     376.43,
+     405.91,
+     419.24,
+     422.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.presentation": {
+    "region": [
+     376.43,
+     423.71,
+     419.24,
+     440.78
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.pelvis": {
+    "region": [
+     376.43,
+     441.51,
+     419.24,
+     458.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.glycosuria": {
+    "region": [
+     376.43,
+     477.11,
+     419.24,
+     494.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.albuminuria": {
+    "region": [
+     376.43,
+     494.91,
+     419.24,
+     511.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.rubella": {
+    "region": [
+     376.43,
+     512.71,
+     419.24,
+     529.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.toxoplasmosis": {
+    "region": [
+     376.43,
+     530.51,
+     419.24,
+     547.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.syphilis": {
+    "region": [
+     376.43,
+     548.3,
+     419.24,
+     565.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.hepatitis_b": {
+    "region": [
+     376.43,
+     566.11,
+     419.24,
+     583.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.hiv": {
+    "region": [
+     376.43,
+     583.91,
+     419.24,
+     600.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.hemoglobin_g_dl": {
+    "region": [
+     376.43,
+     601.71,
+     419.24,
+     618.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.platelets": {
+    "region": [
+     376.43,
+     619.51,
+     419.24,
+     636.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.glycemia_g_l": {
+    "region": [
+     376.43,
+     637.31,
+     419.24,
+     654.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.rai": {
+    "region": [
+     376.43,
+     655.11,
+     419.24,
+     672.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.iron": {
+    "region": [
+     376.43,
+     690.71,
+     419.24,
+     707.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.t2_v3.examined_by": {
+    "region": [
+     376.43,
+     726.31,
+     419.24,
+     743.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.appointment_date": {
+    "region": [
+     421.24,
+     138.91,
+     464.05,
+     155.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.attended_date": {
+    "region": [
+     421.24,
+     156.71,
+     464.05,
+     173.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.reminder_visit": {
+    "region": [
+     421.24,
+     174.51,
+     464.05,
+     191.58
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.gestational_age_weeks": {
+    "region": [
+     421.24,
+     192.31,
+     464.05,
+     209.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.weight_kg": {
+    "region": [
+     421.24,
+     227.91,
+     464.05,
+     244.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.blood_pressure": {
+    "region": [
+     421.24,
+     245.71,
+     464.05,
+     262.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.skeletal_anomalies": {
+    "region": [
+     421.24,
+     263.5,
+     464.05,
+     280.58
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.conjunctivae": {
+    "region": [
+     421.24,
+     281.3,
+     464.05,
+     298.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.breast_exam": {
+    "region": [
+     421.24,
+     299.11,
+     464.05,
+     316.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.edema": {
+    "region": [
+     421.24,
+     316.91,
+     464.05,
+     333.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.fetal_movements": {
+    "region": [
+     421.24,
+     334.71,
+     464.05,
+     351.78
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.fundal_height_cm": {
+    "region": [
+     421.24,
+     352.51,
+     464.05,
+     369.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.fetal_heart_rate": {
+    "region": [
+     421.24,
+     370.31,
+     464.05,
+     387.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.speculum_exam": {
+    "region": [
+     421.24,
+     388.1,
+     464.05,
+     405.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.cervix": {
+    "region": [
+     421.24,
+     405.91,
+     464.05,
+     422.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.presentation": {
+    "region": [
+     421.24,
+     423.71,
+     464.05,
+     440.78
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.pelvis": {
+    "region": [
+     421.24,
+     441.51,
+     464.05,
+     458.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.glycosuria": {
+    "region": [
+     421.24,
+     477.11,
+     464.05,
+     494.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.albuminuria": {
+    "region": [
+     421.24,
+     494.91,
+     464.05,
+     511.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.rubella": {
+    "region": [
+     421.24,
+     512.71,
+     464.05,
+     529.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.toxoplasmosis": {
+    "region": [
+     421.24,
+     530.51,
+     464.05,
+     547.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.syphilis": {
+    "region": [
+     421.24,
+     548.3,
+     464.05,
+     565.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.hepatitis_b": {
+    "region": [
+     421.24,
+     566.11,
+     464.05,
+     583.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.hiv": {
+    "region": [
+     421.24,
+     583.91,
+     464.05,
+     600.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.hemoglobin_g_dl": {
+    "region": [
+     421.24,
+     601.71,
+     464.05,
+     618.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.platelets": {
+    "region": [
+     421.24,
+     619.51,
+     464.05,
+     636.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.glycemia_g_l": {
+    "region": [
+     421.24,
+     637.31,
+     464.05,
+     654.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.rai": {
+    "region": [
+     421.24,
+     655.11,
+     464.05,
+     672.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.iron": {
+    "region": [
+     421.24,
+     690.71,
+     464.05,
+     707.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m7.examined_by": {
+    "region": [
+     421.24,
+     726.31,
+     464.05,
+     743.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.appointment_date": {
+    "region": [
+     466.05,
+     138.91,
+     508.86,
+     155.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.attended_date": {
+    "region": [
+     466.05,
+     156.71,
+     508.86,
+     173.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.reminder_visit": {
+    "region": [
+     466.05,
+     174.51,
+     508.86,
+     191.58
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.gestational_age_weeks": {
+    "region": [
+     466.05,
+     192.31,
+     508.86,
+     209.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.weight_kg": {
+    "region": [
+     466.05,
+     227.91,
+     508.86,
+     244.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.blood_pressure": {
+    "region": [
+     466.05,
+     245.71,
+     508.86,
+     262.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.skeletal_anomalies": {
+    "region": [
+     466.05,
+     263.5,
+     508.86,
+     280.58
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.conjunctivae": {
+    "region": [
+     466.05,
+     281.3,
+     508.86,
+     298.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.breast_exam": {
+    "region": [
+     466.05,
+     299.11,
+     508.86,
+     316.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.edema": {
+    "region": [
+     466.05,
+     316.91,
+     508.86,
+     333.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.fetal_movements": {
+    "region": [
+     466.05,
+     334.71,
+     508.86,
+     351.78
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.fundal_height_cm": {
+    "region": [
+     466.05,
+     352.51,
+     508.86,
+     369.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.fetal_heart_rate": {
+    "region": [
+     466.05,
+     370.31,
+     508.86,
+     387.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.speculum_exam": {
+    "region": [
+     466.05,
+     388.1,
+     508.86,
+     405.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.cervix": {
+    "region": [
+     466.05,
+     405.91,
+     508.86,
+     422.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.presentation": {
+    "region": [
+     466.05,
+     423.71,
+     508.86,
+     440.78
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.pelvis": {
+    "region": [
+     466.05,
+     441.51,
+     508.86,
+     458.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.glycosuria": {
+    "region": [
+     466.05,
+     477.11,
+     508.86,
+     494.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.albuminuria": {
+    "region": [
+     466.05,
+     494.91,
+     508.86,
+     511.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.rubella": {
+    "region": [
+     466.05,
+     512.71,
+     508.86,
+     529.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.toxoplasmosis": {
+    "region": [
+     466.05,
+     530.51,
+     508.86,
+     547.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.syphilis": {
+    "region": [
+     466.05,
+     548.3,
+     508.86,
+     565.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.hepatitis_b": {
+    "region": [
+     466.05,
+     566.11,
+     508.86,
+     583.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.hiv": {
+    "region": [
+     466.05,
+     583.91,
+     508.86,
+     600.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.hemoglobin_g_dl": {
+    "region": [
+     466.05,
+     601.71,
+     508.86,
+     618.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.platelets": {
+    "region": [
+     466.05,
+     619.51,
+     508.86,
+     636.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.glycemia_g_l": {
+    "region": [
+     466.05,
+     637.31,
+     508.86,
+     654.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.rai": {
+    "region": [
+     466.05,
+     655.11,
+     508.86,
+     672.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.iron": {
+    "region": [
+     466.05,
+     690.71,
+     508.86,
+     707.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m8.examined_by": {
+    "region": [
+     466.05,
+     726.31,
+     508.86,
+     743.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.appointment_date": {
+    "region": [
+     510.86,
+     138.91,
+     565.0,
+     155.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.attended_date": {
+    "region": [
+     510.86,
+     156.71,
+     565.0,
+     173.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.reminder_visit": {
+    "region": [
+     510.86,
+     174.51,
+     565.0,
+     191.58
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.gestational_age_weeks": {
+    "region": [
+     510.86,
+     192.31,
+     565.0,
+     209.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.weight_kg": {
+    "region": [
+     510.86,
+     227.91,
+     565.0,
+     244.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.blood_pressure": {
+    "region": [
+     510.86,
+     245.71,
+     565.0,
+     262.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.skeletal_anomalies": {
+    "region": [
+     510.86,
+     263.5,
+     565.0,
+     280.58
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.conjunctivae": {
+    "region": [
+     510.86,
+     281.3,
+     565.0,
+     298.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.breast_exam": {
+    "region": [
+     510.86,
+     299.11,
+     565.0,
+     316.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.edema": {
+    "region": [
+     510.86,
+     316.91,
+     565.0,
+     333.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.fetal_movements": {
+    "region": [
+     510.86,
+     334.71,
+     565.0,
+     351.78
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.fundal_height_cm": {
+    "region": [
+     510.86,
+     352.51,
+     565.0,
+     369.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.fetal_heart_rate": {
+    "region": [
+     510.86,
+     370.31,
+     565.0,
+     387.39
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.speculum_exam": {
+    "region": [
+     510.86,
+     388.1,
+     565.0,
+     405.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.cervix": {
+    "region": [
+     510.86,
+     405.91,
+     565.0,
+     422.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.presentation": {
+    "region": [
+     510.86,
+     423.71,
+     565.0,
+     440.78
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.pelvis": {
+    "region": [
+     510.86,
+     441.51,
+     565.0,
+     458.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.glycosuria": {
+    "region": [
+     510.86,
+     477.11,
+     565.0,
+     494.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.albuminuria": {
+    "region": [
+     510.86,
+     494.91,
+     565.0,
+     511.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.rubella": {
+    "region": [
+     510.86,
+     512.71,
+     565.0,
+     529.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.toxoplasmosis": {
+    "region": [
+     510.86,
+     530.51,
+     565.0,
+     547.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.syphilis": {
+    "region": [
+     510.86,
+     548.3,
+     565.0,
+     565.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.hepatitis_b": {
+    "region": [
+     510.86,
+     566.11,
+     565.0,
+     583.19
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.hiv": {
+    "region": [
+     510.86,
+     583.91,
+     565.0,
+     600.99
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.hemoglobin_g_dl": {
+    "region": [
+     510.86,
+     601.71,
+     565.0,
+     618.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.platelets": {
+    "region": [
+     510.86,
+     619.51,
+     565.0,
+     636.59
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.glycemia_g_l": {
+    "region": [
+     510.86,
+     637.31,
+     565.0,
+     654.38
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.rai": {
+    "region": [
+     510.86,
+     655.11,
+     565.0,
+     672.18
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.iron": {
+    "region": [
+     510.86,
+     690.71,
+     565.0,
+     707.79
+    ],
+    "kind": "cell",
+    "pii": false
+   },
+   "visits.m9.examined_by": {
+    "region": [
+     510.86,
+     726.31,
+     565.0,
+     743.39
+    ],
+    "kind": "cell",
+    "pii": false
+   }
+  }
+ },
+ "delivery": {
+  "page_type": "delivery",
+  "width": 595.2755737304688,
+  "height": 841.8897705078125,
+  "labels": [
+   {
+    "text": "SPÉCIMEN — DONNÉES FICTIVES",
+    "bbox": [
+     397.43,
+     28.74,
+     529.53,
+     40.72
+    ],
+    "ink": [
+     396.25,
+     27.5,
+     529.25,
+     38.5
+    ]
+   },
+   {
+    "text": "DÉROULEMENT DE L'ACCOUCHEMENT",
+    "bbox": [
+     37.16,
+     30.58,
+     247.65,
+     47.26
+    ],
+    "ink": [
+     38.0,
+     33.5,
+     247.5,
+     44.0
+    ]
+   },
+   {
+    "text": "Patiente :",
+    "bbox": [
+     37.5,
+     78.02,
+     73.6,
+     89.28
+    ],
+    "ink": [
+     38.25,
+     80.75,
+     71.0,
+     87.0
+    ]
+   },
+   {
+    "text": "Lieu",
+    "bbox": [
+     37.78,
+     117.12,
+     56.37,
+     129.65
+    ],
+    "ink": [
+     38.5,
+     120.25,
+     55.75,
+     127.0
+    ]
+   },
+   {
+    "text": "Maison d'accouchement",
+    "bbox": [
+     224.89,
+     131.3,
+     310.98,
+     142.91
+    ],
+    "ink": [
+     225.5,
+     134.25,
+     310.75,
+     140.75
+    ]
+   },
+   {
+    "text": "En milieu surveillé",
+    "bbox": [
+     49.93,
+     137.73,
+     114.47,
+     149.19
+    ],
+    "ink": [
+     50.75,
+     140.5,
+     114.25,
+     146.75
+    ]
+   },
+   {
+    "text": "Maternité",
+    "bbox": [
+     225.01,
+     147.68,
+     258.43,
+     158.91
+    ],
+    "ink": [
+     225.75,
+     150.25,
+     258.25,
+     156.75
+    ]
+   },
+   {
+    "text": "Clinique privée",
+    "bbox": [
+     225.13,
+     163.54,
+     278.11,
+     174.91
+    ],
+    "ink": [
+     225.5,
+     166.25,
+     277.75,
+     174.25
+    ]
+   },
+   {
+    "text": "Autres : ...........................................................",
+    "bbox": [
+     213.27,
+     182.84,
+     374.35,
+     195.0
+    ],
+    "ink": [
+     213.5,
+     186.75,
+     373.75,
+     192.75
+    ]
+   },
+   {
+    "text": "Assisté par un personnel qualifié",
+    "bbox": [
+     225.58,
+     226.08,
+     341.27,
+     237.91
+    ],
+    "ink": [
+     225.75,
+     228.75,
+     341.0,
+     237.25
+    ]
+   },
+   {
+    "text": "A domicile",
+    "bbox": [
+     50.59,
+     227.93,
+     87.56,
+     239.19
+    ],
+    "ink": [
+     50.75,
+     230.75,
+     87.25,
+     237.0
+    ]
+   },
+   {
+    "text": "Autres : ...........................................................",
+    "bbox": [
+     213.75,
+     248.83,
+     374.84,
+     261.0
+    ],
+    "ink": [
+     214.0,
+     252.75,
+     374.25,
+     258.75
+    ]
+   },
+   {
+    "text": "Date de l'accouchement :",
+    "bbox": [
+     39.1,
+     297.61,
+     131.42,
+     309.27
+    ],
+    "ink": [
+     39.75,
+     300.5,
+     128.75,
+     307.0
+    ]
+   },
+   {
+    "text": "Mode de l'accouchement :",
+    "bbox": [
+     39.38,
+     336.43,
+     151.64,
+     349.64
+    ],
+    "ink": [
+     40.0,
+     339.75,
+     151.0,
+     347.0
+    ]
+   },
+   {
+    "text": "Voie basse non instrumentale",
+    "bbox": [
+     226.42,
+     341.15,
+     331.88,
+     352.91
+    ],
+    "ink": [
+     226.75,
+     343.75,
+     331.5,
+     350.75
+    ]
+   },
+   {
+    "text": "Voie basse instrumentale",
+    "bbox": [
+     226.55,
+     359.26,
+     316.45,
+     370.91
+    ],
+    "ink": [
+     226.75,
+     362.0,
+     316.25,
+     368.75
+    ]
+   },
+   {
+    "text": "Forceps",
+    "bbox": [
+     261.67,
+     375.45,
+     290.64,
+     386.65
+    ],
+    "ink": [
+     262.5,
+     378.25,
+     290.25,
+     386.0
+    ]
+   },
+   {
+    "text": "Ventouse",
+    "bbox": [
+     261.79,
+     391.41,
+     295.66,
+     402.65
+    ],
+    "ink": [
+     262.0,
+     394.25,
+     295.5,
+     400.5
+    ]
+   },
+   {
+    "text": "Avec épisiotomie",
+    "bbox": [
+     261.9,
+     407.22,
+     322.44,
+     418.65
+    ],
+    "ink": [
+     262.25,
+     410.0,
+     322.25,
+     418.0
+    ]
+   },
+   {
+    "text": "Urgence",
+    "bbox": [
+     402.04,
+     426.42,
+     432.36,
+     437.63
+    ],
+    "ink": [
+     402.75,
+     429.25,
+     432.0,
+     437.0
+    ]
+   },
+   {
+    "text": "Césarienne : Programmée",
+    "bbox": [
+     227.05,
+     427.23,
+     320.93,
+     438.91
+    ],
+    "ink": [
+     227.5,
+     430.0,
+     320.75,
+     438.0
+    ]
+   },
+   {
+    "text": "Préciser l'indication :",
+    "bbox": [
+     215.2,
+     447.45,
+     290.6,
+     458.99
+    ],
+    "ink": [
+     216.0,
+     450.25,
+     288.0,
+     456.75
+    ]
+   },
+   {
+    "text": "Présence de complications",
+    "bbox": [
+     40.55,
+     496.4,
+     156.68,
+     509.64
+    ],
+    "ink": [
+     41.25,
+     499.5,
+     156.25,
+     508.5
+    ]
+   },
+   {
+    "text": "Au moment de l'accouchement",
+    "bbox": [
+     227.57,
+     499.11,
+     337.23,
+     510.9
+    ],
+    "ink": [
+     227.75,
+     502.0,
+     337.0,
+     508.75
+    ]
+   },
+   {
+    "text": "Suites de couches",
+    "bbox": [
+     227.69,
+     515.44,
+     293.14,
+     526.9
+    ],
+    "ink": [
+     228.0,
+     518.25,
+     292.75,
+     524.75
+    ]
+   },
+   {
+    "text": "Type de complications :",
+    "bbox": [
+     215.82,
+     533.39,
+     299.93,
+     544.99
+    ],
+    "ink": [
+     216.0,
+     536.25,
+     299.5,
+     544.5
+    ]
+   },
+   {
+    "text": "Pré-éclampsie",
+    "bbox": [
+     262.95,
+     551.28,
+     314.15,
+     562.65
+    ],
+    "ink": [
+     263.75,
+     554.0,
+     313.75,
+     561.75
+    ]
+   },
+   {
+    "text": "Eclampsie",
+    "bbox": [
+     263.06,
+     566.39,
+     300.04,
+     577.65
+    ],
+    "ink": [
+     263.75,
+     569.0,
+     299.75,
+     577.0
+    ]
+   },
+   {
+    "text": "Hémorragie",
+    "bbox": [
+     263.17,
+     581.35,
+     305.03,
+     592.65
+    ],
+    "ink": [
+     263.75,
+     584.0,
+     304.75,
+     591.75
+    ]
+   },
+   {
+    "text": "Infection",
+    "bbox": [
+     263.28,
+     596.43,
+     293.6,
+     607.65
+    ],
+    "ink": [
+     264.0,
+     599.25,
+     293.0,
+     605.5
+    ]
+   },
+   {
+    "text": "Autres",
+    "bbox": [
+     263.39,
+     611.49,
+     286.59,
+     622.65
+    ],
+    "ink": [
+     263.75,
+     614.25,
+     286.25,
+     620.5
+    ]
+   },
+   {
+    "text": "Si autres à préciser : ...............................",
+    "bbox": [
+     251.53,
+     630.69,
+     396.14,
+     642.73
+    ],
+    "ink": [
+     252.0,
+     634.0,
+     395.5,
+     641.75
+    ]
+   },
+   {
+    "text": "Décès < 24 heures",
+    "bbox": [
+     378.86,
+     675.32,
+     446.31,
+     686.81
+    ],
+    "ink": [
+     379.5,
+     678.25,
+     446.0,
+     684.5
+    ]
+   },
+   {
+    "text": "Mort-né",
+    "bbox": [
+     298.86,
+     676.2,
+     326.5,
+     687.39
+    ],
+    "ink": [
+     299.5,
+     679.0,
+     326.25,
+     685.25
+    ]
+   },
+   {
+    "text": "Etat du nouveau-né :",
+    "bbox": [
+     41.86,
+     676.59,
+     130.96,
+     689.63
+    ],
+    "ink": [
+     42.5,
+     679.25,
+     130.5,
+     687.0
+    ]
+   },
+   {
+    "text": "Vivant",
+    "bbox": [
+     228.86,
+     676.75,
+     251.17,
+     687.9
+    ],
+    "ink": [
+     229.0,
+     679.5,
+     251.0,
+     685.5
+    ]
+   },
+   {
+    "text": "Sexe :",
+    "bbox": [
+     217.05,
+     701.81,
+     242.03,
+     712.99
+    ],
+    "ink": [
+     217.5,
+     704.75,
+     239.5,
+     710.75
+    ]
+   },
+   {
+    "text": "Poids à la naissance :",
+    "bbox": [
+     217.19,
+     721.41,
+     297.31,
+     732.99
+    ],
+    "ink": [
+     218.0,
+     724.25,
+     294.75,
+     730.75
+    ]
+   },
+   {
+    "text": "Périmètre crânien à la naissance :",
+    "bbox": [
+     217.34,
+     741.1,
+     340.57,
+     752.99
+    ],
+    "ink": [
+     218.0,
+     744.0,
+     338.0,
+     750.75
+    ]
+   },
+   {
+    "text": "Anomalie à préciser :",
+    "bbox": [
+     217.5,
+     763.43,
+     294.94,
+     774.98
+    ],
+    "ink": [
+     217.75,
+     766.25,
+     292.25,
+     774.0
+    ]
+   },
+   {
+    "text": "Âge gestationnel :",
+    "bbox": [
+     217.64,
+     783.51,
+     283.99,
+     794.98
+    ],
+    "ink": [
+     218.0,
+     785.0,
+     281.25,
+     794.25
+    ]
+   },
+   {
+    "text": "Document synthétique généré pour l'entraînement de modèles — aucune donnée réelle — ne pas utiliser comme dossier médical.",
+    "bbox": [
+     42.91,
+     818.9,
+     388.59,
+     829.66
+    ],
+    "ink": [
+     43.5,
+     821.0,
+     388.25,
+     829.0
+    ]
+   }
+  ],
+  "fields": {
+   "patient_name": {
+    "region": [
+     75.6,
+     75.15,
+     565.0,
+     92.15
+    ],
+    "kind": "text",
+    "pii": true
+   },
+   "setting": {
+    "options": {
+     "supervised": [
+      37.95,
+      139.83,
+      46.0,
+      147.88
+     ],
+     "home": [
+      38.6,
+      229.82,
+      46.66,
+      237.88
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "facility": {
+    "options": {
+     "birth_house": [
+      212.9,
+      133.55,
+      220.96,
+      141.61
+     ],
+     "maternity": [
+      213.02,
+      149.55,
+      221.08,
+      157.61
+     ],
+     "private_clinic": [
+      213.14,
+      165.55,
+      221.2,
+      173.61
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "facility_other": {
+    "region": [
+     376.35,
+     180.42,
+     565.0,
+     197.42
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "home_skilled_attendant": {
+    "box": [
+     213.6,
+     228.55,
+     221.65,
+     236.61
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "home_other": {
+    "region": [
+     376.84,
+     246.42,
+     565.0,
+     263.42
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "delivery_date": {
+    "region": [
+     133.42,
+     294.94,
+     565.0,
+     311.94
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "mode": {
+    "options": {
+     "vaginal_spontaneous": [
+      214.43,
+      343.55,
+      222.49,
+      351.6
+     ],
+     "vaginal_instrumental": [
+      214.57,
+      361.55,
+      222.62,
+      369.6
+     ],
+     "cesarean_planned": [
+      215.06,
+      429.54,
+      223.12,
+      437.6
+     ],
+     "cesarean_emergency": [
+      390.06,
+      428.27,
+      398.11,
+      436.33
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "forceps": {
+    "box": [
+     249.68,
+     377.29,
+     257.74,
+     385.35
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "vacuum": {
+    "box": [
+     249.8,
+     393.29,
+     257.86,
+     401.35
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "episiotomy": {
+    "box": [
+     249.91,
+     409.29,
+     257.97,
+     417.35
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "cesarean_indication": {
+    "region": [
+     292.6,
+     444.72,
+     565.0,
+     461.72
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "complications": {
+    "box": [
+     190.56,
+     498.72,
+     198.62,
+     506.78
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication_at_delivery": {
+    "box": [
+     215.59,
+     501.54,
+     223.64,
+     509.6
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication_postpartum": {
+    "box": [
+     215.7,
+     517.54,
+     223.76,
+     525.6
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.preeclampsia": {
+    "box": [
+     250.96,
+     553.29,
+     259.02,
+     561.34
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.eclampsia": {
+    "box": [
+     251.07,
+     568.28,
+     259.13,
+     576.34
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.hemorrhage": {
+    "box": [
+     251.18,
+     583.28,
+     259.24,
+     591.34
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.infection": {
+    "box": [
+     251.29,
+     598.28,
+     259.35,
+     606.34
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.other": {
+    "box": [
+     251.4,
+     613.28,
+     259.46,
+     621.34
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication_other_text": {
+    "region": [
+     398.14,
+     628.21,
+     565.0,
+     645.21
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "newborn_status": {
+    "options": {
+     "alive": [
+      216.88,
+      678.54,
+      224.93,
+      686.59
+     ],
+     "stillborn": [
+      286.87,
+      678.03,
+      294.93,
+      686.08
+     ],
+     "death_under_24h": [
+      366.87,
+      677.44,
+      374.93,
+      685.5
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "newborn_sex": {
+    "region": [
+     244.03,
+     698.9,
+     565.0,
+     715.9
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "birth_weight_g": {
+    "region": [
+     299.31,
+     718.7,
+     565.0,
+     735.7
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "head_circumference_cm": {
+    "region": [
+     342.57,
+     738.54,
+     565.0,
+     755.54
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "anomaly": {
+    "region": [
+     296.94,
+     760.71,
+     565.0,
+     777.71
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "gestational_age_weeks": {
+    "region": [
+     285.99,
+     780.75,
+     565.0,
+     797.75
+    ],
+    "kind": "text",
+    "pii": false
+   }
+  }
+ },
+ "postpartum_early_mother": {
+  "page_type": "postpartum_early_mother",
+  "width": 595.2755737304688,
+  "height": 841.8897705078125,
+  "labels": [
+   {
+    "text": "CONSULTATION DU POST-PARTUM PRÉCOCE",
+    "bbox": [
+     41.0,
+     29.54,
+     288.54,
+     45.35
+    ],
+    "ink": [
+     41.5,
+     31.5,
+     288.0,
+     42.25
+    ]
+   },
+   {
+    "text": "SPÉCIMEN — DONNÉES FICTIVES",
+    "bbox": [
+     401.29,
+     30.72,
+     533.34,
+     42.08
+    ],
+    "ink": [
+     401.5,
+     31.75,
+     533.0,
+     39.75
+    ]
+   },
+   {
+    "text": "Date de la consultation :",
+    "bbox": [
+     330.9,
+     71.49,
+     418.98,
+     82.72
+    ],
+    "ink": [
+     331.5,
+     74.25,
+     416.25,
+     80.5
+    ]
+   },
+   {
+    "text": "Entre le 7ème et 8ème jour après l'accouchement",
+    "bbox": [
+     40.9,
+     72.71,
+     217.2,
+     84.18
+    ],
+    "ink": [
+     41.5,
+     75.5,
+     217.0,
+     83.5
+    ]
+   },
+   {
+    "text": "Après le 8ème jour de l'accouchement",
+    "bbox": [
+     40.86,
+     86.71,
+     176.7,
+     98.07
+    ],
+    "ink": [
+     41.0,
+     89.5,
+     176.5,
+     97.25
+    ]
+   },
+   {
+    "text": "Etat général :",
+    "bbox": [
+     46.79,
+     114.77,
+     97.5,
+     125.92
+    ],
+    "ink": [
+     47.25,
+     117.25,
+     97.0,
+     125.25
+    ]
+   },
+   {
+    "text": "T°",
+    "bbox": [
+     46.74,
+     132.73,
+     57.08,
+     143.75
+    ],
+    "ink": [
+     47.0,
+     135.5,
+     54.5,
+     141.5
+    ]
+   },
+   {
+    "text": "TA",
+    "bbox": [
+     150.74,
+     133.01,
+     163.22,
+     144.03
+    ],
+    "ink": [
+     151.0,
+     135.75,
+     160.75,
+     141.75
+    ]
+   },
+   {
+    "text": "Pouls",
+    "bbox": [
+     260.74,
+     133.3,
+     283.0,
+     144.35
+    ],
+    "ink": [
+     261.5,
+     136.0,
+     280.5,
+     142.25
+    ]
+   },
+   {
+    "text": "Poids",
+    "bbox": [
+     360.74,
+     133.57,
+     383.0,
+     144.62
+    ],
+    "ink": [
+     361.5,
+     136.25,
+     380.5,
+     142.5
+    ]
+   },
+   {
+    "text": "Etat des conjonctives :",
+    "bbox": [
+     46.69,
+     152.73,
+     126.76,
+     163.93
+    ],
+    "ink": [
+     47.5,
+     155.5,
+     126.25,
+     163.25
+    ]
+   },
+   {
+    "text": "Normales",
+    "bbox": [
+     172.69,
+     153.07,
+     206.94,
+     164.15
+    ],
+    "ink": [
+     173.25,
+     155.75,
+     206.5,
+     162.0
+    ]
+   },
+   {
+    "text": "Décolorées",
+    "bbox": [
+     262.69,
+     153.31,
+     303.17,
+     164.41
+    ],
+    "ink": [
+     263.5,
+     156.0,
+     302.75,
+     162.25
+    ]
+   },
+   {
+    "text": "Présence du globe utérin",
+    "bbox": [
+     58.64,
+     170.76,
+     147.6,
+     181.99
+    ],
+    "ink": [
+     59.25,
+     173.5,
+     147.0,
+     181.25
+    ]
+   },
+   {
+    "text": "Etat des lochies :",
+    "bbox": [
+     46.59,
+     188.77,
+     112.42,
+     199.96
+    ],
+    "ink": [
+     47.25,
+     191.5,
+     112.0,
+     197.75
+    ]
+   },
+   {
+    "text": "Fade",
+    "bbox": [
+     172.59,
+     189.07,
+     190.85,
+     200.11
+    ],
+    "ink": [
+     173.25,
+     191.75,
+     190.5,
+     198.0
+    ]
+   },
+   {
+    "text": "fétide",
+    "bbox": [
+     242.59,
+     189.25,
+     262.19,
+     200.3
+    ],
+    "ink": [
+     242.75,
+     192.0,
+     262.0,
+     198.0
+    ]
+   },
+   {
+    "text": "claires",
+    "bbox": [
+     172.55,
+     205.07,
+     195.69,
+     216.12
+    ],
+    "ink": [
+     172.75,
+     207.75,
+     195.25,
+     214.0
+    ]
+   },
+   {
+    "text": "sanglantes",
+    "bbox": [
+     242.55,
+     205.25,
+     281.26,
+     216.35
+    ],
+    "ink": [
+     242.75,
+     208.0,
+     281.0,
+     215.75
+    ]
+   },
+   {
+    "text": "Jaunâtres",
+    "bbox": [
+     322.55,
+     205.47,
+     357.7,
+     216.55
+    ],
+    "ink": [
+     322.5,
+     208.25,
+     357.25,
+     214.25
+    ]
+   },
+   {
+    "text": "Etat du périnée :",
+    "bbox": [
+     46.49,
+     224.77,
+     109.2,
+     235.95
+    ],
+    "ink": [
+     47.0,
+     227.25,
+     108.75,
+     235.25
+    ]
+   },
+   {
+    "text": "Normal",
+    "bbox": [
+     72.45,
+     240.8,
+     98.26,
+     251.86
+    ],
+    "ink": [
+     73.0,
+     243.5,
+     97.75,
+     249.75
+    ]
+   },
+   {
+    "text": "Épisiotomie",
+    "bbox": [
+     72.41,
+     256.8,
+     113.78,
+     267.9
+    ],
+    "ink": [
+     73.0,
+     257.75,
+     113.5,
+     267.25
+    ]
+   },
+   {
+    "text": "Réparée",
+    "bbox": [
+     212.41,
+     257.17,
+     243.12,
+     268.25
+    ],
+    "ink": [
+     213.0,
+     259.75,
+     242.75,
+     267.5
+    ]
+   },
+   {
+    "text": "Déchirure",
+    "bbox": [
+     72.37,
+     272.8,
+     107.07,
+     283.88
+    ],
+    "ink": [
+     73.0,
+     275.5,
+     106.75,
+     281.75
+    ]
+   },
+   {
+    "text": "Etat des sphincters (anal et urétral) :",
+    "bbox": [
+     46.31,
+     294.73,
+     175.28,
+     306.06
+    ],
+    "ink": [
+     47.0,
+     297.5,
+     174.75,
+     305.25
+    ]
+   },
+   {
+    "text": "Normal",
+    "bbox": [
+     242.31,
+     295.25,
+     268.11,
+     306.31
+    ],
+    "ink": [
+     243.0,
+     298.0,
+     267.75,
+     304.0
+    ]
+   },
+   {
+    "text": "Anormal",
+    "bbox": [
+     312.31,
+     295.44,
+     342.12,
+     306.51
+    ],
+    "ink": [
+     312.5,
+     298.25,
+     341.75,
+     304.25
+    ]
+   },
+   {
+    "text": "Césarienne :",
+    "bbox": [
+     58.25,
+     314.76,
+     103.63,
+     325.87
+    ],
+    "ink": [
+     58.5,
+     317.5,
+     103.25,
+     323.75
+    ]
+   },
+   {
+    "text": "Etat de la cicatrice :",
+    "bbox": [
+     180.25,
+     315.09,
+     250.09,
+     326.26
+    ],
+    "ink": [
+     181.0,
+     317.75,
+     249.75,
+     324.0
+    ]
+   },
+   {
+    "text": "Etat des seins :",
+    "bbox": [
+     46.2,
+     334.73,
+     100.93,
+     345.87
+    ],
+    "ink": [
+     47.0,
+     337.5,
+     100.5,
+     343.75
+    ]
+   },
+   {
+    "text": "Normal",
+    "bbox": [
+     142.2,
+     334.98,
+     168.01,
+     346.05
+    ],
+    "ink": [
+     142.75,
+     337.75,
+     167.5,
+     343.75
+    ]
+   },
+   {
+    "text": "lymphangite",
+    "bbox": [
+     212.2,
+     335.17,
+     255.36,
+     346.28
+    ],
+    "ink": [
+     212.75,
+     338.0,
+     255.0,
+     345.75
+    ]
+   },
+   {
+    "text": "mastite et abcès",
+    "bbox": [
+     302.2,
+     335.41,
+     360.48,
+     346.56
+    ],
+    "ink": [
+     302.75,
+     338.25,
+     360.25,
+     344.25
+    ]
+   },
+   {
+    "text": "Etat des mollets :",
+    "bbox": [
+     46.15,
+     354.73,
+     107.54,
+     365.88
+    ],
+    "ink": [
+     46.75,
+     357.5,
+     107.0,
+     363.75
+    ]
+   },
+   {
+    "text": "Normal",
+    "bbox": [
+     72.1,
+     370.8,
+     97.91,
+     381.86
+    ],
+    "ink": [
+     72.75,
+     373.5,
+     97.5,
+     379.75
+    ]
+   },
+   {
+    "text": "Rouges",
+    "bbox": [
+     142.1,
+     370.98,
+     169.7,
+     382.05
+    ],
+    "ink": [
+     142.75,
+     373.75,
+     169.25,
+     381.5
+    ]
+   },
+   {
+    "text": "Chauds",
+    "bbox": [
+     212.1,
+     371.17,
+     239.7,
+     382.24
+    ],
+    "ink": [
+     212.5,
+     373.75,
+     239.25,
+     380.0
+    ]
+   },
+   {
+    "text": "Douloureux à la dorsiflexion",
+    "bbox": [
+     282.1,
+     371.36,
+     380.84,
+     382.61
+    ],
+    "ink": [
+     282.75,
+     374.25,
+     380.25,
+     380.5
+    ]
+   },
+   {
+    "text": "Présence de complication :",
+    "bbox": [
+     46.04,
+     394.77,
+     149.66,
+     406.06
+    ],
+    "ink": [
+     46.5,
+     397.25,
+     149.25,
+     405.25
+    ]
+   },
+   {
+    "text": "Hémorragie",
+    "bbox": [
+     71.99,
+     412.8,
+     113.8,
+     423.9
+    ],
+    "ink": [
+     72.5,
+     415.5,
+     113.5,
+     423.25
+    ]
+   },
+   {
+    "text": "Complications mammaires",
+    "bbox": [
+     231.99,
+     413.22,
+     326.25,
+     424.47
+    ],
+    "ink": [
+     232.25,
+     416.0,
+     326.0,
+     423.75
+    ]
+   },
+   {
+    "text": "Infection",
+    "bbox": [
+     71.95,
+     427.8,
+     102.22,
+     438.87
+    ],
+    "ink": [
+     72.75,
+     430.5,
+     101.75,
+     436.75
+    ]
+   },
+   {
+    "text": "Anémie",
+    "bbox": [
+     231.95,
+     428.22,
+     259.1,
+     439.29
+    ],
+    "ink": [
+     232.25,
+     431.0,
+     258.75,
+     437.0
+    ]
+   },
+   {
+    "text": "Eclampsie",
+    "bbox": [
+     71.91,
+     442.8,
+     108.84,
+     453.89
+    ],
+    "ink": [
+     72.5,
+     445.5,
+     108.5,
+     453.25
+    ]
+   },
+   {
+    "text": "Autres",
+    "bbox": [
+     231.91,
+     443.22,
+     255.06,
+     454.28
+    ],
+    "ink": [
+     232.0,
+     446.0,
+     254.75,
+     452.0
+    ]
+   },
+   {
+    "text": "Phlébite",
+    "bbox": [
+     71.87,
+     457.8,
+     100.8,
+     468.87
+    ],
+    "ink": [
+     72.5,
+     460.5,
+     100.5,
+     466.75
+    ]
+   },
+   {
+    "text": "Notion de prise de médicaments :",
+    "bbox": [
+     45.82,
+     478.73,
+     165.0,
+     490.04
+    ],
+    "ink": [
+     46.5,
+     481.5,
+     164.5,
+     489.25
+    ]
+   },
+   {
+    "text": "CONDUITE À TENIR :",
+    "bbox": [
+     45.76,
+     498.77,
+     126.68,
+     510.0
+    ],
+    "ink": [
+     46.0,
+     500.0,
+     126.25,
+     507.5
+    ]
+   },
+   {
+    "text": "Traitement prescrit :",
+    "bbox": [
+     45.72,
+     514.73,
+     116.88,
+     525.91
+    ],
+    "ink": [
+     46.0,
+     517.5,
+     116.5,
+     525.25
+    ]
+   },
+   {
+    "text": "Fer",
+    "bbox": [
+     71.68,
+     530.8,
+     83.71,
+     541.82
+    ],
+    "ink": [
+     72.25,
+     533.5,
+     83.5,
+     539.5
+    ]
+   },
+   {
+    "text": "Vitamine A",
+    "bbox": [
+     151.68,
+     531.01,
+     190.39,
+     542.11
+    ],
+    "ink": [
+     152.0,
+     533.75,
+     190.25,
+     539.75
+    ]
+   },
+   {
+    "text": "Autres à préciser : ..........................................",
+    "bbox": [
+     45.62,
+     550.73,
+     206.2,
+     562.15
+    ],
+    "ink": [
+     45.75,
+     553.5,
+     205.5,
+     561.25
+    ]
+   },
+   {
+    "text": "Prochain rendez-vous le",
+    "bbox": [
+     45.59,
+     564.73,
+     134.09,
+     575.96
+    ],
+    "ink": [
+     46.25,
+     567.5,
+     131.5,
+     573.75
+    ]
+   },
+   {
+    "text": "PLANIFICATION FAMILIALE",
+    "bbox": [
+     45.48,
+     604.77,
+     152.17,
+     616.07
+    ],
+    "ink": [
+     46.0,
+     607.5,
+     152.0,
+     613.75
+    ]
+   },
+   {
+    "text": "Désire utiliser une méthode",
+    "bbox": [
+     57.43,
+     622.76,
+     154.83,
+     634.01
+    ],
+    "ink": [
+     58.0,
+     625.5,
+     154.5,
+     631.75
+    ]
+   },
+   {
+    "text": "Si oui, laquelle :",
+    "bbox": [
+     45.38,
+     640.73,
+     101.88,
+     651.87
+    ],
+    "ink": [
+     45.75,
+     643.5,
+     101.5,
+     651.25
+    ]
+   },
+   {
+    "text": "pilule",
+    "bbox": [
+     151.38,
+     641.01,
+     170.08,
+     652.05
+    ],
+    "ink": [
+     151.75,
+     643.75,
+     169.75,
+     651.5
+    ]
+   },
+   {
+    "text": "DIU",
+    "bbox": [
+     221.38,
+     641.2,
+     235.19,
+     652.23
+    ],
+    "ink": [
+     222.0,
+     644.0,
+     234.5,
+     650.0
+    ]
+   },
+   {
+    "text": "Autre à préciser : ..........................",
+    "bbox": [
+     279.38,
+     641.35,
+     400.37,
+     652.67
+    ],
+    "ink": [
+     279.5,
+     644.0,
+     399.75,
+     651.75
+    ]
+   },
+   {
+    "text": "Prescription faite",
+    "bbox": [
+     57.33,
+     658.76,
+     116.94,
+     669.91
+    ],
+    "ink": [
+     58.0,
+     661.5,
+     116.75,
+     669.25
+    ]
+   },
+   {
+    "text": "Référée :",
+    "bbox": [
+     57.29,
+     674.76,
+     90.22,
+     685.84
+    ],
+    "ink": [
+     58.0,
+     677.5,
+     89.75,
+     683.5
+    ]
+   },
+   {
+    "text": "Si la mère ne désire pas une méthode contraceptive : Pourquoi ?",
+    "bbox": [
+     45.24,
+     692.73,
+     275.61,
+     704.33
+    ],
+    "ink": [
+     45.5,
+     695.5,
+     275.25,
+     703.75
+    ]
+   },
+   {
+    "text": "Document synthétique généré pour l'entraînement de modèles — aucune donnée réelle — ne pas utiliser comme dossier médical.",
+    "bbox": [
+     38.91,
+     818.86,
+     384.56,
+     828.03
+    ],
+    "ink": [
+     39.5,
+     821.0,
+     384.0,
+     827.25
+    ]
+   }
+  ],
+  "fields": {
+   "consultation_date": {
+    "region": [
+     420.98,
+     68.6,
+     565.0,
+     85.6
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "timing": {
+    "options": {
+     "day_7_8": [
+      250.9,
+      74.87,
+      258.92,
+      82.9
+     ],
+     "after_day_8": [
+      250.87,
+      88.87,
+      258.89,
+      96.9
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "temperature_c": {
+    "region": [
+     59.08,
+     129.74,
+     148.74,
+     146.74
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "blood_pressure": {
+    "region": [
+     165.22,
+     130.02,
+     258.74,
+     147.02
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "pulse_bpm": {
+    "region": [
+     285.0,
+     130.33,
+     358.74,
+     147.33
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "weight_kg": {
+    "region": [
+     385.0,
+     130.59,
+     565.0,
+     147.59
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "conjunctivae": {
+    "options": {
+     "normal": [
+      160.69,
+      154.63,
+      168.71,
+      162.65
+     ],
+     "pale": [
+      250.69,
+      154.87,
+      258.71,
+      162.9
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "uterine_globe": {
+    "box": [
+     46.64,
+     172.33,
+     54.66,
+     180.35
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "lochia.bland": {
+    "box": [
+     160.59,
+     190.63,
+     168.61,
+     198.65
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "lochia.foul": {
+    "box": [
+     230.59,
+     190.82,
+     238.61,
+     198.84
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "lochia.clear": {
+    "box": [
+     160.55,
+     206.63,
+     168.57,
+     214.65
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "lochia.bloody": {
+    "box": [
+     230.55,
+     206.82,
+     238.57,
+     214.84
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "lochia.yellowish": {
+    "box": [
+     310.55,
+     207.03,
+     318.57,
+     215.06
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "perineum": {
+    "options": {
+     "normal": [
+      60.46,
+      242.37,
+      68.48,
+      250.39
+     ],
+     "episiotomy": [
+      60.41,
+      258.37,
+      68.43,
+      266.39
+     ],
+     "tear": [
+      60.37,
+      274.37,
+      68.39,
+      282.39
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "episiotomy_repaired": {
+    "box": [
+     200.41,
+     258.74,
+     208.43,
+     266.76
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "sphincters": {
+    "options": {
+     "normal": [
+      230.31,
+      296.82,
+      238.33,
+      304.84
+     ],
+     "abnormal": [
+      300.31,
+      297.01,
+      308.33,
+      305.03
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "cesarean": {
+    "box": [
+     46.26,
+     316.33,
+     54.28,
+     324.35
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "scar_state": {
+    "region": [
+     252.09,
+     312.18,
+     565.0,
+     329.18
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "breasts": {
+    "options": {
+     "normal": [
+      130.2,
+      336.55,
+      138.22,
+      344.57
+     ],
+     "lymphangitis": [
+      200.2,
+      336.74,
+      208.22,
+      344.76
+     ],
+     "mastitis_abscess": [
+      290.2,
+      336.98,
+      298.22,
+      345.0
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "calves.normal": {
+    "box": [
+     60.11,
+     372.37,
+     68.13,
+     380.39
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "calves.red": {
+    "box": [
+     130.11,
+     372.55,
+     138.13,
+     380.57
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "calves.warm": {
+    "box": [
+     200.11,
+     372.74,
+     208.13,
+     380.76
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "calves.painful": {
+    "box": [
+     270.11,
+     372.93,
+     278.13,
+     380.95
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complications": {
+    "box": [
+     190.04,
+     396.71,
+     198.06,
+     404.73
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.hemorrhage": {
+    "box": [
+     60.0,
+     414.36,
+     68.02,
+     422.39
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.infection": {
+    "box": [
+     59.96,
+     429.36,
+     67.98,
+     437.39
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.eclampsia": {
+    "box": [
+     59.92,
+     444.36,
+     67.94,
+     452.39
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.phlebitis": {
+    "box": [
+     59.88,
+     459.36,
+     67.9,
+     467.39
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.breast": {
+    "box": [
+     219.99,
+     414.79,
+     228.02,
+     422.81
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.anemia": {
+    "box": [
+     219.95,
+     429.79,
+     227.98,
+     437.81
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.other": {
+    "box": [
+     219.91,
+     444.79,
+     227.94,
+     452.81
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "taking_medication": {
+    "box": [
+     189.82,
+     480.71,
+     197.84,
+     488.73
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "medication_details": {
+    "region": [
+     199.84,
+     475.88,
+     565.0,
+     492.88
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "treatment.iron": {
+    "box": [
+     59.68,
+     532.36,
+     67.7,
+     540.39
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "treatment.vitamin_a": {
+    "box": [
+     139.68,
+     532.58,
+     147.7,
+     540.6
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "treatment.other": {
+    "region": [
+     208.2,
+     547.94,
+     565.0,
+     564.94
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "next_appointment_date": {
+    "region": [
+     136.09,
+     561.84,
+     565.0,
+     578.84
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "family_planning.wants_method": {
+    "box": [
+     45.43,
+     624.33,
+     53.46,
+     632.35
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "family_planning.method": {
+    "options": {
+     "pill": [
+      139.39,
+      642.58,
+      147.41,
+      650.6
+     ],
+     "iud": [
+      209.39,
+      642.76,
+      217.41,
+      650.79
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "family_planning.method_other": {
+    "region": [
+     402.37,
+     638.51,
+     565.0,
+     655.51
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "family_planning.prescribed": {
+    "box": [
+     45.34,
+     660.33,
+     53.36,
+     668.35
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "family_planning.referred": {
+    "box": [
+     45.3,
+     676.33,
+     53.32,
+     684.35
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "family_planning.reason_declined": {
+    "region": [
+     43.24,
+     705.33,
+     565.0,
+     728.33
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "header_name": {
+    "region": [
+     38.97,
+     44.71,
+     400.0,
+     59.92
+    ],
+    "kind": "text",
+    "pii": true
+   }
+  }
+ },
+ "postpartum_early_newborn": {
+  "page_type": "postpartum_early_newborn",
+  "width": 595.2755737304688,
+  "height": 841.8897705078125,
+  "labels": [
+   {
+    "text": "CONSULTATION DU POST-PARTUM PRÉCOCE",
+    "bbox": [
+     41.87,
+     28.95,
+     289.45,
+     45.33
+    ],
+    "ink": [
+     42.25,
+     31.5,
+     289.0,
+     42.25
+    ]
+   },
+   {
+    "text": "SPÉCIMEN — DONNÉES FICTIVES",
+    "bbox": [
+     402.16,
+     30.96,
+     534.24,
+     42.63
+    ],
+    "ink": [
+     402.25,
+     32.0,
+     534.0,
+     40.25
+    ]
+   },
+   {
+    "text": "NOUVEAU-NÉ",
+    "bbox": [
+     41.81,
+     46.12,
+     95.2,
+     57.38
+    ],
+    "ink": [
+     42.5,
+     47.5,
+     94.75,
+     55.0
+    ]
+   },
+   {
+    "text": "Date de la consultation :",
+    "bbox": [
+     331.68,
+     71.57,
+     419.79,
+     83.0
+    ],
+    "ink": [
+     332.5,
+     74.25,
+     417.0,
+     80.75
+    ]
+   },
+   {
+    "text": "Age",
+    "bbox": [
+     47.51,
+     106.15,
+     64.02,
+     117.22
+    ],
+    "ink": [
+     47.75,
+     109.0,
+     61.5,
+     116.5
+    ]
+   },
+   {
+    "text": "Température",
+    "bbox": [
+     191.51,
+     106.87,
+     239.58,
+     118.1
+    ],
+    "ink": [
+     191.75,
+     109.75,
+     237.0,
+     117.25
+    ]
+   },
+   {
+    "text": "Poids",
+    "bbox": [
+     381.51,
+     107.81,
+     403.79,
+     118.92
+    ],
+    "ink": [
+     382.25,
+     110.5,
+     401.25,
+     116.75
+    ]
+   },
+   {
+    "text": "Taille",
+    "bbox": [
+     47.4,
+     128.15,
+     68.79,
+     139.25
+    ],
+    "ink": [
+     47.5,
+     131.0,
+     66.25,
+     137.0
+    ]
+   },
+   {
+    "text": "Périmètre crânien",
+    "bbox": [
+     191.4,
+     128.87,
+     256.8,
+     140.18
+    ],
+    "ink": [
+     192.0,
+     131.5,
+     254.0,
+     138.0
+    ]
+   },
+   {
+    "text": "Nouveau-né prématuré",
+    "bbox": [
+     59.29,
+     150.21,
+     141.6,
+     161.61
+    ],
+    "ink": [
+     59.75,
+     153.0,
+     141.25,
+     160.75
+    ]
+   },
+   {
+    "text": "Nouveau-né hypotrophe",
+    "bbox": [
+     203.29,
+     150.93,
+     289.17,
+     162.35
+    ],
+    "ink": [
+     203.75,
+     153.75,
+     288.75,
+     161.75
+    ]
+   },
+   {
+    "text": "Allaitement :",
+    "bbox": [
+     47.18,
+     172.19,
+     95.24,
+     183.45
+    ],
+    "ink": [
+     47.5,
+     175.0,
+     94.75,
+     181.25
+    ]
+   },
+   {
+    "text": "exclusivement au sein",
+    "bbox": [
+     123.18,
+     172.53,
+     201.93,
+     183.91
+    ],
+    "ink": [
+     123.5,
+     175.5,
+     201.5,
+     181.75
+    ]
+   },
+   {
+    "text": "Artificiel",
+    "bbox": [
+     263.18,
+     173.23,
+     291.23,
+     184.36
+    ],
+    "ink": [
+     263.5,
+     176.0,
+     290.75,
+     182.0
+    ]
+   },
+   {
+    "text": "mixte",
+    "bbox": [
+     343.18,
+     173.62,
+     362.34,
+     184.71
+    ],
+    "ink": [
+     343.75,
+     176.5,
+     362.0,
+     182.5
+    ]
+   },
+   {
+    "text": "Signes d'une affection grave :",
+    "bbox": [
+     47.07,
+     194.19,
+     160.61,
+     205.77
+    ],
+    "ink": [
+     47.25,
+     196.75,
+     160.0,
+     205.0
+    ]
+   },
+   {
+    "text": "Convulsions",
+    "bbox": [
+     62.97,
+     214.77,
+     103.87,
+     225.28
+    ],
+    "ink": [
+     63.25,
+     217.25,
+     103.5,
+     223.25
+    ]
+   },
+   {
+    "text": "Refus de téter",
+    "bbox": [
+     187.97,
+     215.39,
+     235.13,
+     225.93
+    ],
+    "ink": [
+     188.75,
+     218.0,
+     235.0,
+     223.75
+    ]
+   },
+   {
+    "text": "Hématémèses",
+    "bbox": [
+     312.97,
+     216.01,
+     361.36,
+     226.56
+    ],
+    "ink": [
+     313.5,
+     218.5,
+     361.0,
+     224.5
+    ]
+   },
+   {
+    "text": "Mélaenas",
+    "bbox": [
+     437.97,
+     216.63,
+     470.53,
+     227.1
+    ],
+    "ink": [
+     438.5,
+     219.25,
+     470.25,
+     225.0
+    ]
+   },
+   {
+    "text": "Diarrhée",
+    "bbox": [
+     62.88,
+     232.77,
+     91.69,
+     243.21
+    ],
+    "ink": [
+     63.5,
+     235.25,
+     91.5,
+     241.25
+    ]
+   },
+   {
+    "text": "Ictère",
+    "bbox": [
+     187.88,
+     233.39,
+     206.69,
+     243.79
+    ],
+    "ink": [
+     188.5,
+     236.0,
+     206.5,
+     241.75
+    ]
+   },
+   {
+    "text": "Tirage sous costal",
+    "bbox": [
+     312.88,
+     234.01,
+     373.79,
+     244.62
+    ],
+    "ink": [
+     313.0,
+     236.5,
+     373.25,
+     243.75
+    ]
+   },
+   {
+    "text": "Toux",
+    "bbox": [
+     437.88,
+     234.63,
+     454.6,
+     245.02
+    ],
+    "ink": [
+     438.0,
+     237.25,
+     454.25,
+     243.0
+    ]
+   },
+   {
+    "text": "Rythme respiratoire anormal",
+    "bbox": [
+     62.79,
+     250.77,
+     157.45,
+     261.54
+    ],
+    "ink": [
+     63.5,
+     253.25,
+     157.0,
+     260.75
+    ]
+   },
+   {
+    "text": "Fièvre",
+    "bbox": [
+     187.79,
+     251.39,
+     208.68,
+     261.8
+    ],
+    "ink": [
+     188.5,
+     254.0,
+     208.5,
+     259.75
+    ]
+   },
+   {
+    "text": "Hypothermie",
+    "bbox": [
+     312.79,
+     252.01,
+     355.35,
+     262.53
+    ],
+    "ink": [
+     313.25,
+     254.5,
+     355.0,
+     261.75
+    ]
+   },
+   {
+    "text": "Autres à préciser :",
+    "bbox": [
+     46.67,
+     275.15,
+     113.86,
+     286.48
+    ],
+    "ink": [
+     46.75,
+     278.0,
+     111.25,
+     285.75
+    ]
+   },
+   {
+    "text": "Contusions, lésions traumatiques et malformations :",
+    "bbox": [
+     46.53,
+     302.19,
+     246.63,
+     314.2
+    ],
+    "ink": [
+     46.75,
+     304.75,
+     246.0,
+     313.0
+    ]
+   },
+   {
+    "text": "Bosse sérosanguine ou céphalohématome",
+    "bbox": [
+     72.43,
+     322.28,
+     224.12,
+     334.02
+    ],
+    "ink": [
+     73.0,
+     325.0,
+     223.75,
+     333.25
+    ]
+   },
+   {
+    "text": "Luxation congénitale de la hanche",
+    "bbox": [
+     72.35,
+     338.28,
+     193.82,
+     349.87
+    ],
+    "ink": [
+     73.0,
+     341.0,
+     193.5,
+     349.0
+    ]
+   },
+   {
+    "text": "Diminution ou absence de la mobilité d'un membre",
+    "bbox": [
+     72.27,
+     354.28,
+     251.7,
+     366.16
+    ],
+    "ink": [
+     73.0,
+     357.0,
+     251.5,
+     364.0
+    ]
+   },
+   {
+    "text": "Autres à préciser :",
+    "bbox": [
+     60.15,
+     378.22,
+     127.34,
+     389.54
+    ],
+    "ink": [
+     60.25,
+     381.0,
+     124.75,
+     388.75
+    ]
+   },
+   {
+    "text": "Evaluation de l'allaitement maternel :",
+    "bbox": [
+     46.04,
+     402.19,
+     186.7,
+     413.9
+    ],
+    "ink": [
+     46.5,
+     405.0,
+     186.25,
+     411.5
+    ]
+   },
+   {
+    "text": "Normal",
+    "bbox": [
+     262.03,
+     403.22,
+     287.86,
+     414.34
+    ],
+    "ink": [
+     262.5,
+     406.0,
+     287.25,
+     412.0
+    ]
+   },
+   {
+    "text": "A problèmes",
+    "bbox": [
+     332.03,
+     403.57,
+     376.99,
+     414.79
+    ],
+    "ink": [
+     332.25,
+     406.25,
+     376.75,
+     414.0
+    ]
+   },
+   {
+    "text": "Etat vaccinal",
+    "bbox": [
+     45.94,
+     422.19,
+     94.9,
+     433.45
+    ],
+    "ink": [
+     46.5,
+     425.0,
+     94.25,
+     431.25
+    ]
+   },
+   {
+    "text": "Vaccins administrés ce jour :",
+    "bbox": [
+     59.85,
+     440.22,
+     161.71,
+     451.72
+    ],
+    "ink": [
+     60.25,
+     443.0,
+     161.25,
+     451.0
+    ]
+   },
+   {
+    "text": "BCG",
+    "bbox": [
+     201.84,
+     440.92,
+     219.24,
+     452.0
+    ],
+    "ink": [
+     202.5,
+     443.5,
+     218.75,
+     449.75
+    ]
+   },
+   {
+    "text": "HB",
+    "bbox": [
+     261.84,
+     441.22,
+     273.01,
+     452.27
+    ],
+    "ink": [
+     262.5,
+     444.0,
+     272.75,
+     450.0
+    ]
+   },
+   {
+    "text": "Supplémentation en vitamine D",
+    "bbox": [
+     57.75,
+     460.21,
+     168.96,
+     471.75
+    ],
+    "ink": [
+     58.0,
+     462.75,
+     168.5,
+     470.75
+    ]
+   },
+   {
+    "text": "Présence de complications et de malformation :",
+    "bbox": [
+     45.63,
+     484.19,
+     227.51,
+     496.11
+    ],
+    "ink": [
+     46.25,
+     486.75,
+     227.0,
+     495.0
+    ]
+   },
+   {
+    "text": "Ictère",
+    "bbox": [
+     71.53,
+     504.28,
+     91.59,
+     515.37
+    ],
+    "ink": [
+     72.25,
+     507.0,
+     91.25,
+     513.25
+    ]
+   },
+   {
+    "text": "Infection",
+    "bbox": [
+     151.53,
+     504.67,
+     181.82,
+     515.82
+    ],
+    "ink": [
+     152.25,
+     507.25,
+     181.25,
+     513.5
+    ]
+   },
+   {
+    "text": "Conjonctivite",
+    "bbox": [
+     231.53,
+     505.07,
+     277.37,
+     516.29
+    ],
+    "ink": [
+     231.75,
+     507.75,
+     277.0,
+     515.5
+    ]
+   },
+   {
+    "text": "Traumatisme",
+    "bbox": [
+     71.44,
+     522.28,
+     118.16,
+     533.5
+    ],
+    "ink": [
+     71.75,
+     525.0,
+     117.75,
+     531.25
+    ]
+   },
+   {
+    "text": "Malformation",
+    "bbox": [
+     151.44,
+     522.67,
+     197.72,
+     533.9
+    ],
+    "ink": [
+     152.0,
+     525.5,
+     197.25,
+     531.75
+    ]
+   },
+   {
+    "text": "Autres",
+    "bbox": [
+     71.35,
+     540.28,
+     94.52,
+     551.38
+    ],
+    "ink": [
+     71.5,
+     543.0,
+     94.25,
+     549.25
+    ]
+   },
+   {
+    "text": "Vu par :",
+    "bbox": [
+     45.15,
+     580.15,
+     75.44,
+     591.29
+    ],
+    "ink": [
+     45.5,
+     583.0,
+     72.75,
+     590.5
+    ]
+   },
+   {
+    "text": "Décision prise :",
+    "bbox": [
+     45.0,
+     610.15,
+     101.96,
+     621.42
+    ],
+    "ink": [
+     45.75,
+     612.75,
+     99.25,
+     620.75
+    ]
+   },
+   {
+    "text": "Traitement prescrit :",
+    "bbox": [
+     44.85,
+     640.14,
+     118.26,
+     651.5
+    ],
+    "ink": [
+     45.0,
+     643.0,
+     115.5,
+     650.75
+    ]
+   },
+   {
+    "text": "Transfert",
+    "bbox": [
+     56.68,
+     675.2,
+     88.74,
+     686.36
+    ],
+    "ink": [
+     57.0,
+     678.0,
+     88.5,
+     684.25
+    ]
+   },
+   {
+    "text": "Préciser l'établissement de référence :",
+    "bbox": [
+     118.68,
+     675.51,
+     256.75,
+     687.19
+    ],
+    "ink": [
+     119.5,
+     678.25,
+     254.0,
+     685.0
+    ]
+   },
+   {
+    "text": "Les trois règles de la prise en charge du nouveau-né à domicile :",
+    "bbox": [
+     50.48,
+     714.21,
+     296.85,
+     726.46
+    ],
+    "ink": [
+     51.0,
+     717.0,
+     296.25,
+     725.25
+    ]
+   },
+   {
+    "text": "1. Allaitement maternel exclusif 2. Maintien au chaud 3. Quand revenir immédiatement ?",
+    "bbox": [
+     50.41,
+     728.17,
+     371.94,
+     740.77
+    ],
+    "ink": [
+     51.25,
+     731.0,
+     371.5,
+     738.5
+    ]
+   },
+   {
+    "text": "Revenir pour une visite de suivi nécessaire le",
+    "bbox": [
+     44.25,
+     760.14,
+     207.03,
+     771.95
+    ],
+    "ink": [
+     45.0,
+     763.0,
+     204.5,
+     770.75
+    ]
+   },
+   {
+    "text": "Document synthétique généré pour l'entraînement de modèles — aucune donnée réelle — ne pas utiliser comme dossier médical.",
+    "bbox": [
+     37.98,
+     818.26,
+     383.64,
+     828.23
+    ],
+    "ink": [
+     38.5,
+     820.25,
+     383.25,
+     827.25
+    ]
+   }
+  ],
+  "fields": {
+   "consultation_date": {
+    "region": [
+     421.79,
+     68.78,
+     565.0,
+     85.78
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "age": {
+    "region": [
+     66.02,
+     103.19,
+     189.51,
+     120.19
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "temperature_c": {
+    "region": [
+     241.58,
+     103.98,
+     379.51,
+     120.98
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "weight_g": {
+    "region": [
+     405.79,
+     104.86,
+     565.0,
+     121.86
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "length_cm": {
+    "region": [
+     70.79,
+     125.2,
+     189.4,
+     142.2
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "head_circumference_cm": {
+    "region": [
+     258.8,
+     126.03,
+     565.0,
+     143.03
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "premature": {
+    "box": [
+     47.3,
+     151.75,
+     55.34,
+     159.79
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "hypotrophic": {
+    "box": [
+     191.3,
+     152.47,
+     199.34,
+     160.51
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "feeding": {
+    "options": {
+     "exclusive_breastfeeding": [
+      111.19,
+      174.07,
+      119.23,
+      182.11
+     ],
+     "formula": [
+      251.19,
+      174.77,
+      259.22,
+      182.81
+     ],
+     "mixed": [
+      331.18,
+      175.16,
+      339.22,
+      183.2
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "danger.convulsions": {
+    "box": [
+     50.98,
+     215.77,
+     59.02,
+     223.81
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.refuses_feeding": {
+    "box": [
+     175.98,
+     216.39,
+     184.02,
+     224.43
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.hematemesis": {
+    "box": [
+     300.98,
+     217.01,
+     309.02,
+     225.05
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.melena": {
+    "box": [
+     425.97,
+     217.64,
+     434.01,
+     225.68
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.diarrhea": {
+    "box": [
+     50.89,
+     233.77,
+     58.93,
+     241.81
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.jaundice": {
+    "box": [
+     175.89,
+     234.39,
+     183.93,
+     242.43
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.chest_indrawing": {
+    "box": [
+     300.89,
+     235.01,
+     308.93,
+     243.05
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.cough": {
+    "box": [
+     425.88,
+     235.64,
+     433.92,
+     243.68
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.abnormal_breathing": {
+    "box": [
+     50.8,
+     251.77,
+     58.84,
+     259.81
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.fever": {
+    "box": [
+     175.8,
+     252.39,
+     183.84,
+     260.43
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.hypothermia": {
+    "box": [
+     300.8,
+     253.01,
+     308.84,
+     261.05
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.other": {
+    "region": [
+     115.86,
+     272.31,
+     565.0,
+     289.31
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "trauma.cephalhematoma": {
+    "box": [
+     60.44,
+     323.82,
+     68.48,
+     331.86
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "trauma.hip_dislocation": {
+    "box": [
+     60.36,
+     339.82,
+     68.4,
+     347.86
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "trauma.limb_mobility": {
+    "box": [
+     60.28,
+     355.82,
+     68.32,
+     363.86
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "trauma.other": {
+    "region": [
+     129.34,
+     375.38,
+     565.0,
+     392.38
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "breastfeeding_assessment": {
+    "options": {
+     "normal": [
+      250.04,
+      404.76,
+      258.08,
+      412.8
+     ],
+     "problems": [
+      320.04,
+      405.11,
+      328.08,
+      413.15
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "vaccine.bcg": {
+    "box": [
+     189.85,
+     442.46,
+     197.89,
+     450.5
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "vaccine.hepatitis_b": {
+    "box": [
+     249.85,
+     442.76,
+     257.89,
+     450.8
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "vitamin_d": {
+    "box": [
+     45.75,
+     461.75,
+     53.79,
+     469.79
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.jaundice": {
+    "box": [
+     59.53,
+     505.82,
+     67.57,
+     513.86
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.infection": {
+    "box": [
+     139.53,
+     506.21,
+     147.57,
+     514.25
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.conjunctivitis": {
+    "box": [
+     219.53,
+     506.61,
+     227.57,
+     514.65
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.trauma": {
+    "box": [
+     59.45,
+     523.82,
+     67.48,
+     531.86
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.malformation": {
+    "box": [
+     139.44,
+     524.21,
+     147.48,
+     532.25
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.other": {
+    "box": [
+     59.36,
+     541.82,
+     67.4,
+     549.86
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "seen_by": {
+    "region": [
+     77.44,
+     577.22,
+     565.0,
+     594.22
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "decision": {
+    "region": [
+     103.96,
+     607.28,
+     565.0,
+     624.28
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "treatment": {
+    "region": [
+     120.26,
+     637.32,
+     565.0,
+     654.32
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "transfer": {
+    "box": [
+     44.68,
+     676.74,
+     52.72,
+     684.78
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "referral_facility": {
+    "region": [
+     258.75,
+     672.85,
+     565.0,
+     689.85
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "next_visit_date": {
+    "region": [
+     209.03,
+     757.54,
+     565.0,
+     774.54
+    ],
+    "kind": "text",
+    "pii": false
+   }
+  }
+ },
+ "postpartum_late_mother": {
+  "page_type": "postpartum_late_mother",
+  "width": 595.2755737304688,
+  "height": 841.8897705078125,
+  "labels": [
+   {
+    "text": "CONSULTATION DU POST-PARTUM TARDIF",
+    "bbox": [
+     42.6,
+     28.46,
+     276.13,
+     45.22
+    ],
+    "ink": [
+     43.0,
+     32.0,
+     276.0,
+     41.75
+    ]
+   },
+   {
+    "text": "SPÉCIMEN — DONNÉES FICTIVES",
+    "bbox": [
+     402.9,
+     31.16,
+     534.99,
+     43.09
+    ],
+    "ink": [
+     403.0,
+     30.0,
+     535.75,
+     40.75
+    ]
+   },
+   {
+    "text": "Entre le 40ème et 50ème jour après l'accouchement",
+    "bbox": [
+     42.33,
+     71.63,
+     227.57,
+     83.9
+    ],
+    "ink": [
+     43.0,
+     74.5,
+     227.25,
+     82.75
+    ]
+   },
+   {
+    "text": "Date de la consultation :",
+    "bbox": [
+     332.34,
+     71.63,
+     420.46,
+     83.23
+    ],
+    "ink": [
+     333.0,
+     74.5,
+     417.75,
+     81.0
+    ]
+   },
+   {
+    "text": "Après le 50ème jour de l'accouchement",
+    "bbox": [
+     42.24,
+     85.63,
+     182.56,
+     97.59
+    ],
+    "ink": [
+     42.5,
+     88.5,
+     182.25,
+     96.5
+    ]
+   },
+   {
+    "text": "Etat général :",
+    "bbox": [
+     48.04,
+     113.71,
+     98.8,
+     125.07
+    ],
+    "ink": [
+     48.5,
+     116.25,
+     98.25,
+     124.25
+    ]
+   },
+   {
+    "text": "T°",
+    "bbox": [
+     47.92,
+     131.67,
+     58.31,
+     142.73
+    ],
+    "ink": [
+     48.0,
+     134.5,
+     55.75,
+     140.25
+    ]
+   },
+   {
+    "text": "TA",
+    "bbox": [
+     151.92,
+     132.39,
+     164.44,
+     143.46
+    ],
+    "ink": [
+     152.0,
+     135.25,
+     162.0,
+     141.0
+    ]
+   },
+   {
+    "text": "Pouls",
+    "bbox": [
+     261.91,
+     133.15,
+     284.22,
+     144.29
+    ],
+    "ink": [
+     262.5,
+     136.0,
+     281.5,
+     142.0
+    ]
+   },
+   {
+    "text": "Poids",
+    "bbox": [
+     361.91,
+     133.84,
+     384.22,
+     144.98
+    ],
+    "ink": [
+     362.5,
+     136.75,
+     381.5,
+     142.75
+    ]
+   },
+   {
+    "text": "Etat des conjonctives :",
+    "bbox": [
+     47.78,
+     151.67,
+     127.89,
+     163.21
+    ],
+    "ink": [
+     48.5,
+     154.5,
+     127.5,
+     162.5
+    ]
+   },
+   {
+    "text": "Normales",
+    "bbox": [
+     173.78,
+     152.54,
+     208.08,
+     163.77
+    ],
+    "ink": [
+     174.25,
+     155.25,
+     207.75,
+     161.5
+    ]
+   },
+   {
+    "text": "Décolorées",
+    "bbox": [
+     263.77,
+     153.16,
+     304.31,
+     164.43
+    ],
+    "ink": [
+     264.5,
+     155.75,
+     304.0,
+     162.25
+    ]
+   },
+   {
+    "text": "Présence du globe utérin",
+    "bbox": [
+     59.65,
+     169.75,
+     148.66,
+     181.36
+    ],
+    "ink": [
+     60.25,
+     172.5,
+     148.0,
+     180.5
+    ]
+   },
+   {
+    "text": "Etat des lochies :",
+    "bbox": [
+     47.53,
+     187.71,
+     113.4,
+     199.18
+    ],
+    "ink": [
+     48.0,
+     190.5,
+     112.75,
+     196.75
+    ]
+   },
+   {
+    "text": "Fade",
+    "bbox": [
+     173.53,
+     188.54,
+     191.84,
+     199.65
+    ],
+    "ink": [
+     174.25,
+     191.25,
+     191.5,
+     197.5
+    ]
+   },
+   {
+    "text": "fétide",
+    "bbox": [
+     243.53,
+     189.02,
+     263.17,
+     200.15
+    ],
+    "ink": [
+     243.5,
+     191.75,
+     262.75,
+     198.0
+    ]
+   },
+   {
+    "text": "claires",
+    "bbox": [
+     173.42,
+     204.54,
+     196.6,
+     215.69
+    ],
+    "ink": [
+     173.5,
+     207.25,
+     196.25,
+     213.5
+    ]
+   },
+   {
+    "text": "sanglantes",
+    "bbox": [
+     243.42,
+     205.02,
+     282.18,
+     216.28
+    ],
+    "ink": [
+     243.75,
+     208.0,
+     281.75,
+     215.5
+    ]
+   },
+   {
+    "text": "Jaunâtres",
+    "bbox": [
+     323.41,
+     205.57,
+     358.62,
+     216.81
+    ],
+    "ink": [
+     323.5,
+     208.25,
+     358.25,
+     214.5
+    ]
+   },
+   {
+    "text": "Etat du périnée :",
+    "bbox": [
+     47.28,
+     223.71,
+     110.04,
+     235.15
+    ],
+    "ink": [
+     47.75,
+     226.5,
+     109.5,
+     234.25
+    ]
+   },
+   {
+    "text": "Normal",
+    "bbox": [
+     73.17,
+     239.84,
+     99.02,
+     251.01
+    ],
+    "ink": [
+     73.75,
+     242.75,
+     98.5,
+     249.0
+    ]
+   },
+   {
+    "text": "Épisiotomie",
+    "bbox": [
+     73.06,
+     255.84,
+     114.48,
+     267.12
+    ],
+    "ink": [
+     73.75,
+     257.0,
+     114.25,
+     266.25
+    ]
+   },
+   {
+    "text": "Réparée",
+    "bbox": [
+     213.06,
+     256.81,
+     243.81,
+     268.02
+    ],
+    "ink": [
+     213.75,
+     259.5,
+     243.5,
+     267.25
+    ]
+   },
+   {
+    "text": "Déchirure",
+    "bbox": [
+     72.95,
+     271.84,
+     107.7,
+     283.08
+    ],
+    "ink": [
+     73.75,
+     274.5,
+     107.5,
+     280.75
+    ]
+   },
+   {
+    "text": "Etat des sphincters (anal et urétral) :",
+    "bbox": [
+     46.8,
+     293.66,
+     175.81,
+     305.55
+    ],
+    "ink": [
+     47.5,
+     296.5,
+     175.25,
+     304.75
+    ]
+   },
+   {
+    "text": "Normal",
+    "bbox": [
+     242.79,
+     295.02,
+     268.64,
+     306.19
+    ],
+    "ink": [
+     243.25,
+     297.75,
+     268.0,
+     304.0
+    ]
+   },
+   {
+    "text": "Anormal",
+    "bbox": [
+     312.79,
+     295.5,
+     342.65,
+     306.7
+    ],
+    "ink": [
+     313.0,
+     298.25,
+     342.25,
+     304.5
+    ]
+   },
+   {
+    "text": "Césarienne :",
+    "bbox": [
+     58.66,
+     313.75,
+     104.09,
+     325.05
+    ],
+    "ink": [
+     59.0,
+     316.5,
+     103.5,
+     322.75
+    ]
+   },
+   {
+    "text": "Etat de la cicatrice :",
+    "bbox": [
+     180.66,
+     314.59,
+     250.54,
+     326.06
+    ],
+    "ink": [
+     181.25,
+     317.5,
+     250.0,
+     323.75
+    ]
+   },
+   {
+    "text": "Etat des seins :",
+    "bbox": [
+     46.52,
+     333.66,
+     101.29,
+     345.03
+    ],
+    "ink": [
+     47.25,
+     336.5,
+     100.75,
+     342.75
+    ]
+   },
+   {
+    "text": "Normal",
+    "bbox": [
+     142.52,
+     334.33,
+     168.37,
+     345.5
+    ],
+    "ink": [
+     143.0,
+     337.0,
+     167.75,
+     343.25
+    ]
+   },
+   {
+    "text": "lymphangite",
+    "bbox": [
+     212.52,
+     334.81,
+     255.72,
+     346.1
+    ],
+    "ink": [
+     213.0,
+     337.5,
+     255.5,
+     345.5
+    ]
+   },
+   {
+    "text": "mastite et abcès",
+    "bbox": [
+     302.52,
+     335.43,
+     360.84,
+     346.83
+    ],
+    "ink": [
+     303.0,
+     338.25,
+     360.5,
+     344.5
+    ]
+   },
+   {
+    "text": "Etat des mollets :",
+    "bbox": [
+     46.38,
+     353.66,
+     107.82,
+     365.08
+    ],
+    "ink": [
+     47.0,
+     356.5,
+     107.25,
+     362.75
+    ]
+   },
+   {
+    "text": "Normal",
+    "bbox": [
+     72.27,
+     369.84,
+     98.12,
+     381.01
+    ],
+    "ink": [
+     72.75,
+     372.75,
+     97.5,
+     378.75
+    ]
+   },
+   {
+    "text": "Rouges",
+    "bbox": [
+     142.27,
+     370.33,
+     169.91,
+     381.51
+    ],
+    "ink": [
+     143.0,
+     373.0,
+     169.5,
+     380.75
+    ]
+   },
+   {
+    "text": "Chauds",
+    "bbox": [
+     212.27,
+     370.81,
+     239.91,
+     381.99
+    ],
+    "ink": [
+     212.5,
+     373.5,
+     239.5,
+     379.75
+    ]
+   },
+   {
+    "text": "Douloureux à la dorsiflexion",
+    "bbox": [
+     282.27,
+     371.29,
+     381.04,
+     382.97
+    ],
+    "ink": [
+     283.0,
+     374.0,
+     380.5,
+     380.75
+    ]
+   },
+   {
+    "text": "Présence de complication :",
+    "bbox": [
+     46.11,
+     393.7,
+     149.77,
+     405.43
+    ],
+    "ink": [
+     46.75,
+     396.25,
+     149.25,
+     404.5
+    ]
+   },
+   {
+    "text": "Hémorragie",
+    "bbox": [
+     71.98,
+     411.84,
+     113.84,
+     423.12
+    ],
+    "ink": [
+     72.5,
+     414.5,
+     113.5,
+     422.5
+    ]
+   },
+   {
+    "text": "Complications mammaires",
+    "bbox": [
+     231.98,
+     412.95,
+     326.28,
+     424.59
+    ],
+    "ink": [
+     232.25,
+     415.5,
+     326.0,
+     423.5
+    ]
+   },
+   {
+    "text": "Infection",
+    "bbox": [
+     71.88,
+     426.84,
+     102.19,
+     438.04
+    ],
+    "ink": [
+     72.75,
+     429.5,
+     101.5,
+     435.75
+    ]
+   },
+   {
+    "text": "Anémie",
+    "bbox": [
+     231.87,
+     427.95,
+     259.07,
+     439.13
+    ],
+    "ink": [
+     232.0,
+     430.75,
+     258.75,
+     437.0
+    ]
+   },
+   {
+    "text": "Eclampsie",
+    "bbox": [
+     71.77,
+     441.84,
+     108.75,
+     453.09
+    ],
+    "ink": [
+     72.5,
+     444.75,
+     108.5,
+     452.5
+    ]
+   },
+   {
+    "text": "Autres",
+    "bbox": [
+     231.77,
+     442.95,
+     254.97,
+     454.1
+    ],
+    "ink": [
+     232.0,
+     445.75,
+     254.5,
+     451.75
+    ]
+   },
+   {
+    "text": "Phlébite",
+    "bbox": [
+     71.67,
+     456.84,
+     100.65,
+     468.03
+    ],
+    "ink": [
+     72.25,
+     459.5,
+     100.25,
+     465.75
+    ]
+   },
+   {
+    "text": "Notion de prise de médicaments :",
+    "bbox": [
+     45.53,
+     477.66,
+     164.76,
+     489.47
+    ],
+    "ink": [
+     46.0,
+     480.5,
+     164.25,
+     488.25
+    ]
+   },
+   {
+    "text": "CONDUITE À TENIR :",
+    "bbox": [
+     45.39,
+     497.7,
+     126.35,
+     509.27
+    ],
+    "ink": [
+     45.75,
+     499.0,
+     125.75,
+     506.75
+    ]
+   },
+   {
+    "text": "Traitement prescrit :",
+    "bbox": [
+     45.28,
+     513.66,
+     116.48,
+     525.14
+    ],
+    "ink": [
+     45.5,
+     516.5,
+     116.0,
+     524.25
+    ]
+   },
+   {
+    "text": "Fer",
+    "bbox": [
+     71.17,
+     529.84,
+     83.24,
+     540.91
+    ],
+    "ink": [
+     71.75,
+     532.75,
+     83.25,
+     538.75
+    ]
+   },
+   {
+    "text": "Vitamine A",
+    "bbox": [
+     151.16,
+     530.39,
+     189.92,
+     541.65
+    ],
+    "ink": [
+     151.5,
+     533.25,
+     189.75,
+     539.25
+    ]
+   },
+   {
+    "text": "Autres à préciser : ..........................................",
+    "bbox": [
+     45.03,
+     549.66,
+     205.64,
+     561.76
+    ],
+    "ink": [
+     45.25,
+     552.5,
+     205.0,
+     560.25
+    ]
+   },
+   {
+    "text": "Prochain rendez-vous le",
+    "bbox": [
+     44.93,
+     563.66,
+     133.49,
+     575.26
+    ],
+    "ink": [
+     45.75,
+     566.5,
+     131.0,
+     573.0
+    ]
+   },
+   {
+    "text": "PLANIFICATION FAMILIALE",
+    "bbox": [
+     44.65,
+     603.7,
+     151.39,
+     615.45
+    ],
+    "ink": [
+     45.25,
+     606.5,
+     151.0,
+     613.0
+    ]
+   },
+   {
+    "text": "Désire utiliser une méthode",
+    "bbox": [
+     56.53,
+     621.74,
+     153.97,
+     633.4
+    ],
+    "ink": [
+     57.25,
+     624.5,
+     153.75,
+     631.25
+    ]
+   },
+   {
+    "text": "Si oui, laquelle :",
+    "bbox": [
+     44.41,
+     639.66,
+     100.95,
+     651.04
+    ],
+    "ink": [
+     44.75,
+     642.25,
+     100.5,
+     650.25
+    ]
+   },
+   {
+    "text": "pilule",
+    "bbox": [
+     150.4,
+     640.39,
+     169.15,
+     651.51
+    ],
+    "ink": [
+     150.75,
+     643.25,
+     168.75,
+     650.75
+    ]
+   },
+   {
+    "text": "DIU",
+    "bbox": [
+     220.4,
+     640.87,
+     234.25,
+     651.96
+    ],
+    "ink": [
+     221.0,
+     643.75,
+     233.5,
+     649.75
+    ]
+   },
+   {
+    "text": "Autre à préciser : ..........................",
+    "bbox": [
+     278.4,
+     641.27,
+     399.43,
+     653.1
+    ],
+    "ink": [
+     278.5,
+     644.0,
+     398.75,
+     652.0
+    ]
+   },
+   {
+    "text": "Prescription faite",
+    "bbox": [
+     56.28,
+     657.74,
+     115.93,
+     669.14
+    ],
+    "ink": [
+     57.0,
+     660.5,
+     115.5,
+     668.25
+    ]
+   },
+   {
+    "text": "Référée :",
+    "bbox": [
+     56.17,
+     673.74,
+     89.15,
+     684.96
+    ],
+    "ink": [
+     57.0,
+     676.5,
+     88.75,
+     682.75
+    ]
+   },
+   {
+    "text": "Si la mère ne désire pas une méthode contraceptive : Pourquoi ?",
+    "bbox": [
+     44.05,
+     691.65,
+     274.45,
+     704.24
+    ],
+    "ink": [
+     44.5,
+     694.25,
+     274.25,
+     703.5
+    ]
+   },
+   {
+    "text": "Document synthétique généré pour l'entraînement de modèles — aucune donnée réelle — ne pas utiliser comme dossier médical.",
+    "bbox": [
+     37.19,
+     817.76,
+     382.87,
+     828.39
+    ],
+    "ink": [
+     37.75,
+     819.75,
+     382.5,
+     827.25
+    ]
+   }
+  ],
+  "fields": {
+   "consultation_date": {
+    "region": [
+     422.46,
+     68.93,
+     565.0,
+     85.93
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "timing": {
+    "options": {
+     "day_40_50": [
+      272.34,
+      74.82,
+      280.39,
+      82.87
+     ],
+     "after_day_50": [
+      252.24,
+      88.68,
+      260.3,
+      96.73
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "temperature_c": {
+    "region": [
+     60.31,
+     128.7,
+     149.92,
+     145.7
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "blood_pressure": {
+    "region": [
+     166.44,
+     129.43,
+     259.91,
+     146.43
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "pulse_bpm": {
+    "region": [
+     286.22,
+     130.22,
+     359.91,
+     147.22
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "weight_kg": {
+    "region": [
+     386.22,
+     130.91,
+     565.0,
+     147.91
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "conjunctivae": {
+    "options": {
+     "normal": [
+      161.79,
+      154.05,
+      169.84,
+      162.11
+     ],
+     "pale": [
+      251.78,
+      154.68,
+      259.84,
+      162.73
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "uterine_globe": {
+    "box": [
+     47.66,
+     171.27,
+     55.72,
+     179.32
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "lochia.bland": {
+    "box": [
+     161.54,
+     190.05,
+     169.59,
+     198.11
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "lochia.foul": {
+    "box": [
+     231.54,
+     190.54,
+     239.59,
+     198.59
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "lochia.clear": {
+    "box": [
+     161.43,
+     206.05,
+     169.48,
+     214.11
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "lochia.bloody": {
+    "box": [
+     231.43,
+     206.54,
+     239.48,
+     214.59
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "lochia.yellowish": {
+    "box": [
+     311.42,
+     207.09,
+     319.48,
+     215.15
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "perineum": {
+    "options": {
+     "normal": [
+      61.18,
+      241.36,
+      69.24,
+      249.42
+     ],
+     "episiotomy": [
+      61.07,
+      257.36,
+      69.12,
+      265.42
+     ],
+     "tear": [
+      60.96,
+      273.36,
+      69.01,
+      281.42
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "episiotomy_repaired": {
+    "box": [
+     201.07,
+     258.33,
+     209.12,
+     266.38
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "sphincters": {
+    "options": {
+     "normal": [
+      230.8,
+      296.54,
+      238.86,
+      304.59
+     ],
+     "abnormal": [
+      300.8,
+      297.02,
+      308.86,
+      305.07
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "cesarean": {
+    "box": [
+     46.67,
+     315.26,
+     54.72,
+     323.32
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "scar_state": {
+    "region": [
+     252.54,
+     311.83,
+     565.0,
+     328.83
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "breasts": {
+    "options": {
+     "normal": [
+      130.53,
+      335.84,
+      138.58,
+      343.9
+     ],
+     "lymphangitis": [
+      200.53,
+      336.33,
+      208.58,
+      344.38
+     ],
+     "mastitis_abscess": [
+      290.53,
+      336.95,
+      298.58,
+      345.0
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "calves.normal": {
+    "box": [
+     60.28,
+     371.36,
+     68.34,
+     379.41
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "calves.red": {
+    "box": [
+     130.28,
+     371.84,
+     138.34,
+     379.9
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "calves.warm": {
+    "box": [
+     200.28,
+     372.33,
+     208.33,
+     380.38
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "calves.painful": {
+    "box": [
+     270.28,
+     372.81,
+     278.33,
+     380.87
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complications": {
+    "box": [
+     190.11,
+     396.26,
+     198.17,
+     404.31
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.hemorrhage": {
+    "box": [
+     59.99,
+     413.36,
+     68.05,
+     421.41
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.infection": {
+    "box": [
+     59.89,
+     428.36,
+     67.94,
+     436.41
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.eclampsia": {
+    "box": [
+     59.78,
+     443.36,
+     67.84,
+     451.41
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.phlebitis": {
+    "box": [
+     59.68,
+     458.36,
+     67.74,
+     466.41
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.breast": {
+    "box": [
+     219.99,
+     414.46,
+     228.04,
+     422.52
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.anemia": {
+    "box": [
+     219.88,
+     429.46,
+     227.94,
+     437.52
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.other": {
+    "box": [
+     219.78,
+     444.46,
+     227.84,
+     452.52
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "taking_medication": {
+    "box": [
+     189.53,
+     480.25,
+     197.59,
+     488.31
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "medication_details": {
+    "region": [
+     199.59,
+     475.07,
+     565.0,
+     492.07
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "treatment.iron": {
+    "box": [
+     59.18,
+     531.35,
+     67.23,
+     539.41
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "treatment.vitamin_a": {
+    "box": [
+     139.17,
+     531.91,
+     147.23,
+     539.96
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "treatment.other": {
+    "region": [
+     207.64,
+     547.21,
+     565.0,
+     564.21
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "next_appointment_date": {
+    "region": [
+     135.49,
+     560.96,
+     565.0,
+     577.96
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "family_planning.wants_method": {
+    "box": [
+     44.54,
+     623.26,
+     52.6,
+     631.31
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "family_planning.method": {
+    "options": {
+     "pill": [
+      138.41,
+      641.91,
+      146.47,
+      649.96
+     ],
+     "iud": [
+      208.41,
+      642.39,
+      216.47,
+      650.44
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "family_planning.method_other": {
+    "region": [
+     401.43,
+     638.69,
+     565.0,
+     655.69
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "family_planning.prescribed": {
+    "box": [
+     44.29,
+     659.25,
+     52.35,
+     667.31
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "family_planning.referred": {
+    "box": [
+     44.18,
+     675.25,
+     52.24,
+     683.31
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "family_planning.reason_declined": {
+    "region": [
+     42.05,
+     705.24,
+     565.0,
+     728.24
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "header_name": {
+    "region": [
+     40.51,
+     43.63,
+     400.0,
+     59.19
+    ],
+    "kind": "text",
+    "pii": true
+   }
+  }
+ },
+ "postpartum_late_newborn": {
+  "page_type": "postpartum_late_newborn",
+  "width": 595.2755737304688,
+  "height": 841.8897705078125,
+  "labels": [
+   {
+    "text": "CONSULTATION DU POST-PARTUM TARDIF",
+    "bbox": [
+     43.01,
+     28.18,
+     276.55,
+     45.2
+    ],
+    "ink": [
+     43.5,
+     31.75,
+     276.25,
+     41.75
+    ]
+   },
+   {
+    "text": "SPÉCIMEN — DONNÉES FICTIVES",
+    "bbox": [
+     403.3,
+     31.27,
+     535.41,
+     43.34
+    ],
+    "ink": [
+     403.75,
+     30.25,
+     536.25,
+     41.0
+    ]
+   },
+   {
+    "text": "NOUVEAU-NÉ",
+    "bbox": [
+     42.9,
+     45.35,
+     96.33,
+     56.77
+    ],
+    "ink": [
+     43.5,
+     46.75,
+     95.75,
+     54.5
+    ]
+   },
+   {
+    "text": "Date de la consultation :",
+    "bbox": [
+     332.7,
+     71.67,
+     420.84,
+     83.36
+    ],
+    "ink": [
+     333.5,
+     74.5,
+     418.25,
+     81.0
+    ]
+   },
+   {
+    "text": "Age",
+    "bbox": [
+     48.42,
+     105.4,
+     64.97,
+     116.52
+    ],
+    "ink": [
+     48.75,
+     108.25,
+     62.5,
+     115.75
+    ]
+   },
+   {
+    "text": "Température",
+    "bbox": [
+     192.42,
+     106.55,
+     240.52,
+     117.93
+    ],
+    "ink": [
+     192.75,
+     109.25,
+     238.0,
+     117.0
+    ]
+   },
+   {
+    "text": "Poids",
+    "bbox": [
+     382.41,
+     108.07,
+     404.73,
+     119.24
+    ],
+    "ink": [
+     383.0,
+     110.75,
+     402.25,
+     117.0
+    ]
+   },
+   {
+    "text": "Taille",
+    "bbox": [
+     48.25,
+     127.4,
+     69.67,
+     138.56
+    ],
+    "ink": [
+     48.5,
+     130.25,
+     67.0,
+     136.25
+    ]
+   },
+   {
+    "text": "Périmètre crânien",
+    "bbox": [
+     192.24,
+     128.55,
+     257.68,
+     140.06
+    ],
+    "ink": [
+     193.0,
+     131.25,
+     255.0,
+     137.75
+    ]
+   },
+   {
+    "text": "Nouveau-né prématuré",
+    "bbox": [
+     60.07,
+     149.49,
+     142.41,
+     161.14
+    ],
+    "ink": [
+     60.75,
+     152.25,
+     142.0,
+     160.25
+    ]
+   },
+   {
+    "text": "Nouveau-né hypotrophe",
+    "bbox": [
+     204.07,
+     150.64,
+     289.98,
+     162.32
+    ],
+    "ink": [
+     204.75,
+     153.5,
+     289.75,
+     161.75
+    ]
+   },
+   {
+    "text": "Allaitement :",
+    "bbox": [
+     47.9,
+     171.44,
+     95.99,
+     182.84
+    ],
+    "ink": [
+     48.0,
+     174.25,
+     95.5,
+     180.5
+    ]
+   },
+   {
+    "text": "exclusivement au sein",
+    "bbox": [
+     123.9,
+     172.0,
+     202.68,
+     183.63
+    ],
+    "ink": [
+     124.25,
+     175.0,
+     202.0,
+     181.25
+    ]
+   },
+   {
+    "text": "Artificiel",
+    "bbox": [
+     263.89,
+     173.12,
+     291.98,
+     184.34
+    ],
+    "ink": [
+     264.0,
+     176.0,
+     291.5,
+     182.0
+    ]
+   },
+   {
+    "text": "mixte",
+    "bbox": [
+     343.89,
+     173.76,
+     363.09,
+     184.91
+    ],
+    "ink": [
+     344.5,
+     176.5,
+     362.75,
+     182.75
+    ]
+   },
+   {
+    "text": "Signes d'une affection grave :",
+    "bbox": [
+     47.72,
+     193.44,
+     161.29,
+     205.36
+    ],
+    "ink": [
+     48.0,
+     196.0,
+     160.75,
+     204.5
+    ]
+   },
+   {
+    "text": "Convulsions",
+    "bbox": [
+     63.56,
+     214.06,
+     104.49,
+     224.69
+    ],
+    "ink": [
+     64.0,
+     216.5,
+     104.0,
+     222.5
+    ]
+   },
+   {
+    "text": "Refus de téter",
+    "bbox": [
+     188.56,
+     215.06,
+     235.75,
+     225.74
+    ],
+    "ink": [
+     189.25,
+     217.5,
+     235.5,
+     223.75
+    ]
+   },
+   {
+    "text": "Hématémèses",
+    "bbox": [
+     313.55,
+     216.06,
+     361.98,
+     226.75
+    ],
+    "ink": [
+     314.25,
+     218.5,
+     361.5,
+     224.75
+    ]
+   },
+   {
+    "text": "Mélaenas",
+    "bbox": [
+     438.55,
+     217.06,
+     471.14,
+     227.62
+    ],
+    "ink": [
+     439.25,
+     219.5,
+     470.75,
+     225.5
+    ]
+   },
+   {
+    "text": "Diarrhée",
+    "bbox": [
+     63.42,
+     232.06,
+     92.26,
+     242.6
+    ],
+    "ink": [
+     64.0,
+     234.5,
+     92.0,
+     240.5
+    ]
+   },
+   {
+    "text": "Ictère",
+    "bbox": [
+     188.42,
+     233.06,
+     207.25,
+     243.51
+    ],
+    "ink": [
+     189.0,
+     235.5,
+     207.0,
+     241.5
+    ]
+   },
+   {
+    "text": "Tirage sous costal",
+    "bbox": [
+     313.41,
+     234.06,
+     374.35,
+     244.85
+    ],
+    "ink": [
+     313.5,
+     236.5,
+     373.75,
+     244.0
+    ]
+   },
+   {
+    "text": "Toux",
+    "bbox": [
+     438.41,
+     235.06,
+     455.16,
+     245.49
+    ],
+    "ink": [
+     438.5,
+     237.5,
+     454.75,
+     243.5
+    ]
+   },
+   {
+    "text": "Rythme respiratoire anormal",
+    "bbox": [
+     63.28,
+     250.06,
+     157.96,
+     261.12
+    ],
+    "ink": [
+     64.0,
+     252.5,
+     157.5,
+     260.0
+    ]
+   },
+   {
+    "text": "Fièvre",
+    "bbox": [
+     188.27,
+     251.06,
+     209.19,
+     261.53
+    ],
+    "ink": [
+     189.0,
+     253.5,
+     209.0,
+     259.5
+    ]
+   },
+   {
+    "text": "Hypothermie",
+    "bbox": [
+     313.27,
+     252.06,
+     355.86,
+     262.7
+    ],
+    "ink": [
+     313.75,
+     254.5,
+     355.5,
+     262.0
+    ]
+   },
+   {
+    "text": "Autres à préciser :",
+    "bbox": [
+     47.07,
+     274.39,
+     114.3,
+     285.92
+    ],
+    "ink": [
+     47.25,
+     277.25,
+     111.5,
+     285.0
+    ]
+   },
+   {
+    "text": "Contusions, lésions traumatiques et malformations :",
+    "bbox": [
+     46.86,
+     301.43,
+     246.98,
+     314.05
+    ],
+    "ink": [
+     47.25,
+     304.0,
+     246.5,
+     312.75
+    ]
+   },
+   {
+    "text": "Bosse sérosanguine ou céphalohématome",
+    "bbox": [
+     72.7,
+     321.6,
+     224.41,
+     333.8
+    ],
+    "ink": [
+     73.25,
+     324.5,
+     224.0,
+     332.75
+    ]
+   },
+   {
+    "text": "Luxation congénitale de la hanche",
+    "bbox": [
+     72.57,
+     337.6,
+     194.06,
+     349.56
+    ],
+    "ink": [
+     73.25,
+     340.5,
+     193.75,
+     348.25
+    ]
+   },
+   {
+    "text": "Diminution ou absence de la mobilité d'un membre",
+    "bbox": [
+     72.44,
+     353.6,
+     251.9,
+     366.02
+    ],
+    "ink": [
+     73.25,
+     356.5,
+     251.5,
+     363.75
+    ]
+   },
+   {
+    "text": "Autres à préciser :",
+    "bbox": [
+     60.25,
+     377.5,
+     127.47,
+     389.03
+    ],
+    "ink": [
+     60.5,
+     380.25,
+     124.75,
+     388.25
+    ]
+   },
+   {
+    "text": "Evaluation de l'allaitement maternel :",
+    "bbox": [
+     46.06,
+     401.43,
+     186.76,
+     413.57
+    ],
+    "ink": [
+     46.75,
+     404.25,
+     186.25,
+     411.25
+    ]
+   },
+   {
+    "text": "Normal",
+    "bbox": [
+     262.05,
+     403.12,
+     287.92,
+     414.31
+    ],
+    "ink": [
+     262.75,
+     406.0,
+     287.5,
+     412.0
+    ]
+   },
+   {
+    "text": "A problèmes",
+    "bbox": [
+     332.05,
+     403.68,
+     377.04,
+     415.03
+    ],
+    "ink": [
+     332.25,
+     406.5,
+     376.75,
+     414.25
+    ]
+   },
+   {
+    "text": "Etat vaccinal",
+    "bbox": [
+     45.9,
+     421.43,
+     94.9,
+     432.84
+    ],
+    "ink": [
+     46.5,
+     424.25,
+     94.25,
+     430.5
+    ]
+   },
+   {
+    "text": "Vaccins administrés ce jour :",
+    "bbox": [
+     59.76,
+     439.5,
+     161.65,
+     451.31
+    ],
+    "ink": [
+     60.0,
+     442.25,
+     161.25,
+     450.5
+    ]
+   },
+   {
+    "text": "BCG",
+    "bbox": [
+     201.75,
+     440.64,
+     219.18,
+     451.77
+    ],
+    "ink": [
+     202.25,
+     443.25,
+     218.5,
+     449.5
+    ]
+   },
+   {
+    "text": "HB",
+    "bbox": [
+     261.75,
+     441.11,
+     272.95,
+     452.2
+    ],
+    "ink": [
+     262.25,
+     444.0,
+     272.5,
+     449.75
+    ]
+   },
+   {
+    "text": "Supplémentation en vitamine D",
+    "bbox": [
+     57.6,
+     459.48,
+     168.84,
+     471.36
+    ],
+    "ink": [
+     58.0,
+     462.25,
+     168.5,
+     470.0
+    ]
+   },
+   {
+    "text": "Présence de complications et de malformation :",
+    "bbox": [
+     45.4,
+     483.43,
+     227.32,
+     495.9
+    ],
+    "ink": [
+     46.0,
+     486.0,
+     226.75,
+     494.25
+    ]
+   },
+   {
+    "text": "Ictère",
+    "bbox": [
+     71.24,
+     503.59,
+     91.34,
+     514.75
+    ],
+    "ink": [
+     72.0,
+     506.25,
+     91.0,
+     512.5
+    ]
+   },
+   {
+    "text": "Infection",
+    "bbox": [
+     151.24,
+     504.23,
+     181.57,
+     515.47
+    ],
+    "ink": [
+     152.0,
+     507.0,
+     181.0,
+     513.25
+    ]
+   },
+   {
+    "text": "Conjonctivite",
+    "bbox": [
+     231.24,
+     504.87,
+     277.12,
+     516.23
+    ],
+    "ink": [
+     231.5,
+     507.5,
+     276.75,
+     515.5
+    ]
+   },
+   {
+    "text": "Traumatisme",
+    "bbox": [
+     71.1,
+     521.59,
+     117.86,
+     532.96
+    ],
+    "ink": [
+     71.25,
+     524.5,
+     117.5,
+     530.75
+    ]
+   },
+   {
+    "text": "Malformation",
+    "bbox": [
+     151.1,
+     522.23,
+     197.42,
+     533.59
+    ],
+    "ink": [
+     151.75,
+     525.0,
+     196.75,
+     531.5
+    ]
+   },
+   {
+    "text": "Autres",
+    "bbox": [
+     70.96,
+     539.59,
+     94.16,
+     550.77
+    ],
+    "ink": [
+     71.25,
+     542.5,
+     93.75,
+     548.5
+    ]
+   },
+   {
+    "text": "Vu par :",
+    "bbox": [
+     44.64,
+     579.38,
+     74.97,
+     590.62
+    ],
+    "ink": [
+     45.0,
+     582.25,
+     72.25,
+     590.0
+    ]
+   },
+   {
+    "text": "Décision prise :",
+    "bbox": [
+     44.4,
+     609.38,
+     101.39,
+     620.83
+    ],
+    "ink": [
+     45.0,
+     612.0,
+     98.75,
+     620.0
+    ]
+   },
+   {
+    "text": "Traitement prescrit :",
+    "bbox": [
+     44.16,
+     639.38,
+     117.6,
+     650.96
+    ],
+    "ink": [
+     44.25,
+     642.25,
+     115.0,
+     650.0
+    ]
+   },
+   {
+    "text": "Transfert",
+    "bbox": [
+     55.88,
+     674.48,
+     87.97,
+     685.72
+    ],
+    "ink": [
+     56.0,
+     677.25,
+     87.75,
+     683.5
+    ]
+   },
+   {
+    "text": "Préciser l'établissement de référence :",
+    "bbox": [
+     117.88,
+     674.97,
+     255.98,
+     687.07
+    ],
+    "ink": [
+     118.5,
+     677.75,
+     253.25,
+     684.75
+    ]
+   },
+   {
+    "text": "Les trois règles de la prise en charge du nouveau-né à domicile :",
+    "bbox": [
+     49.57,
+     713.47,
+     295.96,
+     726.45
+    ],
+    "ink": [
+     50.25,
+     716.25,
+     295.5,
+     725.0
+    ]
+   },
+   {
+    "text": "1. Allaitement maternel exclusif 2. Maintien au chaud 3. Quand revenir immédiatement ?",
+    "bbox": [
+     49.46,
+     727.43,
+     371.01,
+     740.99
+    ],
+    "ink": [
+     50.25,
+     730.25,
+     370.75,
+     738.75
+    ]
+   },
+   {
+    "text": "Revenir pour une visite de suivi nécessaire le",
+    "bbox": [
+     43.2,
+     759.38,
+     206.01,
+     771.67
+    ],
+    "ink": [
+     44.0,
+     762.25,
+     203.5,
+     770.0
+    ]
+   },
+   {
+    "text": "Document synthétique généré pour l'entraînement de modèles — aucune donnée réelle — ne pas utiliser comme dossier médical.",
+    "bbox": [
+     36.76,
+     817.48,
+     382.44,
+     828.48
+    ],
+    "ink": [
+     37.25,
+     819.5,
+     382.0,
+     827.25
+    ]
+   }
+  ],
+  "fields": {
+   "consultation_date": {
+    "region": [
+     422.84,
+     69.02,
+     565.0,
+     86.02
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "age": {
+    "region": [
+     66.97,
+     102.46,
+     190.42,
+     119.46
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "temperature_c": {
+    "region": [
+     242.52,
+     103.74,
+     380.41,
+     120.74
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "weight_g": {
+    "region": [
+     406.73,
+     105.15,
+     565.0,
+     122.15
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "length_cm": {
+    "region": [
+     71.67,
+     124.48,
+     190.24,
+     141.48
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "head_circumference_cm": {
+    "region": [
+     259.68,
+     125.81,
+     565.0,
+     142.81
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "premature": {
+    "box": [
+     48.08,
+     151.0,
+     56.15,
+     159.06
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "hypotrophic": {
+    "box": [
+     192.08,
+     152.15,
+     200.14,
+     160.21
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "feeding": {
+    "options": {
+     "exclusive_breastfeeding": [
+      111.91,
+      173.51,
+      119.97,
+      181.57
+     ],
+     "formula": [
+      251.9,
+      174.63,
+      259.97,
+      182.69
+     ],
+     "mixed": [
+      331.9,
+      175.27,
+      339.96,
+      183.33
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "danger.convulsions": {
+    "box": [
+     51.57,
+     215.03,
+     59.64,
+     223.09
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.refuses_feeding": {
+    "box": [
+     176.57,
+     216.03,
+     184.63,
+     224.09
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.hematemesis": {
+    "box": [
+     301.57,
+     217.03,
+     309.63,
+     225.09
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.melena": {
+    "box": [
+     426.56,
+     218.02,
+     434.62,
+     226.09
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.diarrhea": {
+    "box": [
+     51.43,
+     233.03,
+     59.49,
+     241.09
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.jaundice": {
+    "box": [
+     176.43,
+     234.03,
+     184.49,
+     242.09
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.chest_indrawing": {
+    "box": [
+     301.42,
+     235.02,
+     309.49,
+     243.09
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.cough": {
+    "box": [
+     426.42,
+     236.02,
+     434.48,
+     244.09
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.abnormal_breathing": {
+    "box": [
+     51.29,
+     251.03,
+     59.35,
+     259.09
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.fever": {
+    "box": [
+     176.28,
+     252.03,
+     184.35,
+     260.09
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.hypothermia": {
+    "box": [
+     301.28,
+     253.02,
+     309.34,
+     261.09
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "danger.other": {
+    "region": [
+     116.3,
+     271.66,
+     565.0,
+     288.66
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "trauma.cephalhematoma": {
+    "box": [
+     60.71,
+     323.1,
+     68.77,
+     331.17
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "trauma.hip_dislocation": {
+    "box": [
+     60.58,
+     339.1,
+     68.65,
+     347.17
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "trauma.limb_mobility": {
+    "box": [
+     60.45,
+     355.1,
+     68.52,
+     363.17
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "trauma.other": {
+    "region": [
+     129.47,
+     374.77,
+     565.0,
+     391.77
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "breastfeeding_assessment": {
+    "options": {
+     "normal": [
+      250.06,
+      404.62,
+      258.13,
+      412.68
+     ],
+     "problems": [
+      320.06,
+      405.18,
+      328.13,
+      413.24
+     ]
+    },
+    "kind": "radio",
+    "pii": false
+   },
+   "vaccine.bcg": {
+    "box": [
+     189.76,
+     442.14,
+     197.83,
+     450.2
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "vaccine.hepatitis_b": {
+    "box": [
+     249.76,
+     442.62,
+     257.83,
+     450.68
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "vitamin_d": {
+    "box": [
+     45.61,
+     460.99,
+     53.67,
+     469.05
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.jaundice": {
+    "box": [
+     59.26,
+     505.1,
+     67.32,
+     513.16
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.infection": {
+    "box": [
+     139.25,
+     505.74,
+     147.32,
+     513.8
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.conjunctivitis": {
+    "box": [
+     219.25,
+     506.38,
+     227.31,
+     514.44
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.trauma": {
+    "box": [
+     59.11,
+     523.1,
+     67.18,
+     531.16
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.malformation": {
+    "box": [
+     139.11,
+     523.74,
+     147.17,
+     531.8
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "complication.other": {
+    "box": [
+     58.97,
+     541.1,
+     67.03,
+     549.16
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "seen_by": {
+    "region": [
+     76.97,
+     576.5,
+     565.0,
+     593.5
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "decision": {
+    "region": [
+     103.39,
+     606.61,
+     565.0,
+     623.61
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "treatment": {
+    "region": [
+     119.6,
+     636.67,
+     565.0,
+     653.67
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "transfer": {
+    "box": [
+     43.89,
+     675.98,
+     51.95,
+     684.05
+    ],
+    "kind": "check",
+    "pii": false
+   },
+   "referral_facility": {
+    "region": [
+     257.98,
+     672.52,
+     565.0,
+     689.52
+    ],
+    "kind": "text",
+    "pii": false
+   },
+   "next_visit_date": {
+    "region": [
+     208.01,
+     757.02,
+     565.0,
+     774.02
+    ],
+    "kind": "text",
+    "pii": false
+   }
+  }
+ }
+}

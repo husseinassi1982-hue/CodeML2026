@@ -1,0 +1,248 @@
+{
+  "consultation_date": {
+    "label": "Consultation date",
+    "value": "—",
+    "conf": 0.49,
+    "status": "NEEDS_REVIEW"
+  },
+  "age": {
+    "label": "Age",
+    "value": "43 j",
+    "conf": 0.98,
+    "status": "KNOWN"
+  },
+  "temperature_c": {
+    "label": "Temperature (°C)",
+    "value": "36.8 °C",
+    "conf": 0.94,
+    "status": "KNOWN"
+  },
+  "weight_g": {
+    "label": "Weight (g)",
+    "value": "5218 g",
+    "conf": 0.99,
+    "status": "KNOWN"
+  },
+  "length_cm": {
+    "label": "Length (cm)",
+    "value": "58 cm",
+    "conf": 0.96,
+    "status": "KNOWN"
+  },
+  "head_circumference_cm": {
+    "label": "Head circumference (cm)",
+    "value": "37 cm",
+    "conf": 0.98,
+    "status": "KNOWN"
+  },
+  "premature": {
+    "label": "Premature newborn",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "hypotrophic": {
+    "label": "Small for gestational age",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "feeding": {
+    "label": "Feeding",
+    "value": "mixed",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "danger.convulsions": {
+    "label": "Convulsions",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "danger.refuses_feeding": {
+    "label": "Refuses to feed",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "danger.hematemesis": {
+    "label": "Haematemesis",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "danger.melena": {
+    "label": "Melaena",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "danger.diarrhea": {
+    "label": "Diarrhoea",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "danger.jaundice": {
+    "label": "Jaundice",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "danger.chest_indrawing": {
+    "label": "Chest indrawing",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "danger.cough": {
+    "label": "Cough",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "danger.abnormal_breathing": {
+    "label": "Abnormal breathing rate",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "danger.fever": {
+    "label": "Fever",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "danger.hypothermia": {
+    "label": "Hypothermia",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "danger.other": {
+    "label": "Other danger sign",
+    "value": "Néant",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "trauma.cephalhematoma": {
+    "label": "Cephalhaematoma",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "trauma.hip_dislocation": {
+    "label": "Congenital hip dislocation",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "trauma.limb_mobility": {
+    "label": "Reduced limb mobility",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "trauma.other": {
+    "label": "Other trauma",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "breastfeeding_assessment": {
+    "label": "Breastfeeding assessment",
+    "value": "normal",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "vaccine.bcg": {
+    "label": "BCG given",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "vaccine.hepatitis_b": {
+    "label": "Hepatitis B vaccine given",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "vitamin_d": {
+    "label": "Vitamin D supplement",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication.jaundice": {
+    "label": "Jaundice",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication.infection": {
+    "label": "Infection",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication.conjunctivitis": {
+    "label": "Conjunctivitis",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication.trauma": {
+    "label": "Trauma",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication.malformation": {
+    "label": "Malformation",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication.other": {
+    "label": "Other",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "seen_by": {
+    "label": "Seen by",
+    "value": "Inf. Zahra",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "decision": {
+    "label": "Decision",
+    "value": "Poursuivre l'allaitement exclusif",
+    "conf": 0.95,
+    "status": "KNOWN"
+  },
+  "treatment": {
+    "label": "Treatment",
+    "value": "Néant",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "transfer": {
+    "label": "Transferred",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "referral_facility": {
+    "label": "Referral facility",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "next_visit_date": {
+    "label": "Next follow-up visit",
+    "value": "17/05/2026",
+    "conf": 0.99,
+    "status": "KNOWN"
+  }
+}

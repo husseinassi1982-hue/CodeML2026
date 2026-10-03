@@ -1,0 +1,98 @@
+{
+  "record_number": {
+    "label": "Record number",
+    "value": "2026-823-007",
+    "conf": 0.79,
+    "status": "NEEDS_REVIEW"
+  },
+  "region": {
+    "label": "Region",
+    "value": "Rabat-Salé-Kénitra",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "province": {
+    "label": "Province",
+    "value": "Kénitra",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "facility_name": {
+    "label": "Health facility",
+    "value": "CSCA Al Wifaq",
+    "conf": 0.99,
+    "status": "KNOWN"
+  },
+  "facility_type": {
+    "label": "Facility type",
+    "value": "CSCA",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "coverage_mode": {
+    "label": "Coverage mode",
+    "value": "fixed",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "high_risk": {
+    "label": "High-risk pregnancy",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "risk.anemia": {
+    "label": "Risk: anaemia",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "risk.hypertension": {
+    "label": "Risk: hypertension",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "risk.diabetes": {
+    "label": "Risk: diabetes",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "risk.cardiopathy": {
+    "label": "Risk: heart disease",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "risk.metrorrhagia": {
+    "label": "Risk: metrorrhagia",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "risk.infection": {
+    "label": "Risk: infection",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "risk.preeclampsia": {
+    "label": "Risk: pre-eclampsia",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "risk.eclampsia": {
+    "label": "Risk: eclampsia",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "risk.other": {
+    "label": "Other risk",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "overall": {
+    "fields": 1692,
+    "field_accuracy": 0.4545,
+    "value_accuracy_on_written": 0.5162,
+    "status_accuracy": 0.4545,
+    "review_rate_on_written": 0.3213,
+    "silent_error_rate": 0.0,
+    "silent_errors": 0
+  },
+  "by_kind": {
+    "text": {
+      "fields": 231,
+      "field_accuracy": 0.2381,
+      "value_accuracy_on_written": 0.2703,
+      "status_accuracy": 0.2381,
+      "review_rate_on_written": 0.9027,
+      "silent_error_rate": 0.0,
+      "silent_errors": 0
+    },
+    "cell": {
+      "fields": 987,
+      "field_accuracy": 0.2513,
+      "value_accuracy_on_written": 0.0274,
+      "status_accuracy": 0.2513,
+      "review_rate_on_written": 0.4301,
+      "silent_error_rate": null,
+      "silent_errors": 0
+    },
+    "check": {
+      "fields": 402,
+      "field_accuracy": 0.9975,
+      "value_accuracy_on_written": 1.0,
+      "status_accuracy": 0.9975,
+      "review_rate_on_written": 0.0025,
+      "silent_error_rate": 0.0,
+      "silent_errors": 0
+    },
+    "radio": {
+      "fields": 72,
+      "field_accuracy": 0.9028,
+      "value_accuracy_on_written": 0.942,
+      "status_accuracy": 0.9028,
+      "review_rate_on_written": 0.0435,
+      "silent_error_rate": 0.0,
+      "silent_errors": 0
+    }
+  },
+  "by_page_type": {
+    "cover": {
+      "fields": 48,
+      "field_accuracy": 0.7292,
+      "value_accuracy_on_written": 0.8667,
+      "status_accuracy": 0.7292,
+      "review_rate_on_written": 0.2889,
+      "silent_error_rate": 0.0,
+      "silent_errors": 0
+    },
+    "current_pregnancy": {
+      "fields": 828,
+      "field_accuracy": 0.1534,
+      "value_accuracy_on_written": 0.0118,
+      "status_accuracy": 0.1534,
+      "review_rate_on_written": 0.3521,
+      "silent_error_rate": null,
+      "silent_errors": 0
+    },
+    "delivery": {
+      "fields": 78,
+      "field_accuracy": 0.7692,
+      "value_accuracy_on_written": 0.8088,
+      "status_accuracy": 0.7692,
+      "review_rate_on_written": 0.2647,
+      "silent_error_rate": 0.0,
+      "silent_errors": 0
+    },
+    "identification": {
+      "fields": 234,
+      "field_accuracy": 0.6325,
+      "value_accuracy_on_written": 0.4608,
+      "status_accuracy": 0.6325,
+      "review_rate_on_written": 0.7157,
+      "silent_error_rate": 0.0,
+      "silent_errors": 0
+    },
+    "postpartum_early_mother": {
+      "fields": 129,
+      "field_accuracy": 0.8372,
+      "value_accuracy_on_written": 0.8291,
+      "status_accuracy": 0.8372,
+      "review_rate_on_written": 0.1795,
+      "silent_error_rate": 0.0,
+      "silent_errors": 0
+    },
+    "postpartum_early_newborn": {
+      "fields": 123,
+      "field_accuracy": 0.7561,
+      "value_accuracy_on_written": 0.8167,
+      "status_accuracy": 0.7561,
+      "review_rate_on_written": 0.25,
+      "silent_error_rate": 0.0,
+      "silent_errors": 0
+    },
+    "postpartum_late_mother": {
+      "fields": 129,
+      "field_accuracy": 0.8527,
+      "value_accuracy_on_written": 0.8559,
+      "status_accuracy": 0.8527,
+      "review_rate_on_written": 0.1712,
+      "silent_error_rate": 0.0,
+      "silent_errors": 0
+    },
+    "postpartum_late_newborn": {
+      "fields": 123,
+      "field_accuracy": 0.7154,
+      "value_accuracy_on_written": 0.7667,
+      "status_accuracy": 0.7154,
+      "review_rate_on_written": 0.2917,
+      "silent_error_rate": 0.0,
+      "silent_errors": 0
+    }
+  },
+  "page_type_accuracy": 0.9167,
+  "seconds_per_page": 1.73,
+  "calibration": {
+    "0.0-0.1": {
+      "n": 207,
+      "accuracy": 0.0
+    },
+    "0.1-0.2": {
+      "n": 28,
+      "accuracy": 0.0
+    },
+    "0.2-0.3": {
+      "n": 113,
+      "accuracy": 0.009
+    },
+    "0.3-0.4": {
+      "n": 34,
+      "accuracy": 0.029
+    },
+    "0.4-0.5": {
+      "n": 39,
+      "accuracy": 0.051
+    },
+    "0.5-0.6": {
+      "n": 63,
+      "accuracy": 0.159
+    },
+    "0.6-0.7": {
+      "n": 17,
+      "accuracy": 0.647
+    },
+    "0.7-0.8": {
+      "n": 23,
+      "accuracy": 0.478
+    },
+    "0.8-0.9": {
+      "n": 21,
+      "accuracy": 0.905
+    },
+    "0.9-1.0": {
+      "n": 5,
+      "accuracy": 1.0
+    }
+  },
+  "run": {
+    "name": "test_hard",
+    "pages": 24
+  }
+}

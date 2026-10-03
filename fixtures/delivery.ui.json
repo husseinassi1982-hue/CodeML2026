@@ -1,0 +1,158 @@
+{
+  "setting": {
+    "label": "Place of delivery",
+    "value": "supervised",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "facility": {
+    "label": "Facility",
+    "value": "maternity",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "facility_other": {
+    "label": "Other facility",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "home_skilled_attendant": {
+    "label": "Skilled attendant at home",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "home_other": {
+    "label": "Other (home)",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "delivery_date": {
+    "label": "Delivery date",
+    "value": "03/02/2026",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "mode": {
+    "label": "Delivery mode",
+    "value": "vaginal_spontaneous",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "forceps": {
+    "label": "Forceps",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "vacuum": {
+    "label": "Vacuum",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "episiotomy": {
+    "label": "Episiotomy",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "cesarean_indication": {
+    "label": "Caesarean indication",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "complications": {
+    "label": "Complications",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication_at_delivery": {
+    "label": "At delivery",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication_postpartum": {
+    "label": "Postpartum period",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication.preeclampsia": {
+    "label": "Pre-eclampsia",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication.eclampsia": {
+    "label": "Eclampsia",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication.hemorrhage": {
+    "label": "Haemorrhage",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication.infection": {
+    "label": "Infection",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication.other": {
+    "label": "Other",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication_other_text": {
+    "label": "Other complication",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "newborn_status": {
+    "label": "Newborn status",
+    "value": "alive",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "newborn_sex": {
+    "label": "Sex",
+    "value": "—",
+    "conf": 0.24,
+    "status": "NEEDS_REVIEW"
+  },
+  "birth_weight_g": {
+    "label": "Birth weight (g)",
+    "value": "3587 g",
+    "conf": 0.92,
+    "status": "KNOWN"
+  },
+  "head_circumference_cm": {
+    "label": "Head circumference (cm)",
+    "value": "34 cm",
+    "conf": 0.99,
+    "status": "KNOWN"
+  },
+  "anomaly": {
+    "label": "Abnormality",
+    "value": "Aucune",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "gestational_age_weeks": {
+    "label": "Gestational age (weeks)",
+    "value": "40 SA",
+    "conf": 0.92,
+    "status": "KNOWN"
+  }
+}

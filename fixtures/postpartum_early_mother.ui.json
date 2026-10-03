@@ -1,0 +1,260 @@
+{
+  "consultation_date": {
+    "label": "Consultation date",
+    "value": "10/02/2026",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "timing": {
+    "label": "Consultation timing",
+    "value": "day_7_8",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "temperature_c": {
+    "label": "Temperature (°C)",
+    "value": "37.2 °C",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "blood_pressure": {
+    "label": "Blood pressure",
+    "value": "110/71",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "pulse_bpm": {
+    "label": "Pulse (bpm)",
+    "value": "83",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "weight_kg": {
+    "label": "Weight (kg)",
+    "value": "66 kg",
+    "conf": 0.96,
+    "status": "KNOWN"
+  },
+  "conjunctivae": {
+    "label": "Conjunctivae",
+    "value": "normal",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "uterine_globe": {
+    "label": "Uterine globe present",
+    "value": "☒",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "lochia.bland": {
+    "label": "Lochia: bland",
+    "value": "☒",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "lochia.foul": {
+    "label": "Lochia: foul-smelling",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "lochia.clear": {
+    "label": "Lochia: clear",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "lochia.bloody": {
+    "label": "Lochia: bloody",
+    "value": "☒",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "lochia.yellowish": {
+    "label": "Lochia: yellowish",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "perineum": {
+    "label": "Perineum",
+    "value": "normal",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "episiotomy_repaired": {
+    "label": "Episiotomy repaired",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "sphincters": {
+    "label": "Sphincters",
+    "value": "normal",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "cesarean": {
+    "label": "Caesarean",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "scar_state": {
+    "label": "Scar condition",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "breasts": {
+    "label": "Breasts",
+    "value": "normal",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "calves.normal": {
+    "label": "Calves: normal",
+    "value": "☒",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "calves.red": {
+    "label": "Calves: red",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "calves.warm": {
+    "label": "Calves: warm",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "calves.painful": {
+    "label": "Calves: painful on dorsiflexion",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complications": {
+    "label": "Complications",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication.hemorrhage": {
+    "label": "Haemorrhage",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication.infection": {
+    "label": "Infection",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication.eclampsia": {
+    "label": "Eclampsia",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication.phlebitis": {
+    "label": "Phlebitis",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication.breast": {
+    "label": "Breast complications",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication.anemia": {
+    "label": "Anaemia",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "complication.other": {
+    "label": "Other",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "taking_medication": {
+    "label": "Taking medication",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "medication_details": {
+    "label": "Medication details",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "treatment.iron": {
+    "label": "Iron",
+    "value": "☒",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "treatment.vitamin_a": {
+    "label": "Vitamin A",
+    "value": "☒",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "treatment.other": {
+    "label": "Other treatment",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "next_appointment_date": {
+    "label": "Next appointment",
+    "value": "17/03/2026",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "family_planning.wants_method": {
+    "label": "Wants contraception",
+    "value": "☒",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "family_planning.method": {
+    "label": "Method",
+    "value": "pill",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "family_planning.method_other": {
+    "label": "Other method",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "family_planning.prescribed": {
+    "label": "Prescribed",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "family_planning.referred": {
+    "label": "Referred",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "family_planning.reason_declined": {
+    "label": "Reason for declining contraception",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  }
+}

@@ -1,0 +1,470 @@
+{
+  "age": {
+    "label": "Age (years)",
+    "value": "31",
+    "conf": 0.99,
+    "status": "KNOWN"
+  },
+  "education_level": {
+    "label": "Education level",
+    "value": "Lycée",
+    "conf": 0.98,
+    "status": "KNOWN"
+  },
+  "profession": {
+    "label": "Occupation",
+    "value": "Étudiante",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "husband_profession": {
+    "label": "Husband's occupation",
+    "value": "Ouvrier",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "consanguinity": {
+    "label": "Consanguinity",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "desired_pregnancy": {
+    "label": "Desired pregnancy",
+    "value": "☒",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "family_history.woman_family.hypertension": {
+    "label": "Hypertension — woman's family",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "family_history.woman_family.diabetes": {
+    "label": "Diabetes — woman's family",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "family_history.woman_family.hereditary": {
+    "label": "Hereditary diseases — woman's family",
+    "value": "Père",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "family_history.woman_family.malformations": {
+    "label": "Malformations — woman's family",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "family_history.woman_family.allergies": {
+    "label": "Allergies — woman's family",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "family_history.husband_family.hypertension": {
+    "label": "Hypertension — husband/family",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "family_history.husband_family.diabetes": {
+    "label": "Diabetes — husband/family",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "family_history.husband_family.hereditary": {
+    "label": "Hereditary diseases — husband/family",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "family_history.husband_family.malformations": {
+    "label": "Malformations — husband/family",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "family_history.husband_family.allergies": {
+    "label": "Allergies — husband/family",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "woman_history.medical.hypertension": {
+    "label": "Hypertension — medical",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "woman_history.surgical.hypertension": {
+    "label": "Hypertension — surgical",
+    "value": "Aucun",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "woman_history.gynecological.hypertension": {
+    "label": "Hypertension — gynaecological",
+    "value": "Cycles réguliers",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "obstetric_anomalies.count.abortion": {
+    "label": "Abortion — count",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "obstetric_anomalies.count.premature_delivery": {
+    "label": "Premature delivery — count",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "obstetric_anomalies.count.fetal_death": {
+    "label": "Intra-uterine fetal death — count",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "obstetric_anomalies.count.other": {
+    "label": "Other — count",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "obstetric_anomalies.date.abortion": {
+    "label": "Abortion — date (or year)",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "obstetric_anomalies.date.premature_delivery": {
+    "label": "Premature delivery — date (or year)",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "obstetric_anomalies.date.fetal_death": {
+    "label": "Intra-uterine fetal death — date (or year)",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "obstetric_anomalies.date.other": {
+    "label": "Other — date (or year)",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "obstetric_anomalies.place.abortion": {
+    "label": "Abortion — place",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "obstetric_anomalies.place.premature_delivery": {
+    "label": "Premature delivery — place",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "obstetric_anomalies.place.fetal_death": {
+    "label": "Intra-uterine fetal death — place",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "obstetric_anomalies.place.other": {
+    "label": "Other — place",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "obstetric_anomalies.gestational_age.abortion": {
+    "label": "Abortion — gestational age (weeks)",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "obstetric_anomalies.gestational_age.premature_delivery": {
+    "label": "Premature delivery — gestational age (weeks)",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "obstetric_anomalies.gestational_age.fetal_death": {
+    "label": "Intra-uterine fetal death — gestational age (weeks)",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "obstetric_anomalies.gestational_age.other": {
+    "label": "Other — gestational age (weeks)",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.1.date": {
+    "label": "Date — delivery 1",
+    "value": "12/11/2022",
+    "conf": 0.99,
+    "status": "KNOWN"
+  },
+  "previous_delivery.1.mode": {
+    "label": "Delivery mode — delivery 1",
+    "value": "Voie basse",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "previous_delivery.1.cesarean_indication": {
+    "label": "Caesarean indication — delivery 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.1.complication": {
+    "label": "Complication — delivery 1",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "previous_delivery.1.newborn_weight_g": {
+    "label": "Newborn weight (g) — delivery 1",
+    "value": "3626 g",
+    "conf": 0.91,
+    "status": "KNOWN"
+  },
+  "previous_delivery.1.newborn_complication": {
+    "label": "Newborn complication — delivery 1",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "previous_delivery.2.date": {
+    "label": "Date — delivery 2",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.2.mode": {
+    "label": "Delivery mode — delivery 2",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.2.cesarean_indication": {
+    "label": "Caesarean indication — delivery 2",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.2.complication": {
+    "label": "Complication — delivery 2",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.2.newborn_weight_g": {
+    "label": "Newborn weight (g) — delivery 2",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.2.newborn_complication": {
+    "label": "Newborn complication — delivery 2",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.3.date": {
+    "label": "Date — delivery 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.3.mode": {
+    "label": "Delivery mode — delivery 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.3.cesarean_indication": {
+    "label": "Caesarean indication — delivery 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.3.complication": {
+    "label": "Complication — delivery 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.3.newborn_weight_g": {
+    "label": "Newborn weight (g) — delivery 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.3.newborn_complication": {
+    "label": "Newborn complication — delivery 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.4.date": {
+    "label": "Date — delivery 4",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.4.mode": {
+    "label": "Delivery mode — delivery 4",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.4.cesarean_indication": {
+    "label": "Caesarean indication — delivery 4",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.4.complication": {
+    "label": "Complication — delivery 4",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.4.newborn_weight_g": {
+    "label": "Newborn weight (g) — delivery 4",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.4.newborn_complication": {
+    "label": "Newborn complication — delivery 4",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.5.date": {
+    "label": "Date — delivery 5",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.5.mode": {
+    "label": "Delivery mode — delivery 5",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.5.cesarean_indication": {
+    "label": "Caesarean indication — delivery 5",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.5.complication": {
+    "label": "Complication — delivery 5",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.5.newborn_weight_g": {
+    "label": "Newborn weight (g) — delivery 5",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "previous_delivery.5.newborn_complication": {
+    "label": "Newborn complication — delivery 5",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "gravidity": {
+    "label": "Gravidity",
+    "value": "3",
+    "conf": 0.81,
+    "status": "KNOWN"
+  },
+  "parity": {
+    "label": "Parity",
+    "value": "1",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "living_children": {
+    "label": "Living children",
+    "value": "1",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "tetanus_dose_1": {
+    "label": "Tetanus vaccine dose 1",
+    "value": "☒",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "tetanus_dose_2": {
+    "label": "Tetanus vaccine dose 2",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "tetanus_dose_3": {
+    "label": "Tetanus vaccine dose 3",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "tetanus_dose_4": {
+    "label": "Tetanus vaccine dose 4",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "tetanus_dose_5": {
+    "label": "Tetanus vaccine dose 5",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "rubella_vaccinated": {
+    "label": "Rubella vaccinated",
+    "value": "☒",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "rubella_vaccination_date": {
+    "label": "Rubella vaccination date",
+    "value": "12/05/2022",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "hepatitis_b_vaccinated": {
+    "label": "Hepatitis B vaccinated",
+    "value": "☐",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "hepatitis_b_vaccination_date": {
+    "label": "Hepatitis B vaccination date",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "cervical_screening": {
+    "label": "Cervical screening",
+    "value": "Normal",
+    "conf": 1.0,
+    "status": "KNOWN"
+  }
+}

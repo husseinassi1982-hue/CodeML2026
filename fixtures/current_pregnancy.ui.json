@@ -1,0 +1,1658 @@
+{
+  "lmp_date": {
+    "label": "Last menstrual period",
+    "value": "26/04/2025",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "height_cm": {
+    "label": "Height (cm)",
+    "value": "155 cm",
+    "conf": 0.98,
+    "status": "KNOWN"
+  },
+  "blood_group": {
+    "label": "Blood group",
+    "value": "B",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "rhesus": {
+    "label": "Rhesus",
+    "value": "positive",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "expected_delivery_date": {
+    "label": "Expected delivery date",
+    "value": "31/01/2026",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "term_exceeded_date": {
+    "label": "Post-term date",
+    "value": "07/02/2026",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t1_v1.appointment_date": {
+    "label": "Appointment date — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.attended_date": {
+    "label": "Date attended — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.reminder_visit": {
+    "label": "Reminder visit — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.gestational_age_weeks": {
+    "label": "Gestational age (weeks) — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.weight_kg": {
+    "label": "Weight (kg) — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.blood_pressure": {
+    "label": "Blood pressure — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.skeletal_anomalies": {
+    "label": "Skeletal anomalies — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.conjunctivae": {
+    "label": "Conjunctivae — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.breast_exam": {
+    "label": "Breast exam — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.edema": {
+    "label": "Oedema — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.fetal_movements": {
+    "label": "Fetal movements — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.fundal_height_cm": {
+    "label": "Fundal height (cm) — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.fetal_heart_rate": {
+    "label": "Fetal heart rate (bpm) — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.speculum_exam": {
+    "label": "Speculum exam — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.cervix": {
+    "label": "Cervix — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.presentation": {
+    "label": "Presentation — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.pelvis": {
+    "label": "Pelvis — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.glycosuria": {
+    "label": "Glycosuria — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.albuminuria": {
+    "label": "Proteinuria — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.rubella": {
+    "label": "Rubella serology — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.toxoplasmosis": {
+    "label": "Toxoplasmosis serology — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.syphilis": {
+    "label": "Syphilis test — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.hepatitis_b": {
+    "label": "Hepatitis B (HBsAg) — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.hiv": {
+    "label": "HIV test — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.hemoglobin_g_dl": {
+    "label": "Haemoglobin (g/dL) — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.platelets": {
+    "label": "Platelets — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.glycemia_g_l": {
+    "label": "Glycaemia (g/L) — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.rai": {
+    "label": "Antibody screen (if Rh-) — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.iron": {
+    "label": "Iron supplement — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v1.examined_by": {
+    "label": "Examined by — 1st trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v2.appointment_date": {
+    "label": "Appointment date — 1st trim. visit 2",
+    "value": "17/08/2025",
+    "conf": 0.99,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.attended_date": {
+    "label": "Date attended — 1st trim. visit 2",
+    "value": "20/07/2025",
+    "conf": 0.97,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.reminder_visit": {
+    "label": "Reminder visit — 1st trim. visit 2",
+    "value": "Oui",
+    "conf": 0.99,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.gestational_age_weeks": {
+    "label": "Gestational age (weeks) — 1st trim. visit 2",
+    "value": "12 SA",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.weight_kg": {
+    "label": "Weight (kg) — 1st trim. visit 2",
+    "value": "58.8 kg",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.blood_pressure": {
+    "label": "Blood pressure — 1st trim. visit 2",
+    "value": "104/74",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.skeletal_anomalies": {
+    "label": "Skeletal anomalies — 1st trim. visit 2",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.conjunctivae": {
+    "label": "Conjunctivae — 1st trim. visit 2",
+    "value": "Normales",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.breast_exam": {
+    "label": "Breast exam — 1st trim. visit 2",
+    "value": "Normaux",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.edema": {
+    "label": "Oedema — 1st trim. visit 2",
+    "value": "Non",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.fetal_movements": {
+    "label": "Fetal movements — 1st trim. visit 2",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.t1_v2.fundal_height_cm": {
+    "label": "Fundal height (cm) — 1st trim. visit 2",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.t1_v2.fetal_heart_rate": {
+    "label": "Fetal heart rate (bpm) — 1st trim. visit 2",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.t1_v2.speculum_exam": {
+    "label": "Speculum exam — 1st trim. visit 2",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.t1_v2.cervix": {
+    "label": "Cervix — 1st trim. visit 2",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.t1_v2.presentation": {
+    "label": "Presentation — 1st trim. visit 2",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.t1_v2.pelvis": {
+    "label": "Pelvis — 1st trim. visit 2",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.t1_v2.glycosuria": {
+    "label": "Glycosuria — 1st trim. visit 2",
+    "value": "Négatif",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.albuminuria": {
+    "label": "Proteinuria — 1st trim. visit 2",
+    "value": "Négatif",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.rubella": {
+    "label": "Rubella serology — 1st trim. visit 2",
+    "value": "Immune",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.toxoplasmosis": {
+    "label": "Toxoplasmosis serology — 1st trim. visit 2",
+    "value": "Immune",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.syphilis": {
+    "label": "Syphilis test — 1st trim. visit 2",
+    "value": "Négatif",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.hepatitis_b": {
+    "label": "Hepatitis B (HBsAg) — 1st trim. visit 2",
+    "value": "Négatif",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.hiv": {
+    "label": "HIV test — 1st trim. visit 2",
+    "value": "Négatif",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.hemoglobin_g_dl": {
+    "label": "Haemoglobin (g/dL) — 1st trim. visit 2",
+    "value": "11.8",
+    "conf": 0.95,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.platelets": {
+    "label": "Platelets — 1st trim. visit 2",
+    "value": "186k",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.glycemia_g_l": {
+    "label": "Glycaemia (g/L) — 1st trim. visit 2",
+    "value": "0.93",
+    "conf": 0.98,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.rai": {
+    "label": "Antibody screen (if Rh-) — 1st trim. visit 2",
+    "value": "Négatif",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.iron": {
+    "label": "Iron supplement — 1st trim. visit 2",
+    "value": "Oui",
+    "conf": 0.98,
+    "status": "KNOWN"
+  },
+  "visits.t1_v2.examined_by": {
+    "label": "Examined by — 1st trim. visit 2",
+    "value": "Dr Benjeloun",
+    "conf": 0.97,
+    "status": "KNOWN"
+  },
+  "visits.t1_v3.appointment_date": {
+    "label": "Appointment date — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.attended_date": {
+    "label": "Date attended — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.reminder_visit": {
+    "label": "Reminder visit — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.gestational_age_weeks": {
+    "label": "Gestational age (weeks) — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.weight_kg": {
+    "label": "Weight (kg) — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.blood_pressure": {
+    "label": "Blood pressure — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.skeletal_anomalies": {
+    "label": "Skeletal anomalies — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.conjunctivae": {
+    "label": "Conjunctivae — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.breast_exam": {
+    "label": "Breast exam — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.edema": {
+    "label": "Oedema — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.fetal_movements": {
+    "label": "Fetal movements — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.fundal_height_cm": {
+    "label": "Fundal height (cm) — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.fetal_heart_rate": {
+    "label": "Fetal heart rate (bpm) — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.speculum_exam": {
+    "label": "Speculum exam — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.cervix": {
+    "label": "Cervix — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.presentation": {
+    "label": "Presentation — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.pelvis": {
+    "label": "Pelvis — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.glycosuria": {
+    "label": "Glycosuria — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.albuminuria": {
+    "label": "Proteinuria — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.rubella": {
+    "label": "Rubella serology — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.toxoplasmosis": {
+    "label": "Toxoplasmosis serology — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.syphilis": {
+    "label": "Syphilis test — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.hepatitis_b": {
+    "label": "Hepatitis B (HBsAg) — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.hiv": {
+    "label": "HIV test — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.hemoglobin_g_dl": {
+    "label": "Haemoglobin (g/dL) — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.platelets": {
+    "label": "Platelets — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.glycemia_g_l": {
+    "label": "Glycaemia (g/L) — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.rai": {
+    "label": "Antibody screen (if Rh-) — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.iron": {
+    "label": "Iron supplement — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t1_v3.examined_by": {
+    "label": "Examined by — 1st trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.appointment_date": {
+    "label": "Appointment date — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.attended_date": {
+    "label": "Date attended — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.reminder_visit": {
+    "label": "Reminder visit — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.gestational_age_weeks": {
+    "label": "Gestational age (weeks) — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.weight_kg": {
+    "label": "Weight (kg) — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.blood_pressure": {
+    "label": "Blood pressure — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.skeletal_anomalies": {
+    "label": "Skeletal anomalies — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.conjunctivae": {
+    "label": "Conjunctivae — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.breast_exam": {
+    "label": "Breast exam — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.edema": {
+    "label": "Oedema — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.fetal_movements": {
+    "label": "Fetal movements — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.fundal_height_cm": {
+    "label": "Fundal height (cm) — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.fetal_heart_rate": {
+    "label": "Fetal heart rate (bpm) — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.speculum_exam": {
+    "label": "Speculum exam — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.cervix": {
+    "label": "Cervix — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.presentation": {
+    "label": "Presentation — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.pelvis": {
+    "label": "Pelvis — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.glycosuria": {
+    "label": "Glycosuria — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.albuminuria": {
+    "label": "Proteinuria — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.rubella": {
+    "label": "Rubella serology — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.toxoplasmosis": {
+    "label": "Toxoplasmosis serology — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.syphilis": {
+    "label": "Syphilis test — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.hepatitis_b": {
+    "label": "Hepatitis B (HBsAg) — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.hiv": {
+    "label": "HIV test — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.hemoglobin_g_dl": {
+    "label": "Haemoglobin (g/dL) — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.platelets": {
+    "label": "Platelets — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.glycemia_g_l": {
+    "label": "Glycaemia (g/L) — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.rai": {
+    "label": "Antibody screen (if Rh-) — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.iron": {
+    "label": "Iron supplement — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v1.examined_by": {
+    "label": "Examined by — 2nd trim. visit 1",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v2.appointment_date": {
+    "label": "Appointment date — 2nd trim. visit 2",
+    "value": "26/10/2025",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v2.attended_date": {
+    "label": "Date attended — 2nd trim. visit 2",
+    "value": "28/09/2025",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v2.reminder_visit": {
+    "label": "Reminder visit — 2nd trim. visit 2",
+    "value": "Non",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v2.gestational_age_weeks": {
+    "label": "Gestational age (weeks) — 2nd trim. visit 2",
+    "value": "22 SA",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v2.weight_kg": {
+    "label": "Weight (kg) — 2nd trim. visit 2",
+    "value": "62.7 kg",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v2.blood_pressure": {
+    "label": "Blood pressure — 2nd trim. visit 2",
+    "value": "106/77",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v2.skeletal_anomalies": {
+    "label": "Skeletal anomalies — 2nd trim. visit 2",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v2.conjunctivae": {
+    "label": "Conjunctivae — 2nd trim. visit 2",
+    "value": "Normales",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v2.breast_exam": {
+    "label": "Breast exam — 2nd trim. visit 2",
+    "value": "Normaux",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v2.edema": {
+    "label": "Oedema — 2nd trim. visit 2",
+    "value": "Non",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v2.fetal_movements": {
+    "label": "Fetal movements — 2nd trim. visit 2",
+    "value": "Oui",
+    "conf": 0.98,
+    "status": "KNOWN"
+  },
+  "visits.t2_v2.fundal_height_cm": {
+    "label": "Fundal height (cm) — 2nd trim. visit 2",
+    "value": "18",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v2.fetal_heart_rate": {
+    "label": "Fetal heart rate (bpm) — 2nd trim. visit 2",
+    "value": "150",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v2.speculum_exam": {
+    "label": "Speculum exam — 2nd trim. visit 2",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.t2_v2.cervix": {
+    "label": "Cervix — 2nd trim. visit 2",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.t2_v2.presentation": {
+    "label": "Presentation — 2nd trim. visit 2",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.t2_v2.pelvis": {
+    "label": "Pelvis — 2nd trim. visit 2",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.t2_v2.glycosuria": {
+    "label": "Glycosuria — 2nd trim. visit 2",
+    "value": "Négatif",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v2.albuminuria": {
+    "label": "Proteinuria — 2nd trim. visit 2",
+    "value": "Négatif",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v2.rubella": {
+    "label": "Rubella serology — 2nd trim. visit 2",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v2.toxoplasmosis": {
+    "label": "Toxoplasmosis serology — 2nd trim. visit 2",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v2.syphilis": {
+    "label": "Syphilis test — 2nd trim. visit 2",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v2.hepatitis_b": {
+    "label": "Hepatitis B (HBsAg) — 2nd trim. visit 2",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v2.hiv": {
+    "label": "HIV test — 2nd trim. visit 2",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v2.hemoglobin_g_dl": {
+    "label": "Haemoglobin (g/dL) — 2nd trim. visit 2",
+    "value": "17.4",
+    "conf": 0.5,
+    "status": "NEEDS_REVIEW"
+  },
+  "visits.t2_v2.platelets": {
+    "label": "Platelets — 2nd trim. visit 2",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v2.glycemia_g_l": {
+    "label": "Glycaemia (g/L) — 2nd trim. visit 2",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v2.rai": {
+    "label": "Antibody screen (if Rh-) — 2nd trim. visit 2",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v2.iron": {
+    "label": "Iron supplement — 2nd trim. visit 2",
+    "value": "Oui",
+    "conf": 0.87,
+    "status": "KNOWN"
+  },
+  "visits.t2_v2.examined_by": {
+    "label": "Examined by — 2nd trim. visit 2",
+    "value": "Sage-femme",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v3.appointment_date": {
+    "label": "Appointment date — 2nd trim. visit 3",
+    "value": "29/11/2025",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v3.attended_date": {
+    "label": "Date attended — 2nd trim. visit 3",
+    "value": "01/11/2025",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v3.reminder_visit": {
+    "label": "Reminder visit — 2nd trim. visit 3",
+    "value": "Non",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v3.gestational_age_weeks": {
+    "label": "Gestational age (weeks) — 2nd trim. visit 3",
+    "value": "27 SA",
+    "conf": 0.98,
+    "status": "KNOWN"
+  },
+  "visits.t2_v3.weight_kg": {
+    "label": "Weight (kg) — 2nd trim. visit 3",
+    "value": "64.3 kg",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v3.blood_pressure": {
+    "label": "Blood pressure — 2nd trim. visit 3",
+    "value": "102/60",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v3.skeletal_anomalies": {
+    "label": "Skeletal anomalies — 2nd trim. visit 3",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v3.conjunctivae": {
+    "label": "Conjunctivae — 2nd trim. visit 3",
+    "value": "Normales",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v3.breast_exam": {
+    "label": "Breast exam — 2nd trim. visit 3",
+    "value": "Normaux",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v3.edema": {
+    "label": "Oedema — 2nd trim. visit 3",
+    "value": "Non",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v3.fetal_movements": {
+    "label": "Fetal movements — 2nd trim. visit 3",
+    "value": "Oui",
+    "conf": 0.99,
+    "status": "KNOWN"
+  },
+  "visits.t2_v3.fundal_height_cm": {
+    "label": "Fundal height (cm) — 2nd trim. visit 3",
+    "value": "23",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v3.fetal_heart_rate": {
+    "label": "Fetal heart rate (bpm) — 2nd trim. visit 3",
+    "value": "148",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v3.speculum_exam": {
+    "label": "Speculum exam — 2nd trim. visit 3",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.t2_v3.cervix": {
+    "label": "Cervix — 2nd trim. visit 3",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.t2_v3.presentation": {
+    "label": "Presentation — 2nd trim. visit 3",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.t2_v3.pelvis": {
+    "label": "Pelvis — 2nd trim. visit 3",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.t2_v3.glycosuria": {
+    "label": "Glycosuria — 2nd trim. visit 3",
+    "value": "Négatif",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.t2_v3.albuminuria": {
+    "label": "Proteinuria — 2nd trim. visit 3",
+    "value": "Négatif",
+    "conf": 0.95,
+    "status": "KNOWN"
+  },
+  "visits.t2_v3.rubella": {
+    "label": "Rubella serology — 2nd trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v3.toxoplasmosis": {
+    "label": "Toxoplasmosis serology — 2nd trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v3.syphilis": {
+    "label": "Syphilis test — 2nd trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v3.hepatitis_b": {
+    "label": "Hepatitis B (HBsAg) — 2nd trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v3.hiv": {
+    "label": "HIV test — 2nd trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v3.hemoglobin_g_dl": {
+    "label": "Haemoglobin (g/dL) — 2nd trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v3.platelets": {
+    "label": "Platelets — 2nd trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v3.glycemia_g_l": {
+    "label": "Glycaemia (g/L) — 2nd trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v3.rai": {
+    "label": "Antibody screen (if Rh-) — 2nd trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v3.iron": {
+    "label": "Iron supplement — 2nd trim. visit 3",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.t2_v3.examined_by": {
+    "label": "Examined by — 2nd trim. visit 3",
+    "value": "Inf. Zahra",
+    "conf": 0.98,
+    "status": "KNOWN"
+  },
+  "visits.m7.appointment_date": {
+    "label": "Appointment date — month 7",
+    "value": "29/12/2025",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m7.attended_date": {
+    "label": "Date attended — month 7",
+    "value": "01/12/2025",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m7.reminder_visit": {
+    "label": "Reminder visit — month 7",
+    "value": "Non",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m7.gestational_age_weeks": {
+    "label": "Gestational age (weeks) — month 7",
+    "value": "31 SA",
+    "conf": 0.99,
+    "status": "KNOWN"
+  },
+  "visits.m7.weight_kg": {
+    "label": "Weight (kg) — month 7",
+    "value": "64.8 kg",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m7.blood_pressure": {
+    "label": "Blood pressure — month 7",
+    "value": "103/66",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m7.skeletal_anomalies": {
+    "label": "Skeletal anomalies — month 7",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m7.conjunctivae": {
+    "label": "Conjunctivae — month 7",
+    "value": "Normales",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m7.breast_exam": {
+    "label": "Breast exam — month 7",
+    "value": "Normaux",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m7.edema": {
+    "label": "Oedema — month 7",
+    "value": "Non",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m7.fetal_movements": {
+    "label": "Fetal movements — month 7",
+    "value": "Oui",
+    "conf": 0.95,
+    "status": "KNOWN"
+  },
+  "visits.m7.fundal_height_cm": {
+    "label": "Fundal height (cm) — month 7",
+    "value": "27",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m7.fetal_heart_rate": {
+    "label": "Fetal heart rate (bpm) — month 7",
+    "value": "149",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m7.speculum_exam": {
+    "label": "Speculum exam — month 7",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.m7.cervix": {
+    "label": "Cervix — month 7",
+    "value": "Fermé",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m7.presentation": {
+    "label": "Presentation — month 7",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.m7.pelvis": {
+    "label": "Pelvis — month 7",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.m7.glycosuria": {
+    "label": "Glycosuria — month 7",
+    "value": "Négatif",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m7.albuminuria": {
+    "label": "Proteinuria — month 7",
+    "value": "Négatif",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m7.rubella": {
+    "label": "Rubella serology — month 7",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m7.toxoplasmosis": {
+    "label": "Toxoplasmosis serology — month 7",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m7.syphilis": {
+    "label": "Syphilis test — month 7",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m7.hepatitis_b": {
+    "label": "Hepatitis B (HBsAg) — month 7",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m7.hiv": {
+    "label": "HIV test — month 7",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m7.hemoglobin_g_dl": {
+    "label": "Haemoglobin (g/dL) — month 7",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m7.platelets": {
+    "label": "Platelets — month 7",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m7.glycemia_g_l": {
+    "label": "Glycaemia (g/L) — month 7",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m7.rai": {
+    "label": "Antibody screen (if Rh-) — month 7",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m7.iron": {
+    "label": "Iron supplement — month 7",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m7.examined_by": {
+    "label": "Examined by — month 7",
+    "value": "Dr Benjelloun",
+    "conf": 0.97,
+    "status": "KNOWN"
+  },
+  "visits.m8.appointment_date": {
+    "label": "Appointment date — month 8",
+    "value": "26/01/2026",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m8.attended_date": {
+    "label": "Date attended — month 8",
+    "value": "29/12/2025",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m8.reminder_visit": {
+    "label": "Reminder visit — month 8",
+    "value": "Non",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m8.gestational_age_weeks": {
+    "label": "Gestational age (weeks) — month 8",
+    "value": "35 SA",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m8.weight_kg": {
+    "label": "Weight (kg) — month 8",
+    "value": "66.2 kg",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m8.blood_pressure": {
+    "label": "Blood pressure — month 8",
+    "value": "115/63",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m8.skeletal_anomalies": {
+    "label": "Skeletal anomalies — month 8",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m8.conjunctivae": {
+    "label": "Conjunctivae — month 8",
+    "value": "Normales",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m8.breast_exam": {
+    "label": "Breast exam — month 8",
+    "value": "Normaux",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m8.edema": {
+    "label": "Oedema — month 8",
+    "value": "Non",
+    "conf": 0.99,
+    "status": "KNOWN"
+  },
+  "visits.m8.fetal_movements": {
+    "label": "Fetal movements — month 8",
+    "value": "Oui",
+    "conf": 0.97,
+    "status": "KNOWN"
+  },
+  "visits.m8.fundal_height_cm": {
+    "label": "Fundal height (cm) — month 8",
+    "value": "31",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m8.fetal_heart_rate": {
+    "label": "Fetal heart rate (bpm) — month 8",
+    "value": "139",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m8.speculum_exam": {
+    "label": "Speculum exam — month 8",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.m8.cervix": {
+    "label": "Cervix — month 8",
+    "value": "Fermé",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m8.presentation": {
+    "label": "Presentation — month 8",
+    "value": "Céphalique",
+    "conf": 0.99,
+    "status": "KNOWN"
+  },
+  "visits.m8.pelvis": {
+    "label": "Pelvis — month 8",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.m8.glycosuria": {
+    "label": "Glycosuria — month 8",
+    "value": "Négatif",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m8.albuminuria": {
+    "label": "Proteinuria — month 8",
+    "value": "Négatif",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m8.rubella": {
+    "label": "Rubella serology — month 8",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m8.toxoplasmosis": {
+    "label": "Toxoplasmosis serology — month 8",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m8.syphilis": {
+    "label": "Syphilis test — month 8",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m8.hepatitis_b": {
+    "label": "Hepatitis B (HBsAg) — month 8",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m8.hiv": {
+    "label": "HIV test — month 8",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m8.hemoglobin_g_dl": {
+    "label": "Haemoglobin (g/dL) — month 8",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m8.platelets": {
+    "label": "Platelets — month 8",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m8.glycemia_g_l": {
+    "label": "Glycaemia (g/L) — month 8",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m8.rai": {
+    "label": "Antibody screen (if Rh-) — month 8",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m8.iron": {
+    "label": "Iron supplement — month 8",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m8.examined_by": {
+    "label": "Examined by — month 8",
+    "value": "Dr Chakir",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m9.appointment_date": {
+    "label": "Appointment date — month 9",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.m9.attended_date": {
+    "label": "Date attended — month 9",
+    "value": "18/01/2026",
+    "conf": 0.99,
+    "status": "KNOWN"
+  },
+  "visits.m9.reminder_visit": {
+    "label": "Reminder visit — month 9",
+    "value": "Non",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m9.gestational_age_weeks": {
+    "label": "Gestational age (weeks) — month 9",
+    "value": "38 SA",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m9.weight_kg": {
+    "label": "Weight (kg) — month 9",
+    "value": "66.8 kg",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m9.blood_pressure": {
+    "label": "Blood pressure — month 9",
+    "value": "110/60",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m9.skeletal_anomalies": {
+    "label": "Skeletal anomalies — month 9",
+    "value": "RAS",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m9.conjunctivae": {
+    "label": "Conjunctivae — month 9",
+    "value": "Normales",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m9.breast_exam": {
+    "label": "Breast exam — month 9",
+    "value": "Normaux",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m9.edema": {
+    "label": "Oedema — month 9",
+    "value": "Non",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m9.fetal_movements": {
+    "label": "Fetal movements — month 9",
+    "value": "Oui",
+    "conf": 0.99,
+    "status": "KNOWN"
+  },
+  "visits.m9.fundal_height_cm": {
+    "label": "Fundal height (cm) — month 9",
+    "value": "34",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m9.fetal_heart_rate": {
+    "label": "Fetal heart rate (bpm) — month 9",
+    "value": "148",
+    "conf": 0.99,
+    "status": "KNOWN"
+  },
+  "visits.m9.speculum_exam": {
+    "label": "Speculum exam — month 9",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.m9.cervix": {
+    "label": "Cervix — month 9",
+    "value": "Fermé",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m9.presentation": {
+    "label": "Presentation — month 9",
+    "value": "Céphalique",
+    "conf": 0.98,
+    "status": "KNOWN"
+  },
+  "visits.m9.pelvis": {
+    "label": "Pelvis — month 9",
+    "value": "—",
+    "conf": 0.9,
+    "status": "NOT_APPLICABLE"
+  },
+  "visits.m9.glycosuria": {
+    "label": "Glycosuria — month 9",
+    "value": "Négatif",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m9.albuminuria": {
+    "label": "Proteinuria — month 9",
+    "value": "Négatif",
+    "conf": 1.0,
+    "status": "KNOWN"
+  },
+  "visits.m9.rubella": {
+    "label": "Rubella serology — month 9",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m9.toxoplasmosis": {
+    "label": "Toxoplasmosis serology — month 9",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m9.syphilis": {
+    "label": "Syphilis test — month 9",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m9.hepatitis_b": {
+    "label": "Hepatitis B (HBsAg) — month 9",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m9.hiv": {
+    "label": "HIV test — month 9",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m9.hemoglobin_g_dl": {
+    "label": "Haemoglobin (g/dL) — month 9",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m9.platelets": {
+    "label": "Platelets — month 9",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m9.glycemia_g_l": {
+    "label": "Glycaemia (g/L) — month 9",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m9.rai": {
+    "label": "Antibody screen (if Rh-) — month 9",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m9.iron": {
+    "label": "Iron supplement — month 9",
+    "value": "—",
+    "conf": 0.97,
+    "status": "NOT_PROVIDED"
+  },
+  "visits.m9.examined_by": {
+    "label": "Examined by — month 9",
+    "value": "Sage-femme",
+    "conf": 1.0,
+    "status": "KNOWN"
+  }
+}
