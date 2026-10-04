@@ -29,21 +29,27 @@ app.include_router(sync.router)
 
 @app.exception_handler(ApiError)
 def api_error(_: Request, e: ApiError):
+    """A request the API refuses (ApiError) -> its status code, with {"detail": message} plus any extra
+    keys (e.g. near-match candidates)."""
     return JSONResponse({"detail": e.message, **e.extra}, status_code=e.status_code)
 
 
 @app.exception_handler(IllegalTransition)
 def illegal(_: Request, e: IllegalTransition):
+    """A move the record lifecycle doesn't allow (offline.IllegalTransition) -> 409 Conflict."""
     return JSONResponse({"detail": str(e)}, status_code=409)
 
 
 @app.exception_handler(ValueError)
 def bad_value(_: Request, e: ValueError):
+    """Invalid input raised as ValueError (e.g. an unknown demo page) -> 422."""
     return JSONResponse({"detail": str(e)}, status_code=422)
 
 
 @app.get("/", include_in_schema=False)
 def chat_page():
+    """The chat (front_end2.HTML). no-cache: while online the phone re-checks it, so a new version
+    arrives."""
     return FileResponse(config.FRONTEND_FILE, media_type="text/html", headers={"Cache-Control": "no-cache"})
 
 
@@ -62,4 +68,6 @@ _pwa_route("icon.svg", "image/svg+xml")
 
 @app.get("/health")
 def health():
+    """Liveness check, plus the extractor actually in use (local, claude, or fixture when the OCR isn't
+    installed)."""
     return {"status": "healthy", "extractor": active_extractor()}

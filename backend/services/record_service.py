@@ -14,6 +14,9 @@ REVIEW_STATUSES = {"NEEDS_REVIEW", "ILLEGIBLE"}
 
 
 class ApiError(Exception):
+    """A request the API refuses: becomes an HTTP error with this status code and message. extra adds
+    keys to the JSON body (e.g. near-match candidates)."""
+
     def __init__(self, status_code: int, message: str, extra: dict | None = None):
         super().__init__(message)
         self.status_code = status_code
@@ -23,11 +26,14 @@ class ApiError(Exception):
 
 # ---------- views ----------
 def _field_view(f: dict) -> dict:
+    """The parts of one extracted field (FieldResult) the chat needs."""
     return {k: f.get(k) for k in ("key", "label_en", "label_fr", "kind", "dtype", "value", "display", "status",
                                   "confidence", "issues", "question_en", "question_fr", "corrected_by_midwife")}
 
 
 def record_view(state: AppState, rec: dict, full: bool = False) -> dict:
+    """A record as the chat sees it: state, page, summary, the questions to ask (least confident first)
+    and the filled fields. full=True adds every field and the state history."""
     ext = rec["fields"].get("extraction") or {}
     fields = ext.get("fields", {})
     view = {
@@ -61,6 +67,7 @@ def record_view(state: AppState, rec: dict, full: bool = False) -> dict:
 
 
 def get_record(state: AppState, record_id: str) -> dict:
+    """The stored record, or ApiError 404."""
     try:
         return state.store.get(record_id)
     except KeyError:
@@ -69,6 +76,8 @@ def get_record(state: AppState, record_id: str) -> dict:
 
 # ---------- the midwife's answers ----------
 def _recompute(ext: dict) -> None:
+    """After answers: refresh the review queue (least confident first), the count per status and the
+    patient code read on the page."""
     fields = ext["fields"]
     review = [k for k, f in fields.items() if f["status"] in REVIEW_STATUSES]
     review.sort(key=lambda k: fields[k]["confidence"])
@@ -123,6 +132,9 @@ def _typed_value(text: str, f, label: str):
 
 
 def _apply_one(field: dict, answer: dict, catalog_field) -> None:
+    """Apply one answer to one field: confirm the value read, set a status (UNKNOWN, NOT_APPLICABLE...),
+    or a typed value checked against the field's definition. Either way the field is then marked as
+    corrected by the midwife."""
     if answer.get("confirm"):
         field.update(status="KNOWN", confidence=1.0, corrected_by_midwife=True)
         field["issues"] = [i for i in field.get("issues", []) if "confirm" not in i] + ["confirmed by midwife"]
@@ -141,6 +153,8 @@ def _apply_one(field: dict, answer: dict, catalog_field) -> None:
 
 
 def apply_answers(state: AppState, record_id: str, answers: dict[str, dict]) -> dict:
+    """Apply the midwife's answers to a record under review. All or nothing: if one answer is refused
+    (ApiError 422), none is saved. A page entered by hand then moves on to TO_REVIEW."""
     from extraction.catalog import fields_for
 
     rec = get_record(state, record_id)
@@ -163,6 +177,8 @@ def apply_answers(state: AppState, record_id: str, answers: dict[str, dict]) -> 
 
 
 def start_manual_entry(state: AppState, record_id: str, page_type: str) -> dict:
+    """The AI couldn't handle the page: give the record an empty form of this page type, for the midwife
+    to fill by chat (state MANUAL_REVIEW_REQUIRED)."""
     from extraction import PAGE_TYPES, empty_form
 
     if page_type not in PAGE_TYPES:
@@ -179,6 +195,7 @@ def start_manual_entry(state: AppState, record_id: str, page_type: str) -> dict:
 
 # ---------- lifecycle ----------
 def validate(state: AppState, record_id: str) -> dict:
+    """The midwife confirms the record: TO_REVIEW -> VALIDATED (409 in any other state)."""
     rec = get_record(state, record_id)
     if rec["state"] != State.TO_REVIEW:
         raise ApiError(409, f"record is {rec['state'].value}; only records under review can be validated")
@@ -187,6 +204,7 @@ def validate(state: AppState, record_id: str) -> dict:
 
 
 def retry(state: AppState, record_id: str) -> dict:
+    """Send a record back to the AI (PENDING_AI) with a fresh attempt count, if its state allows it."""
     rec = get_record(state, record_id)
     if State.PENDING_AI not in _allowed(rec["state"]):
         raise ApiError(409, f"record is {rec['state'].value}; it can't be sent back to the AI")
@@ -196,11 +214,13 @@ def retry(state: AppState, record_id: str) -> dict:
 
 
 def _allowed(s: State) -> set:
+    """States a record may move to from state s (the lifecycle table in offline)."""
     from offline import ALLOWED
     return ALLOWED[s]
 
 
 def new_patient_code(state: AppState) -> str:
+    """A random code (M-1234) that no profile uses yet."""
     existing = set(state.patients.all_codes())
     while True:
         code = f"M-{random.randint(1000, 9999)}"
@@ -209,6 +229,11 @@ def new_patient_code(state: AppState) -> str:
 
 
 def link(state: AppState, record_id: str, code: str | None, create: bool) -> dict:
+    """Attach a validated record to a patient, then save it on the device (VALIDATED -> PATIENT_LINKED
+    -> SAVED).
+
+    Never guesses: an unknown code is refused (404 with near-match candidates) unless create=true, and
+    create=true without a code generates a new one."""
     rec = get_record(state, record_id)
     if rec["state"] != State.VALIDATED:
         raise ApiError(409, f"record is {rec['state'].value}; validate it before linking")
@@ -229,6 +254,8 @@ def link(state: AppState, record_id: str, code: str | None, create: bool) -> dic
 
 
 def patient_view(state: AppState, code: str) -> dict:
+    """One profile: number of visits, the last visit, and its records. 404 with near-match candidates if
+    the code is unknown."""
     code = normalise_code(code)
     if not state.patients.exists(code):
         raise ApiError(404, f"no patient with code {code}",
@@ -244,6 +271,8 @@ def patient_view(state: AppState, code: str) -> dict:
 
 
 def search_patients(state: AppState, code: str) -> list[dict]:
+    """Profiles whose code matches exactly or with one character different, with their visits and the
+    pages on file."""
     out = []
     for c in candidates(code, state.patients.all_codes()):
         p = patient_view(state, c["code"])

@@ -15,6 +15,7 @@ class Answer(BaseModel):
 
     @model_validator(mode="after")
     def exactly_one(self):
+        """Refuse an answer that gives none, or more than one, of text / confirm / status."""
         given = [self.text is not None, self.confirm, self.status is not None]
         if sum(given) != 1:
             raise ValueError("give exactly one of: text, confirm, status")
@@ -22,18 +23,23 @@ class Answer(BaseModel):
 
 
 class AnswersIn(BaseModel):
+    """The midwife's answers for one record, keyed by field key."""
     answers: dict[str, Answer] = Field(..., examples=[{"record_number": {"confirm": True},
                                                       "facility_name": {"text": "CSCA Al Wifaq"}}])
 
 
 class ManualEntryIn(BaseModel):
+    """Page type of the empty form to fill by hand (one of extraction.PAGE_TYPES)."""
     page_type: str = Field(..., examples=["cover"])
 
 
 class LinkIn(BaseModel):
+    """The patient a validated record belongs to: an existing code, a new code to create, or create=true
+    without a code for a generated one."""
     patient_code: Optional[str] = Field(None, examples=["2026-823-001"])
     create: bool = Field(False, description="create the profile if the code is new (or generate a code if none given)")
 
 
 class ConnectivityIn(BaseModel):
+    """Demo network switch: true = online, false = offline."""
     online: bool

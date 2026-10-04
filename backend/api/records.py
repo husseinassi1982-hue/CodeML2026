@@ -1,3 +1,4 @@
+"""Record endpoints: capture a photo, read it, answer the review questions, validate, link to a patient."""
 from __future__ import annotations
 
 from datetime import datetime, timezone
@@ -80,6 +81,7 @@ def manual(record_id: str, body: ManualEntryIn):
 
 @router.post("/{record_id}/validate")
 def validate(record_id: str):
+    """The midwife confirms the reviewed record: TO_REVIEW -> VALIDATED (409 in any other state)."""
     return rs.validate(get_state(), record_id)
 
 

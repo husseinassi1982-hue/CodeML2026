@@ -1,3 +1,4 @@
+"""Test fixtures: the app on a fresh temporary data folder, and fake photos."""
 import sys
 from pathlib import Path
 
@@ -11,6 +12,7 @@ from database.database import reset_state  # noqa: E402
 
 @pytest.fixture
 def client(tmp_path, monkeypatch):
+    """A test client for the app, with records, patients and key file in an empty tmp_path."""
     from fastapi.testclient import TestClient
     from main import app
 
@@ -21,6 +23,7 @@ def client(tmp_path, monkeypatch):
 
 @pytest.fixture
 def photo():
+    """Factory of fake photo uploads (filename, bytes, type); each call gives different bytes."""
     n = {"i": 0}
 
     def make():  # distinct bytes each time, so they aren't flagged as duplicates

@@ -8,6 +8,7 @@ from __future__ import annotations
 
 
 def normalise_code(code: str) -> str:
+    """Codes compare without spaces or case: ' m-1234 ' -> 'M-1234'."""
     return "".join(code.split()).upper()
 
 

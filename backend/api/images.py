@@ -1,3 +1,4 @@
+"""A record's original photo: encrypted at rest, served only to the roles allowed to see it."""
 from fastapi import APIRouter, Header
 from fastapi.responses import Response
 

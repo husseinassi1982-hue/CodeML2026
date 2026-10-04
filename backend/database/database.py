@@ -15,6 +15,7 @@ from offline import Connectivity, RecordStore
 
 
 def _now() -> str:
+    """Current time as UTC ISO 8601 text."""
     return datetime.now(timezone.utc).isoformat()
 
 
@@ -35,28 +36,34 @@ class PatientStore:
                 record_id TEXT PRIMARY KEY, patient_code TEXT NOT NULL, linked_at TEXT NOT NULL)""")
 
     def exists(self, code: str) -> bool:
+        """Is there a profile with this code?"""
         with self._lock:
             return self.db.execute("SELECT 1 FROM patients WHERE code = ?", (code,)).fetchone() is not None
 
     def create(self, code: str) -> None:
+        """Add a profile. The code must be new (the primary key refuses duplicates)."""
         with self._lock, self.db:
             self.db.execute("INSERT INTO patients (code, created_at) VALUES (?, ?)", (code, _now()))
 
     def all_codes(self) -> list[str]:
+        """Every profile code, oldest first."""
         with self._lock:
             return [r["code"] for r in self.db.execute("SELECT code FROM patients ORDER BY created_at")]
 
     def link(self, record_id: str, code: str) -> None:
+        """Attach a record to a profile; linking the same record again replaces its link."""
         with self._lock, self.db:
             self.db.execute("INSERT OR REPLACE INTO links (record_id, patient_code, linked_at) VALUES (?,?,?)",
                             (record_id, code, _now()))
 
     def code_for_record(self, record_id: str) -> str | None:
+        """Code of the profile this record is linked to, or None."""
         with self._lock:
             row = self.db.execute("SELECT patient_code FROM links WHERE record_id = ?", (record_id,)).fetchone()
         return row["patient_code"] if row else None
 
     def records_for(self, code: str) -> list[str]:
+        """IDs of a profile's records, in the order they were linked."""
         with self._lock:
             rows = self.db.execute("SELECT record_id FROM links WHERE patient_code = ? ORDER BY linked_at",
                                    (code,)).fetchall()
@@ -64,6 +71,9 @@ class PatientStore:
 
 
 class AppState:
+    """Everything the running app shares: the record store, the patients, the network switch, the AI
+    queue lock and the pretend health-system server."""
+
     def __init__(self, root: Path):
         self.store = RecordStore(root)
         self.patients = PatientStore(root)
@@ -76,6 +86,7 @@ _state: AppState | None = None
 
 
 def get_state() -> AppState:
+    """The app's shared state, created in config.DATA_DIR on first use."""
     global _state
     if _state is None:
         _state = AppState(config.DATA_DIR)

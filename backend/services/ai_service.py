@@ -18,6 +18,7 @@ class PermanentFailure(Exception):
 
 @lru_cache(maxsize=1)
 def ocr_available() -> bool:
+    """Are the packages the local OCR needs installed? Checked once."""
     return all(importlib.util.find_spec(m) is not None for m in ("rapidocr", "cv2", "pymupdf", "onnxruntime"))
 
 
@@ -29,18 +30,28 @@ def active_extractor() -> str:
 
 
 def fixture_names() -> list[str]:
+    """Saved real extractor outputs in fixtures/ that can stand in for the OCR (demo pages). The
+    .ui.json views and the manual_* forms are not demo pages."""
     return sorted(p.stem for p in config.FIXTURES_DIR.glob("*.json")
                   if not p.name.endswith(".ui.json") and not p.stem.startswith("manual_"))
 
 
 def load_fixture(name: str) -> dict:
+    """A saved extractor output by name. ValueError if there is no such demo page."""
     if name not in fixture_names():
         raise ValueError(f"unknown demo page {name!r}; choose one of {fixture_names()}")
     return json.loads((config.FIXTURES_DIR / f"{name}.json").read_text(encoding="utf-8"))
 
 
 def make_extract_fn(state: AppState):
+    """The function the offline queue calls on each photo, bound to this app's state.
+
+    A demo page (or fixture mode) returns its saved output. Otherwise the configured extractor runs and
+    its errors are translated for the queue: an unreadable photo fails at once (PermanentFailure), the
+    cloud backend being unreachable waits for the network without using an attempt (ConnectionError),
+    any other error counts as a failed attempt."""
     def extract_fn(image_bytes: bytes, record_id: str) -> dict:
+        """Photo bytes of one record -> {"extraction": PageExtraction as JSON}."""
         demo_page = state.store.get(record_id)["fields"].get("demo_page")
         mode = active_extractor()
         if demo_page or mode == "fixture":

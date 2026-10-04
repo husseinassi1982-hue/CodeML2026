@@ -5,18 +5,21 @@ import pytest
 
 
 def capture(client, photo, page="cover_photo"):
+    """Upload a fake photo whose reading will be the saved extractor output `page` -> the new record."""
     r = client.post("/records", files={"photo": photo()}, data={"demo_page": page})
     assert r.status_code == 201, r.text
     return r.json()
 
 
 def test_health_and_front_end(client):
+    """The health check answers and the chat page is served."""
     assert client.get("/health").json()["status"] == "healthy"
     page = client.get("/")
     assert page.status_code == 200 and "DayOne" in page.text
 
 
 def test_full_visit_cover_page(client, photo):
+    """A whole visit: capture, AI, review, validate, link, sync, with every state in the history."""
     rec = capture(client, photo)
     assert rec["state"] == "PENDING_AI"
 
@@ -52,6 +55,7 @@ def test_full_visit_cover_page(client, photo):
 
 
 def test_typed_values_are_parsed_and_markers_understood(client, photo):
+    """Typed values are parsed by field type (120/80 -> blood pressure) and '?' means UNKNOWN."""
     rec = capture(client, photo, "current_pregnancy_photo")
     client.post("/queue/process")
     rec = client.get(f"/records/{rec['id']}").json()
@@ -67,6 +71,8 @@ def test_typed_values_are_parsed_and_markers_understood(client, photo):
 
 
 def test_offline_capture_then_sync_waits_for_connection(client, photo):
+    """Offline, the local AI still reads the photo, but the saved record waits for the connection to
+    sync."""
     client.post("/connectivity", json={"online": False})
     rec = capture(client, photo)
     client.post("/queue/process")  # local AI works offline
@@ -82,6 +88,7 @@ def test_offline_capture_then_sync_waits_for_connection(client, photo):
 
 
 def test_ai_waits_for_network_when_configured(client, photo, monkeypatch):
+    """With AI_NEEDS_NETWORK, queued photos wait while offline and are read once the connection is back."""
     from core import config
     monkeypatch.setattr(config, "AI_NEEDS_NETWORK", True)
     client.post("/connectivity", json={"online": False})
@@ -92,6 +99,7 @@ def test_ai_waits_for_network_when_configured(client, photo, monkeypatch):
 
 
 def test_same_photo_twice_is_flagged(client):
+    """The exact same photo uploaded twice is parked as SUSPECTED_DUPLICATE."""
     f = ("p.jpg", b"identical", "image/jpeg")
     client.post("/records", files={"photo": f}, data={"demo_page": "cover"})
     second = client.post("/records", files={"photo": f}, data={"demo_page": "cover"}).json()
@@ -99,6 +107,8 @@ def test_same_photo_twice_is_flagged(client):
 
 
 def test_linking_never_guesses_a_patient(client, photo):
+    """A code one digit off is refused with the near match offered; the right code links the second
+    visit to the same profile."""
     first = capture(client, photo)
     client.post("/queue/process")
     client.patch(f"/records/{first['id']}/fields", json={"answers": {"record_number": {"confirm": True},
@@ -126,6 +136,7 @@ def test_linking_never_guesses_a_patient(client, photo):
 
 
 def test_illegal_moves_are_refused(client, photo):
+    """Requests out of order or malformed are refused (409, 422, 404)."""
     rec = capture(client, photo)
     assert client.post(f"/records/{rec['id']}/validate").status_code == 409  # not reviewed yet
     assert client.patch(f"/records/{rec['id']}/fields",
@@ -141,6 +152,7 @@ def test_illegal_moves_are_refused(client, photo):
 
 
 def test_photo_access_is_restricted(client, photo):
+    """The original photo is refused without a role or to other roles, and served to the midwife."""
     rec = capture(client, photo)
     assert client.get(f"/records/{rec['id']}/image").status_code == 403
     assert client.get(f"/records/{rec['id']}/image", headers={"X-Role": "researcher"}).status_code == 403
@@ -149,6 +161,7 @@ def test_photo_access_is_restricted(client, photo):
 
 
 def test_extractor_errors_map_to_states(client, photo, monkeypatch):
+    """An unreadable photo fails at once (no retries); the midwife can then enter the page by hand."""
     from services import ai_service
 
     monkeypatch.setattr(ai_service, "active_extractor", lambda: "local")
@@ -169,6 +182,7 @@ def test_extractor_errors_map_to_states(client, photo, monkeypatch):
 
 
 def test_unrecognised_page_goes_to_manual_review(client, photo, monkeypatch):
+    """A page the extractor can't recognise goes to MANUAL_REVIEW_REQUIRED."""
     from services import ai_service
     from extraction import empty_form
 
@@ -183,6 +197,7 @@ def test_unrecognised_page_goes_to_manual_review(client, photo, monkeypatch):
 
 @pytest.mark.skipif(importlib.util.find_spec("rapidocr") is None, reason="OCR not installed")
 def test_real_ocr_on_printed_cover(client):
+    """The real OCR recognises a specimen cover page (needs rapidocr and the organisers' data)."""
     from core import config
     path = config.REPO_ROOT / "data" / "Paper Registry" / "dossiers_specimen_10_patientes-01.png"
     if not path.exists():
@@ -195,6 +210,7 @@ def test_real_ocr_on_printed_cover(client):
 
 
 def test_typed_answers_must_fit_the_field(client, photo):
+    """Typed answers must fit the field's type, and a batch with one bad answer saves nothing."""
     rec = capture(client, photo, "current_pregnancy_photo")
     client.post("/queue/process")
     fields = client.get(f"/records/{rec['id']}").json()["fields"]
@@ -217,6 +233,7 @@ def test_typed_answers_must_fit_the_field(client, photo):
 
 
 def test_checkbox_and_choice_answers(client, photo):
+    """Checkboxes take oui / non; a choice must be one of the printed options."""
     rec = capture(client, photo)
     client.post("/queue/process")
     url = f"/records/{rec['id']}/fields"
@@ -229,6 +246,7 @@ def test_checkbox_and_choice_answers(client, photo):
 
 
 def test_offline_app_files(client):
+    """The files the phone caches to open the chat offline are served."""
     # the chat page, its service worker and manifest: what the phone caches to open offline
     assert 'rel="manifest"' in client.get("/").text
     sw = client.get("/sw.js")
@@ -238,6 +256,8 @@ def test_offline_app_files(client):
 
 
 def test_photo_kept_on_phone_keeps_its_capture_time(client, photo):
+    """A photo uploaded later from the phone's outbox keeps the time it was taken; an invalid time is
+    refused."""
     r = client.post("/records", files={"photo": photo()},
                     data={"demo_page": "cover_photo", "captured_at": "2026-10-01T08:30:00Z"})
     assert r.status_code == 201, r.text

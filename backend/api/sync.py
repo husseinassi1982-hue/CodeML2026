@@ -1,3 +1,4 @@
+"""The AI queue, sync to the health system, the demo network switch, and the status counts."""
 from fastapi import APIRouter
 
 from core import config
@@ -10,12 +11,15 @@ router = APIRouter(tags=["queue & sync"])
 
 
 def _counts() -> dict:
+    """How many records are in each lifecycle state."""
     s = get_state()
     return {st.value: len(s.store.list_by_state(st)) for st in State}
 
 
 @router.get("/status")
 def status():
+    """What the chat's header shows: online or not, which extractor, records per state, and how many
+    records the health-system server received."""
     s = get_state()
     return {"online": s.net.is_online(), "extractor": active_extractor(),
             "ai_needs_network": config.AI_NEEDS_NETWORK, "counts": _counts(),
