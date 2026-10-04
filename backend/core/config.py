@@ -24,6 +24,8 @@ DATA_DIR = Path(os.environ.get("DAYONE_DATA_DIR", BACKEND_DIR / "app_data"))
 
 # Which extractor runs on queued photos:
 #   local   - offline OCR (default, what we demo and evaluate)
+#   vlm     - the fine-tuned vision model reads the handwriting (needs a CUDA GPU + vlm_ocr_lora_v2,
+#             see extraction/README.md); without them pages wait as PENDING_AI
 #   claude  - optional cloud backend, needs ANTHROPIC_API_KEY and DAYONE_ALLOW_CLOUD=1
 #   fixture - no OCR at all: every photo returns a saved real output from fixtures/.
 #             Used automatically if the OCR packages are not installed.

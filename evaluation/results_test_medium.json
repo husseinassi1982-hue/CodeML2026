@@ -1,31 +1,31 @@
 {
   "overall": {
     "fields": 1692,
-    "field_accuracy": 0.8298,
-    "value_accuracy_on_written": 0.8952,
-    "status_accuracy": 0.841,
-    "review_rate_on_written": 0.236,
-    "silent_error_rate": 0.0244,
-    "silent_errors": 19
+    "field_accuracy": 0.8186,
+    "value_accuracy_on_written": 0.9187,
+    "status_accuracy": 0.8274,
+    "review_rate_on_written": 0.2439,
+    "silent_error_rate": 0.0195,
+    "silent_errors": 15
   },
   "by_kind": {
     "text": {
       "fields": 231,
-      "field_accuracy": 0.8268,
-      "value_accuracy_on_written": 0.9135,
-      "status_accuracy": 0.8485,
-      "review_rate_on_written": 0.1892,
-      "silent_error_rate": 0.0333,
-      "silent_errors": 5
+      "field_accuracy": 0.7792,
+      "value_accuracy_on_written": 0.9297,
+      "status_accuracy": 0.7965,
+      "review_rate_on_written": 0.2162,
+      "silent_error_rate": 0.0278,
+      "silent_errors": 4
     },
     "cell": {
       "fields": 987,
-      "field_accuracy": 0.7487,
-      "value_accuracy_on_written": 0.7507,
-      "status_accuracy": 0.7629,
-      "review_rate_on_written": 0.5644,
-      "silent_error_rate": 0.0881,
-      "silent_errors": 14
+      "field_accuracy": 0.7406,
+      "value_accuracy_on_written": 0.8082,
+      "status_accuracy": 0.7518,
+      "review_rate_on_written": 0.5726,
+      "silent_error_rate": 0.071,
+      "silent_errors": 11
     },
     "check": {
       "fields": 402,
@@ -49,62 +49,62 @@
   "by_page_type": {
     "cover": {
       "fields": 48,
-      "field_accuracy": 0.9375,
+      "field_accuracy": 0.8542,
       "value_accuracy_on_written": 1.0,
-      "status_accuracy": 0.9375,
-      "review_rate_on_written": 0.0667,
+      "status_accuracy": 0.8542,
+      "review_rate_on_written": 0.1556,
       "silent_error_rate": 0.0,
       "silent_errors": 0
     },
     "current_pregnancy": {
       "fields": 828,
-      "field_accuracy": 0.7186,
-      "value_accuracy_on_written": 0.7337,
-      "status_accuracy": 0.7343,
-      "review_rate_on_written": 0.571,
-      "silent_error_rate": 0.0897,
-      "silent_errors": 13
+      "field_accuracy": 0.7162,
+      "value_accuracy_on_written": 0.7959,
+      "status_accuracy": 0.7295,
+      "review_rate_on_written": 0.5769,
+      "silent_error_rate": 0.0775,
+      "silent_errors": 11
     },
     "delivery": {
       "fields": 78,
-      "field_accuracy": 0.9359,
-      "value_accuracy_on_written": 0.9559,
+      "field_accuracy": 0.9487,
+      "value_accuracy_on_written": 0.9853,
       "status_accuracy": 0.9487,
       "review_rate_on_written": 0.0588,
-      "silent_error_rate": 0.0156,
-      "silent_errors": 1
+      "silent_error_rate": 0.0,
+      "silent_errors": 0
     },
     "identification": {
       "fields": 234,
-      "field_accuracy": 0.8846,
+      "field_accuracy": 0.8632,
       "value_accuracy_on_written": 0.9412,
-      "status_accuracy": 0.8889,
-      "review_rate_on_written": 0.2451,
-      "silent_error_rate": 0.013,
-      "silent_errors": 1
+      "status_accuracy": 0.8632,
+      "review_rate_on_written": 0.2353,
+      "silent_error_rate": 0.0,
+      "silent_errors": 0
     },
     "postpartum_early_mother": {
       "fields": 129,
-      "field_accuracy": 0.969,
-      "value_accuracy_on_written": 0.9829,
-      "status_accuracy": 0.9767,
-      "review_rate_on_written": 0.0256,
-      "silent_error_rate": 0.0088,
+      "field_accuracy": 0.9767,
+      "value_accuracy_on_written": 0.9744,
+      "status_accuracy": 0.9845,
+      "review_rate_on_written": 0.0171,
+      "silent_error_rate": 0.0087,
       "silent_errors": 1
     },
     "postpartum_early_newborn": {
       "fields": 123,
-      "field_accuracy": 0.9512,
-      "value_accuracy_on_written": 0.9833,
-      "status_accuracy": 0.9593,
-      "review_rate_on_written": 0.0417,
-      "silent_error_rate": 0.0087,
-      "silent_errors": 1
+      "field_accuracy": 0.9187,
+      "value_accuracy_on_written": 0.9917,
+      "status_accuracy": 0.9187,
+      "review_rate_on_written": 0.0583,
+      "silent_error_rate": 0.0,
+      "silent_errors": 0
     },
     "postpartum_late_mother": {
       "fields": 129,
       "field_accuracy": 0.9767,
-      "value_accuracy_on_written": 0.982,
+      "value_accuracy_on_written": 0.991,
       "status_accuracy": 0.9845,
       "review_rate_on_written": 0.018,
       "silent_error_rate": 0.0092,
@@ -112,52 +112,44 @@
     },
     "postpartum_late_newborn": {
       "fields": 123,
-      "field_accuracy": 0.9431,
+      "field_accuracy": 0.8943,
       "value_accuracy_on_written": 0.9833,
-      "status_accuracy": 0.9512,
-      "review_rate_on_written": 0.05,
-      "silent_error_rate": 0.0088,
-      "silent_errors": 1
+      "status_accuracy": 0.9106,
+      "review_rate_on_written": 0.0667,
+      "silent_error_rate": 0.0179,
+      "silent_errors": 2
     }
   },
   "page_type_accuracy": 1.0,
-  "seconds_per_page": 2.6,
+  "seconds_per_page": 2.54,
   "calibration": {
-    "0.1-0.2": {
-      "n": 2,
-      "accuracy": 0.0
-    },
-    "0.2-0.3": {
-      "n": 4,
-      "accuracy": 0.0
-    },
     "0.3-0.4": {
-      "n": 16,
-      "accuracy": 0.125
+      "n": 31,
+      "accuracy": 0.419
     },
     "0.4-0.5": {
-      "n": 14,
-      "accuracy": 0.214
+      "n": 7,
+      "accuracy": 0.714
     },
     "0.5-0.6": {
-      "n": 35,
-      "accuracy": 0.257
+      "n": 18,
+      "accuracy": 0.5
     },
     "0.6-0.7": {
-      "n": 32,
-      "accuracy": 0.688
+      "n": 40,
+      "accuracy": 0.675
     },
     "0.7-0.8": {
-      "n": 52,
-      "accuracy": 0.769
+      "n": 66,
+      "accuracy": 0.742
     },
     "0.8-0.9": {
-      "n": 106,
-      "accuracy": 0.887
+      "n": 107,
+      "accuracy": 0.907
     },
     "0.9-1.0": {
-      "n": 289,
-      "accuracy": 0.945
+      "n": 281,
+      "accuracy": 0.95
     }
   },
   "run": {

@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crop Editor</title>
+<style>
+  :root {
+    --bg: #f6f6f4; --panel: #ffffff; --line: #e2e1dc; --text: #1d1d1b; --muted: #6b6a65;
+    --region: #1f9d55; --auto: #d33b2c; --manual: #2563eb; --empty: #8a8a85; --sel: #fff3c4;
+    --accent: #2563eb; --ok: #1f9d55; --traced: #0f9d58; --danger: #c0392b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #18181a; --panel: #222225; --line: #34343a; --text: #ececec; --muted: #9a9aa2;
+            --sel: #3b3520; --accent: #6b9bff; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 13px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg);
+         color: var(--text); height: 100vh; display: grid; grid-template-columns: 290px 1fr 340px;
+         grid-template-rows: auto 1fr; overflow: hidden; }
+  header { grid-column: 1 / -1; display: flex; gap: 8px 10px; align-items: center; padding: 8px 12px;
+           border-bottom: 1px solid var(--line); background: var(--panel); flex-wrap: wrap; }
+  header h1 { font-size: 14px; margin: 0 6px 0 0; }
+  select, input, button { font: inherit; color: var(--text); background: var(--panel);
+                          border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; }
+  button { cursor: pointer; }
+  button:hover:not(:disabled) { border-color: var(--accent); }
+  button:disabled { opacity: .45; cursor: default; }
+  button.primary { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 600; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; }
+  .seg button { border: 0; border-radius: 0; padding: 4px 10px; }
+  .seg button + button { border-left: 1px solid var(--line); }
+  .seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+  .muted { color: var(--muted); }
+  #list { border-right: 1px solid var(--line); overflow: auto; background: var(--panel); position: relative; }
+  #list .f { padding: 6px 10px; border-bottom: 1px solid var(--line); cursor: pointer; display: grid;
+             grid-template-columns: 10px 1fr; gap: 6px; }
+  #list .f.sel { background: var(--sel); }
+  #list .f .k { font-size: 11px; color: var(--muted); word-break: break-all; }
+  #list .f .r { font-family: ui-monospace, monospace; font-size: 12px; }
+  #list .sum { padding: 6px 10px; font-size: 12px; color: var(--muted); border-bottom: 1px solid var(--line); }
+  .dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 3px; display: inline-block; flex: none; }
+  .dot.auto { background: var(--auto); } .dot.none { background: transparent; border: 1px solid var(--muted); }
+  .dot.manual { background: var(--manual); } .dot.empty { background: var(--empty); }
+  .dot.traced { background: var(--traced); } .dot.found { background: transparent; border: 2px solid var(--region); }
+  .dot.missing { background: transparent; border: 2px dashed var(--auto); }
+  #stage { overflow: auto; position: relative; }
+  #wrap { position: relative; }
+  #wrap img { display: block; user-select: none; -webkit-user-drag: none; }
+  #wrap svg { position: absolute; inset: 0; overflow: visible; touch-action: none; user-select: none; }
+  #side { border-left: 1px solid var(--line); overflow: auto; background: var(--panel); padding: 12px; }
+  #side h2 { font-size: 14px; margin: 0 0 2px; }
+  #side h3 { font-size: 12px; margin: 14px 0 6px; color: var(--muted); font-weight: 600; }
+  #side .key { font-size: 11px; color: var(--muted); word-break: break-all; margin-bottom: 8px; }
+  .shape { border: 1px solid var(--line); border-radius: 6px; padding: 6px; margin-bottom: 6px; cursor: pointer; }
+  .shape.active { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .shape .hd { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+  .shape .hd .x { margin-left: auto; padding: 2px 8px; color: var(--danger); border-color: var(--danger); font-size: 12px; }
+  button.danger:not(:disabled) { color: var(--danger); border-color: var(--danger); }
+  button.danger:hover:not(:disabled) { background: var(--danger); color: #fff; }
+  .shape img, figure img { max-width: 100%; display: block; background: #fff; image-rendering: pixelated; margin-top: 4px; }
+  figure { margin: 0 0 6px; border: 1px dashed var(--line); border-radius: 6px; padding: 6px; }
+  figcaption { font-size: 11px; color: var(--muted); }
+  .read { font-family: ui-monospace, monospace; font-size: 12px; margin-top: 3px; }
+  .row { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0; align-items: center; }
+  label.blk { display: block; margin-top: 10px; font-size: 12px; color: var(--muted); }
+  #truth { width: 100%; margin-top: 4px; font-family: ui-monospace, monospace; }
+  .help { font-size: 11px; color: var(--muted); margin-top: 14px; border-top: 1px solid var(--line); padding-top: 8px; }
+  .help kbd { border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 4px;
+              font-size: 10px; font-family: ui-monospace, monospace; }
+  #status { margin-left: auto; font-size: 12px; }
+  .legend span { display: inline-flex; align-items: center; gap: 4px; margin-right: 8px; font-size: 12px; }
+  .legend i { width: 14px; height: 0; border-top: 2px solid; display: inline-block; }
+  .legend i.dash { border-top-style: dashed; }
+  .legend i.band { height: 8px; border: 0; opacity: .5; }
+  #loading { position: absolute; inset: 0; display: none; align-items: center; justify-content: center;
+             font-size: 15px; color: var(--muted); background: var(--bg); text-align: center; padding: 20px; }
+  [hidden] { display: none !important; }
+  @media (max-width: 900px) {
+    body { grid-template-columns: 1fr; grid-template-rows: auto 22vh 65vh auto; height: auto; overflow: auto; }
+    #list { border-right: 0; } #side { border-left: 0; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Crop editor</h1>
+  <select id="photo" aria-label="Photo"></select>
+  <button id="prevPhoto" title="Previous photo">◀</button>
+  <button id="nextPhoto" title="Next photo">▶</button>
+  <span class="seg" role="group" aria-label="Mode">
+    <button id="mCrops" aria-pressed="true" title="The crop(s) the OCR should read for each field">Crops</button>
+    <button id="mAreas" aria-pressed="false" title="Where each field is on the page">Field areas</button>
+  </span>
+  <span class="seg" role="group" aria-label="Tool">
+    <button id="tRect" aria-pressed="true" title="Draw squares (s)">□ Square</button>
+    <button id="tLine" aria-pressed="false" title="Draw lines (l)">╱ Line</button>
+  </span>
+  <button id="addField" title="Add a field the layout does not have (notes in a margin…)">+ Field</button>
+  <button id="delShape" class="danger" title="Delete the selected square or line (Delete key)" disabled>🗑 Delete shape</button>
+  <button id="undo" title="Undo the last change (Ctrl+Z)" disabled>↶ Undo</button>
+  <button id="export" class="primary" title="Write evaluation/crop_dataset.json and download it">⬇ Export JSON</button>
+  <label class="muted">Zoom <input id="zoom" type="range" min="0.5" max="4" step="0.25" value="1.5" aria-label="Zoom"></label>
+  <label class="muted"><input id="showAll" type="checkbox" checked> all fields</label>
+  <label class="muted" id="cleanWrap" title="Erase printed lines, your traced field lines and printed labels from the crops before the OCR reads them"><input id="clean" type="checkbox" checked> remove printed form</label>
+  <span class="legend" id="legCrops">
+    <span><i style="border-color:var(--auto)"></i>program's crop</span>
+    <span><i style="border-color:var(--manual)"></i>your crops</span>
+    <span><i class="band" style="background:var(--manual)"></i>line band</span>
+  </span>
+  <span class="legend" id="legAreas" hidden>
+    <span><i class="dash" style="border-color:var(--region)"></i>program's area</span>
+    <span><i style="border-color:var(--traced)"></i>your areas / lines</span>
+  </span>
+  <span id="status" class="muted"></span>
+</header>
+<nav id="list" aria-label="Fields"></nav>
+<main id="stage">
+  <div id="wrap"><img id="img" alt="Registry page (identifiers blacked out)"><svg id="svg"></svg></div>
+  <div id="loading">Reading the page…</div>
+</main>
+<aside id="side"><p class="muted">Choose a field on the left or click it on the page.</p></aside>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const NS = "http://www.w3.org/2000/svg";
+const CUSTOM = "custom:";
+let photos = [], doc = null, labels = {}, areas = {}, customLocal = new Set();
+let selKey = null, active = 0, zoom = 1.5, mode = "crops", tool = "rect";
+let drag = null, readTimer = null, readToken = 0, openToken = 0, undoStack = [];
+
+const status = (t, ok) => { $("#status").textContent = t; $("#status").style.color = ok ? "var(--ok)" : ""; };
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const clone = (o) => o == null ? o : JSON.parse(JSON.stringify(o));
+const api = async (url, body) => {
+  const r = await fetch(url, body ? { method: "POST", headers: { "Content-Type": "application/json" },
+                                      body: JSON.stringify(body) } : {});
+  const j = await r.json();
+  if (!r.ok) throw new Error(j.error || r.statusText);
+  return j;
+};
+const remember = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+const recall = (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+
+// ================================================================= photos
+const photoLabel = (p) => {
+  const b = []; if (p.edited) b.push(`${p.edited} crops`); if (p.traced) b.push(`${p.traced} areas`);
+  return `${p.name}${b.length ? `  (${b.join(", ")})` : ""}`;
+};
+async function loadPhotos() {
+  photos = await api("/api/images");
+  $("#photo").innerHTML = photos.map((p) => `<option value="${esc(p.name)}">${esc(photoLabel(p))}</option>`).join("");
+  let start = recall("cropEditor.photo");
+  if (!photos.some((p) => p.name === start)) start = photos[0]?.name;
+  const m = recall("cropEditor.mode"); if (m === "areas" || m === "crops") mode = m;
+  const t = recall("cropEditor.tool"); if (t === "rect" || t === "line") tool = t;
+  syncControls();
+  if (start) { $("#photo").value = start; openPhoto(start); }
+}
+function refreshPhotoOption() {
+  const p = photos.find((p) => p.name === doc?.name); if (!p) return;
+  p.edited = Object.keys(labels).length; p.traced = Object.keys(areas).length;
+  const o = [...$("#photo").options].find((o) => o.value === p.name); if (o) o.textContent = photoLabel(p);
+}
+async function openPhoto(name) {
+  const token = ++openToken;  // a later click wins over a slower earlier one
+  $("#loading").style.display = "flex";
+  $("#loading").textContent = `Reading ${name}… (the first open of a photo takes a few seconds)`;
+  status("");
+  let d;
+  try { d = await api(`/api/page?name=${encodeURIComponent(name)}`); }
+  catch (e) {
+    if (token !== openToken) return;
+    $("#loading").textContent = `${name}: ${e.message}`; doc = null; $("#list").innerHTML = ""; return;
+  }
+  if (token !== openToken) return;
+  doc = d; labels = d.labels || {}; areas = d.areas || {}; customLocal = new Set(); undoStack = []; syncUndo();
+  remember("cropEditor.photo", name);
+  const img = $("#img");
+  img.onload = () => {
+    $("#loading").style.display = "none"; layout();
+    const list = fields();
+    select(selKey && list.some((f) => f.key === selKey) ? selKey : (list.find((f) => f.region || f.auto) || list[0] || {}).key);
+  };
+  img.src = `/api/image?name=${encodeURIComponent(name)}&t=${Date.now()}`;
+}
+function layout() {
+  const img = $("#img"), svg = $("#svg");
+  img.style.width = `${doc.width * zoom}px`; img.style.height = `${doc.height * zoom}px`;
+  svg.setAttribute("width", doc.width * zoom); svg.setAttribute("height", doc.height * zoom);
+  svg.setAttribute("viewBox", `0 0 ${doc.width} ${doc.height}`);
+  draw();
+}
+
+// ================================================================= the field model
+const areaMode = () => mode === "areas";
+const book = () => areaMode() ? areas : labels;           // where this mode's entries live
+function fields() {
+  if (!doc) return [];
+  const byKey = new Map();
+  const add = (f) => { const o = byKey.get(f.key) || {}; byKey.set(f.key, { ...f, ...o, region: o.region || f.region }); };
+  const primary = areaMode() ? doc.area_fields : doc.fields, secondary = areaMode() ? doc.fields : doc.area_fields;
+  primary.forEach(add);
+  secondary.forEach((f) => { if (!byKey.has(f.key)) add(f); else { const o = byKey.get(f.key); byKey.set(f.key, { ...f, ...o }); } });
+  let list = [...byKey.values()];
+  if (!areaMode()) list = list.filter((f) => !["check", "radio"].includes(f.kind));
+  const customs = new Set([...customLocal, ...Object.keys(labels), ...Object.keys(areas)].filter((k) => k.startsWith(CUSTOM)));
+  for (const k of customs) list.push({ key: k, label: labels[k]?.label || areas[k]?.label || k.slice(CUSTOM.length), kind: "custom", region: null, auto: null });
+  return list;
+}
+const field = (k) => fields().find((f) => f.key === k);
+const manual = (k) => book()[k]?.shapes || [];
+function virtualShape(f) {          // what the program proposes when you have not drawn anything
+  if (areaMode()) return f.region && !areas[f.key]?.none ? { shape: "rect", box: f.region, virtual: true } : null;
+  if (labels[f.key]?.empty) return null;
+  return f.auto ? { shape: "rect", box: f.auto, virtual: true } : null;
+}
+const shapesOf = (f) => { const m = manual(f.key); if (m.length) return m; const v = virtualShape(f); return v ? [v] : []; };
+function stateOf(f) {
+  const e = book()[f.key];
+  if (areaMode()) return e?.shapes?.length ? "traced" : e?.none ? "empty" : f.region ? "found" : "missing";
+  if (e?.empty) return "empty";
+  if (e?.shapes?.length) return "manual";
+  return f.auto ? "auto" : "none";
+}
+const lh = () => doc?.line_height || 24;
+const defaultBand = () => Math.round(1.4 * lh());
+
+// ================================================================= controls
+function syncControls() {
+  $("#mCrops").setAttribute("aria-pressed", String(!areaMode()));
+  $("#mAreas").setAttribute("aria-pressed", String(areaMode()));
+  $("#legCrops").hidden = areaMode(); $("#legAreas").hidden = !areaMode(); $("#cleanWrap").hidden = areaMode();
+  $("#tRect").setAttribute("aria-pressed", String(tool === "rect"));
+  $("#tLine").setAttribute("aria-pressed", String(tool === "line"));
+}
+function setMode(m) {
+  mode = m; remember("cropEditor.mode", m); syncControls();
+  if (!doc) return;
+  const list = fields();
+  selKey = list.some((f) => f.key === selKey) ? selKey : (list[0] || {}).key;
+  active = Math.max(0, shapesOf(field(selKey) || { key: "" }).length - 1);
+  renderList(); draw(); renderSide(); scheduleRead(0);
+}
+function setTool(t) { tool = t; remember("cropEditor.tool", t); syncControls(); }
+const syncUndo = () => { $("#undo").disabled = !undoStack.length; };
+function syncDelete() {
+  const f = doc && field(selKey), sh = f && shapesOf(f)[active];
+  $("#delShape").disabled = !canDelete(sh);
+  $("#delShape").title = sh?.virtual ? (areaMode() ? "Delete the program’s area (Delete key)" : "No handwriting here: mark the field empty (Delete key)") : "Delete the selected square or line (Delete key)";
+}
+
+// ================================================================= list
+function renderList() {
+  const list = fields();
+  const n = list.length, done = list.filter((f) => book()[f.key]).length;
+  const head = `<div class="sum">${done}/${n} ${areaMode() ? "fields with your areas" : "fields with your crops"}` +
+    (areaMode() ? ` · ${list.filter((f) => !f.region && f.kind !== "custom" && !areas[f.key]).length} not found by the program` : "") + `</div>`;
+  $("#list").innerHTML = head + list.map((f) => {
+    const e = book()[f.key], st = stateOf(f), k = (e?.shapes || []).length;
+    let sub;
+    if (areaMode()) sub = k ? `${k} shape${k > 1 ? "s" : ""} traced` : e?.none ? "no area (deleted)" : f.region ? "program's area" : "not found — trace it";
+    else sub = e?.text ? `✎ ${e.text}` : e?.empty ? "empty" : k ? `${k} crop${k > 1 ? "s" : ""}` : f.auto_read ? `“${f.auto_read[0]}”` : "";
+    return `<div class="f${f.key === selKey ? " sel" : ""}" data-k="${esc(f.key)}">
+      <span class="dot ${st}"></span>
+      <div><div>${esc(f.label)}${f.kind === "custom" ? ' <span class="muted">(added)</span>' : ""}</div>
+      <div class="k">${esc(f.key)}</div><div class="r">${esc(sub)}</div></div></div>`;
+  }).join("");
+  $("#list").querySelectorAll(".f").forEach((el) => el.onclick = () => select(el.dataset.k));
+  const sel = $("#list .f.sel"), box = $("#list");
+  if (sel && (sel.offsetTop < box.scrollTop || sel.offsetTop + sel.offsetHeight > box.scrollTop + box.clientHeight))
+    box.scrollTop = sel.offsetTop - box.clientHeight / 3;  // only the list scrolls, never the page
+}
+
+// ================================================================= geometry
+function normal(l) { const L = Math.hypot(l[2] - l[0], l[3] - l[1]) || 1; return [-(l[3] - l[1]) / L, (l[2] - l[0]) / L]; }
+function bandPts(l, h) {
+  const [nx, ny] = normal(l), d = h / 2;
+  return [[l[0] + nx * d, l[1] + ny * d], [l[2] + nx * d, l[3] + ny * d], [l[2] - nx * d, l[3] - ny * d], [l[0] - nx * d, l[1] - ny * d]];
+}
+function bbox(sh) {
+  if (sh.shape === "rect") return sh.box;
+  const pts = sh.height && !areaMode() ? bandPts(sh.line, sh.height) : [[sh.line[0], sh.line[1]], [sh.line[2], sh.line[3]]];
+  const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]);
+  return [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)];
+}
+const describe = (sh) => {
+  if (sh.shape === "rect") return `□ square ${Math.round(sh.box[2] - sh.box[0])}×${Math.round(sh.box[3] - sh.box[1])} px`;
+  const l = sh.line, len = Math.round(Math.hypot(l[2] - l[0], l[3] - l[1]));
+  const ang = (Math.atan2(l[3] - l[1], l[2] - l[0]) * 180 / Math.PI).toFixed(1);
+  return `╱ line ${len} px, ${ang}°` + (sh.height && !areaMode() ? `, band ${Math.round(sh.height)} px` : "");
+};
+
+// ================================================================= drawing
+function el(tag, attrs) { const e = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); return e; }
+const rectEl = (b, attrs) => el("rect", { x: Math.min(b[0], b[2]), y: Math.min(b[1], b[3]), width: Math.abs(b[2] - b[0]), height: Math.abs(b[3] - b[1]), ...attrs });
+const handle = (x, y, h, col, cursor) => {
+  const s = 7 / zoom;
+  return rectEl([x - s / 2, y - s / 2, x + s / 2, y + s / 2], { fill: "#fff", stroke: col, "stroke-width": 1.5 / zoom, "data-h": h, style: `cursor:${cursor}` });
+};
+function drawShape(svg, sh, o) {
+  // o: {col, sw, dashed, editable, hit: {attr: value}, faint}
+  const dash = o.dashed ? { "stroke-dasharray": `${5 / zoom} ${4 / zoom}` } : {};
+  const hit = o.editable ? { "data-h": "move", style: "cursor:move" } : o.hit ? { ...o.hit, style: "cursor:pointer" } : { "pointer-events": "none" };
+  if (sh.shape === "rect") {
+    svg.appendChild(rectEl(sh.box, { fill: o.editable ? "rgba(37,99,235,0.06)" : "transparent", stroke: o.col, "stroke-width": o.sw, ...dash, ...hit,
+                                     ...(o.faint ? { "stroke-opacity": 0.6 } : {}) }));
+    if (o.editable) {
+      const [x0, y0, x1, y1] = sh.box, mx = (x0 + x1) / 2, my = (y0 + y1) / 2;
+      for (const [h, x, y] of [["nw", x0, y0], ["n", mx, y0], ["ne", x1, y0], ["e", x1, my], ["se", x1, y1], ["s", mx, y1], ["sw", x0, y1], ["w", x0, my]])
+        svg.appendChild(handle(x, y, h, o.col, `${h}-resize`));
+      if (o.deletable) deleteBadge(svg, Math.max(x0, x1) + 11 / zoom, Math.min(y0, y1) - 11 / zoom);
+    }
+    return;
+  }
+  const l = sh.line, band = !areaMode() && sh.height;
+  if (band) svg.appendChild(el("polygon", { points: bandPts(l, sh.height).map((p) => p.join(",")).join(" "), fill: o.col,
+    "fill-opacity": o.editable ? 0.18 : 0.1, stroke: o.col, "stroke-width": o.sw * 0.6, ...dash, ...hit }));
+  else svg.appendChild(el("line", { x1: l[0], y1: l[1], x2: l[2], y2: l[3], stroke: "transparent", "stroke-width": 12 / zoom, ...hit }));
+  svg.appendChild(el("line", { x1: l[0], y1: l[1], x2: l[2], y2: l[3], stroke: o.col, "stroke-width": band ? o.sw * 0.7 : o.sw * 1.5,
+    "stroke-linecap": "round", ...dash, "pointer-events": "none" }));
+  if (o.editable) {
+    svg.appendChild(handle(l[0], l[1], "p0", o.col, "crosshair"));
+    svg.appendChild(handle(l[2], l[3], "p1", o.col, "crosshair"));
+    if (band) {
+      const [nx, ny] = normal(l), mx = (l[0] + l[2]) / 2 - nx * sh.height / 2, my = (l[1] + l[3]) / 2 - ny * sh.height / 2;
+      svg.appendChild(handle(mx, my, "ph", o.col, "ns-resize"));
+    }
+    if (o.deletable) {
+      const [nx, ny] = normal(l), off = (band ? sh.height / 2 : 0) + 13 / zoom;
+      deleteBadge(svg, l[2] + 6 / zoom - nx * off, l[3] - ny * off);
+    }
+  }
+}
+function deleteBadge(svg, x, y) {  // a red ✕ next to the selected shape: click to delete it
+  const r = 8 / zoom, g = el("g", { "data-del": "1", style: "cursor:pointer" });
+  const title = el("title", {}); title.textContent = "Delete this shape (Delete key)";
+  g.appendChild(title);
+  g.appendChild(el("circle", { cx: x, cy: y, r, fill: "var(--danger)", stroke: "#fff", "stroke-width": 1.5 / zoom }));
+  const d = r * 0.45;
+  g.appendChild(el("path", { d: `M${x - d} ${y - d} L${x + d} ${y + d} M${x + d} ${y - d} L${x - d} ${y + d}`,
+                             stroke: "#fff", "stroke-width": 2 / zoom, "stroke-linecap": "round", "pointer-events": "none" }));
+  svg.appendChild(g);
+}
+const canDelete = (sh) => !!sh;
+const live = (key) => drag && drag.live && drag.key === key ? drag : null;
+function draw() {
+  const svg = $("#svg");
+  svg.innerHTML = "";
+  if (!doc) return;
+  const sw = 1.5 / zoom, all = $("#showAll").checked, A = areaMode();
+  const own = A ? "var(--traced)" : "var(--manual)", prog = A ? "var(--region)" : "var(--auto)";
+  if (all) for (const f of fields()) {
+    if (f.key === selKey) continue;
+    const m = manual(f.key);
+    for (const sh of shapesOf(f)) drawShape(svg, sh, { col: m.length ? own : prog, sw: sw * 0.8, dashed: !m.length && A, faint: true, hit: { "data-k": f.key } });
+  }
+  const f = field(selKey); if (!f) return;
+  const m = manual(f.key);
+  if (m.length && (A ? f.region : f.auto))  // the program's proposal, for comparison
+    drawShape(svg, { shape: "rect", box: A ? f.region : f.auto }, { col: prog, sw, dashed: true });
+  const L = live(f.key);
+  const shapes = shapesOf(f).map((s, i) => (L && L.idx === i ? L.live : s));
+  shapes.forEach((sh, i) => { if (i !== active) drawShape(svg, sh, { col: sh.virtual ? prog : own, sw: sw * 1.4, hit: { "data-s": i } }); });
+  if (L && L.idx === -1) drawShape(svg, L.live, { col: own, sw: sw * 2, editable: false });
+  const act = shapes[active];
+  if (act) drawShape(svg, act, { col: act.virtual ? prog : own, sw: sw * 2, editable: true, deletable: canDelete(act) && !L });
+}
+
+// ================================================================= selection + side panel
+function select(k, scroll = true) {
+  if (!k) return;
+  selKey = k;
+  const f = field(k);
+  active = f ? Math.max(0, shapesOf(f).length - 1) : 0;
+  renderList(); draw(); renderSide();
+  const b = f && (shapesOf(f).length ? bbox(shapesOf(f)[active]) : f.region);
+  if (scroll && b) {
+    const st = $("#stage"), cx = ((b[0] + b[2]) / 2) * zoom, cy = ((b[1] + b[3]) / 2) * zoom;
+    if (cx < st.scrollLeft + 40 || cx > st.scrollLeft + st.clientWidth - 40 || cy < st.scrollTop + 40 || cy > st.scrollTop + st.clientHeight - 40)
+      st.scrollTo({ left: cx - st.clientWidth / 2, top: cy - st.clientHeight / 2 });
+  }
+  scheduleRead(0);
+}
+function setActive(i) { active = i; draw(); renderSide(); scheduleRead(0); }  // renderSide syncs the delete button
+
+function renderSide() {
+  const f = field(selKey);
+  if (!doc || !f) { $("#side").innerHTML = '<p class="muted">Choose a field on the left, or add one with “+ Field”.</p>'; syncDelete(); return; }
+  const A = areaMode(), e = book()[f.key] || {}, shapes = shapesOf(f), st = stateOf(f);
+  const stTxt = A ? { traced: "your areas (saved)", found: "program's area (not checked)", missing: "not found by the program — draw it",
+                      empty: "no area on this page (deleted) — Reset field brings the program's area back" }[st]
+                  : { auto: "program's crop", manual: "your crops (saved)", empty: "marked empty (saved)", none: "no handwriting found — draw a crop if there is some" }[st];
+  const act = shapes[active];
+  $("#side").innerHTML = `
+    <h2>${esc(f.label)}</h2><div class="key">${esc(f.key)} · ${esc(f.kind)} · ${esc(doc.layout)}</div>
+    <div><span class="dot ${st}"></span> ${stTxt}</div>
+    ${!A && f.auto ? `<h3>Program's crop</h3><figure><div id="autoCrop" class="muted">…</div>
+      <div class="read">small: ${f.auto_read ? `“${esc(f.auto_read[0])}” (${f.auto_read[1]})` : "—"}</div></figure>` : ""}
+    <h3>${A ? "Areas" : "Crops the OCR should read"} (${shapes.length}) — draw on the page to add</h3>
+    ${shapes.map((sh, i) => `<div class="shape${i === active ? " active" : ""}" data-i="${i}">
+        <div class="hd">${sh.virtual ? `<span class="muted">program's</span>` : `<b>${i + 1}</b>`} ${esc(describe(sh))}
+          ${canDelete(sh) ? `<button class="x" data-del="${i}" title="${sh.virtual ? (A ? "No area on this page: delete the program’s area" : "No handwriting here: mark the field empty") : "Delete this shape (Delete key)"}">🗑 Delete</button>` : ""}</div>
+        ${A ? "" : `<div class="crop" id="crop${i}"></div><div class="read" id="read${i}"></div>`}</div>`).join("") ||
+      `<p class="muted">No ${A ? "area" : "crop"}. Choose □ or ╱ at the top and drag on the page.</p>`}
+    ${!A && act?.shape === "line" ? `<div class="row"><label class="muted" for="bandH">Band height</label>
+      <input id="bandH" type="number" min="4" max="600" step="1" value="${Math.round(act.height || defaultBand())}" style="width:80px"> px
+      <span class="muted">(<kbd>[</kbd> <kbd>]</kbd>)</span></div>` : ""}
+    <div class="row">
+      ${A ? `<button id="bProg" ${f.region ? "" : "disabled"} title="Add the program's area as one of yours (k)">+ Program's area</button>`
+          : `<button id="bProg" ${f.auto ? "" : "disabled"} title="Add the program's crop as one of yours (k)">+ Program's crop</button>
+             <button id="bEmpty" title="No handwriting in this field (e)">Mark empty</button>`}
+      <button id="bReset" ${book()[f.key] ? "" : "disabled"} title="Forget everything you did on this field (r)">Reset field</button>
+      ${f.kind === "custom" ? `<button id="bDelField" title="Remove this added field">Remove field</button>` : ""}
+    </div>
+    ${A ? "" : `<label class="blk" for="truth">True text (optional, as written)</label>
+      <input id="truth" value="${esc(e.text || "")}" placeholder="e.g. 11/7, 16SA+3j, RAS" autocomplete="off">`}
+    <div class="help">
+      <b>□ Square</b>: drag a box. <b>╱ Line</b>: drag along the ${A ? "printed line the value is written on" :
+      "word like a highlighter; the shaded band is what the OCR reads (drag its top handle or use [ ] to change the height)"};
+      hold <kbd>Shift</kbd> for horizontal. Drawing always <b>adds</b> a shape; click a shape to make it active,
+      drag it to move, drag a handle to resize, <kbd>Delete</kbd> removes it.<br>
+      <kbd>s</kbd>/<kbd>l</kbd> tool · <kbd>Tab</kbd> next shape · <kbd>n</kbd>/<kbd>p</kbd> next/previous field ·
+      <kbd>←↑→↓</kbd> move (<kbd>Shift</kbd> 5 px) · <kbd>k</kbd> add program's ${A ? "area" : "crop"} ·
+      ${A ? "" : "<kbd>e</kbd> empty · "}<kbd>r</kbd> reset field · <kbd>Ctrl</kbd>+<kbd>Z</kbd> undo · <kbd>Ctrl</kbd>+wheel zoom.
+    </div>`;
+  $("#side").querySelectorAll(".shape").forEach((d) => d.onclick = (ev) => { if (!ev.target.dataset.del) setActive(+d.dataset.i); });
+  $("#side").querySelectorAll("[data-del]").forEach((b) => b.onclick = (ev) => { ev.stopPropagation(); deleteShape(+b.dataset.del); });
+  $("#bProg").onclick = addProgram;
+  if ($("#bEmpty")) $("#bEmpty").onclick = markEmpty;
+  $("#bReset").onclick = resetField;
+  if ($("#bDelField")) $("#bDelField").onclick = removeCustom;
+  if ($("#bandH")) $("#bandH").onchange = () => setBand(+$("#bandH").value);
+  syncDelete();
+  if ($("#truth")) {
+    $("#truth").onchange = () => saveTruth($("#truth").value);
+    $("#truth").onkeydown = (ev) => { if (ev.key === "Enter") { ev.target.blur(); next(1); } ev.stopPropagation(); };
+  }
+}
+
+// ================================================================= OCR preview (crops mode)
+function scheduleRead(delay = 250) { clearTimeout(readTimer); readTimer = setTimeout(readNow, delay); }
+async function readNow() {
+  if (areaMode() || !doc) return;
+  const f = field(selKey); if (!f) return;
+  const shapes = shapesOf(f), token = ++readToken;
+  if (!shapes.length && !f.auto) return;
+  try {
+    const r = await api("/api/read", { name: doc.name, key: f.key, shapes: shapes.map(({ virtual, ...s }) => s), clean: $("#clean").checked });
+    if (token !== readToken || selKey !== f.key || areaMode()) return;
+    if (r.auto_crop && $("#autoCrop")) $("#autoCrop").innerHTML = `<img src="${r.auto_crop}" alt="program's crop">`;
+    r.crops.forEach((c, i) => {
+      const box = $(`#crop${i}`), rd = $(`#read${i}`); if (!box) return;
+      if (!c) { rd.textContent = "too small to read"; return; }
+      box.innerHTML = `<img src="${c.crop}" alt="crop ${i + 1} as the OCR sees it">`;
+      rd.innerHTML = `small: “${esc(c.small[0])}” (${c.small[1]})` + (c.medium ? `<br>medium: “${esc(c.medium[0])}” (${c.medium[1]})` : "");
+    });
+  } catch (e) { status(e.message); }
+}
+
+// ================================================================= saving (with undo)
+async function saveEntry(key, entry, { m = mode, noUndo = false } = {}) {
+  const books = m === "areas" ? areas : labels;
+  if (!noUndo) { undoStack.push({ m, key, prev: clone(books[key] ?? null) }); if (undoStack.length > 200) undoStack.shift(); syncUndo(); }
+  status("saving…");
+  try {
+    if (m === "areas") areas = (await api("/api/save_area", { name: doc.name, key, entry })).areas;
+    else labels = (await api("/api/save", { name: doc.name, key, entry })).labels;
+    refreshPhotoOption(); status(`saved ${new Date().toLocaleTimeString()}`, true);
+  } catch (e) { status(`not saved: ${e.message}`); if (!noUndo) { undoStack.pop(); syncUndo(); } }
+  const f = field(selKey); if (f) active = Math.min(active, Math.max(0, shapesOf(f).length - 1));
+  renderList(); draw(); renderSide(); scheduleRead(0);
+}
+const strip = (shapes) => shapes.map(({ virtual, ...s }) => s);
+function setShapes(f, shapes, extra = {}) {
+  const prev = book()[f.key] || {};
+  const entry = { ...prev, ...extra, shapes: strip(shapes) };
+  if (f.kind === "custom") entry.label = f.label;
+  if (!areaMode() && shapes.length) entry.empty = false;
+  if (areaMode()) entry.none = !shapes.length && !!extra.none;
+  const keep = entry.shapes.length || entry.empty || entry.none || entry.text || f.kind === "custom";
+  return saveEntry(f.key, keep ? entry : null);
+}
+function commit(f, idx, sh) {  // idx = index in shapesOf(f), -1 = new shape
+  const m = manual(f.key).map(clone);
+  if (idx === -1) { m.push(sh); active = m.length - 1; }
+  else if (!manual(f.key).length) { m.push(sh); active = 0; }   // editing the program's proposal makes it yours
+  else m[idx] = sh;
+  return setShapes(f, m);
+}
+function deleteShape(i) {
+  const f = field(selKey); if (!f) return;
+  const m = manual(f.key);
+  // Delete = gone: the last shape (or the program's proposal) leaves the field with no area / empty.
+  // "Reset field" brings the program's proposal back.
+  const rest = m.filter((_, j) => j !== i);
+  active = Math.max(0, Math.min(active, rest.length - 1));
+  if (rest.length) return setShapes(f, rest);
+  return areaMode() ? setShapes(f, [], { none: true }) : setShapes(f, [], { empty: true });
+}
+function addProgram() {
+  const f = field(selKey); if (!f) return;
+  const b = areaMode() ? f.region : f.auto; if (!b) return;
+  commit(f, -1, { shape: "rect", box: b });
+}
+function markEmpty() { const f = field(selKey); if (f && !areaMode()) setShapes(f, [], { empty: true }); }
+function resetField() { const f = field(selKey); if (f) saveEntry(f.key, f.kind === "custom" ? { shapes: [], label: f.label } : null); }
+function saveTruth(t) {
+  const f = field(selKey); if (!f) return;
+  const prev = labels[f.key];
+  const shapes = prev?.shapes?.length ? prev.shapes : [];
+  setShapes(f, shapes, { text: t.trim() || undefined, empty: prev?.empty || false });
+}
+function setBand(h) {
+  const f = field(selKey); if (!f || areaMode()) return;
+  const sh = clone(shapesOf(f)[active]); if (!sh || sh.shape !== "line") return;
+  sh.height = Math.max(4, Math.min(600, Math.round(h))); delete sh.virtual;
+  commit(f, active, sh);
+}
+function addCustom() {
+  if (!doc) return;
+  const name = (prompt("Name of the new field (e.g. notes, echo, treatment):") || "").trim();
+  if (!name) return;
+  const key = CUSTOM + name.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
+  if (key === CUSTOM) return;
+  customLocal.add(key);
+  // remember the label even before a shape is drawn
+  saveEntry(key, { shapes: [], label: name }).then(() => { select(key); status(`added “${name}”: draw its ${areaMode() ? "area" : "crops"}`, true); });
+}
+async function removeCustom() {
+  const f = field(selKey); if (!f || f.kind !== "custom") return;
+  if (!confirm(`Remove the added field “${f.label}” and all its shapes (both modes)?`)) return;
+  customLocal.delete(f.key);
+  await saveEntry(f.key, null, { m: "crops" }); await saveEntry(f.key, null, { m: "areas" });
+  select((fields()[0] || {}).key);
+}
+async function undo() {
+  const u = undoStack.pop(); syncUndo(); if (!u) return;
+  await saveEntry(u.key, u.prev, { m: u.m, noUndo: true });
+  if (u.m === mode) select(u.key, true);
+}
+
+// ================================================================= mouse / pen
+function pt(e) { const r = $("#svg").getBoundingClientRect(); return [(e.clientX - r.left) / zoom, (e.clientY - r.top) / zoom]; }
+$("#wrap").addEventListener("dragstart", (e) => e.preventDefault());  // no native image drag
+$("#svg").addEventListener("pointerdown", (e) => {
+  if (e.button !== 0 || !doc) return;
+  $("#svg").setPointerCapture(e.pointerId);
+  if (e.target.closest?.("[data-del]")) { e.preventDefault(); deleteShape(active); return; }
+  const t = e.target, h = t.getAttribute?.("data-h"), s = t.getAttribute?.("data-s"), k = t.getAttribute?.("data-k");
+  const f = field(selKey), p = pt(e);
+  if (f && s != null) { active = +s; renderSide(); }
+  const shapes = f ? shapesOf(f) : [];
+  if (f && (h || s != null) && shapes[active]) drag = { key: f.key, mode: h || "move", idx: active, start: p, orig: clone(shapes[active]) };
+  else drag = { key: f?.key, mode: "new", idx: -1, start: p, clickKey: k };
+  e.preventDefault();
+});
+$("#svg").addEventListener("pointermove", (e) => {
+  if (!drag) return;
+  const [x, y] = pt(e), [sx, sy] = drag.start, dx = x - sx, dy = y - sy;
+  if (!drag.live && Math.hypot(dx, dy) * zoom < 4) return;  // a click, not a drag (yet)
+  const f = field(selKey); if (!f || f.key !== drag.key) return;
+  const m = drag.mode;
+  if (m === "new") {
+    drag.live = tool === "line" ? { shape: "line", line: [sx, sy, x, e.shiftKey ? sy : y], ...(areaMode() ? {} : { height: defaultBand() }) }
+                                : { shape: "rect", box: [sx, sy, x, y] };
+  } else if (drag.orig.shape === "line") {
+    const l = [...drag.orig.line]; let hgt = drag.orig.height;
+    if (m === "p0") { l[0] += dx; l[1] = e.shiftKey ? l[3] : l[1] + dy; }
+    else if (m === "p1") { l[2] += dx; l[3] = e.shiftKey ? l[1] : l[3] + dy; }
+    else if (m === "ph") { const [nx, ny] = normal(l), mx = (l[0] + l[2]) / 2, my = (l[1] + l[3]) / 2; hgt = Math.max(4, 2 * Math.abs((x - mx) * nx + (y - my) * ny)); }
+    else { l[0] += dx; l[2] += dx; l[1] += dy; l[3] += dy; }
+    drag.live = { shape: "line", line: l, ...(hgt ? { height: hgt } : {}) };
+  } else {
+    let [x0, y0, x1, y1] = drag.orig.box;
+    if (m === "move") { x0 += dx; x1 += dx; y0 += dy; y1 += dy; }
+    else { if (m.includes("w")) x0 += dx; if (m.includes("e")) x1 += dx; if (m.includes("n")) y0 += dy; if (m.includes("s")) y1 += dy; }
+    drag.live = { shape: "rect", box: [x0, y0, x1, y1] };
+  }
+  draw();
+});
+$("#svg").addEventListener("pointerup", () => {
+  if (!drag) return;
+  const d = drag; drag = null;
+  const f = field(selKey);
+  if (d.live && f && f.key === d.key) {
+    const sh = d.live;
+    const b = bbox(sh);
+    const tiny = sh.shape === "rect" ? (b[2] - b[0] < 3 || b[3] - b[1] < 3) : Math.hypot(sh.line[2] - sh.line[0], sh.line[3] - sh.line[1]) < 6;
+    if (tiny) return draw();
+    const r = (v) => Math.round(v);
+    if (sh.shape === "rect") sh.box = [r(Math.min(b[0], b[2])), r(Math.min(b[1], b[3])), r(Math.max(b[0], b[2])), r(Math.max(b[1], b[3]))];
+    else { sh.line = sh.line.map(r); if (sh.height) sh.height = r(sh.height); }
+    commit(f, d.idx, sh);
+  } else if (d.clickKey) select(d.clickKey, false);
+  else draw();
+});
+$("#svg").addEventListener("pointercancel", () => { drag = null; draw(); });
+$("#stage").addEventListener("wheel", (e) => {
+  if (!e.ctrlKey || !doc) return;
+  e.preventDefault();
+  zoom = Math.max(0.5, Math.min(4, zoom * (e.deltaY < 0 ? 1.15 : 1 / 1.15)));
+  $("#zoom").value = zoom; layout();
+}, { passive: false });
+
+// ================================================================= keyboard
+function next(d) {
+  const list = fields(); if (!list.length) return;
+  const i = list.findIndex((f) => f.key === selKey);
+  select(list[Math.max(0, Math.min(list.length - 1, i + d))].key);
+}
+window.addEventListener("keydown", (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z" && e.target.tagName !== "INPUT") { e.preventDefault(); undo(); return; }
+  if (!doc || (e.target.tagName === "INPUT" && !["range", "checkbox"].includes(e.target.type)) || e.target.tagName === "SELECT") return;
+  const f = field(selKey), shapes = f ? shapesOf(f) : [], act = shapes[active];
+  if (e.key === "n") next(1);
+  else if (e.key === "p") next(-1);
+  else if (e.key === "s") setTool("rect");
+  else if (e.key === "l") setTool("line");
+  else if (e.key === "k") addProgram();
+  else if (e.key === "e") markEmpty();
+  else if (e.key === "r") resetField();
+  else if (e.key === "Tab" && shapes.length > 1) setActive((active + (e.shiftKey ? shapes.length - 1 : 1)) % shapes.length);
+  else if ((e.key === "Delete" || e.key === "Backspace") && act) deleteShape(active);
+  else if ((e.key === "[" || e.key === "]") && act?.shape === "line" && !areaMode())
+    setBand((act.height || defaultBand()) + (e.key === "]" ? 1 : -1) * (e.shiftKey ? 6 : 2));
+  else if (e.key.startsWith("Arrow") && act && f) {
+    const s = e.shiftKey ? 5 : 1, sh = clone(act); delete sh.virtual;
+    const dx = e.key === "ArrowLeft" ? -s : e.key === "ArrowRight" ? s : 0, dy = e.key === "ArrowUp" ? -s : e.key === "ArrowDown" ? s : 0;
+    if (sh.shape === "line") { if (e.altKey) { sh.line[2] += dx; sh.line[3] += dy; } else { sh.line[0] += dx; sh.line[2] += dx; sh.line[1] += dy; sh.line[3] += dy; } }
+    else if (e.altKey) { sh.box[2] += dx; sh.box[3] += dy; }
+    else { sh.box[0] += dx; sh.box[2] += dx; sh.box[1] += dy; sh.box[3] += dy; }
+    commit(f, active, sh);
+  } else return;
+  e.preventDefault();
+});
+
+// ================================================================= header controls
+$("#photo").onchange = () => openPhoto($("#photo").value);
+const stepPhoto = (d) => {
+  const i = photos.findIndex((p) => p.name === $("#photo").value);
+  const p = photos[Math.max(0, Math.min(photos.length - 1, i + d))];
+  if (p) { $("#photo").value = p.name; openPhoto(p.name); }
+};
+$("#prevPhoto").onclick = () => stepPhoto(-1);
+$("#nextPhoto").onclick = () => stepPhoto(1);
+$("#mCrops").onclick = () => setMode("crops");
+$("#mAreas").onclick = () => setMode("areas");
+$("#tRect").onclick = () => setTool("rect");
+$("#tLine").onclick = () => setTool("line");
+$("#addField").onclick = addCustom;
+$("#undo").onclick = undo;
+$("#delShape").onclick = () => deleteShape(active);
+$("#export").onclick = async () => {
+  if (!photos.some((p) => p.edited || p.traced)) return status("Nothing to export yet: draw some crops or areas first.");
+  status("exporting… (photos you labelled are re-read, a few seconds each)");
+  try {
+    const r = await api("/api/export", {});
+    const a = document.createElement("a");  // download the file too
+    a.href = `/api/dataset?t=${Date.now()}`; a.download = "crop_dataset.json";
+    document.body.appendChild(a); a.click(); a.remove();
+    status(`exported ${r.examples} examples from ${r.photos} photos → ${r.file} (also downloaded)`, true);
+  } catch (e) { status(`export failed: ${e.message}`); }
+};
+$("#zoom").oninput = () => { zoom = +$("#zoom").value; if (doc) layout(); };
+$("#showAll").onchange = draw;
+$("#clean").onchange = () => { remember("cropEditor.clean", $("#clean").checked ? "1" : "0"); scheduleRead(0); };
+$("#clean").checked = recall("cropEditor.clean") !== "0";
+loadPhotos().catch((e) => status(e.message));
+</script>
+</body>
+</html>

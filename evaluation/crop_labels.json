@@ -1,0 +1,215 @@
+{
+ "note": "Hand-made handwriting crops (python -m tools.crop_editor, mode 'Crops'). Per field: shapes = the crops the OCR should read: rect box [x0, y0, x1, y1], or line [x0, y0, x1, y1] with height = the band of that height centred on the line (any angle). Page-frame pixels (real booklet: the photo deskewed by deskew_deg around its centre; specimen: the photo itself); *_original = the same points on the original photo. empty = no handwriting; text = what is written.",
+ "images": {
+  "1-1.jpg": {
+   "fields": {
+    "record_number": {
+     "shapes": [],
+     "empty": true,
+     "updated": "2026-10-04T00:36:48"
+    },
+    "region": {
+     "shapes": [],
+     "empty": true,
+     "updated": "2026-10-04T00:33:56"
+    },
+    "province": {
+     "shapes": [],
+     "empty": true,
+     "updated": "2026-10-04T00:34:00"
+    },
+    "facility_name": {
+     "shapes": [
+      {
+       "shape": "rect",
+       "box": [
+        256,
+        513,
+        367,
+        561
+       ],
+       "box_original": [
+        [
+         254.5,
+         514.0
+        ],
+        [
+         365.5,
+         513.4
+        ],
+        [
+         365.8,
+         561.4
+        ],
+        [
+         254.8,
+         562.0
+        ]
+       ]
+      },
+      {
+       "shape": "rect",
+       "box": [
+        181,
+        567,
+        370,
+        618
+       ],
+       "box_original": [
+        [
+         179.8,
+         568.4
+        ],
+        [
+         368.8,
+         567.4
+        ],
+        [
+         369.1,
+         618.4
+        ],
+        [
+         180.1,
+         619.4
+        ]
+       ]
+      },
+      {
+       "shape": "rect",
+       "box": [
+        522,
+        575,
+        690,
+        631
+       ],
+       "box_original": [
+        [
+         520.8,
+         574.6
+        ],
+        [
+         688.8,
+         573.7
+        ],
+        [
+         689.1,
+         629.7
+        ],
+        [
+         521.1,
+         630.6
+        ]
+       ]
+      },
+      {
+       "shape": "rect",
+       "box": [
+        298,
+        884,
+        322,
+        909
+       ],
+       "box_original": [
+        [
+         298.4,
+         884.8
+        ],
+        [
+         322.4,
+         884.7
+        ],
+        [
+         322.6,
+         909.7
+        ],
+        [
+         298.6,
+         909.8
+        ]
+       ]
+      },
+      {
+       "shape": "rect",
+       "box": [
+        376,
+        633,
+        634,
+        692
+       ],
+       "box_original": [
+        [
+         375.1,
+         633.4
+        ],
+        [
+         633.1,
+         632.0
+        ],
+        [
+         633.4,
+         691.0
+        ],
+        [
+         375.4,
+         692.4
+        ]
+       ]
+      },
+      {
+       "shape": "rect",
+       "box": [
+        169,
+        1222,
+        220,
+        1402
+       ],
+       "box_original": [
+        [
+         171.2,
+         1223.5
+        ],
+        [
+         222.2,
+         1223.2
+        ],
+        [
+         223.1,
+         1403.2
+        ],
+        [
+         172.1,
+         1403.5
+        ]
+       ]
+      }
+     ],
+     "empty": false,
+     "updated": "2026-10-04T00:57:01"
+    }
+   },
+   "frame": "deskewed",
+   "deskew_deg": -0.299,
+   "layout": "booklet_cover",
+   "page_type": "cover",
+   "kind": "booklet",
+   "size": [
+    900,
+    1600
+   ],
+   "line_height": 27.5
+  },
+  "1-4.jpg": {
+   "fields": {},
+   "kind": "booklet",
+   "frame": "deskewed",
+   "deskew_deg": -0.486,
+   "layout": "booklet_pregnancy_left",
+   "page_type": "current_pregnancy",
+   "size": [
+    900,
+    1600
+   ],
+   "line_height": 31.6
+  }
+ }
+}

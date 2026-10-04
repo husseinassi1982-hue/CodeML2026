@@ -1,0 +1,557 @@
+{
+ "note": "Weak priors per field column, from the organisers' synthetic data only (specimen ground truth + synthetic CSV), never from the real booklet photos. words = values written in that column and how often; numbers = mean and sd of each number in it (blood pressure in cmHg: [systolic, diastolic]). Built by tools/build_priors.py.",
+ "words": {
+  "abortion": {
+   "Maternité": 1
+  },
+  "albuminuria": {
+   "Neg": 53,
+   "Pos +": 2
+  },
+  "allergies": {
+   "RAS": 18,
+   "Oncle": 1,
+   "Mère": 1
+  },
+  "anomaly": {
+   "Aucune": 10
+  },
+  "appointment_date": {
+   "—": 5
+  },
+  "breast_exam": {
+   "Normaux": 55
+  },
+  "cervical_screening": {
+   "Normal": 6,
+   "Non fait": 4
+  },
+  "cervix": {
+   "—": 34,
+   "Fermé": 12
+  },
+  "cesarean_indication": {
+   "Souffrance fœtale": 2,
+   "Utérus cicatriciel": 1,
+   "SFA": 1
+  },
+  "complication": {
+   "RAS": 17
+  },
+  "conjunctivae": {
+   "Normales": 47,
+   "Pâles": 3
+  },
+  "danger.other": {
+   "Néant": 12
+  },
+  "decision": {
+   "Poursuivre l'allaitement exclusif": 20
+  },
+  "diabetes": {
+   "RAS": 19,
+   "Mère": 1
+  },
+  "edema": {
+   "Non": 50,
+   "Oui": 5
+  },
+  "education_level": {
+   "Aucun": 3,
+   "Collège": 2,
+   "Supérieur": 2,
+   "Lycée": 1
+  },
+  "examined_by": {
+   "Dr Benjelloun": 16,
+   "Inf. Zahra": 15,
+   "Sage-femme": 13,
+   "Dr Chakir": 11
+  },
+  "facility_name": {
+   "CSCA Al Wifaq": 1,
+   "CSC Hay Salam": 1,
+   "DR Tahannaout Sud": 1,
+   "CSCA Ait Mhamed": 1,
+   "CSC Al Amal": 1,
+   "DR Bni Ahmed": 1,
+   "CSU Ennahda": 1,
+   "CSCA Lahraouiyine": 1,
+   "CSC Ksar Jdid": 1,
+   "CSUA Hay Riad": 1
+  },
+  "family_planning.reason_declined": {
+   "Souhaite en discuter avec son mari": 4
+  },
+  "fetal_heart_rate": {
+   "—": 11
+  },
+  "fetal_movements": {
+   "Oui": 36,
+   "—": 19
+  },
+  "fundal_height_cm": {
+   "—": 11
+  },
+  "glycosuria": {
+   "Neg": 55
+  },
+  "hepatitis_b": {
+   "Neg": 10
+  },
+  "hereditary": {
+   "RAS": 17,
+   "Oncle": 2,
+   "Père": 1
+  },
+  "hiv": {
+   "Neg": 10
+  },
+  "husband_profession": {
+   "Ouvrier": 3,
+   "Fonctionnaire": 3,
+   "Chauffeur": 1,
+   "Mécanicien": 1,
+   "Maçon": 1
+  },
+  "hypertension": {
+   "RAS": 28,
+   "Aucun": 9,
+   "Cycles réguliers": 6,
+   "Mère": 1,
+   "Appendicectomie": 1
+  },
+  "iron": {
+   "Oui": 17
+  },
+  "malformations": {
+   "RAS": 19,
+   "Père": 1
+  },
+  "mode": {
+   "Voie basse": 16
+  },
+  "newborn_complication": {
+   "RAS": 17
+  },
+  "newborn_sex": {
+   "F": 6,
+   "M": 4
+  },
+  "pelvis": {
+   "—": 49,
+   "Normal": 6
+  },
+  "premature_delivery": {
+   "Maternité": 1
+  },
+  "presentation": {
+   "—": 44,
+   "Céphalique": 5
+  },
+  "profession": {
+   "Agricultrice": 3,
+   "Femme au foyer": 2,
+   "Étudiante": 1,
+   "Commerçante": 1
+  },
+  "province": {
+   "Kénitra": 1,
+   "Meknès": 1,
+   "Al Haouz": 1,
+   "Azilal": 1,
+   "Taroudant": 1,
+   "Chefchaouen": 1,
+   "Berkane": 1,
+   "Settat": 1,
+   "Errachidia": 1,
+   "Khémisset": 1
+  },
+  "rai": {
+   "Neg": 10
+  },
+  "region": {
+   "Rabat-Salé-Kénitra": 2,
+   "Fès-Meknès": 1,
+   "Marrakech-Safi": 1,
+   "Souss-Massa": 1,
+   "Tanger-Tétouan-Al Hoceïma": 1,
+   "Oriental": 1,
+   "Casablanca-Settat": 1
+  },
+  "reminder_visit": {
+   "Non": 45,
+   "Oui": 10
+  },
+  "rubella": {
+   "Immune": 10
+  },
+  "scar_state": {
+   "Propre": 5,
+   "Propre, sèche": 3
+  },
+  "seen_by": {
+   "Inf. Zahra": 6,
+   "Dr Benjelloun": 6,
+   "Sage-femme Salima": 4,
+   "Sage-femme Hajar": 4
+  },
+  "skeletal_anomalies": {
+   "RAS": 55
+  },
+  "speculum_exam": {
+   "—": 49,
+   "RAS": 6
+  },
+  "syphilis": {
+   "Neg": 10
+  },
+  "toxoplasmosis": {
+   "Immune": 5,
+   "Non immune": 5
+  },
+  "trauma.other": {
+   "RAS": 20
+  },
+  "treatment": {
+   "Néant": 10
+  }
+ },
+ "numbers": {
+  "abortion": {
+   "n": 6,
+   "mean": [
+    683.0
+   ],
+   "sd": [
+    947.588
+   ]
+  },
+  "age": {
+   "n": 230,
+   "mean": [
+    26.283
+   ],
+   "sd": [
+    7.979
+   ]
+  },
+  "appointment_date": {
+   "n": 50,
+   "mean": [
+    16.72
+   ],
+   "sd": [
+    8.882
+   ]
+  },
+  "attended_date": {
+   "n": 55,
+   "mean": [
+    16.691
+   ],
+   "sd": [
+    9.097
+   ]
+  },
+  "birth_weight_g": {
+   "n": 10,
+   "mean": [
+    3361.8
+   ],
+   "sd": [
+    413.003
+   ]
+  },
+  "blood_pressure": {
+   "n": 275,
+   "mean": [
+    10.22,
+    6.344
+   ],
+   "sd": [
+    1.481,
+    1.03
+   ]
+  },
+  "consultation_date": {
+   "n": 40,
+   "mean": [
+    13.05
+   ],
+   "sd": [
+    8.261
+   ]
+  },
+  "date": {
+   "n": 17,
+   "mean": [
+    16.118
+   ],
+   "sd": [
+    8.824
+   ]
+  },
+  "delivery_date": {
+   "n": 10,
+   "mean": [
+    20.1
+   ],
+   "sd": [
+    9.534
+   ]
+  },
+  "expected_delivery_date": {
+   "n": 10,
+   "mean": [
+    20.5
+   ],
+   "sd": [
+    9.698
+   ]
+  },
+  "fetal_heart_rate": {
+   "n": 44,
+   "mean": [
+    144.114
+   ],
+   "sd": [
+    9.257
+   ]
+  },
+  "fundal_height_cm": {
+   "n": 44,
+   "mean": [
+    23.295
+   ],
+   "sd": [
+    6.858
+   ]
+  },
+  "gestational_age_weeks": {
+   "n": 265,
+   "mean": [
+    17.002
+   ],
+   "sd": [
+    8.015
+   ]
+  },
+  "glycemia_g_l": {
+   "n": 10,
+   "mean": [
+    0.851
+   ],
+   "sd": [
+    0.064
+   ]
+  },
+  "gravidity": {
+   "n": 210,
+   "mean": [
+    2.633
+   ],
+   "sd": [
+    1.361
+   ]
+  },
+  "head_circumference_cm": {
+   "n": 30,
+   "mean": [
+    35.6
+   ],
+   "sd": [
+    2.23
+   ]
+  },
+  "height_cm": {
+   "n": 10,
+   "mean": [
+    160.3
+   ],
+   "sd": [
+    5.216
+   ]
+  },
+  "hemoglobin_g_dl": {
+   "n": 194,
+   "mean": [
+    11.804
+   ],
+   "sd": [
+    1.329
+   ]
+  },
+  "hepatitis_b_vaccination_date": {
+   "n": 7,
+   "mean": [
+    3.0
+   ],
+   "sd": [
+    0.0
+   ]
+  },
+  "length_cm": {
+   "n": 20,
+   "mean": [
+    52.55
+   ],
+   "sd": [
+    3.801
+   ]
+  },
+  "living_children": {
+   "n": 210,
+   "mean": [
+    2.043
+   ],
+   "sd": [
+    1.51
+   ]
+  },
+  "lmp_date": {
+   "n": 10,
+   "mean": [
+    17.3
+   ],
+   "sd": [
+    7.603
+   ]
+  },
+  "medication_details": {
+   "n": 4,
+   "mean": [
+    2.0
+   ],
+   "sd": [
+    0.0
+   ]
+  },
+  "newborn_weight_g": {
+   "n": 17,
+   "mean": [
+    3360.765
+   ],
+   "sd": [
+    274.818
+   ]
+  },
+  "next_appointment_date": {
+   "n": 10,
+   "mean": [
+    11.0
+   ],
+   "sd": [
+    5.55
+   ]
+  },
+  "next_visit_date": {
+   "n": 20,
+   "mean": [
+    10.95
+   ],
+   "sd": [
+    7.526
+   ]
+  },
+  "parity": {
+   "n": 210,
+   "mean": [
+    2.11
+   ],
+   "sd": [
+    1.506
+   ]
+  },
+  "platelets": {
+   "n": 10,
+   "mean": [
+    269.9
+   ],
+   "sd": [
+    36.079
+   ]
+  },
+  "premature_delivery": {
+   "n": 3,
+   "mean": [
+    686.0
+   ],
+   "sd": [
+    945.498
+   ]
+  },
+  "pulse_bpm": {
+   "n": 20,
+   "mean": [
+    75.5
+   ],
+   "sd": [
+    5.661
+   ]
+  },
+  "record_number": {
+   "n": 10,
+   "mean": [
+    2026.0
+   ],
+   "sd": [
+    0.0
+   ]
+  },
+  "rubella_vaccination_date": {
+   "n": 10,
+   "mean": [
+    12.0
+   ],
+   "sd": [
+    0.0
+   ]
+  },
+  "temperature_c": {
+   "n": 36,
+   "mean": [
+    36.933
+   ],
+   "sd": [
+    0.2
+   ]
+  },
+  "term_exceeded_date": {
+   "n": 10,
+   "mean": [
+    12.2
+   ],
+   "sd": [
+    8.232
+   ]
+  },
+  "treatment": {
+   "n": 2,
+   "mean": [
+    400.0
+   ],
+   "sd": [
+    0.0
+   ]
+  },
+  "weight_g": {
+   "n": 20,
+   "mean": [
+    4169.05
+   ],
+   "sd": [
+    999.087
+   ]
+  },
+  "weight_kg": {
+   "n": 75,
+   "mean": [
+    71.671
+   ],
+   "sd": [
+    8.598
+   ]
+  }
+ }
+}

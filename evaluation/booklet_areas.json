@@ -1,0 +1,427 @@
+{
+ "note": "Hand-traced field areas (python -m tools.crop_editor, mode 'Field areas'). Per field: shapes = where the field is: rect box [x0, y0, x1, y1], or line [x0, y0, x1, y1] = the printed line the value is written on; none = the field has no area on this page (deleted by hand). Page-frame pixels as in crop_labels.json; *_original = the same points on the original photo.",
+ "images": {
+  "1-1.jpg": {
+   "fields": {
+    "record_number": {
+     "shapes": [],
+     "none": true,
+     "updated": "2026-10-04T00:36:55"
+    },
+    "province": {
+     "shapes": [],
+     "none": true,
+     "updated": "2026-10-04T00:36:57"
+    },
+    "region": {
+     "shapes": [],
+     "none": true,
+     "updated": "2026-10-04T00:37:01"
+    },
+    "facility_name": {
+     "shapes": [],
+     "none": true,
+     "updated": "2026-10-04T00:46:36"
+    },
+    "risk.infection": {
+     "shapes": [
+      {
+       "shape": "rect",
+       "box": [
+        509,
+        751,
+        528,
+        763
+       ],
+       "box_original": [
+        [
+         508.7,
+         750.7
+        ],
+        [
+         527.7,
+         750.6
+        ],
+        [
+         527.8,
+         762.6
+        ],
+        [
+         508.8,
+         762.7
+        ]
+       ]
+      },
+      {
+       "shape": "rect",
+       "box": [
+        657,
+        751,
+        673,
+        763
+       ],
+       "box_original": [
+        [
+         656.7,
+         749.9
+        ],
+        [
+         672.7,
+         749.8
+        ],
+        [
+         672.8,
+         761.8
+        ],
+        [
+         656.8,
+         761.9
+        ]
+       ]
+      },
+      {
+       "shape": "rect",
+       "box": [
+        513,
+        794,
+        530,
+        807
+       ],
+       "box_original": [
+        [
+         513.0,
+         793.7
+        ],
+        [
+         530.0,
+         793.6
+        ],
+        [
+         530.0,
+         806.6
+        ],
+        [
+         513.0,
+         806.7
+        ]
+       ]
+      },
+      {
+       "shape": "rect",
+       "box": [
+        512,
+        884,
+        530,
+        897
+       ],
+       "box_original": [
+        [
+         512.4,
+         883.7
+        ],
+        [
+         530.4,
+         883.6
+        ],
+        [
+         530.5,
+         896.6
+        ],
+        [
+         512.5,
+         896.7
+        ]
+       ]
+      },
+      {
+       "shape": "rect",
+       "box": [
+        303,
+        888,
+        318,
+        902
+       ],
+       "box_original": [
+        [
+         303.5,
+         888.8
+        ],
+        [
+         318.5,
+         888.7
+        ],
+        [
+         318.5,
+         902.7
+        ],
+        [
+         303.5,
+         902.8
+        ]
+       ]
+      },
+      {
+       "shape": "rect",
+       "box": [
+        304,
+        792,
+        323,
+        807
+       ],
+       "box_original": [
+        [
+         304.0,
+         792.8
+        ],
+        [
+         323.0,
+         792.7
+        ],
+        [
+         323.0,
+         807.7
+        ],
+        [
+         304.0,
+         807.8
+        ]
+       ]
+      },
+      {
+       "shape": "rect",
+       "box": [
+        304,
+        748,
+        321,
+        761
+       ],
+       "box_original": [
+        [
+         303.7,
+         748.8
+        ],
+        [
+         320.7,
+         748.7
+        ],
+        [
+         320.8,
+         761.7
+        ],
+        [
+         303.8,
+         761.8
+        ]
+       ]
+      }
+     ],
+     "updated": "2026-10-04T00:37:39"
+    },
+    "high_risk": {
+     "shapes": [
+      {
+       "shape": "rect",
+       "box": [
+        365,
+        1049,
+        383,
+        1063
+       ],
+       "box_original": [
+        [
+         366.3,
+         1049.4
+        ],
+        [
+         384.3,
+         1049.3
+        ],
+        [
+         384.4,
+         1063.3
+        ],
+        [
+         366.4,
+         1063.4
+        ]
+       ]
+      },
+      {
+       "shape": "rect",
+       "box": [
+        295,
+        1145,
+        309,
+        1157
+       ],
+       "box_original": [
+        [
+         296.8,
+         1145.8
+        ],
+        [
+         310.8,
+         1145.7
+        ],
+        [
+         310.9,
+         1157.7
+        ],
+        [
+         296.9,
+         1157.8
+        ]
+       ]
+      },
+      {
+       "shape": "rect",
+       "box": [
+        686,
+        1217,
+        704,
+        1232
+       ],
+       "box_original": [
+        [
+         688.2,
+         1215.8
+        ],
+        [
+         706.2,
+         1215.7
+        ],
+        [
+         706.3,
+         1230.7
+        ],
+        [
+         688.3,
+         1230.8
+        ]
+       ]
+      },
+      {
+       "shape": "line",
+       "line": [
+        251,
+        547,
+        369,
+        551
+       ],
+       "line_original": [
+        [
+         249.7,
+         548.0
+        ],
+        [
+         367.7,
+         551.4
+        ]
+       ]
+      },
+      {
+       "shape": "line",
+       "line": [
+        189,
+        604,
+        433,
+        613
+       ],
+       "line_original": [
+        [
+         188.0,
+         605.4
+        ],
+        [
+         432.0,
+         613.1
+        ]
+       ]
+      },
+      {
+       "shape": "line",
+       "line": [
+        525,
+        613,
+        661,
+        613
+       ],
+       "line_original": [
+        [
+         524.0,
+         612.6
+        ],
+        [
+         660.0,
+         611.9
+        ]
+       ]
+      },
+      {
+       "shape": "line",
+       "line": [
+        382,
+        677,
+        665,
+        675
+       ],
+       "line_original": [
+        [
+         381.4,
+         677.4
+        ],
+        [
+         664.3,
+         673.9
+        ]
+       ]
+      },
+      {
+       "shape": "line",
+       "line": [
+        610,
+        1256,
+        786,
+        1256
+       ],
+       "line_original": [
+        [
+         612.4,
+         1255.2
+        ],
+        [
+         788.4,
+         1254.2
+        ]
+       ]
+      }
+     ],
+     "updated": "2026-10-04T00:38:20"
+    }
+   },
+   "frame": "deskewed",
+   "deskew_deg": -0.299,
+   "layout": "booklet_cover",
+   "page_type": "cover",
+   "size": [
+    900,
+    1600
+   ],
+   "kind": "booklet",
+   "line_height": 27.5
+  },
+  "1-4.jpg": {
+   "fields": {},
+   "frame": "deskewed",
+   "deskew_deg": -0.486,
+   "layout": "booklet_pregnancy_left",
+   "page_type": "current_pregnancy",
+   "size": [
+    900,
+    1600
+   ],
+   "kind": "booklet",
+   "line_height": 31.6
+  }
+ }
+}

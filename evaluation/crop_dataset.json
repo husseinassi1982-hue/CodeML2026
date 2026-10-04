@@ -1,0 +1,172 @@
+{
+ "version": 1,
+ "note": "Learning set for cropping handwriting (python -m tools.crop_editor --export). One example per field with a hand label. Inputs: the photo (frame = deskewed page for real booklets; frame_to_original maps frame pixels to the original photo), line_height (printed text height in px, the natural unit), the field area (traced by hand, else found by the program), the printed lines of the page, and the program's own crop. Targets: ideal_crop.shapes (rect box, or line + height = a band around the line), ideal_crop.empty, text. ideal_vs_area_in_line_heights = edges of the ideal crop minus edges of the area, divided by line_height (scale-free). Crop images (as the OCR sees them) are in eval_out/, kept out of git. Identifier fields are never included.",
+ "generated": "2026-10-04T00:27:04",
+ "summary": {
+  "photos": 1,
+  "examples": 1,
+  "with_ideal_crop": 1,
+  "marked_empty": 0,
+  "with_traced_area": 0,
+  "with_text": 0,
+  "mean_ideal_vs_area_in_line_heights": {
+   "left": 14.997,
+   "top": 0.146,
+   "right": 0.036,
+   "bottom": -0.582,
+   "width": 7.498,
+   "height": 1.565
+  },
+  "mean_iou_auto_vs_ideal": 0.0
+ },
+ "photos": [
+  {
+   "photo": "1-1.jpg",
+   "kind": "booklet",
+   "layout": "booklet_cover",
+   "page_type": "cover",
+   "frame": "deskewed",
+   "deskew_deg": -0.299,
+   "size": [
+    900,
+    1600
+   ],
+   "line_height": 27.5,
+   "frame_to_original": [
+    [
+     0.999986,
+     0.005224,
+     -4.172718
+    ],
+    [
+     -0.005224,
+     0.999986,
+     2.361522
+    ]
+   ],
+   "printed_lines": {
+    "horizontal": [
+     [
+      414,
+      299,
+      487,
+      300
+     ],
+     [
+      438,
+      320,
+      501,
+      319
+     ],
+     [
+      77,
+      1301,
+      853,
+      1292
+     ],
+     [
+      823,
+      1310,
+      884,
+      1311
+     ],
+     [
+      826,
+      1371,
+      887,
+      1372
+     ]
+    ],
+    "vertical": [
+     [
+      88,
+      1042,
+      78,
+      1305
+     ]
+    ]
+   },
+   "examples": [
+    {
+     "key": "record_number",
+     "label": "N° de la fiche",
+     "kind": "text",
+     "custom": false,
+     "field_area": {
+      "source": "program",
+      "shapes": [
+       {
+        "shape": "rect",
+        "box": [
+         278,
+         507,
+         895,
+         570
+        ]
+       }
+      ],
+      "bbox": [
+       278,
+       507,
+       895,
+       570
+      ]
+     },
+     "program_area": [
+      278,
+      507,
+      895,
+      570
+     ],
+     "auto_crop": {
+      "box": [
+       284,
+       522,
+       361,
+       554
+      ],
+      "read": [
+       "611D5",
+       0.51
+      ],
+      "dash": false
+     },
+     "ideal_crop": {
+      "shapes": [
+       {
+        "shape": "rect",
+        "box": [
+         690,
+         511,
+         896,
+         554
+        ]
+       }
+      ],
+      "bbox": [
+       690,
+       511,
+       896,
+       554
+      ],
+      "empty": false
+     },
+     "text": null,
+     "ideal_vs_area_in_line_heights": {
+      "left": 14.997,
+      "top": 0.146,
+      "right": 0.036,
+      "bottom": -0.582,
+      "width": 7.498,
+      "height": 1.565
+     },
+     "iou_auto_vs_ideal": 0.0,
+     "ideal_crop_images": [
+      "eval_out/crop_dataset/1-1/record_number__ideal0.png"
+     ],
+     "auto_crop_image": "eval_out/crop_dataset/1-1/record_number__auto.png"
+    }
+   ]
+  }
+ ]
+}

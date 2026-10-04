@@ -10,3 +10,8 @@ __pycache__/
 venv/
 .pytest_cache/
 backend/app_data/
+
+# trained model adapters (too big for git: GitHub release vlm-ocr-v2)
+/vlm_ocr_lora*.zip
+/vlm_ocr_lora*/
+/models/

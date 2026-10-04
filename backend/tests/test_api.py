@@ -184,7 +184,10 @@ def test_unrecognised_page_goes_to_manual_review(client, photo, monkeypatch):
 @pytest.mark.skipif(importlib.util.find_spec("rapidocr") is None, reason="OCR not installed")
 def test_real_ocr_on_printed_cover(client):
     from core import config
-    img = (config.REPO_ROOT / "extraction" / "data" / "printed_cover.png").read_bytes()
+    path = config.REPO_ROOT / "data" / "Paper Registry" / "dossiers_specimen_10_patientes-01.png"
+    if not path.exists():
+        pytest.skip("organisers' data not linked (ln -s ../dayone-participants/data data)")
+    img = path.read_bytes()
     rec = client.post("/records", files={"photo": ("cover.png", img, "image/png")}).json()
     report = client.post("/queue/process").json()
     assert report["processed"] == [rec["id"]]

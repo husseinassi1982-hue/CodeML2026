@@ -134,3 +134,20 @@ def read_crops(crops: list[np.ndarray], batch: int = 32, model: str = "small") -
             latin = LATIN.sub("", t)  # the model also knows Chinese; the registry is Latin script
             out.append((latin.strip(), float(sc) if latin.strip() == t.strip() else float(sc) * 0.5))
     return out
+
+
+def rec_probs(crops: list[np.ndarray], model: str = "medium") -> tuple[list[np.ndarray], list[str]]:
+    """Per-timestep character probabilities of each crop (CTC output, before greedy decoding),
+    and the recogniser's character list (index 0 = CTC blank). One crop at a time: no padding
+    from other crops, so every column belongs to this crop."""
+    eng = engine() if model == "small" else (medium_engine() or engine())
+    rec = eng.text_rec
+    _, h, w = rec.rec_image_shape[:3]
+    out = []
+    for crop in crops:
+        ratio = max(w / h, crop.shape[1] / crop.shape[0])
+        x = rec.resize_norm_img(crop, ratio)[np.newaxis].astype(np.float32)
+        p = rec.session(x)[0]  # (T, C)
+        used = min(p.shape[0], int(np.ceil(p.shape[0] * min(1.0, (crop.shape[1] / crop.shape[0]) / ratio))) + 2)
+        out.append(np.asarray(p[:used], dtype=np.float32))
+    return out, list(rec.postprocess_op.character)

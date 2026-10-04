@@ -722,19 +722,31 @@ def _found_of(l: OcrLine) -> Found:
 
 def bands(page: Page) -> list[float]:
     """y centres of the wide shaded section bands of a table, top to bottom."""
+    return [(a + b) / 2 for a, b in band_spans(page)]
+
+
+def band_spans(page: Page) -> list[tuple[float, float]]:
+    """(top, bottom) of the wide shaded section bands, top to bottom (cached on the page)."""
+    if getattr(page, "_bands_cache", None) is None:
+        page._bands_cache = _band_spans(page)
+    return page._bands_cache
+
+
+def _band_spans(page: Page) -> list[tuple[float, float]]:
     g = cv2.cvtColor(page.img, cv2.COLOR_BGR2GRAY).astype(np.float32)
     bg = cv2.GaussianBlur(cv2.dilate(g.astype(np.uint8), np.ones((61, 61), np.uint8)), (0, 0), 20).astype(np.float32)
     norm = g / np.maximum(bg, 1)
     shade = ((norm > 0.45) & (norm < 0.88)).astype(np.uint8)
     shade = cv2.morphologyEx(shade, cv2.MORPH_OPEN, np.ones((9, 61), np.uint8))
     n, _, st, _ = cv2.connectedComponentsWithStats(shade)
-    ys = sorted(st[i, 1] + st[i, 3] / 2 for i in range(1, n) if st[i, 2] > 250 and 8 < st[i, 3] < 60)
-    merged: list[float] = []
-    for y in ys:
-        if merged and y - merged[-1] < 40:
-            merged[-1] = (merged[-1] + y) / 2
+    spans = sorted((float(st[i, 1]), float(st[i, 1] + st[i, 3])) for i in range(1, n)
+                   if st[i, 2] > 250 and 8 < st[i, 3] < 60)
+    merged: list[tuple[float, float]] = []
+    for a, b in spans:
+        if merged and (a + b) / 2 - sum(merged[-1]) / 2 < 40:
+            merged[-1] = (min(merged[-1][0], a), max(merged[-1][1], b))
         else:
-            merged.append(float(y))
+            merged.append((a, b))
     return merged
 
 
@@ -774,8 +786,20 @@ def _near_line_mask(page: Page) -> np.ndarray:
     return page._near_cache
 
 
+SPAN_MIN_ROWS = 1.3  # diagonal writing is at least this many rows tall
+SPAN_GAP = 0.9  # pieces of one diagonal word/stroke are at most this far apart (printed-line heights)
+
+
+def _orientation(mask: np.ndarray) -> float:
+    m = cv2.moments(mask.astype(np.uint8))
+    return abs(math.degrees(0.5 * math.atan2(2 * m["mu11"], m["mu20"] - m["mu02"]))) if m["m00"] else 0.0
+
+
 def _find_spans(page: Page, spec: Table, cols, cell_rects):
-    """Handwriting written diagonally across several rows of one column."""
+    """Handwriting written diagonally across several rows of one column ("RAS" over a whole
+    section, a stroke crossing out several cells). The ink of such writing is in pieces: letters
+    apart, and cut where it crosses a printed row line (removed). Pieces that are slanted or compact
+    (not flat words written along a row), close together and lined up along a diagonal are joined."""
     spans = []
     for ck, _ in cols:
         rects = [(rk, r) for (c, rk), r in cell_rects.items() if c == ck and r[3] > r[1]]
@@ -788,17 +812,52 @@ def _find_spans(page: Page, spec: Table, cols, cell_rects):
         row_h = float(np.median([r[3] - r[1] for _, r in rects]))
         crop = page.ink[y0:y1, x0:x1].copy() & (1 - _line_mask(page)[y0:y1, x0:x1])
         crop, _ = _remove_lines(crop, h_len=int(0.6 * (x1 - x0)), v_len=int(3 * row_h))
-        crop = cv2.dilate(crop, np.ones((7, 7), np.uint8))  # join the separate letters of a slanted word
-        n, lab, stats, _ = cv2.connectedComponentsWithStats(crop, connectivity=8)
+        crop = cv2.dilate(crop, np.ones((7, 7), np.uint8))  # letters of one stroke
+        n, lab, stats, cen = cv2.connectedComponentsWithStats(crop, connectivity=8)
+        pieces = []
         for i in range(1, n):
             x, y, w, h, area = (stats[i, j] for j in range(5))
-            if h < 1.6 * row_h or area < 60 or w < 15:
+            if area < 60:
                 continue
-            m = cv2.moments((lab == i).astype(np.uint8))
-            ang = abs(math.degrees(0.5 * math.atan2(2 * m["mu11"], m["mu20"] - m["mu02"])))
+            ang = _orientation(lab == i)
+            flat = h < 0.6 * row_h and w > 1.6 * h and ang < 20  # a word written along its row
+            if not flat:
+                pieces.append((i, x, y, w, h, cen[i], ang))
+        # join pieces: close together, and the line between their centres is diagonal
+        parent = {pc[0]: pc[0] for pc in pieces}
+
+        def root(a):
+            while parent[a] != a:
+                parent[a] = parent[parent[a]]
+                a = parent[a]
+            return a
+        gap = SPAN_GAP * page.th
+        for a in range(len(pieces)):
+            for b in range(a + 1, len(pieces)):
+                ia, xa, ya, wa, ha, ca, _ = pieces[a]
+                ib, xb, yb, wb, hb, cb, _ = pieces[b]
+                dx = max(0, max(xa, xb) - min(xa + wa, xb + wb))
+                dy = max(0, max(ya, yb) - min(ya + ha, yb + hb))
+                if dx > gap or dy > gap:
+                    continue
+                d_ang = abs(math.degrees(math.atan2(cb[1] - ca[1], cb[0] - ca[0])))
+                d_ang = min(d_ang, 180 - d_ang)
+                if 20 <= d_ang <= 75 or (dx == 0 and dy == 0):
+                    parent[root(ia)] = root(ib)
+        groups: dict[int, list] = {}
+        for pc in pieces:
+            groups.setdefault(root(pc[0]), []).append(pc)
+        for g in groups.values():
+            gx0 = min(pc[1] for pc in g)
+            gy0 = min(pc[2] for pc in g)
+            gx1 = max(pc[1] + pc[3] for pc in g)
+            gy1 = max(pc[2] + pc[4] for pc in g)
+            if gy1 - gy0 < SPAN_MIN_ROWS * row_h or gx1 - gx0 < 15:
+                continue
+            ang = _orientation(np.isin(lab, [pc[0] for pc in g]))
             if not 20 <= ang <= 75:
-                continue  # written along a row or a stack of separate values, not diagonal
-            gx0, gy0, gx1, gy1 = x0 + x, y0 + y, x0 + x + w, y0 + y + h
+                continue  # a stack of separate values, not diagonal writing
+            gx0, gy0, gx1, gy1 = x0 + gx0, y0 + gy0, x0 + gx1, y0 + gy1
             crossed = [rk for rk, r in rects if min(r[3], gy1) - max(r[1], gy0) > 0.35 * (r[3] - r[1])]
             if len(crossed) >= 2:
                 keys = [spec.key_fmt.format(prefix=spec.prefix, col=ck, row=rk) for rk in crossed]
@@ -865,9 +924,18 @@ class Reading:
     source: str
 
 
+def _derived(a: Reading, b: Reading) -> bool:
+    """Is one reading decoded from the same recogniser output as the other (not independent)?"""
+    for f, o in ((a, b), (b, a)):
+        if f.source.startswith("field") and (o.source == "medium" or (o.source == "small" and "small" in f.source)):
+            return True
+    return False
+
+
 def _choose(field_, readings: list[Reading]):
     """Pick a reading and a confidence from several OCR opinions. Agreement between independent
     readings is the strongest evidence we have on real handwriting."""
+    from . import constrained
     from .normalize import parse
 
     cands = []
@@ -880,10 +948,14 @@ def _choose(field_, readings: list[Reading]):
         return None, None, 0.0, 0
     best, best_key = None, None
     for r, p in cands:
-        agree = sum(1 for r2, p2 in cands if r2 is not r and (
+        # the field reading is decoded from the medium model's own probabilities: agreeing with
+        # the medium reading is not independent evidence, only agreement with the others counts
+        agree = sum(1 for r2, p2 in cands if r2 is not r and not _derived(r, r2) and (
             (p.ok and p2.ok and p.marker == p2.marker and (p.marker or _same(p.value, p2.value)))
             or _same(r.text, r2.text)))
-        key = (agree, p.ok and not p.issues, p.snapped, r.score)
+        # a reading that is a plausible value of the field (grammar / vocabulary) beats junk
+        plaus = r.source.startswith("field") or bool(constrained.is_plausible(field_.key, field_.dtype, field_.range, r.text))
+        key = (agree, p.ok and not p.issues, plaus, p.snapped, r.score)
         if best_key is None or key > best_key:
             best, best_key = (r, p), key
     r, p = best
@@ -898,7 +970,19 @@ def _choose(field_, readings: list[Reading]):
     return r, p, conf, agree
 
 
-def extract(img: np.ndarray, lines: list[OcrLine], layout: Layout, threshold: float):
+def word_crops(page: Page, loc) -> dict[str, "WordInk"]:
+    """The handwriting crop of every text field/cell (what the recognisers read), by region key."""
+    # remove the pixels of diagonal writing from the cells it crosses
+    span_mask = np.zeros(page.ink.shape, np.uint8)
+    for _, (x0, y0, x1, y1) in loc.spans:
+        span_mask[y0:y1, x0:x1] = page.ink[y0:y1, x0:x1]
+    span_mask = cv2.dilate(span_mask, np.ones((3, 3), np.uint8))
+    free_ink = page.ink & (1 - _line_mask(page)) & (1 - span_mask)
+    return {r.key: _word_crop(page, free_ink, r.rect, r.kind) for r in loc.regions
+            if r.kind in ("text", "cell") and r.rect[2] > r.rect[0] + 4 and r.rect[3] > r.rect[1] + 4}
+
+
+def extract(img: np.ndarray, lines: list[OcrLine], layout: Layout, threshold: float, read_text: bool = True):
     """-> (fields dict, warnings, pii rectangles, page). FieldResult objects use catalog keys."""
     from . import ocr
     from .backends.common import field_result
@@ -913,26 +997,14 @@ def extract(img: np.ndarray, lines: list[OcrLine], layout: Layout, threshold: fl
         for k in keys:
             span_of.setdefault(k, si)
 
-    # remove the pixels of diagonal writing from the cells it crosses
-    span_mask = np.zeros(page.ink.shape, np.uint8)
-    for _, (x0, y0, x1, y1) in loc.spans:
-        span_mask[y0:y1, x0:x1] = page.ink[y0:y1, x0:x1]
-    span_mask = cv2.dilate(span_mask, np.ones((3, 3), np.uint8))
-
-    text_regions = [r for r in loc.regions if r.kind in ("text", "cell") and r.rect[2] > r.rect[0] + 4
-                    and r.rect[3] > r.rect[1] + 4]
-    inks, crops = {}, {}
-    free_ink = page.ink & (1 - _line_mask(page)) & (1 - span_mask)
-    for r in text_regions:
-        ink = _word_crop(page, free_ink, r.rect)
-        inks[r.key] = ink
-        if ink.present and not ink.is_dash:
-            crops[r.key] = ink.clean
-    keys = list(crops)
+    inks = word_crops(page, loc)
+    crops = {k: ink.clean for k, ink in inks.items() if ink.present and not ink.is_dash}
+    keys = list(crops) if read_text else []  # read_text=False: layout only (another reader reads)
     small = dict(zip(keys, ocr.read_crops([crops[k] for k in keys], model="small")))
     # without the medium model there is no independent second reading: no agreement bonus
     medium = dict(zip(keys, ocr.read_crops([crops[k] for k in keys], model="medium"))) if ocr.medium_available() else {}
-    span_reads = ocr.read_crops([_span_crop(page, b) for _, b in loc.spans], model="medium") if loc.spans else []
+    field_reads = _field_readings(layout.page_type, keys, crops)
+    span_reads = _span_readings(page, loc) if loc.spans and read_text else [("", 0.0)] * len(loc.spans)
 
     for r in loc.regions:
         try:
@@ -944,7 +1016,7 @@ def extract(img: np.ndarray, lines: list[OcrLine], layout: Layout, threshold: fl
         if r.kind in ("text", "cell"):
             fields[f.key] = _decide_text_field(f, r, inks.get(r.key), small.get(r.key), medium.get(r.key),
                                                span_reads[span_of[r.key]] if r.key in span_of else None,
-                                               threshold, field_result, Status)
+                                               threshold, field_result, Status, field_reads.get(r.key))
         elif r.kind == "check":
             if not r.extra.get("found"):
                 fields[f.key] = field_result(f, Status.NEEDS_REVIEW, 0.3, issues=["checkbox not found on the photo"])
@@ -986,29 +1058,109 @@ class WordInk:
     is_dash: bool
     fraction: float
     clean: np.ndarray | None  # crop of the whole words, other ink painted out
+    box: tuple[int, int, int, int] | None = None  # where that crop is on the deskewed page
 
 
-def _word_crop(page: Page, free_ink: np.ndarray, rect) -> WordInk:
+def _pen_colour(page: Page):
+    """(blue-yellow channel minus the paper's, page uses a blue pen?) (cached on the page).
+
+    Measured per ink piece, not per pixel (per pixel failed on JPEG noise and the pink cast):
+    on the real photos the midwife's blue pen sits at -10..-20 and the print/grid at 0..+10,
+    with almost nothing between."""
+    if getattr(page, "_pen_cache", None) is None:
+        b = cv2.cvtColor(page.img, cv2.COLOR_BGR2LAB)[..., 2].astype(np.float32)
+        rel = b - float(np.median(b[page.ink == 0])) if (page.ink == 0).any() else b * 0
+        n, lab, st, _ = cv2.connectedComponentsWithStats(page.ink, connectivity=8)
+        means = np.bincount(lab.ravel(), weights=rel.ravel(), minlength=n) / np.maximum(np.bincount(lab.ravel(), minlength=n), 1)
+        blue_pieces = int(sum(1 for i in range(1, n) if st[i, cv2.CC_STAT_AREA] >= 30 and means[i] < -6))
+        page._pen_cache = (rel, blue_pieces >= 5)
+    return page._pen_cache
+
+
+def _drop_print_coloured(sub: np.ndarray, rel: np.ndarray) -> np.ndarray:
+    """On a page written in blue: drop ink pieces that are clearly not blue (printed labels,
+    underlines, the printed "/  /" of dates, grid lines the line detector missed)."""
+    n, lab = cv2.connectedComponents(sub, connectivity=8)
+    if n <= 1:
+        return sub
+    means = np.bincount(lab.ravel(), weights=rel.ravel(), minlength=n) / np.maximum(np.bincount(lab.ravel(), minlength=n), 1)
+    printed = np.nonzero(means > -3)[0]
+    printed = printed[printed > 0]
+    out = sub.copy()
+    if len(printed):
+        out[np.isin(lab, printed)] = 0
+    return out
+
+
+def _drop_printed_strokes(sub: np.ndarray, rect, th: float) -> np.ndarray:
+    """Remove ink pieces shaped like printed lines the line detector missed, before words are
+    grouped: an underline or band edge (flat, as wide as the field or off its middle) and a
+    column border bent by the page curve (thin, as tall as the cell, at its left/right edge)."""
+    x0, y0, x1, y1 = rect
+    fw, fh = x1 - x0, y1 - y0
+    n, lab, st, cen = cv2.connectedComponentsWithStats(sub, connectivity=8)
+    out = sub.copy()
+    for i in range(1, n):
+        x, y, w, h = st[i, 0], st[i, 1], st[i, 2], st[i, 3]
+        cx, cy = cen[i]
+        flat = h <= 0.3 * th and w >= 0.8 * th and w > 4 * h
+        if flat and (w > 0.6 * fw or not (y0 + 0.2 * fh <= cy <= y1 - 0.2 * fh)):
+            out[lab == i] = 0
+            continue
+        edge = min(abs(cx - x0), abs(cx - x1)) < max(0.2 * fw, 0.3 * th)
+        if w <= 0.3 * th and h >= 0.75 * fh and h > 4 * w and edge:
+            out[lab == i] = 0
+    return out
+
+
+CROP_PAD = 0.2        # margin of paper around the words, in printed-line heights
+CROP_PAD_X = 0.0      # extra margin left and right only, in line heights
+UNDERLINE_RUN = 0.0   # >0: erase straight horizontal ink runs at least this many line heights long
+WINDOW_X = 0.0        # extra horizontal search margin for table cells, in line heights
+
+
+def _straight_runs(mask: np.ndarray, th: float) -> np.ndarray:
+    """Long thin horizontal runs of ink (an underline or row line the detector missed, or the
+    part of a printed line that touches the handwriting)."""
+    L = int(UNDERLINE_RUN * th)
+    if L <= 0 or mask.shape[1] <= L:
+        return np.zeros_like(mask)
+    runs = cv2.morphologyEx(mask, cv2.MORPH_OPEN, np.ones((1, L), np.uint8))
+    return cv2.dilate(runs, np.ones((3, 1), np.uint8))
+
+
+def _word_crop(page: Page, free_ink: np.ndarray, rect, kind: str = "cell") -> WordInk:
     """Handwriting is often taller than the booklet's rows: take every handwritten word whose
-    centre falls inside the field, whole, even where it spills over the row lines."""
+    centre falls inside the field, whole, even where it spills over the row lines.
+
+    Before grouping, ink shaped like a printed line and (on a page written in blue) ink that is
+    not blue are dropped. The crop is cut from the photo with a real margin of paper; other ink
+    is painted with the paper colour and printed lines are inpainted, so the recogniser sees
+    neither grid bars, printed labels nor neighbouring words."""
     x0, y0, x1, y1 = rect
     th = page.th
     ext = int(0.9 * th)
     H, W = free_ink.shape
-    sx0, sy0, sx1, sy1 = max(0, x0), max(0, y0 - ext), min(W, x1), min(H, y1 + ext)
+    mx = int(WINDOW_X * th) if kind == "cell" else 0
+    sx0, sy0, sx1, sy1 = max(0, x0 - mx), max(0, y0 - ext), min(W, x1 + mx), min(H, y1 + ext)
     sub = free_ink[sy0:sy1, sx0:sx1]
-    if sub.size == 0:
+    sub = sub & (1 - _straight_runs(page.ink[sy0:sy1, sx0:sx1], th))
+    if sub.size == 0 or x1 <= x0 or y1 <= y0:
         return WordInk(False, False, 0.0, None)
+    sub = _drop_printed_strokes(sub, (x0 - sx0, y0 - sy0, x1 - sx0, y1 - sy0), th)
+    rel, blue_pen = _pen_colour(page)
+    if blue_pen:
+        sub = _drop_print_coloured(sub, rel[sy0:sy1, sx0:sx1])
     words = cv2.dilate(sub, np.ones((max(3, int(0.25 * th)), max(5, int(0.35 * th))), np.uint8))
     n, lab, st, cen = cv2.connectedComponentsWithStats(words, connectivity=8)
     keep = []
     min_area = max(12, int(0.02 * th * th))
     near_line = _near_line_mask(page)[sy0:sy1, sx0:sx1]
     for i in range(1, n):
-        cy = sy0 + cen[i][1]
+        cx, cy = sx0 + cen[i][0], sy0 + cen[i][1]
         comp = (lab == i) & (sub > 0)
         real = int(comp.sum())
-        if not (y0 <= cy <= y1 and real >= min_area):
+        if not (y0 <= cy <= y1 and x0 <= cx <= x1 and real >= min_area):
             continue
         # a sliver of a printed row line the line mask did not quite cover is not handwriting
         if st[i, cv2.CC_STAT_HEIGHT] <= 0.45 * th and near_line[comp].mean() > 0.6:
@@ -1021,20 +1173,35 @@ def _word_crop(page: Page, free_ink: np.ndarray, rect) -> WordInk:
         keep.append(i)
     if not keep:
         return WordInk(False, False, float(sub.mean()), None)
-    mask = np.isin(lab, keep)
-    ys, xs = np.nonzero(mask & (sub > 0))
+    group = np.isin(lab, keep)
+    kept = group & (sub > 0)
+    ys, xs = np.nonzero(kept)
     if len(xs) == 0:
         return WordInk(False, False, 0.0, None)
     bx0, by0, bx1, by1 = xs.min(), ys.min(), xs.max() + 1, ys.max() + 1
     w, h = bx1 - bx0, by1 - by0
     is_dash = len(keep) == 1 and h <= 0.35 * th and w >= 0.5 * th and w > 2.5 * h
-    crop = page.img[sy0 + by0:sy0 + by1, sx0 + bx0:sx0 + bx1].copy()
-    other = (page.ink[sy0 + by0:sy0 + by1, sx0 + bx0:sx0 + bx1] > 0) & ~mask[by0:by1, bx0:bx1]
-    if other.any():
-        crop[other] = np.median(crop.reshape(-1, 3), axis=0)
-    pad = max(4, int(0.2 * th))
-    crop = cv2.copyMakeBorder(crop, pad, pad, pad + 4, pad + 4, cv2.BORDER_REPLICATE)
-    return WordInk(True, bool(is_dash), float(len(xs)) / max(1, sub.size), _for_recogniser(crop))
+    # page coordinates of the crop, with a real margin of paper around the words
+    pad = max(4, int(CROP_PAD * th))
+    padx = pad + 4 + int(CROP_PAD_X * th)
+    X0, Y0 = max(0, sx0 + bx0 - padx), max(0, sy0 + by0 - pad)
+    X1, Y1 = min(W, sx0 + bx1 + padx), min(H, sy0 + by1 + pad)
+    crop = page.img[Y0:Y1, X0:X1].copy()
+    keep_px = np.zeros((Y1 - Y0, X1 - X0), bool)
+    ky0, kx0 = sy0 - Y0, sx0 - X0  # window -> crop offset
+    ys_c, xs_c = ys + ky0, xs + kx0
+    ok = (ys_c >= 0) & (ys_c < Y1 - Y0) & (xs_c >= 0) & (xs_c < X1 - X0)
+    keep_px[ys_c[ok], xs_c[ok]] = True
+    keep_px = cv2.dilate(keep_px.astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool)
+    ink = page.ink[Y0:Y1, X0:X1] > 0
+    lines = (_line_mask(page)[Y0:Y1, X0:X1] > 0) | (_straight_runs(page.ink[Y0:Y1, X0:X1], th) > 0)
+    paper = ~ink & ~lines
+    bg = np.median(crop[paper], axis=0) if paper.any() else np.median(crop.reshape(-1, 3), axis=0)
+    crop[ink & ~keep_px & ~lines] = bg  # other words, specks
+    if lines.any():  # printed lines: rebuild what is under them from the surroundings
+        crop = cv2.inpaint(crop, (lines & ~keep_px).astype(np.uint8) * 255, 3, cv2.INPAINT_TELEA)
+    return WordInk(True, bool(is_dash), float(kept.sum()) / max(1, (x1 - x0) * (y1 - y0)), _for_recogniser(crop),
+                   (int(sx0 + bx0), int(sy0 + by0), int(sx0 + bx1), int(sy0 + by1)))
 
 
 def _for_recogniser(crop: np.ndarray) -> np.ndarray:
@@ -1063,7 +1230,35 @@ def _span_crop(page: Page, box) -> np.ndarray:
     return _for_recogniser(cv2.copyMakeBorder(rot, 8, 8, 12, 12, cv2.BORDER_REPLICATE))
 
 
-def _decide_text_field(f, r: Region, ink, small, medium, span_read, threshold, field_result, Status):
+def _field_readings(page_type: str, keys: list[str], crops: dict) -> dict[str, tuple[str, float]]:
+    """The most likely *plausible* value of each field under the recogniser's own character
+    probabilities (extraction/constrained.py): "11/7" where the free reading says "NII"."""
+    from . import constrained, ocr
+
+    out = {}
+    todo = []
+    for k in keys:
+        try:
+            f = get_field(page_type, k)
+        except KeyError:
+            continue
+        if constrained.candidates(k, f.dtype, f.range):
+            todo.append((k, f))
+    if not todo:
+        return out
+    probs, charset = ocr.rec_probs([crops[k] for k, _ in todo], model="medium")
+    few = [i for i, (k, f) in enumerate(todo) if constrained.few_options(k, f.dtype, f.range)]
+    small = dict(zip(few, ocr.rec_probs([crops[todo[i][0]] for i in few], model="small")[0])) if few else {}
+    for i, ((k, f), p) in enumerate(zip(todo, probs)):
+        r = constrained.read(p, charset, k, f.dtype, f.range, probs_small=small.get(i))
+        if r is not None and r.fit > -12:
+            # the ink must fit the value; otherwise no opinion. "field+small": decoded from both models
+            out[k] = (constrained.canonical(r, f.dtype), constrained.confidence(r), "field+small" if i in small else "field")
+    return out
+    return out
+
+
+def _decide_text_field(f, r: Region, ink, small, medium, span_read, threshold, field_result, Status, field_read=None):
     strip_label = r.extra.get("strip_label")
     readings = []
     raw_small = small[0] if small else ""
@@ -1079,12 +1274,14 @@ def _decide_text_field(f, r: Region, ink, small, medium, span_read, threshold, f
     line = r.extra.get("line_reading")
     if line:
         readings.append(Reading(_clean_reading(line), 0.8, "page-line"))
+    if field_read is not None and field_read[0]:
+        readings.append(Reading(field_read[0], field_read[1], field_read[2]))
 
     if r.kind == "text" and ink is not None and ink.present \
-            and all(_separator_only(rd.text) for rd in readings if rd.source != "page-line") \
+            and all(_separator_only(rd.text) for rd in readings if rd.source == "small" or rd.source == "medium") \
             and not any(rd.text and not _separator_only(rd.text) for rd in readings if rd.source == "page-line"):
         return field_result(f, Status.NOT_PROVIDED, 0.6)  # only the printed "/__/" brackets were seen
-    if (ink is None or not ink.present) and not any(rd.text for rd in readings if rd.source == "page-line"):
+    if (ink is None or not ink.present) and not any(rd.text for rd in readings if rd.source == "page-line"):  # noqa: E501
         if span_read is not None:
             return _span_result(f, span_read, field_result, Status)
         conf = 0.9 if ink is not None and ink.fraction == 0 else 0.7
@@ -1123,6 +1320,25 @@ def _separator_only(text: str) -> bool:
         return True
     return (len(t) <= 4 and bool(re.fullmatch(r"[/|1lI_\-.()\[\]]*", t))
             and (bool(re.search(r"[/|_]", t)) or len(t) >= 2))
+
+
+def _span_readings(page: Page, loc) -> list[tuple[str, float]]:
+    """What is written diagonally across a section: in this booklet almost always one word ("RAS",
+    "Néant", "NF"...). The free reading is kept when it is clearly something else."""
+    from . import constrained, ocr
+
+    crops = [_span_crop(page, b) for _, b in loc.spans]
+    free = ocr.read_crops(crops, model="medium")
+    probs, charset = ocr.rec_probs(crops, model="medium")
+    probs_s, _ = ocr.rec_probs(crops, model="small")
+    out = []
+    for (text, score), pm, ps in zip(free, probs, probs_s):
+        r = constrained.read_words(pm, charset, constrained.SPAN_WORDS, probs_small=ps)
+        if r is not None and r.fit > -12:
+            out.append((r.text, min(0.6, constrained.confidence(r))))
+        else:
+            out.append((text, score))
+    return out
 
 
 def _span_result(f, span_read, field_result, Status):

@@ -133,6 +133,41 @@ Accuracy on these 5 photos is in the results below: honest but limited by how we
 local OCR model reads fast cursive. A stronger recogniser (a vision-language model running on
 a GPU inside the health system) plugs into the same interface.
 
+## Fine-tuned vision model (GPU)
+
+A vision-language model (Qwen3-VL-8B, 4-bit, + a LoRA adapter) fine-tuned to read one registry field
+at a time: `notebooks/finetune_vlm_ocr.ipynb` (Colab T4, ~1 h), data from `tools/export_vlm_dataset.py`
+(specimen pages, patients 1-7) and `tools/synth_midwife.py` (synthetic crops in the real midwife's formats:
+cmHg "11/7", "16SA+3j", "NF", "Reçu", "nég"…). Trained on synthetic data only.
+
+```python
+extract("photo.jpg", backend="vlm")       # the trained model reads every handwritten value
+```
+
+* **The model only reads.** The CPU pipeline still finds the page type, every field, identifiers (painted
+  out before the model sees anything) and checkboxes; each field's area plus a margin is given to the
+  model with the field's label and expected format, exactly as in training. Confidence = probability of
+  the least certain generated token; below the bar (0.80 scans / 0.88 photos) the field goes to review.
+* **Needs** a CUDA GPU with ~7 GB free (Colab/Kaggle T4, RTX 4060 laptop), `pip install unsloth`, and the
+  adapter `vlm_ocr_lora_v2.zip` (GitHub release *vlm-ocr-v2* of this repo) in the repo folder or at
+  `DAYONE_VLM_ADAPTER`. Everything runs on that machine: nothing is sent anywhere.
+* **Without them** `backend="vlm"` raises `backend_unavailable`: in the app (`DAYONE_EXTRACTOR=vlm`) the
+  page waits as PENDING_AI until a machine with the model processes the queue.
+* `DAYONE_VLM=1` with the default backend uses the model as a *second* reader instead: agreement with the
+  CPU OCR -> KNOWN, disagreement -> review.
+
+Measured (exact transcription of single field crops):
+
+| Held-out crops | CPU OCR | Model, run 1 | Model, run 2 (+ midwife formats) |
+|---|---|---|---|
+| Specimen pages, patients 8-10 (300) | 64% | 92% | 95% |
+| Synthetic crops in the midwife's formats (150-600) | 48-58% | 76% | 94% |
+| **Real booklet photos (93)** | 46% | **50.5%** | not measured yet (needs a GPU) |
+
+The synthetic tests are easy (same generators as training); the real-photo line is the one that counts.
+On whole specimen pages the CPU pipeline itself reads 99% of written values (it reads tight ink crops,
+not the margin crops of this table).
+
 ## Statuses
 
 | Status | Local backend rule |
