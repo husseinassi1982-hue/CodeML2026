@@ -6,7 +6,7 @@ import time
 
 import numpy as np
 
-from .. import ocr, validate
+from .. import booklet, ocr, validate
 from ..align import align
 from ..catalog import fields_for
 from ..imageproc import analyze_text_crop, checkbox_score, image_quality, text_crop_for_ocr, warp_region
@@ -29,7 +29,11 @@ class LocalBackend:
         lines = ocr.read_page(img)
         al = align(lines, img)
         if al is None or al.confidence < MIN_PAGE_CONFIDENCE:
-            # unknown layout (e.g. another edition of the booklet): better no answer than a wrong one
+            # not the specimen layout: maybe a page of the real pink booklet
+            lay, score = booklet.classify(lines)
+            if lay is not None:
+                return self._booklet(img, lines, lay, score, quality, t0)
+            # unknown layout: better no answer than a wrong one
             return finish("unknown", 0.0 if al is None else al.confidence, {}, quality, self.name, VERSION,
                           int((time.time() - t0) * 1000),
                           ["page not recognised as a known registry page: retake the photo or enter it manually"])
@@ -82,4 +86,14 @@ class LocalBackend:
         ocr.trim_memory()
         warnings = list(al.warnings) + [f"image quality: {i}" for i in quality.issues]
         return finish(al.page_type, al.confidence, ordered, quality, self.name, VERSION,
-                      int((time.time() - t0) * 1000), warnings)
+                      int((time.time() - t0) * 1000), warnings, layout="specimen")
+
+    def _booklet(self, img, lines, lay, score, quality, t0) -> PageExtraction:
+        fields, warns, _, _ = booklet.extract(img, lines, lay, known_threshold(0))  # always a photo
+        ordered = {f.key: fields[f.key] for f in fields_for(lay.page_type) if f.key in fields}
+        validate.check(lay.page_type, ordered)
+        ocr.trim_memory()
+        warnings = [f"real booklet page ({lay.name}): handwriting is harder to read, more fields go to review"]
+        warnings += warns + [f"image quality: {i}" for i in quality.issues]
+        return finish(lay.page_type, score, ordered, quality, self.name, VERSION, int((time.time() - t0) * 1000),
+                      warnings, layout=lay.name)

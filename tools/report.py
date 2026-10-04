@@ -17,7 +17,10 @@ def pct(x):
 
 
 def main():
-    runs = {p.stem.removeprefix("results_"): json.loads(p.read_text()) for p in EVAL_DIR.glob("results_*.json")}
+    real = EVAL_DIR / "results_real_photos.json"
+    real = json.loads(real.read_text()) if real.exists() else None
+    runs = {p.stem.removeprefix("results_"): json.loads(p.read_text()) for p in EVAL_DIR.glob("results_*.json")
+            if p.stem != "results_real_photos"}
     names = [n for n in ORDER if n in runs] + sorted(n for n in runs if n not in ORDER)
     lines = [
         "# Extraction results",
@@ -38,6 +41,12 @@ def main():
                      f"{pct(o['status_accuracy'])} | {pct(o['review_rate_on_written'])} | "
                      f"{o['silent_errors']} ({pct(o['silent_error_rate'])}) | {pct(r['page_type_accuracy'])} | "
                      f"{r['seconds_per_page']} |")
+    if real:
+        lines += ["", f"**Real booklet photos** (5 photos of the pink booklet, real cursive; {real['fields']} fields "
+                  "transcribed by hand from the images in `evaluation/real_photos_truth.json`, "
+                  "`python -m tools.evaluate_real`): "
+                  f"{real['correct'] / real['fields']:.0%} right, {real['silent_errors']} silent errors "
+                  f"({real['silent_errors'] / real['fields']:.0%}), {real['sent_to_review'] / real['fields']:.0%} sent to review."]
     lines += ["", "*Field accuracy*: status right and, if something is written, value right. "
               "*Sent to review*: written fields the agent asks the midwife to confirm. "
               "*Silent errors*: fields reported KNOWN that are wrong — the agent claimed certainty and was wrong.", ""]

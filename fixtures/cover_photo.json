@@ -3,6 +3,7 @@
   "page_type": "cover",
   "page_type_label": "Fiche de surveillance (couverture)",
   "page_type_confidence": 1.0,
+  "layout": "specimen",
   "record_number": "2026-823-001",
   "fields": {
     "record_number": {
@@ -283,7 +284,7 @@
   },
   "backend": "local-ocr",
   "model_version": "local-ocr-0.1",
-  "processing_ms": 1438,
+  "processing_ms": 1412,
   "warnings": [
     "record number (patient code) needs confirmation before linking"
   ]

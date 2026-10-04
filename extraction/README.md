@@ -60,7 +60,16 @@ python3 -m venv .venv
 ln -s ../dayone-participants/data data      # or: export DAYONE_DATA=/path/to/data
 ```
 
-The OCR models (~15 MB) ship inside the `rapidocr` wheel; no download at runtime.
+The base OCR models (~30 MB) ship inside the `rapidocr` wheel. Real booklet photos also use a
+larger recogniser as a second opinion (PP-OCRv6 medium, ~73 MB), downloaded once while online:
+
+```bash
+.venv/bin/python -m extraction --download-models
+```
+
+Without it (offline first run) extraction still works with the small model alone: no
+agreement between two readers, so more fields go to review (real photos: 54% right, 0 silent
+errors, 62% to review, vs 55% / 2% / 55% with it). No photo or text is ever sent anywhere.
 
 ## How it works
 
@@ -71,7 +80,8 @@ photo ─► quality check (blur, darkness)          ─► "retake" hint
       ─► alignment: printed labels ↔ template → homography (shift, rotation, perspective),
          refined on the measured ink of every label (≈0.3 pt error on clean pages)
       ─► for every field of that page (catalog.py):
-           text/cell  rectified crop → subtract the form's printed ink (template mask)
+           text/cell  rectified crop → remove printed lines (and the form's printed ink, if a
+                      printed_<page>.png mask from tools/build_templates.py is present)
                       → ink? → OCR → parse → status
            checkbox   rectified crop → locate the printed square → ink inside → ticked?
       ─► cross-field checks (due date = LMP + 280 d, GA vs visit date, parity ≤ gravidity…)
@@ -95,6 +105,33 @@ Claude backend refuses to start unless `DAYONE_ALLOW_CLOUD=1` is set, which is o
 acceptable for the organisers' synthetic data; when it can, it also masks identifiers on the
 copy it sends. In a real deployment the same interface would point to a model hosted by
 the health system itself.
+
+## Real booklet photos (the pink "Fiche de surveillance")
+
+The organisers' 5 real photos (`1-1.jpg` … `1-5.jpg`) show the actual booklet as a midwife
+uses it: a different page layout from the specimen (the visit table spread over two facing
+pages, the right page without row labels), photos at an angle with a curved spine, and real
+cursive handwriting in French shorthand. `booklet.py` handles these pages without templates:
+
+* deskews the photo from its printed table lines, finds the printed labels by OCR, and builds
+  each table cell from row labels × column headers, snapped to the grid lines (a border hidden
+  under handwriting falls back to the midpoint between headers);
+* the unlabelled right page places its rows relative to the four shaded section bands, using
+  the row positions measured on the left page (`tools/booklet_rows.py`);
+* reads whole handwritten words even when they spill over the thin rows, removes printed lines,
+  normalises the pink/shadowed paper to grey (+8 points of character accuracy);
+* reads every field with two recognisers (PP-OCRv6 small and medium) plus the OCR's reading
+  of the whole printed line; **agreement raises confidence, disagreement sends the field to
+  review**;
+* understands the midwife's shorthand: French-style "1" (Λ), "16SA+3j", "11/7" (cmHg),
+  "NF" (non fait → `NOT_APPLICABLE`), "+", "0", "nég", "Reçu", "RAS";
+* checkboxes as printed squares next to their label; options circled by hand (blood group,
+  rhesus) by reading the printed text inside the ring; "RAS" written diagonally across a
+  section is reported on every row it crosses, always for review.
+
+Accuracy on these 5 photos is in the results below: honest but limited by how well a small
+local OCR model reads fast cursive. A stronger recogniser (a vision-language model running on
+a GPU inside the health system) plugs into the same interface.
 
 ## Statuses
 
@@ -136,8 +173,13 @@ Held-out test patients (8–10, never used while building), local backend, CPU o
 |---|---|---|---|---|---|
 | Clean scans | 98.2% | 98.7% | 1 / 1692 (0.1%) | 2.7% | ~2.6 |
 | Simulated photo, mild | 96.4% | 98.3% | 1 (0.1%) | 5.7% | ~2.5 |
-| Simulated photo, medium | 85.6% | 88.2% | 19 (2.3%) | 19.3% | ~2.4 |
+| Simulated photo, medium | 83.0% | 89.5% | 19 (2.4%) | 23.6% | ~2.6 |
 | Simulated photo, hard | 45.5% | 51.6% | 0 (0%) | 32.1% | ~1.7 |
+
+Real booklet photos (5 pages, 127 fields transcribed by hand from the images,
+`evaluation/real_photos_truth.json`, `python -m tools.evaluate_real`): **55% of fields right,
+2% silent errors, 55% sent to review**. Before booklet support all 5 pages were rejected as
+unknown. The 2 silent errors are on near-empty fields (a stray "0" and "1").
 
 Checkboxes: 100% on clean and medium photos. Page type: 100% except two unreadable "hard"
 photos, which are refused rather than guessed. As the photo gets worse, accuracy drops but
@@ -149,8 +191,12 @@ breakdown per page type and confidence calibration: `evaluation/RESULTS.md`.
 * **Dataset quirk:** one handwriting font in the specimen (NanumPen) has no glyph for
   accented letters or "—". The PDF records them as U+FFFD and the image shows a gap
   ("coll ge"). Scoring treats the gap as a wildcard and accepts "blank" for an invisible dash.
-* The local backend only knows the 8 specimen page layouts. A page it cannot align returns
-  `page_type="unknown"` → retake, manual entry, or the Claude backend.
+* The local backend knows the 8 specimen layouts and 5 pages of the real booklet (cover,
+  identification, obstetric history, pregnancy left/right). Postpartum and delivery pages of
+  the real booklet were not in the data, so they are not supported yet; an unrecognised page
+  returns `page_type="unknown"` → retake, manual entry, or another backend.
+* Real cursive is read by a small local OCR model: about half the transcribed fields come out
+  right, and most of the rest are flagged for review rather than guessed.
 * Unticked boxes are reported as `false`/KNOWN: on paper "not ticked" and "not filled in"
   look the same.
 * OCR is trained mostly on print; unusual handwriting lowers confidence (and so raises the

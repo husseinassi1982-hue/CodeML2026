@@ -3,6 +3,7 @@
   "page_type": "delivery",
   "page_type_label": "Déroulement de l'accouchement",
   "page_type_confidence": 1.0,
+  "layout": null,
   "record_number": null,
   "fields": {
     "setting": {

@@ -3,6 +3,7 @@
   "page_type": "current_pregnancy",
   "page_type_label": "Grossesse actuelle",
   "page_type_confidence": 1.0,
+  "layout": "specimen",
   "record_number": null,
   "fields": {
     "lmp_date": {
@@ -707,8 +708,8 @@
       "section": "visits",
       "kind": "cell",
       "dtype": "str",
-      "value": "Normale",
-      "display": "Normale",
+      "value": "Normal",
+      "display": "Normal",
       "raw": "Normalet",
       "status": "KNOWN",
       "confidence": 0.939,
@@ -872,9 +873,11 @@
       "value": "negative",
       "display": "Négatif",
       "raw": "Neg",
-      "status": "KNOWN",
-      "confidence": 0.975,
-      "issues": [],
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.836,
+      "issues": [
+        "low reading confidence"
+      ],
       "question_fr": "Quelle est la valeur de « Glucosurie — 1er trim. visite 2 » ?",
       "question_en": "What is the value of “Glycosuria — 1st trim. visit 2”?"
     },
@@ -889,7 +892,7 @@
       "display": "Négatif",
       "raw": "Ney",
       "status": "NEEDS_REVIEW",
-      "confidence": 0.757,
+      "confidence": 0.769,
       "issues": [
         "low reading confidence"
       ],
@@ -943,7 +946,7 @@
       "display": "Négatif",
       "raw": "Ney",
       "status": "NEEDS_REVIEW",
-      "confidence": 0.686,
+      "confidence": 0.697,
       "issues": [
         "low reading confidence"
       ],
@@ -960,9 +963,11 @@
       "value": "negative",
       "display": "Négatif",
       "raw": "Neg",
-      "status": "KNOWN",
-      "confidence": 0.971,
-      "issues": [],
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.829,
+      "issues": [
+        "low reading confidence"
+      ],
       "question_fr": "Quelle est la valeur de « Ag HBs — 1er trim. visite 2 » ?",
       "question_en": "What is the value of “Hepatitis B (HBsAg) — 1st trim. visit 2”?"
     },
@@ -976,9 +981,11 @@
       "value": "negative",
       "display": "Négatif",
       "raw": "Neg",
-      "status": "KNOWN",
-      "confidence": 0.982,
-      "issues": [],
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.849,
+      "issues": [
+        "low reading confidence"
+      ],
       "question_fr": "Quelle est la valeur de « Sérologie VIH — 1er trim. visite 2 » ?",
       "question_en": "What is the value of “HIV test — 1st trim. visit 2”?"
     },
@@ -2220,13 +2227,13 @@
       "section": "visits",
       "kind": "cell",
       "dtype": "yesno",
-      "value": null,
-      "display": null,
+      "value": false,
+      "display": "Non",
       "raw": "0",
       "status": "NEEDS_REVIEW",
-      "confidence": 0.379,
+      "confidence": 0.879,
       "issues": [
-        "expected Oui/Non"
+        "low reading confidence"
       ],
       "question_fr": "Quelle est la valeur de « Mouvements actifs — 2e trim. visite 2 » ?",
       "question_en": "What is the value of “Fetal movements — 2nd trim. visit 2”?"
@@ -2337,9 +2344,11 @@
       "value": "negative",
       "display": "Négatif",
       "raw": "Neg",
-      "status": "KNOWN",
-      "confidence": 0.907,
-      "issues": [],
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.716,
+      "issues": [
+        "low reading confidence"
+      ],
       "question_fr": "Quelle est la valeur de « Glucosurie — 2e trim. visite 2 » ?",
       "question_en": "What is the value of “Glycosuria — 2nd trim. visit 2”?"
     },
@@ -2353,9 +2362,11 @@
       "value": "negative",
       "display": "Négatif",
       "raw": "Neg",
-      "status": "KNOWN",
-      "confidence": 0.979,
-      "issues": [],
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.842,
+      "issues": [
+        "low reading confidence"
+      ],
       "question_fr": "Quelle est la valeur de « Albuminurie — 2e trim. visite 2 » ?",
       "question_en": "What is the value of “Proteinuria — 2nd trim. visit 2”?"
     },
@@ -2852,7 +2863,7 @@
       "display": "Négatif",
       "raw": "Nes",
       "status": "NEEDS_REVIEW",
-      "confidence": 0.832,
+      "confidence": 0.845,
       "issues": [
         "low reading confidence"
       ],
@@ -3157,8 +3168,8 @@
       "section": "visits",
       "kind": "cell",
       "dtype": "str",
-      "value": "Normale",
-      "display": "Normale",
+      "value": "Normal",
+      "display": "Normal",
       "raw": "Normale",
       "status": "NEEDS_REVIEW",
       "confidence": 0.876,
@@ -3325,7 +3336,7 @@
       "display": "Négatif",
       "raw": "Nes",
       "status": "NEEDS_REVIEW",
-      "confidence": 0.832,
+      "confidence": 0.845,
       "issues": [
         "low reading confidence"
       ],
@@ -3343,7 +3354,7 @@
       "display": "Négatif",
       "raw": "Nes",
       "status": "NEEDS_REVIEW",
-      "confidence": 0.85,
+      "confidence": 0.863,
       "issues": [
         "low reading confidence"
       ],
@@ -3652,8 +3663,8 @@
       "section": "visits",
       "kind": "cell",
       "dtype": "str",
-      "value": "Normale",
-      "display": "Normale",
+      "value": "Normal",
+      "display": "Normal",
       "raw": "Normalec",
       "status": "NEEDS_REVIEW",
       "confidence": 0.861,
@@ -3823,9 +3834,11 @@
       "value": "negative",
       "display": "Négatif",
       "raw": "Neg",
-      "status": "KNOWN",
-      "confidence": 0.993,
-      "issues": [],
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.868,
+      "issues": [
+        "low reading confidence"
+      ],
       "question_fr": "Quelle est la valeur de « Glucosurie — 8e mois » ?",
       "question_en": "What is the value of “Glycosuria — month 8”?"
     },
@@ -3839,9 +3852,11 @@
       "value": "negative",
       "display": "Négatif",
       "raw": "Neg",
-      "status": "KNOWN",
-      "confidence": 0.986,
-      "issues": [],
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.855,
+      "issues": [
+        "low reading confidence"
+      ],
       "question_fr": "Quelle est la valeur de « Albuminurie — 8e mois » ?",
       "question_en": "What is the value of “Proteinuria — month 8”?"
     },
@@ -4312,9 +4327,11 @@
       "value": "negative",
       "display": "Négatif",
       "raw": "Neg",
-      "status": "KNOWN",
-      "confidence": 0.998,
-      "issues": [],
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.877,
+      "issues": [
+        "low reading confidence"
+      ],
       "question_fr": "Quelle est la valeur de « Glucosurie — 9e mois » ?",
       "question_en": "What is the value of “Glycosuria — month 9”?"
     },
@@ -4328,9 +4345,11 @@
       "value": "negative",
       "display": "Négatif",
       "raw": "Neg",
-      "status": "KNOWN",
-      "confidence": 0.938,
-      "issues": [],
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.771,
+      "issues": [
+        "low reading confidence"
+      ],
       "question_fr": "Quelle est la valeur de « Albuminurie — 9e mois » ?",
       "question_en": "What is the value of “Proteinuria — month 9”?"
     },
@@ -4519,7 +4538,6 @@
     "visits.m7.rai",
     "visits.t1_v2.rai",
     "visits.m9.hemoglobin_g_dl",
-    "visits.t2_v2.fetal_movements",
     "visits.m9.rai",
     "visits.t1_v2.rubella",
     "visits.m7.fetal_movements",
@@ -4533,31 +4551,41 @@
     "visits.t1_v2.syphilis",
     "visits.t2_v2.examined_by",
     "visits.m8.fetal_movements",
+    "visits.t2_v2.glycosuria",
     "visits.t2_v3.breast_exam",
-    "visits.t1_v2.albuminuria",
     "visits.t1_v2.platelets",
     "visits.m9.breast_exam",
+    "visits.t1_v2.albuminuria",
+    "visits.m9.albuminuria",
     "visits.m8.cervix",
     "visits.t1_v2.toxoplasmosis",
     "visits.m9.presentation",
+    "visits.t1_v2.hepatitis_b",
     "visits.m7.examined_by",
-    "visits.t2_v3.albuminuria",
-    "visits.m7.glycosuria",
+    "visits.t1_v2.glycosuria",
+    "visits.t2_v2.albuminuria",
     "visits.t1_v2.blood_pressure",
     "visits.m8.breast_exam",
+    "visits.t2_v3.albuminuria",
+    "visits.m7.glycosuria",
     "visits.t2_v3.fetal_movements",
-    "visits.m7.albuminuria",
+    "visits.t1_v2.hiv",
+    "visits.m8.albuminuria",
     "visits.m8.conjunctivae",
+    "visits.m7.albuminuria",
+    "visits.m8.glycosuria",
     "visits.m9.edema",
     "visits.t2_v2.breast_exam",
     "visits.m7.conjunctivae",
+    "visits.m9.glycosuria",
     "visits.t1_v2.gestational_age_weeks",
-    "visits.t2_v2.weight_kg"
+    "visits.t2_v2.weight_kg",
+    "visits.t2_v2.fetal_movements"
   ],
   "summary": {
-    "KNOWN": 81,
+    "KNOWN": 72,
     "NOT_PROVIDED": 149,
-    "NEEDS_REVIEW": 36,
+    "NEEDS_REVIEW": 45,
     "NOT_APPLICABLE": 9,
     "ILLEGIBLE": 1
   },
@@ -4569,6 +4597,6 @@
   },
   "backend": "local-ocr",
   "model_version": "local-ocr-0.1",
-  "processing_ms": 4542,
+  "processing_ms": 4519,
   "warnings": []
 }

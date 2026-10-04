@@ -3,6 +3,7 @@
   "page_type": "identification",
   "page_type_label": "Identification et antécédents",
   "page_type_confidence": 1.0,
+  "layout": "specimen",
   "record_number": null,
   "fields": {
     "age": {
@@ -1267,6 +1268,6 @@
   },
   "backend": "local-ocr",
   "model_version": "local-ocr-0.1",
-  "processing_ms": 2636,
+  "processing_ms": 2660,
   "warnings": []
 }

@@ -320,13 +320,13 @@
   "visits.t1_v2.glycosuria": {
     "label": "Glycosuria — 1st trim. visit 2",
     "value": "Négatif",
-    "conf": 1.0,
+    "conf": 0.88,
     "status": "KNOWN"
   },
   "visits.t1_v2.albuminuria": {
     "label": "Proteinuria — 1st trim. visit 2",
     "value": "Négatif",
-    "conf": 1.0,
+    "conf": 0.88,
     "status": "KNOWN"
   },
   "visits.t1_v2.rubella": {
@@ -344,19 +344,19 @@
   "visits.t1_v2.syphilis": {
     "label": "Syphilis test — 1st trim. visit 2",
     "value": "Négatif",
-    "conf": 1.0,
+    "conf": 0.88,
     "status": "KNOWN"
   },
   "visits.t1_v2.hepatitis_b": {
     "label": "Hepatitis B (HBsAg) — 1st trim. visit 2",
     "value": "Négatif",
-    "conf": 1.0,
+    "conf": 0.88,
     "status": "KNOWN"
   },
   "visits.t1_v2.hiv": {
     "label": "HIV test — 1st trim. visit 2",
     "value": "Négatif",
-    "conf": 1.0,
+    "conf": 0.88,
     "status": "KNOWN"
   },
   "visits.t1_v2.hemoglobin_g_dl": {
@@ -380,7 +380,7 @@
   "visits.t1_v2.rai": {
     "label": "Antibody screen (if Rh-) — 1st trim. visit 2",
     "value": "Négatif",
-    "conf": 1.0,
+    "conf": 0.88,
     "status": "KNOWN"
   },
   "visits.t1_v2.iron": {
@@ -860,13 +860,13 @@
   "visits.t2_v2.glycosuria": {
     "label": "Glycosuria — 2nd trim. visit 2",
     "value": "Négatif",
-    "conf": 1.0,
+    "conf": 0.88,
     "status": "KNOWN"
   },
   "visits.t2_v2.albuminuria": {
     "label": "Proteinuria — 2nd trim. visit 2",
     "value": "Négatif",
-    "conf": 1.0,
+    "conf": 0.88,
     "status": "KNOWN"
   },
   "visits.t2_v2.rubella": {
@@ -1040,14 +1040,14 @@
   "visits.t2_v3.glycosuria": {
     "label": "Glycosuria — 2nd trim. visit 3",
     "value": "Négatif",
-    "conf": 1.0,
+    "conf": 0.88,
     "status": "KNOWN"
   },
   "visits.t2_v3.albuminuria": {
     "label": "Proteinuria — 2nd trim. visit 3",
     "value": "Négatif",
-    "conf": 0.95,
-    "status": "KNOWN"
+    "conf": 0.79,
+    "status": "NEEDS_REVIEW"
   },
   "visits.t2_v3.rubella": {
     "label": "Rubella serology — 2nd trim. visit 3",
@@ -1220,13 +1220,13 @@
   "visits.m7.glycosuria": {
     "label": "Glycosuria — month 7",
     "value": "Négatif",
-    "conf": 1.0,
+    "conf": 0.88,
     "status": "KNOWN"
   },
   "visits.m7.albuminuria": {
     "label": "Proteinuria — month 7",
     "value": "Négatif",
-    "conf": 1.0,
+    "conf": 0.88,
     "status": "KNOWN"
   },
   "visits.m7.rubella": {
@@ -1400,13 +1400,13 @@
   "visits.m8.glycosuria": {
     "label": "Glycosuria — month 8",
     "value": "Négatif",
-    "conf": 1.0,
+    "conf": 0.88,
     "status": "KNOWN"
   },
   "visits.m8.albuminuria": {
     "label": "Proteinuria — month 8",
     "value": "Négatif",
-    "conf": 1.0,
+    "conf": 0.88,
     "status": "KNOWN"
   },
   "visits.m8.rubella": {
@@ -1580,13 +1580,13 @@
   "visits.m9.glycosuria": {
     "label": "Glycosuria — month 9",
     "value": "Négatif",
-    "conf": 1.0,
+    "conf": 0.88,
     "status": "KNOWN"
   },
   "visits.m9.albuminuria": {
     "label": "Proteinuria — month 9",
     "value": "Négatif",
-    "conf": 1.0,
+    "conf": 0.88,
     "status": "KNOWN"
   },
   "visits.m9.rubella": {

@@ -3,6 +3,7 @@
   "page_type": "postpartum_late_newborn",
   "page_type_label": "Post-partum tardif — nouveau-né",
   "page_type_confidence": 1.0,
+  "layout": null,
   "record_number": null,
   "fields": {
     "consultation_date": {

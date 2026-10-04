@@ -15,7 +15,7 @@ def field_result(f: Field, status: Status, confidence: float, value=None, displa
 
 
 def finish(page_type: str, page_conf: float, fields: dict[str, FieldResult], quality: ImageQuality,
-           backend: str, version: str, ms: int, warnings: list[str]) -> PageExtraction:
+           backend: str, version: str, ms: int, warnings: list[str], layout: str | None = None) -> PageExtraction:
     review = [k for k, r in fields.items() if r.status in (Status.NEEDS_REVIEW, Status.ILLEGIBLE)]
     review.sort(key=lambda k: fields[k].confidence)
     summary: dict[str, int] = {}
@@ -26,7 +26,8 @@ def finish(page_type: str, page_conf: float, fields: dict[str, FieldResult], qua
     if rec is not None and rec.status != Status.KNOWN:
         warnings = warnings + ["record number (patient code) needs confirmation before linking"]
     return PageExtraction(page_type=page_type, page_type_label=PAGE_TYPES.get(page_type, "Page non reconnue"),
-                          page_type_confidence=round(page_conf, 3), record_number=record_number, fields=fields,
+                          page_type_confidence=round(page_conf, 3), layout=layout, record_number=record_number,
+                          fields=fields,
                           needs_review=review, summary=summary, image_quality=quality, backend=backend,
                           model_version=version, processing_ms=ms, warnings=warnings)
 

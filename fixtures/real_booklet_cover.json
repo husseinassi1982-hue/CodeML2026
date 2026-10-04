@@ -3,8 +3,8 @@
   "page_type": "cover",
   "page_type_label": "Fiche de surveillance (couverture)",
   "page_type_confidence": 1.0,
-  "layout": "specimen",
-  "record_number": "2026-823-007",
+  "layout": "booklet_cover",
+  "record_number": "A6YD",
   "fields": {
     "record_number": {
       "key": "record_number",
@@ -13,12 +13,13 @@
       "section": "identification",
       "kind": "text",
       "dtype": "code",
-      "value": "2026-823-007",
-      "display": "2026-823-007",
-      "raw": "2026-823-007",
+      "value": "A6YD",
+      "display": "A6YD",
+      "raw": "A6YD",
       "status": "NEEDS_REVIEW",
-      "confidence": 0.79,
+      "confidence": 0.6,
       "issues": [
+        "the two OCR readings disagree",
         "patient code: confirm before linking the visit"
       ],
       "question_fr": "Quelle est la valeur de « N° de la fiche » ?",
@@ -31,12 +32,14 @@
       "section": "identification",
       "kind": "text",
       "dtype": "str",
-      "value": "Rabat-Salé-Kénitra",
-      "display": "Rabat-Salé-Kénitra",
-      "raw": "Rabat-Salé-Kénitra",
-      "status": "KNOWN",
-      "confidence": 0.998,
-      "issues": [],
+      "value": "cax-stat",
+      "display": "cax-stat",
+      "raw": "cax-stat",
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.5,
+      "issues": [
+        "not a known value for this field"
+      ],
       "question_fr": "Quelle est la valeur de « Région » ?",
       "question_en": "What is the value of “Region”?"
     },
@@ -47,12 +50,14 @@
       "section": "identification",
       "kind": "text",
       "dtype": "str",
-      "value": "Kénitra",
-      "display": "Kénitra",
-      "raw": "Kénitra",
-      "status": "KNOWN",
-      "confidence": 1.0,
-      "issues": [],
+      "value": "El Jadida",
+      "display": "El Jadida",
+      "raw": "Eladida",
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.57,
+      "issues": [
+        "the two OCR readings disagree"
+      ],
       "question_fr": "Quelle est la valeur de « Province » ?",
       "question_en": "What is the value of “Province”?"
     },
@@ -63,12 +68,14 @@
       "section": "identification",
       "kind": "text",
       "dtype": "str",
-      "value": "CSCA Al Wifaq",
-      "display": "CSCA Al Wifaq",
-      "raw": "CSCA AI Wifaq",
-      "status": "KNOWN",
-      "confidence": 0.989,
-      "issues": [],
+      "value": "C. ic Smmai",
+      "display": "C. ic Smmai",
+      "raw": "C. ic Smmai",
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.403,
+      "issues": [
+        "the two OCR readings disagree"
+      ],
       "question_fr": "Quelle est la valeur de « Établissement sanitaire » ?",
       "question_en": "What is the value of “Health facility”?"
     },
@@ -79,11 +86,11 @@
       "section": "identification",
       "kind": "radio",
       "dtype": "enum",
-      "value": "CSCA",
-      "display": "CSCA",
+      "value": null,
+      "display": null,
       "raw": null,
-      "status": "KNOWN",
-      "confidence": 1.0,
+      "status": "NOT_PROVIDED",
+      "confidence": 0.85,
       "issues": [],
       "question_fr": "Quelle option est cochée pour « Type d'établissement » ?",
       "question_en": "Which option is ticked for “Facility type”?"
@@ -98,9 +105,11 @@
       "value": "fixed",
       "display": "fixed",
       "raw": null,
-      "status": "KNOWN",
-      "confidence": 1.0,
-      "issues": [],
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.6,
+      "issues": [
+        "boxes not found: mobile"
+      ],
       "question_fr": "Quelle option est cochée pour « Mode de couverture » ?",
       "question_en": "Which option is ticked for “Coverage mode”?"
     },
@@ -131,7 +140,7 @@
       "display": "☐",
       "raw": null,
       "status": "KNOWN",
-      "confidence": 1.0,
+      "confidence": 0.995,
       "issues": [],
       "question_fr": "La case « Risque : anémie » est-elle cochée ?",
       "question_en": "Is the box “Risk: anaemia” ticked?"
@@ -146,9 +155,11 @@
       "value": false,
       "display": "☐",
       "raw": null,
-      "status": "KNOWN",
-      "confidence": 1.0,
-      "issues": [],
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.741,
+      "issues": [
+        "unclear whether the box is ticked"
+      ],
       "question_fr": "La case « Risque : HTA » est-elle cochée ?",
       "question_en": "Is the box “Risk: hypertension” ticked?"
     },
@@ -243,46 +254,36 @@
       "display": "☐",
       "raw": null,
       "status": "KNOWN",
-      "confidence": 1.0,
+      "confidence": 0.911,
       "issues": [],
       "question_fr": "La case « Risque : éclampsie » est-elle cochée ?",
       "question_en": "Is the box “Risk: eclampsia” ticked?"
-    },
-    "risk.other": {
-      "key": "risk.other",
-      "label_fr": "Autre risque",
-      "label_en": "Other risk",
-      "section": "risk",
-      "kind": "text",
-      "dtype": "str",
-      "value": null,
-      "display": null,
-      "raw": null,
-      "status": "NOT_PROVIDED",
-      "confidence": 0.97,
-      "issues": [],
-      "question_fr": "Quelle est la valeur de « Autre risque » ?",
-      "question_en": "What is the value of “Other risk”?"
     }
   },
   "needs_review": [
-    "record_number"
+    "facility_name",
+    "region",
+    "province",
+    "record_number",
+    "coverage_mode",
+    "risk.hypertension"
   ],
   "summary": {
-    "NEEDS_REVIEW": 1,
-    "KNOWN": 14,
-    "NOT_PROVIDED": 1
+    "NEEDS_REVIEW": 6,
+    "NOT_PROVIDED": 1,
+    "KNOWN": 8
   },
   "image_quality": {
     "ok": true,
-    "sharpness": 1096.1,
-    "brightness": 0.802,
+    "sharpness": 257.9,
+    "brightness": 0.598,
     "issues": []
   },
   "backend": "local-ocr",
   "model_version": "local-ocr-0.1",
-  "processing_ms": 2709,
+  "processing_ms": 1463,
   "warnings": [
+    "real booklet page (booklet_cover): handwriting is harder to read, more fields go to review",
     "record number (patient code) needs confirmation before linking"
   ]
 }

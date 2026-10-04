@@ -9,6 +9,7 @@ testing the chat UI and backend without running OCR. Regenerate with
 | `<page_type>.json` | full `PageExtraction` (schema in `extraction/schema.py`) |
 | `<page_type>.ui.json` | same, as `{key: {label, value, conf, status}}` for the WhatsApp mock-up |
 | `cover_photo.json`, `current_pregnancy_photo.json` | the page through a simulated phone photo: more fields in `needs_review` |
+| `real_booklet_pregnancy_left.json`, `real_booklet_cover.json` | real booklet photos (cursive): many fields in `needs_review` |
 | `manual_<page_type>.json` | empty form (all `NOT_PROVIDED`) for full manual entry when the AI is unavailable |
 
 Things the chat should use: `needs_review` (ask these, in order), each field's

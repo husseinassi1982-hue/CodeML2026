@@ -20,6 +20,7 @@ CLINICAL = [
     "Anémie", "HTA", "Diabète", "Asthme", "Asthme léger", "Épilepsie", "Cardiopathie", "Appendicectomie",
     "Cholécystectomie", "Fer", "Acide folique", "Vitamine A", "Vitamine D", "Sage-femme", "Infirmière",
     "Médecin", "Poursuivre l'allaitement exclusif", "Dystocie", "Macrosomie", "Prématurité",
+    "Colorées", "Colorés", "Reçu", "Echo obst", "Test rapide", "Vit D", "Fait", "À faire",
 ]
 
 EDUCATION = ["Aucun", "Analphabète", "Primaire", "Collège", "Lycée", "Supérieur", "Universitaire",
@@ -52,6 +53,9 @@ PROVINCES = [
     "Aousserd",
 ]
 
+
+# spelling variants reported as one canonical value
+ALIASES = {"Colorés": "Colorées", "Normale": "Normal", "Aucune": "Aucun", "Négatif": "Neg", "Positif": "Pos"}
 
 # fields whose value must be one of the list (anything else is a misreading)
 CLOSED_VOCAB = {"region", "province", "education_level"}

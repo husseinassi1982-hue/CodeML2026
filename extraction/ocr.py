@@ -88,13 +88,48 @@ def read_page(img: np.ndarray) -> list[OcrLine]:
     return [OcrLine(t, float(s), np.asarray(b, dtype=float)) for b, t, s in zip(r.boxes, r.txts, r.scores)]
 
 
-def read_crops(crops: list[np.ndarray], batch: int = 32) -> list[tuple[str, float]]:
+_MEDIUM = None
+_MEDIUM_ERROR: Exception | None = None
+
+
+def medium_engine():
+    """Larger recogniser (PP-OCRv6 medium, ~73 MB), used as a second opinion on real handwriting.
+
+    Not shipped in the rapidocr wheel: RapidOCR downloads it on first use. Offline before that
+    download (`python -m extraction --download-models`), this returns None and callers fall
+    back to the bundled small model, so extraction never needs the internet."""
+    global _MEDIUM, _MEDIUM_ERROR
+    if _MEDIUM is None and _MEDIUM_ERROR is None:
+        from rapidocr import RapidOCR
+        from rapidocr.utils.typings import ModelType, OCRVersion
+
+        engine()  # same allocator settings
+        try:
+            eng = RapidOCR(params={"Rec.ocr_version": OCRVersion.PPOCRV6, "Rec.model_type": ModelType.MEDIUM})
+        except Exception as e:  # no network and not downloaded yet
+            _MEDIUM_ERROR = e
+            logging.getLogger(__name__).warning("medium OCR model unavailable, using the small one only: %s", e)
+            return None
+        logging.getLogger("RapidOCR").setLevel(logging.WARNING)
+        for part in ("text_det", "text_cls", "text_rec"):
+            wrapper = getattr(eng, part).session
+            wrapper.session = _lean_session(wrapper.session._model_path)
+        _MEDIUM = eng
+    return _MEDIUM
+
+
+def medium_available() -> bool:
+    return medium_engine() is not None
+
+
+def read_crops(crops: list[np.ndarray], batch: int = 32, model: str = "small") -> list[tuple[str, float]]:
     from rapidocr.ch_ppocr_rec.typings import TextRecInput
 
+    eng = engine() if model == "small" else (medium_engine() or engine())
     out: list[tuple[str, float]] = []
     for i in range(0, len(crops), batch):
         chunk = crops[i:i + batch]
-        r = engine().text_rec(TextRecInput(img=chunk))
+        r = eng.text_rec(TextRecInput(img=chunk))
         for t, sc in zip(r.txts, r.scores):
             latin = LATIN.sub("", t)  # the model also knows Chinese; the registry is Latin script
             out.append((latin.strip(), float(sc) if latin.strip() == t.strip() else float(sc) * 0.5))

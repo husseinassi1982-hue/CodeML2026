@@ -52,6 +52,7 @@ class PageExtraction(BaseModel):
     page_type: str  # one of catalog.PAGE_TYPES, or "unknown"
     page_type_label: str
     page_type_confidence: float
+    layout: str | None = None  # physical layout: "specimen" or a real booklet page ("booklet_pregnancy_right"...)
     record_number: str | None = None  # midwife's code ("N° de la fiche"), cover page only
     fields: dict[str, FieldResult]
     needs_review: list[str]  # keys to ask about, least confident first

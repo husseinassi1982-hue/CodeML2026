@@ -37,6 +37,10 @@ def main():
         r = extract(degrade(cv2.imread(str(first[page_type])), "medium", seed=7))
         (OUT / f"{page_type}_photo.json").write_text(r.model_dump_json(indent=2), encoding="utf-8")
         print(f"{page_type + ' (photo)':26s} {r.summary}")
+    for photo, name in (("1-4.jpg", "real_booklet_pregnancy_left"), ("1-1.jpg", "real_booklet_cover")):
+        r = extract(REGISTRY / photo)
+        (OUT / f"{name}.json").write_text(r.model_dump_json(indent=2), encoding="utf-8")
+        print(f"{name:26s} {r.summary}")
     for page_type in PAGE_TYPES:
         (OUT / f"manual_{page_type}.json").write_text(empty_form(page_type).model_dump_json(indent=2),
                                                       encoding="utf-8")

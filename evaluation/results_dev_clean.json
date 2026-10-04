@@ -1,10 +1,10 @@
 {
   "overall": {
     "fields": 3948,
-    "field_accuracy": 0.9889,
+    "field_accuracy": 0.9886,
     "value_accuracy_on_written": 0.9899,
-    "status_accuracy": 0.9909,
-    "review_rate_on_written": 0.0147,
+    "status_accuracy": 0.9906,
+    "review_rate_on_written": 0.0152,
     "silent_error_rate": 0.0034,
     "silent_errors": 8
   },
@@ -20,10 +20,10 @@
     },
     "cell": {
       "fields": 2303,
-      "field_accuracy": 0.9944,
+      "field_accuracy": 0.9939,
       "value_accuracy_on_written": 0.9918,
-      "status_accuracy": 0.9952,
-      "review_rate_on_written": 0.0129,
+      "status_accuracy": 0.9948,
+      "review_rate_on_written": 0.014,
       "silent_error_rate": 0.0024,
       "silent_errors": 2
     },
@@ -58,10 +58,10 @@
     },
     "current_pregnancy": {
       "fields": 1932,
-      "field_accuracy": 0.9933,
+      "field_accuracy": 0.9928,
       "value_accuracy_on_written": 0.9902,
-      "status_accuracy": 0.9943,
-      "review_rate_on_written": 0.0154,
+      "status_accuracy": 0.9938,
+      "review_rate_on_written": 0.0168,
       "silent_error_rate": 0.0028,
       "silent_errors": 2
     },
@@ -121,7 +121,7 @@
     }
   },
   "page_type_accuracy": 1.0,
-  "seconds_per_page": 2.61,
+  "seconds_per_page": 2.55,
   "calibration": {
     "0.2-0.3": {
       "n": 2,
@@ -144,15 +144,15 @@
       "accuracy": 0.5
     },
     "0.7-0.8": {
-      "n": 13,
-      "accuracy": 0.923
+      "n": 14,
+      "accuracy": 0.929
     },
     "0.8-0.9": {
-      "n": 66,
+      "n": 167,
       "accuracy": 1.0
     },
     "0.9-1.0": {
-      "n": 1179,
+      "n": 1077,
       "accuracy": 0.992
     }
   },

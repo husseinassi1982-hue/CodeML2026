@@ -3,6 +3,7 @@
   "page_type": "delivery",
   "page_type_label": "Déroulement de l'accouchement",
   "page_type_confidence": 1.0,
+  "layout": "specimen",
   "record_number": null,
   "fields": {
     "setting": {
@@ -398,8 +399,8 @@
       "section": "newborn",
       "kind": "text",
       "dtype": "str",
-      "value": "Aucune",
-      "display": "Aucune",
+      "value": "Aucun",
+      "display": "Aucun",
       "raw": "Aucune",
       "status": "KNOWN",
       "confidence": 1.0,
@@ -440,6 +441,6 @@
   },
   "backend": "local-ocr",
   "model_version": "local-ocr-0.1",
-  "processing_ms": 1755,
+  "processing_ms": 1764,
   "warnings": []
 }

@@ -3,6 +3,7 @@
   "page_type": "postpartum_late_mother",
   "page_type_label": "Post-partum tardif — mère",
   "page_type_confidence": 1.0,
+  "layout": null,
   "record_number": null,
   "fields": {
     "consultation_date": {

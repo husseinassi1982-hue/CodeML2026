@@ -145,7 +145,7 @@
   },
   "anomaly": {
     "label": "Abnormality",
-    "value": "Aucune",
+    "value": "Aucun",
     "conf": 1.0,
     "status": "KNOWN"
   },
