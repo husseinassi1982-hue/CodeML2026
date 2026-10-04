@@ -50,10 +50,12 @@
         font-size: 19px;
         flex-shrink: 0;
       }
+      .htitle { flex: 1; min-width: 0; }
       .hname { font-weight: 600; font-size: 15px; }
       .hstatus { font-size: 11px; opacity: 0.85; }
+      .hname, .hstatus { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      #conn, #lang { flex-shrink: 0; }
       #conn {
-        margin-left: auto;
         border: none;
         border-radius: 14px;
         padding: 5px 10px;
@@ -64,6 +66,19 @@
         background: #a5f0c5;
       }
       #conn.off { background: #f6c9a8; color: #5a2c0b; }
+      /* language picker, top right (the header keeps this layout in Arabic too) */
+      #lang {
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 14px;
+        padding: 4px 6px;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.12);
+        font-family: inherit;
+      }
+      #lang option { color: #111; }
 
       /* ===== Status strip (record lifecycle) ===== */
       .strip {
@@ -87,7 +102,7 @@
       .chip.active { background: #25d366; color: #05312a; font-weight: 700; }
       .sep { opacity: 0.4; }
       #qbadge {
-        margin-left: auto;
+        margin-inline-start: auto;
         background: #b7791f;
         color: #fff;
         padding: 2px 8px;
@@ -136,10 +151,13 @@
       }
       .msg.in .bubble { background: #fff; border-top-left-radius: 2px; }
       .msg.out .bubble { background: #d9fdd3; border-top-right-radius: 2px; }
+      [dir="rtl"] .msg.in .bubble { border-top-left-radius: 10px; border-top-right-radius: 2px; }
+      [dir="rtl"] .msg.out .bubble { border-top-right-radius: 10px; border-top-left-radius: 2px; }
+      [dir="rtl"] #send, [dir="rtl"] #psend { transform: scaleX(-1); }
 
       .meta {
         position: absolute;
-        right: 8px; bottom: 3px;
+        inset-inline-end: 8px; bottom: 3px;
         font-size: 9.5px;
         color: #8a9291;
         display: flex; gap: 3px; align-items: center;
@@ -157,7 +175,7 @@
       .mut { color: #6b7472; font-size: 11.5px; }
       .pcard {
         background: #f4f6f7;
-        border-left: 3px solid #25d366;
+        border-inline-start: 3px solid #25d366;
         padding: 8px 10px;
         border-radius: 8px;
         font-size: 12.5px;
@@ -202,7 +220,7 @@
         padding: 8px 14px;
         border-radius: 16px;
         cursor: pointer;
-        text-align: left;
+        text-align: start;
         animation: pop 0.18s ease-out;
         transition: background 0.15s;
       }
@@ -288,34 +306,39 @@
   </head>
   <body>
     <div class="phone">
-      <header>
+      <header dir="ltr">
         <div class="avatar">🩺</div>
-        <div>
-          <div class="hname">DayOne Agent</div>
+        <div class="htitle" dir="auto">
+          <div class="hname" data-i18n="agent_name">DayOne Agent</div>
           <div class="hstatus" id="statusline">online</div>
         </div>
         <button id="conn">📶 Online</button>
+        <select id="lang" aria-label="Language / Langue / اللغة">
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="ar">العربية</option>
+        </select>
       </header>
 
       <div class="strip">
         <div id="chips" style="display: contents"></div>
         <span id="qbadge"></span>
-        <div class="lock" id="lock">🔒 Photos kept encrypted on this phone until sent · names &amp; identifiers never stored · paper registry stays the reference</div>
+        <div class="lock" id="lock" data-i18n="lock">🔒 Photos kept encrypted on this phone until sent · names &amp; identifiers never stored · paper registry stays the reference</div>
       </div>
 
       <div id="chat"></div>
 
       <div id="preview">
-        <img id="pimg" alt="selected registry page preview" />
-        <input id="pcaption" placeholder="Caption (optional)…" autocomplete="off" />
-        <button id="psend" title="Send photo">➤</button>
-        <button id="pclear" title="Remove">✕</button>
+        <img id="pimg" alt="selected registry page preview" data-i18n-alt="preview_alt" />
+        <input id="pcaption" placeholder="Caption (optional)…" autocomplete="off" data-i18n-placeholder="caption_ph" />
+        <button id="psend" title="Send photo" data-i18n-title="send_photo">➤</button>
+        <button id="pclear" title="Remove" data-i18n-title="remove">✕</button>
       </div>
 
       <div class="composer">
-        <button class="cbtn" id="attach" title="Send a registry photo">📎</button>
-        <input id="input" placeholder="Type a message…" autocomplete="off" />
-        <button class="cbtn" id="send" title="Send">➤</button>
+        <button class="cbtn" id="attach" title="Send a registry photo" data-i18n-title="attach">📎</button>
+        <input id="input" placeholder="Type a message…" autocomplete="off" data-i18n-placeholder="input_ph" />
+        <button class="cbtn" id="send" title="Send" data-i18n-title="send">➤</button>
         <input type="file" id="file" accept="image/*" hidden />
       </div>
     </div>
@@ -338,6 +361,304 @@
 
       const S = { simOffline: false, extractor: "?", flowActive: false, awaitingPhoto: false,
                   waiter: null, rec: null, toReview: [], flushing: false, uploading: new Set(), retryTimer: null, retrying: false };
+
+      /* ================= Languages =================
+         Interface and agent messages in English, French or Arabic (right to left), picked in the
+         header and remembered on this phone. Field names come from the server in French and English
+         only: in Arabic they are shown in French, as printed on the paper registry. Texts written by
+         the server (error details, reading issues) stay as the server sends them. */
+      const LANGS = { en: { locale: "en-GB", dir: "ltr" }, fr: { locale: "fr-FR", dir: "ltr" }, ar: { locale: "ar-MA", dir: "rtl" } };
+      const I18N = {
+        en: {
+          agent_name: "DayOne Agent",
+          lock: "🔒 Photos kept encrypted on this phone until sent · names & identifiers never stored · paper registry stays the reference",
+          preview_alt: "selected registry page preview", photo_alt: "registry page photo",
+          caption_ph: "Caption (optional)…", send_photo: "Send photo", remove: "Remove",
+          attach: "Send a registry photo", input_ph: "Type a message…", send: "Send",
+          lang_set: "🌐 Language: English",
+          st_online: "online", st_offline: "offline — photos kept on this phone", st_demo: " · demo extractor",
+          st_server_down: "⚠️ server not reachable — photos stay on the phone",
+          conn_on: "📶 Online", conn_off: "✈️ Offline",
+          q_phone: "📱 {n} on phone", q_ai: "{n} AI", q_sync: "{n} sync",
+          err_offline: "No connection — try again when the network is back.",
+          err_server: "Can't reach the DayOne server. Is it running? (cd backend && uvicorn main:app)",
+          err_unknown: "unknown error", err_sending: "already being sent",
+          sys_lost: "✈️ Connection lost — photos will be kept on this phone", sys_back: "📶 Connection restored",
+          sys_sent: "📤 Photos saved on the phone have been sent",
+          sys_more: "{n} more page(s) waiting after this one", sys_next: "Next page", sys_new: "New visit",
+          sending: "📤 Sending {n} photo(s) saved on this phone…",
+          send_retry: "⚠️ {err} — the photos stay on the phone, I'll keep trying.",
+          reading: "Reading {n} page(s)…",
+          page_taken: "📋 Page photographed {when}:",
+          synced: "📤 {n} record(s) <b>SYNCED</b> to the health system ✅",
+          wait_conn: "📴 {n} record(s) waiting for the connection.",
+          caption_default: "Registry page 📸",
+          save_failed: "⚠️ Couldn't save the photo on this phone ({err}).",
+          no_store: "📴 No connection, and this page can't store photos safely on the phone (it needs a secure https:// address). Keep the photo in your gallery and send it when you're back online.",
+          saved_enc: "Photo saved <b>encrypted on this phone</b>. Names, ID numbers and phone numbers are never read 🔒",
+          kept_pending: "📴 No connection. Kept on the phone: <b>Pending AI processing</b>. Nothing is lost — I'll send it and read it when the network returns. You can photograph the next page 📸",
+          upload_kept: "<br>The photo stays on the phone; I'll send it when the server is reachable.",
+          dup_q: "🤔 I've already received <b>this exact photo</b> before. Is it really a new page?",
+          dup_yes: "📸 Yes, process it", dup_no: "🗑️ No, it's a duplicate", dup_dropped: "OK, I've set it aside 👍",
+          still_waiting: "⏳ Still waiting to be processed ({why}).", will_retry: "will retry",
+          cant_read: "😕 I couldn't read this photo{why}.",
+          unknown_page: "🤔 I don't recognise which registry page this is.",
+          b_retake: "📸 Retake photo", b_manual: "⌨️ Type it myself",
+          retake: "Send the photo again (tap 📎). Flat page, good light, whole page in the frame 🙂",
+          retake2: "No problem — send the photo again (tap 📎). Flat page, good light, whole page in the frame 🙂",
+          which_page: "Which page is it?",
+          manual_ok: "OK — tap <b>✏️ Correct a field</b> to enter values, then confirm. Empty fields stay <b>{np}</b>.",
+          conf: "conf", more_filled: "…and {n} more filled fields", photo_issues: "📷 Photo: ", no_ids: "🔒 No direct identifiers stored",
+          i_read: " I read <b>{v}</b>", cant_field: " I couldn't read it", confidence: "confidence",
+          b_right: "✅ That's right", b_type: "⌨️ Type the value", b_unknown: "◻️ Unknown", b_skip: "⏭️ Skip",
+          marked_unknown: "Marked as <b>{st}</b> — missing info is a real answer, not an error 👌",
+          type_for: "Type the value for <b>{label}</b>:",
+          by_midwife: "(entered by midwife)", try_again: "Try again, or send <b>?</b> if it's unknown.",
+          all_ok: "Everything was read with confidence ✅",
+          need_eyes: "{n} field(s) need your eyes. Least confident first:", more_flagged: "{n} more field(s) are flagged.",
+          b_all: "🔍 Go through them", b_as_read: "✅ They're right as read", b_leave: "⚠️ Leave them flagged",
+          b_confirm_all: "✅ Confirm all", b_correct: "✏️ Correct a field",
+          enter_first: "Enter at least one value first ✏️",
+          validated: "Record <b>validated</b> ✅ Now, which patient is this?",
+          field_search: "Type part of the field name (e.g. <i>tension</i>, <i>weight</i>, <i>DPA</i>):",
+          no_match: "No field matches “{q}”.",
+          send_correct: "Send the correct value for <b>{label}</b>{now}:", now: " (now: {v})",
+          one_char: "(1 character different)", on_file: "{n} page(s) on file", last_visit: "last visit:",
+          page_code: "The page says patient code <b>{code}</b>.",
+          b_use: "👍 Use {code}", b_have_code: "🔗 I have a code", b_new_patient: "🆕 New patient",
+          created: "Created profile <b>{code}</b> 🔗 Write this code on the registry page — the next visit will link to it.",
+          send_code: "Send me the patient's code:",
+          no_profile: "No profile has code <b>{code}</b> (and no near match).",
+          b_create: "🆕 Create it", b_again: "🔗 Try another code", b_unsure: "🤷 I'm not sure",
+          unlinked: "Kept <b>unlinked</b> for now — a supervisor can merge profiles later. Better safe than duplicated 👍",
+          n_match: "{n} profile(s) match this code. You decide — I never link on my own:",
+          b_link: "👤 Link to {code}", b_none: "None of these — create new",
+          linked: "Visit linked to profile <b>{code}</b> ✅",
+          b_new_visit: "🔄 Start a new visit", b_next: "📋 Review the next page sent from the phone ({n})",
+          hello: "👋 Hello! I'm the <b>DayOne agent</b> — the pregnancy registry, digitized.",
+          hello2: "📸 Send a photo of a registry page (tap 📎). It works without network too: photos wait, encrypted on this phone, and are sent when the connection returns (try the <b>📶 Online</b> switch in the header). Send <b>/new</b> anytime to start over.",
+          insecure: "⚠️ This page isn't on a secure address, so it <b>can't keep photos on the phone</b> while offline — photos are sent straight to the server. Open it over https:// (see README, Phone setup).",
+          tap_button: "Tap a button to continue 🙂 or send <b>/new</b> to start over.",
+          want_photo: "I'm waiting for a photo 📸 — tap 📎 to upload the page again.",
+          intro: "I'm the DayOne agent 🩺 Send a photo of a registry page (tap 📎) to start a record.",
+          busy: "I'm still working on one record — finish this visit (or send <b>/new</b>) before starting another.",
+          q_check: "Is the box “{label}” ticked?", q_radio: "Which option is ticked for “{label}”?", q_value: "What is the value of “{label}”?",
+          KNOWN: "KNOWN", NEEDS_REVIEW: "NEEDS_REVIEW", UNKNOWN: "UNKNOWN", NOT_APPLICABLE: "N/A",
+          ILLEGIBLE: "ILLEGIBLE", NOT_PROVIDED: "NOT_PROVIDED",
+          CAPTURED: "CAPTURED", PENDING_AI: "PENDING_AI", AI_PROCESSED: "AI_PROCESSED", TO_REVIEW: "TO_REVIEW",
+          VALIDATED: "VALIDATED", PATIENT_LINKED: "PATIENT_LINKED", SAVED: "SAVED", SYNCED: "SYNCED",
+          cover: "Cover", identification: "Identification", current_pregnancy: "Current pregnancy", delivery: "Delivery",
+          postpartum_early_mother: "Postpartum (mother, early)", postpartum_early_newborn: "Postpartum (newborn, early)",
+          postpartum_late_mother: "Postpartum (mother, late)", postpartum_late_newborn: "Postpartum (newborn, late)"
+        },
+        fr: {
+          agent_name: "Agent DayOne",
+          lock: "🔒 Photos chiffrées sur ce téléphone jusqu'à l'envoi · noms et identifiants jamais enregistrés · le registre papier reste la référence",
+          preview_alt: "aperçu de la page du registre", photo_alt: "photo d'une page du registre",
+          caption_ph: "Légende (facultatif)…", send_photo: "Envoyer la photo", remove: "Retirer",
+          attach: "Envoyer une photo du registre", input_ph: "Écrire un message…", send: "Envoyer",
+          lang_set: "🌐 Langue : français",
+          st_online: "en ligne", st_offline: "hors ligne — photos gardées sur ce téléphone", st_demo: " · extracteur de démo",
+          st_server_down: "⚠️ serveur injoignable — les photos restent sur le téléphone",
+          conn_on: "📶 En ligne", conn_off: "✈️ Hors ligne",
+          q_phone: "📱 {n} sur le téléphone", q_ai: "{n} IA", q_sync: "{n} à synchroniser",
+          err_offline: "Pas de connexion — réessayez quand le réseau sera revenu.",
+          err_server: "Impossible de joindre le serveur DayOne. Est-il démarré ? (cd backend && uvicorn main:app)",
+          err_unknown: "erreur inconnue", err_sending: "envoi déjà en cours",
+          sys_lost: "✈️ Connexion perdue — les photos seront gardées sur ce téléphone", sys_back: "📶 Connexion rétablie",
+          sys_sent: "📤 Les photos gardées sur le téléphone ont été envoyées",
+          sys_more: "{n} autre(s) page(s) en attente après celle-ci", sys_next: "Page suivante", sys_new: "Nouvelle visite",
+          sending: "📤 Envoi de {n} photo(s) gardée(s) sur ce téléphone…",
+          send_retry: "⚠️ {err} — les photos restent sur le téléphone, je continue d'essayer.",
+          reading: "Lecture de {n} page(s)…",
+          page_taken: "📋 Page photographiée le {when} :",
+          synced: "📤 {n} dossier(s) <b>SYNCHRONISÉ(S)</b> avec le système de santé ✅",
+          wait_conn: "📴 {n} dossier(s) en attente de connexion.",
+          caption_default: "Page du registre 📸",
+          save_failed: "⚠️ Impossible d'enregistrer la photo sur ce téléphone ({err}).",
+          no_store: "📴 Pas de connexion, et cette page ne peut pas garder les photos en sécurité sur le téléphone (il faut une adresse sécurisée https://). Gardez la photo dans votre galerie et envoyez-la quand le réseau sera revenu.",
+          saved_enc: "Photo enregistrée <b>chiffrée sur ce téléphone</b>. Les noms, numéros d'identité et numéros de téléphone ne sont jamais lus 🔒",
+          kept_pending: "📴 Pas de connexion. Gardée sur le téléphone : <b>en attente de traitement IA</b>. Rien n'est perdu — je l'enverrai et la lirai au retour du réseau. Vous pouvez photographier la page suivante 📸",
+          upload_kept: "<br>La photo reste sur le téléphone ; je l'enverrai quand le serveur sera joignable.",
+          dup_q: "🤔 J'ai déjà reçu <b>exactement cette photo</b>. Est-ce vraiment une nouvelle page ?",
+          dup_yes: "📸 Oui, la traiter", dup_no: "🗑️ Non, c'est un doublon", dup_dropped: "D'accord, je la mets de côté 👍",
+          still_waiting: "⏳ Toujours en attente de traitement ({why}).", will_retry: "nouvel essai prévu",
+          cant_read: "😕 Je n'ai pas pu lire cette photo{why}.",
+          unknown_page: "🤔 Je ne reconnais pas de quelle page du registre il s'agit.",
+          b_retake: "📸 Reprendre la photo", b_manual: "⌨️ Saisir moi-même",
+          retake: "Renvoyez la photo (touchez 📎). Page bien à plat, bonne lumière, page entière dans le cadre 🙂",
+          retake2: "Pas de souci — renvoyez la photo (touchez 📎). Page bien à plat, bonne lumière, page entière dans le cadre 🙂",
+          which_page: "De quelle page s'agit-il ?",
+          manual_ok: "D'accord — touchez <b>✏️ Corriger un champ</b> pour saisir les valeurs, puis confirmez. Les champs vides restent <b>{np}</b>.",
+          conf: "conf.", more_filled: "…et {n} autres champs remplis", photo_issues: "📷 Photo : ", no_ids: "🔒 Aucun identifiant direct enregistré",
+          i_read: " j'ai lu <b>{v}</b>", cant_field: " je n'ai pas pu le lire", confidence: "confiance",
+          b_right: "✅ C'est juste", b_type: "⌨️ Saisir la valeur", b_unknown: "◻️ Inconnu", b_skip: "⏭️ Passer",
+          marked_unknown: "Noté <b>{st}</b> — une information manquante est une vraie réponse, pas une erreur 👌",
+          type_for: "Saisissez la valeur de <b>{label}</b> :",
+          by_midwife: "(saisi par la sage-femme)", try_again: "Réessayez, ou envoyez <b>?</b> si c'est inconnu.",
+          all_ok: "Tout a été lu avec confiance ✅",
+          need_eyes: "{n} champ(s) à vérifier. Les moins sûrs d'abord :", more_flagged: "{n} autre(s) champ(s) signalé(s).",
+          b_all: "🔍 Les passer en revue", b_as_read: "✅ Ils sont justes tels que lus", b_leave: "⚠️ Les laisser signalés",
+          b_confirm_all: "✅ Tout confirmer", b_correct: "✏️ Corriger un champ",
+          enter_first: "Saisissez d'abord au moins une valeur ✏️",
+          validated: "Dossier <b>validé</b> ✅ Maintenant, de quelle patiente s'agit-il ?",
+          field_search: "Tapez une partie du nom du champ (ex. <i>tension</i>, <i>poids</i>, <i>DPA</i>) :",
+          no_match: "Aucun champ ne correspond à « {q} ».",
+          send_correct: "Envoyez la valeur correcte de <b>{label}</b>{now} :", now: " (actuellement : {v})",
+          one_char: "(1 caractère de différence)", on_file: "{n} page(s) au dossier", last_visit: "dernière visite :",
+          page_code: "La page indique le code patiente <b>{code}</b>.",
+          b_use: "👍 Utiliser {code}", b_have_code: "🔗 J'ai un code", b_new_patient: "🆕 Nouvelle patiente",
+          created: "Profil <b>{code}</b> créé 🔗 Écrivez ce code sur la page du registre — la prochaine visite y sera liée.",
+          send_code: "Envoyez-moi le code de la patiente :",
+          no_profile: "Aucun profil n'a le code <b>{code}</b> (ni de code proche).",
+          b_create: "🆕 Le créer", b_again: "🔗 Essayer un autre code", b_unsure: "🤷 Je ne suis pas sûre",
+          unlinked: "Laissé <b>non lié</b> pour l'instant — un superviseur pourra fusionner les profils plus tard. Mieux vaut prudence que doublon 👍",
+          n_match: "{n} profil(s) correspondent à ce code. C'est vous qui décidez — je ne lie jamais seul :",
+          b_link: "👤 Lier à {code}", b_none: "Aucun — créer un nouveau",
+          linked: "Visite liée au profil <b>{code}</b> ✅",
+          b_new_visit: "🔄 Commencer une nouvelle visite", b_next: "📋 Vérifier la page suivante envoyée du téléphone ({n})",
+          hello: "👋 Bonjour ! Je suis l'<b>agent DayOne</b> — le registre de grossesse, numérisé.",
+          hello2: "📸 Envoyez la photo d'une page du registre (touchez 📎). Ça marche aussi sans réseau : les photos attendent, chiffrées sur ce téléphone, et partent au retour de la connexion (essayez le bouton <b>📶 En ligne</b> en haut). Envoyez <b>/new</b> à tout moment pour recommencer.",
+          insecure: "⚠️ Cette page n'est pas sur une adresse sécurisée, elle <b>ne peut donc pas garder les photos sur le téléphone</b> hors ligne — elles partent directement au serveur. Ouvrez-la en https:// (voir README, Phone setup).",
+          tap_button: "Touchez un bouton pour continuer 🙂 ou envoyez <b>/new</b> pour recommencer.",
+          want_photo: "J'attends une photo 📸 — touchez 📎 pour renvoyer la page.",
+          intro: "Je suis l'agent DayOne 🩺 Envoyez la photo d'une page du registre (touchez 📎) pour commencer un dossier.",
+          busy: "Je travaille encore sur un dossier — terminez cette visite (ou envoyez <b>/new</b>) avant d'en commencer une autre.",
+          q_check: "La case « {label} » est-elle cochée ?", q_radio: "Quelle option est cochée pour « {label} » ?", q_value: "Quelle est la valeur de « {label} » ?",
+          KNOWN: "CONNU", NEEDS_REVIEW: "À VÉRIFIER", UNKNOWN: "INCONNU", NOT_APPLICABLE: "N/A",
+          ILLEGIBLE: "ILLISIBLE", NOT_PROVIDED: "NON RENSEIGNÉ",
+          CAPTURED: "PHOTO", PENDING_AI: "ATTENTE IA", AI_PROCESSED: "LU PAR L'IA", TO_REVIEW: "À VÉRIFIER",
+          VALIDATED: "VALIDÉ", PATIENT_LINKED: "PATIENTE LIÉE", SAVED: "ENREGISTRÉ", SYNCED: "SYNCHRONISÉ",
+          cover: "Couverture", identification: "Identification et antécédents", current_pregnancy: "Grossesse actuelle",
+          delivery: "Accouchement", postpartum_early_mother: "Post-partum précoce — mère",
+          postpartum_early_newborn: "Post-partum précoce — nouveau-né", postpartum_late_mother: "Post-partum tardif — mère",
+          postpartum_late_newborn: "Post-partum tardif — nouveau-né"
+        },
+        ar: {
+          agent_name: "مساعد DayOne",
+          lock: "🔒 الصور مشفّرة على هذا الهاتف إلى حين إرسالها · لا تُحفظ الأسماء ولا أرقام الهوية أبدًا · السجل الورقي يبقى المرجع",
+          preview_alt: "معاينة صفحة السجل", photo_alt: "صورة صفحة من السجل",
+          caption_ph: "تعليق (اختياري)…", send_photo: "إرسال الصورة", remove: "حذف",
+          attach: "إرسال صورة من السجل", input_ph: "اكتب رسالة…", send: "إرسال",
+          lang_set: "🌐 اللغة: العربية",
+          st_online: "متصل", st_offline: "غير متصل — الصور محفوظة على هذا الهاتف", st_demo: " · مستخرج تجريبي",
+          st_server_down: "⚠️ تعذّر الوصول إلى الخادم — الصور تبقى على الهاتف",
+          conn_on: "📶 متصل", conn_off: "✈️ غير متصل",
+          q_phone: "📱 على الهاتف: {n}", q_ai: "الذكاء الاصطناعي: {n}", q_sync: "للمزامنة: {n}",
+          err_offline: "لا يوجد اتصال — أعيدي المحاولة عند عودة الشبكة.",
+          err_server: "تعذّر الوصول إلى خادم DayOne. هل هو قيد التشغيل؟ (cd backend && uvicorn main:app)",
+          err_unknown: "خطأ غير معروف", err_sending: "الإرسال جارٍ بالفعل",
+          sys_lost: "✈️ انقطع الاتصال — ستُحفظ الصور على هذا الهاتف", sys_back: "📶 عاد الاتصال",
+          sys_sent: "📤 تم إرسال الصور المحفوظة على الهاتف",
+          sys_more: "صفحات أخرى في الانتظار بعد هذه: {n}", sys_next: "الصفحة التالية", sys_new: "زيارة جديدة",
+          sending: "📤 جارٍ إرسال الصور المحفوظة على هذا الهاتف ({n})…",
+          send_retry: "⚠️ {err} — تبقى الصور على الهاتف، وسأواصل المحاولة.",
+          reading: "جارٍ قراءة الصفحات ({n})…",
+          page_taken: "📋 صفحة مصوّرة بتاريخ {when}:",
+          synced: "📤 تمت <b>مزامنة</b> السجلات مع النظام الصحي ({n}) ✅",
+          wait_conn: "📴 سجلات في انتظار الاتصال: {n}.",
+          caption_default: "صفحة من السجل 📸",
+          save_failed: "⚠️ تعذّر حفظ الصورة على هذا الهاتف ({err}).",
+          no_store: "📴 لا يوجد اتصال، وهذه الصفحة لا تستطيع حفظ الصور بأمان على الهاتف (تحتاج إلى عنوان آمن https://). احتفظي بالصورة في المعرض وأرسليها عند عودة الاتصال.",
+          saved_enc: "تم حفظ الصورة <b>مشفّرةً على هذا الهاتف</b>. لا تُقرأ الأسماء ولا أرقام الهوية ولا أرقام الهاتف أبدًا 🔒",
+          kept_pending: "📴 لا يوجد اتصال. محفوظة على الهاتف: <b>في انتظار المعالجة بالذكاء الاصطناعي</b>. لن يضيع شيء — سأرسلها وأقرؤها عند عودة الشبكة. يمكنك تصوير الصفحة التالية 📸",
+          upload_kept: "<br>تبقى الصورة على الهاتف، وسأرسلها عندما يصبح الخادم متاحًا.",
+          dup_q: "🤔 سبق أن استلمت <b>هذه الصورة نفسها</b>. هل هي فعلًا صفحة جديدة؟",
+          dup_yes: "📸 نعم، عالجها", dup_no: "🗑️ لا، إنها مكررة", dup_dropped: "حسنًا، وضعتها جانبًا 👍",
+          still_waiting: "⏳ ما زالت في انتظار المعالجة ({why}).", will_retry: "ستُعاد المحاولة",
+          cant_read: "😕 لم أتمكن من قراءة هذه الصورة{why}.",
+          unknown_page: "🤔 لم أتعرّف على صفحة السجل هذه.",
+          b_retake: "📸 إعادة التصوير", b_manual: "⌨️ سأكتبها بنفسي",
+          retake: "أرسلي الصورة مرة أخرى (اضغطي 📎). صفحة مسطّحة، إضاءة جيدة، والصفحة كاملة داخل الإطار 🙂",
+          retake2: "لا مشكلة — أرسلي الصورة مرة أخرى (اضغطي 📎). صفحة مسطّحة، إضاءة جيدة، والصفحة كاملة داخل الإطار 🙂",
+          which_page: "أي صفحة هذه؟",
+          manual_ok: "حسنًا — اضغطي <b>✏️ تصحيح خانة</b> لإدخال القيم، ثم أكّدي. الخانات الفارغة تبقى <b>{np}</b>.",
+          conf: "الثقة", more_filled: "…و{n} خانات أخرى معبّأة", photo_issues: "📷 الصورة: ", no_ids: "🔒 لا تُحفظ أي معرّفات مباشرة",
+          i_read: " قرأت <b>{v}</b>", cant_field: " لم أتمكن من قراءتها", confidence: "الثقة",
+          b_right: "✅ صحيح", b_type: "⌨️ اكتبي القيمة", b_unknown: "◻️ غير معروف", b_skip: "⏭️ تخطٍّ",
+          marked_unknown: "سُجّلت <b>{st}</b> — المعلومة الناقصة جواب حقيقي، وليست خطأً 👌",
+          type_for: "اكتبي قيمة <b>{label}</b>:",
+          by_midwife: "(أدخلتها القابلة)", try_again: "أعيدي المحاولة، أو أرسلي <b>?</b> إذا كانت غير معروفة.",
+          all_ok: "تمت قراءة كل شيء بثقة ✅",
+          need_eyes: "خانات تحتاج إلى مراجعتك ({n}). الأقل ثقة أولًا:", more_flagged: "هناك خانات أخرى مُعلَّمة ({n}).",
+          b_all: "🔍 مراجعتها", b_as_read: "✅ صحيحة كما قُرئت", b_leave: "⚠️ تركها مُعلَّمة",
+          b_confirm_all: "✅ تأكيد الكل", b_correct: "✏️ تصحيح خانة",
+          enter_first: "أدخلي قيمة واحدة على الأقل أولًا ✏️",
+          validated: "تم <b>اعتماد</b> السجل ✅ والآن، من هي المريضة؟",
+          field_search: "اكتبي جزءًا من اسم الخانة بالفرنسية (مثلًا <i>tension</i> أو <i>poids</i> أو <i>DPA</i>):",
+          no_match: "لا توجد خانة تطابق «{q}».",
+          send_correct: "أرسلي القيمة الصحيحة لـ <b>{label}</b>{now}:", now: " (الحالية: {v})",
+          one_char: "(اختلاف حرف واحد)", on_file: "صفحات في الملف: {n}", last_visit: "آخر زيارة:",
+          page_code: "تشير الصفحة إلى رمز المريضة <b>{code}</b>.",
+          b_use: "👍 استخدام {code}", b_have_code: "🔗 لدي رمز", b_new_patient: "🆕 مريضة جديدة",
+          created: "تم إنشاء الملف <b>{code}</b> 🔗 اكتبي هذا الرمز على صفحة السجل — ستُربط به الزيارة القادمة.",
+          send_code: "أرسلي لي رمز المريضة:",
+          no_profile: "لا يوجد ملف بالرمز <b>{code}</b> (ولا رمز قريب منه).",
+          b_create: "🆕 إنشاؤه", b_again: "🔗 تجربة رمز آخر", b_unsure: "🤷 لست متأكدة",
+          unlinked: "تُرك <b>غير مرتبط</b> حاليًا — يمكن للمشرف دمج الملفات لاحقًا. الحذر أفضل من التكرار 👍",
+          n_match: "ملفات تطابق هذا الرمز ({n}). القرار لك — لا أربط أبدًا من تلقاء نفسي:",
+          b_link: "👤 الربط بـ {code}", b_none: "لا شيء منها — إنشاء ملف جديد",
+          linked: "تم ربط الزيارة بالملف <b>{code}</b> ✅",
+          b_new_visit: "🔄 بدء زيارة جديدة", b_next: "📋 مراجعة الصفحة التالية المرسلة من الهاتف ({n})",
+          hello: "👋 مرحبًا! أنا <b>مساعد DayOne</b> — سجل الحمل في نسخته الرقمية.",
+          hello2: "📸 أرسلي صورة صفحة من السجل (اضغطي 📎). يعمل أيضًا بدون شبكة: تنتظر الصور مشفّرةً على هذا الهاتف، وتُرسل عند عودة الاتصال (جرّبي زر <b>📶 متصل</b> في الأعلى). أرسلي <b>/new</b> في أي وقت للبدء من جديد.",
+          insecure: "⚠️ هذه الصفحة ليست على عنوان آمن، لذلك <b>لا يمكنها حفظ الصور على الهاتف</b> دون اتصال — تُرسل الصور مباشرة إلى الخادم. افتحيها عبر https:// (انظري README، قسم Phone setup).",
+          tap_button: "اضغطي على أحد الأزرار للمتابعة 🙂 أو أرسلي <b>/new</b> للبدء من جديد.",
+          want_photo: "أنتظر صورة 📸 — اضغطي 📎 لإرسال الصفحة مرة أخرى.",
+          intro: "أنا مساعد DayOne 🩺 أرسلي صورة صفحة من السجل (اضغطي 📎) لبدء سجل.",
+          busy: "ما زلت أعمل على سجل — أنهي هذه الزيارة (أو أرسلي <b>/new</b>) قبل بدء أخرى.",
+          q_check: "هل الخانة «{label}» مؤشَّر عليها؟", q_radio: "أي خيار مؤشَّر عليه في «{label}»؟", q_value: "ما قيمة «{label}»؟",
+          KNOWN: "معروف", NEEDS_REVIEW: "تحتاج مراجعة", UNKNOWN: "غير معروف", NOT_APPLICABLE: "لا ينطبق",
+          ILLEGIBLE: "غير مقروء", NOT_PROVIDED: "غير مُدخل",
+          CAPTURED: "مصوّرة", PENDING_AI: "بانتظار الذكاء الاصطناعي", AI_PROCESSED: "مقروءة", TO_REVIEW: "للمراجعة",
+          VALIDATED: "معتمدة", PATIENT_LINKED: "مرتبطة بمريضة", SAVED: "محفوظة", SYNCED: "متزامنة",
+          cover: "الغلاف", identification: "الهوية والسوابق", current_pregnancy: "الحمل الحالي", delivery: "الولادة",
+          postpartum_early_mother: "ما بعد الولادة المبكر — الأم", postpartum_early_newborn: "ما بعد الولادة المبكر — المولود",
+          postpartum_late_mother: "ما بعد الولادة المتأخر — الأم", postpartum_late_newborn: "ما بعد الولادة المتأخر — المولود"
+        }
+      };
+
+      function pickLang() {
+        let saved = null;
+        try { saved = localStorage.getItem("dayone.lang"); } catch (e) { /* storage blocked */ }
+        if (saved && LANGS[saved]) return saved;
+        const nav = (navigator.language || "en").slice(0, 2);
+        return LANGS[nav] ? nav : "en";
+      }
+      let LANG = pickLang();
+
+      // t("key", {n: 3}) -> the text in the current language; {name} placeholders are filled in.
+      // Values that end up inside HTML must already be escaped by the caller.
+      function t(key, vars) {
+        const s = I18N[LANG][key] ?? I18N.en[key] ?? key;
+        return vars ? s.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : s;
+      }
+      // Field names: French for Arabic too (as printed on the paper registry).
+      function lbl(f) { return LANG === "en" ? f.label_en : f.label_fr; }
+      // -> HTML
+      function question(f) {
+        if (LANG === "en") return esc(f.question_en || f.question_fr);
+        if (LANG === "fr") return esc(f.question_fr);
+        return t(f.kind === "check" ? "q_check" : f.kind === "radio" ? "q_radio" : "q_value", { label: val(f.label_fr) });
+      }
+      function stName(s) { return t(s); }
+      function pageName(p) { return I18N[LANG][p] || I18N.en[p] || p; }
+      // Values (dates, numbers, codes) keep their own direction inside Arabic sentences.
+      function val(v) { return "<bdi>" + esc(v) + "</bdi>"; }
+      function when(d, dateOnly) {
+        return dateOnly ? d.toLocaleDateString(LANGS[LANG].locale) : d.toLocaleString(LANGS[LANG].locale);
+      }
+
+      function applyLang() {
+        document.documentElement.lang = LANG;
+        document.documentElement.dir = LANGS[LANG].dir;
+        document.getElementById("lang").value = LANG;
+        document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n); });
+        document.querySelectorAll("[data-i18n-placeholder]").forEach(el => { el.placeholder = t(el.dataset.i18nPlaceholder); });
+        document.querySelectorAll("[data-i18n-title]").forEach(el => { el.title = t(el.dataset.i18nTitle); });
+        document.querySelectorAll("[data-i18n-alt]").forEach(el => { el.alt = t(el.dataset.i18nAlt); });
+        document.querySelectorAll(".strip .sep").forEach(el => { el.textContent = LANGS[LANG].dir === "rtl" ? "←" : "→"; });
+      }
 
       // The phone has network if the OS says so and the demo switch is not set to offline.
       function phoneOnline() { return navigator.onLine && !S.simOffline; }
@@ -401,7 +722,7 @@
 
       /* ================= API ================= */
       async function api(method, path, body, isForm) {
-        if (!phoneOnline()) throw { offline: true, detail: "No connection — try again when the network is back." };
+        if (!phoneOnline()) throw { offline: true, detail: t("err_offline") };
         let res;
         try {
           res = await fetch(API + path, {
@@ -410,7 +731,7 @@
             body: isForm ? body : body ? JSON.stringify(body) : undefined
           });
         } catch (e) {
-          throw { offline: true, detail: "Can't reach the DayOne server. Is it running? (cd backend && uvicorn main:app)" };
+          throw { offline: true, detail: t("err_server") };
         }
         let data = null;
         try { data = await res.json(); } catch (e) { /* no body */ }
@@ -419,7 +740,7 @@
       }
 
       function errText(e) {
-        if (!e) return "unknown error";
+        if (!e) return t("err_unknown");
         if (typeof e.detail === "string") return e.detail;
         if (Array.isArray(e.detail)) return e.detail.map(d => d.msg).join("; ");
         return String(e.message || e);
@@ -452,7 +773,7 @@
           const i = document.createElement("img");
           i.className = "photo";
           i.src = opts.img;
-          i.alt = "registry page photo";
+          i.alt = t("photo_alt");
           b.appendChild(i);
         }
         const t = document.createElement("div");
@@ -522,7 +843,8 @@
       STATES.forEach((s, i) => {
         const c = document.createElement("span");
         c.className = "chip";
-        c.textContent = s;
+        c.dataset.i18n = s;
+        c.textContent = t(s);
         chipsBox.appendChild(c);
         if (i < STATES.length - 1) {
           const sep = document.createElement("span");
@@ -549,23 +871,23 @@
         }
         const ai = st ? st.counts.PENDING_AI : 0, sync = st ? st.counts.SAVED + st.counts.SYNC_FAILED : 0;
         const parts = [];
-        if (onPhone) parts.push("📱 " + onPhone + " on phone");
-        if (ai) parts.push(ai + " AI");
-        if (sync) parts.push(sync + " sync");
+        if (onPhone) parts.push(t("q_phone", { n: onPhone }));
+        if (ai) parts.push(t("q_ai", { n: ai }));
+        if (sync) parts.push(t("q_sync", { n: sync }));
         qbadge.style.display = parts.length ? "inline-block" : "none";
         qbadge.textContent = "⏳ " + parts.join(" · ");
         updateConn();
-        if (phoneOnline() && !st) statusline.textContent = "⚠️ server not reachable — photos stay on the phone";
+        if (phoneOnline() && !st) statusline.textContent = t("st_server_down");
         return st;
       }
 
       /* ================= Connection toggle ================= */
       function updateConn() {
         const on = phoneOnline();
-        connBtn.textContent = on ? "📶 Online" : "✈️ Offline";
+        connBtn.textContent = on ? t("conn_on") : t("conn_off");
         connBtn.className = on ? "" : "off";
-        statusline.textContent = (on ? "online" : "offline — photos kept on this phone") +
-          (S.extractor === "fixture" ? " · demo extractor" : "");
+        statusline.textContent = (on ? t("st_online") : t("st_offline")) +
+          (S.extractor === "fixture" ? t("st_demo") : "");
       }
       // Demo switch: makes the phone behave as if it had no network (nothing is sent to the server).
       // Real network changes on the phone do the same thing on their own (online/offline events).
@@ -581,8 +903,8 @@
         if (on === lastOnline) return;
         lastOnline = on;
         updateConn();
-        if (!on) { sysMsg("✈️ Connection lost — photos will be kept on this phone"); await refreshStatus(); return; }
-        sysMsg("📶 Connection restored");
+        if (!on) { sysMsg(t("sys_lost")); await refreshStatus(); return; }
+        sysMsg(t("sys_back"));
         await sendOutbox();
       }
 
@@ -595,14 +917,14 @@
         try {
           const items = Outbox.ok ? await Outbox.list() : [];
           if (items.length) {
-            if (!S.retrying) await agentSay("📤 Sending " + items.length + " photo(s) saved on this phone…", { fast: true });
+            if (!S.retrying) await agentSay(t("sending", { n: items.length }), { fast: true });
             for (const item of items) {
               if (S.uploading.has(item.id)) continue;
               let rec;
               try { rec = await uploadItem(item); }
               catch (e) {
                 // Server unreachable: keep the photos, try again quietly in the background.
-                if (!S.retrying) await agentSay("⚠️ " + esc(errText(e)) + " — the photos stay on the phone, I'll keep trying.", { fast: true });
+                if (!S.retrying) await agentSay(t("send_retry", { err: val(errText(e)) }), { fast: true });
                 S.retrying = true;
                 S.retryTimer = setTimeout(sendOutbox, 20000);
                 await refreshStatus();
@@ -610,13 +932,13 @@
               }
               S.toReview.push(rec.id);
             }
-            if (S.retrying) sysMsg("📤 Photos saved on the phone have been sent");
+            if (S.retrying) sysMsg(t("sys_sent"));
             S.retrying = false;
           }
           const st = await refreshStatus();
           if (st && st.counts.PENDING_AI > 0) {
-            await agentSay("Reading " + st.counts.PENDING_AI + " page(s)…", { fast: true });
-            try { await working(api("POST", "/queue/process")); } catch (e) { await agentSay("⚠️ " + esc(errText(e))); }
+            await agentSay(t("reading", { n: st.counts.PENDING_AI }), { fast: true });
+            try { await working(api("POST", "/queue/process")); } catch (e) { await agentSay("⚠️ " + val(errText(e))); }
           }
           await syncNow();
         } finally { S.flushing = false; }
@@ -625,7 +947,7 @@
 
       // The phone's copy is deleted only after the server has answered that it stored the photo.
       async function uploadItem(item) {
-        if (S.uploading.has(item.id)) throw { detail: "already being sent" };
+        if (S.uploading.has(item.id)) throw { detail: t("err_sending") };
         S.uploading.add(item.id);
         try {
           const form = new FormData();
@@ -646,8 +968,8 @@
           try { rec = await api("GET", "/records/" + id); } catch (e) { S.toReview.unshift(id); return; }
           S.flowActive = true;
           S.rec = rec;
-          if (S.toReview.length) sysMsg(S.toReview.length + " more page(s) waiting after this one");
-          addMsg("in", "📋 Page photographed " + esc(new Date(rec.captured_at).toLocaleString()) + ":");
+          if (S.toReview.length) sysMsg(t("sys_more", { n: S.toReview.length }));
+          addMsg("in", t("page_taken", { when: val(when(new Date(rec.captured_at))) }));
           if (rec.state === "SUSPECTED_DUPLICATE") return askDuplicate(rec);
           return continueRecord(id);
         }
@@ -661,9 +983,9 @@
         try { r = await working(api("POST", "/sync")); } catch (e) { return; }
         if (r.synced.length) {
           if (S.rec && r.synced.includes(S.rec.id)) setState("SYNCED");
-          await agentSay("📤 " + r.synced.length + " record(s) <b>SYNCED</b> to the health system ✅", { fast: true });
+          await agentSay(t("synced", { n: r.synced.length }), { fast: true });
         }
-        if (r.waiting.length) await agentSay("📴 " + r.waiting.length + " record(s) waiting for the connection.", { fast: true });
+        if (r.waiting.length) await agentSay(t("wait_conn", { n: r.waiting.length }), { fast: true });
         await refreshStatus();
       }
 
@@ -672,24 +994,24 @@
       // otherwise left in the outbox (PENDING_AI) so the midwife can carry on photographing pages.
       async function startFromPhoto(dataUrl, shown) {
         S.flowActive = true;
-        if (!shown) addMsg("out", "Registry page 📸", { img: dataUrl });
+        if (!shown) addMsg("out", t("caption_default"), { img: dataUrl });
         const blob = await (await fetch(dataUrl)).blob();
         let item = null;
         if (Outbox.ok) {
           try { item = await Outbox.add(blob, "mw-demo"); }
-          catch (e) { await agentSay("⚠️ Couldn't save the photo on this phone (" + esc(String(e && e.message || e)) + ")."); }
+          catch (e) { await agentSay(t("save_failed", { err: esc(String(e && e.message || e)) })); }
         }
         if (!item && !phoneOnline()) {
-          await agentSay("📴 No connection, and this page can't store photos safely on the phone (it needs a secure https:// address). Keep the photo in your gallery and send it when you're back online.");
+          await agentSay(t("no_store"));
           S.flowActive = false;
           return;
         }
         setState("CAPTURED");
-        if (item) await agentSay("Photo saved <b>encrypted on this phone</b>. Names, ID numbers and phone numbers are never read 🔒", { fast: true });
+        if (item) await agentSay(t("saved_enc"), { fast: true });
         if (!phoneOnline()) {
           setState("PENDING_AI");
           await refreshStatus();
-          await agentSay("📴 No connection. Kept on the phone: <b>Pending AI processing</b>. Nothing is lost — I'll send it and read it when the network returns. You can photograph the next page 📸");
+          await agentSay(t("kept_pending"));
           S.flowActive = false;
           setState(null);
           return;
@@ -705,7 +1027,7 @@
           }
         } catch (e) {
           await refreshStatus();
-          await agentSay("⚠️ " + esc(errText(e)) + (item ? "<br>The photo stays on the phone; I'll send it when the server is reachable." : ""));
+          await agentSay("⚠️ " + val(errText(e)) + (item ? t("upload_kept") : ""));
           S.flowActive = false;
           return;
         }
@@ -720,14 +1042,14 @@
         S.flowActive = true;
         S.rec = rec;
         setState("CAPTURED");
-        await agentSay("🤔 I've already received <b>this exact photo</b> before. Is it really a new page?");
+        await agentSay(t("dup_q"));
         const c = await askButtons([
-          { label: "📸 Yes, process it", value: "go" },
-          { label: "🗑️ No, it's a duplicate", value: "drop" }
+          { label: t("dup_yes"), value: "go" },
+          { label: t("dup_no"), value: "drop" }
         ]);
-        if (c === "drop") { await agentSay("OK, I've set it aside 👍", { fast: true }); return finish(); }
+        if (c === "drop") { await agentSay(t("dup_dropped"), { fast: true }); return finish(); }
         try { rec = await api("POST", "/records/" + rec.id + "/retry"); }
-        catch (e) { await agentSay("⚠️ " + esc(errText(e))); return finish(); }
+        catch (e) { await agentSay("⚠️ " + val(errText(e))); return finish(); }
         S.rec = rec;
         setState("PENDING_AI");
         await continueRecord(rec.id);
@@ -737,19 +1059,19 @@
         try {
           await working(api("POST", "/queue/process"));
           S.rec = await api("GET", "/records/" + id);
-        } catch (e) { await agentSay("⚠️ " + esc(errText(e))); return; }
+        } catch (e) { await agentSay("⚠️ " + val(errText(e))); return; }
         await refreshStatus();
         const rec = S.rec;
         if (rec.state === "PENDING_AI") {
-          await agentSay("⏳ Still waiting to be processed (" + esc(rec.last_error || "will retry") + ").");
+          await agentSay(t("still_waiting", { why: rec.last_error ? val(rec.last_error) : t("will_retry") }));
           return;
         }
         if (rec.state === "PROCESSING_FAILED") {
-          await agentSay("😕 I couldn't read this photo" + (rec.last_error ? " (<span class='mut'>" + esc(rec.last_error) + "</span>)" : "") + ".");
+          await agentSay(t("cant_read", { why: rec.last_error ? " (<span class='mut'>" + val(rec.last_error) + "</span>)" : "" }));
           return retakeOrManual();
         }
         if (rec.state === "MANUAL_REVIEW_REQUIRED") {
-          await agentSay("🤔 I don't recognise which registry page this is.");
+          await agentSay(t("unknown_page"));
           return retakeOrManual();
         }
         setState("AI_PROCESSED");
@@ -760,74 +1082,73 @@
 
       async function retakeOrManual() {
         const c = await askButtons([
-          { label: "📸 Retake photo", value: "retake" },
-          { label: "⌨️ Type it myself", value: "manual" }
+          { label: t("b_retake"), value: "retake" },
+          { label: t("b_manual"), value: "manual" }
         ]);
         if (c === "retake") {
           S.awaitingPhoto = true;
-          await agentSay("Send the photo again (tap 📎). Flat page, good light, whole page in the frame 🙂");
+          await agentSay(t("retake"));
           return;
         }
-        const pages = [["cover", "Cover"], ["identification", "Identification"], ["current_pregnancy", "Current pregnancy"],
-                       ["delivery", "Delivery"], ["postpartum_early_mother", "Postpartum (mother, early)"],
-                       ["postpartum_early_newborn", "Postpartum (newborn, early)"],
-                       ["postpartum_late_mother", "Postpartum (mother, late)"], ["postpartum_late_newborn", "Postpartum (newborn, late)"]];
-        await agentSay("Which page is it?", { fast: true });
-        const p = await askButtons(pages.map(x => ({ label: x[1], value: x[0] })));
+        const pages = ["cover", "identification", "current_pregnancy", "delivery", "postpartum_early_mother",
+                       "postpartum_early_newborn", "postpartum_late_mother", "postpartum_late_newborn"];
+        await agentSay(t("which_page"), { fast: true });
+        const p = await askButtons(pages.map(x => ({ label: esc(pageName(x)), value: x })));
         try { S.rec = await api("POST", "/records/" + S.rec.id + "/manual", { page_type: p }); }
-        catch (e) { await agentSay("⚠️ " + esc(errText(e))); return; }
-        await agentSay("OK — tap <b>✏️ Correct a field</b> to enter values, then confirm. Empty fields stay <b>NOT_PROVIDED</b>.", { fast: true });
+        catch (e) { await agentSay("⚠️ " + val(errText(e))); return; }
+        await agentSay(t("manual_ok", { np: esc(stName("NOT_PROVIDED")) }), { fast: true });
         S.rec.state = "MANUAL_REVIEW_REQUIRED";
         await reviewMenu();
       }
 
       function flag(f) {
-        if (f.status === "UNKNOWN") return "◻️ UNKNOWN";
-        if (f.status === "NOT_APPLICABLE") return "— N/A";
-        if (f.status === "NEEDS_REVIEW") return "⚠️ NEEDS_REVIEW";
-        if (f.status === "ILLEGIBLE") return "❓ ILLEGIBLE";
+        if (f.status === "UNKNOWN") return "◻️ " + esc(stName("UNKNOWN"));
+        if (f.status === "NOT_APPLICABLE") return "— " + esc(stName("NOT_APPLICABLE"));
+        if (f.status === "NEEDS_REVIEW") return "⚠️ " + esc(stName("NEEDS_REVIEW"));
+        if (f.status === "ILLEGIBLE") return "❓ " + esc(stName("ILLEGIBLE"));
         return f.corrected_by_midwife ? "✏️" : "✅";
       }
 
       function summaryHtml(rec) {
         const shown = rec.filled.slice(0, 8).map(f =>
-          "• " + esc(f.label_en) + ": <b>" + esc(f.display ?? "—") + "</b> " + flag(f) +
-          " · conf " + Number(f.confidence).toFixed(2)).join("<br>");
-        const more = rec.filled.length > 8 ? "<br><span class='mut'>…and " + (rec.filled.length - 8) + " more filled fields</span>" : "";
-        const counts = Object.entries(rec.summary || {}).map(([k, v]) => v + " " + k).join(" · ");
+          "• " + val(lbl(f)) + ": <b>" + val(f.display ?? "—") + "</b> " + flag(f) +
+          " · " + t("conf") + " " + val(Number(f.confidence).toFixed(2))).join("<br>");
+        const more = rec.filled.length > 8 ? "<br><span class='mut'>" + t("more_filled", { n: rec.filled.length - 8 }) + "</span>" : "";
+        const counts = Object.entries(rec.summary || {}).map(([k, v]) => v + " " + stName(k)).join(" · ");
         const quality = rec.image_quality && rec.image_quality.issues && rec.image_quality.issues.length
-          ? "<br>📷 Photo: " + esc(rec.image_quality.issues.join(", ")) : "";
-        return "📋 <b>" + esc(rec.page_type_label || rec.page_type) + "</b><br>" + shown + more +
+          ? "<br>" + t("photo_issues") + val(rec.image_quality.issues.join(", ")) : "";
+        const page = I18N.en[rec.page_type] ? pageName(rec.page_type) : rec.page_type_label || rec.page_type;
+        return "📋 <b>" + esc(page) + "</b><br>" + shown + more +
                "<br><span class='mut'>" + esc(counts) + quality + "</span>" +
-               '<br><span class="mut">🔒 No direct identifiers stored</span>';
+               '<br><span class="mut">' + t("no_ids") + "</span>";
       }
 
       async function sendAnswers(answers) {
         try {
           S.rec = await api("PATCH", "/records/" + S.rec.id + "/fields", { answers });
           return true;
-        } catch (e) { await agentSay("⚠️ " + esc(errText(e))); return false; }
+        } catch (e) { await agentSay("⚠️ " + val(errText(e))); return false; }
       }
 
       async function askOne(f) {
-        const seen = f.display != null && f.display !== "" ? " I read <b>" + esc(f.display) + "</b>" : " I couldn't read it";
-        const why = f.issues && f.issues.length ? " <span class='mut'>(" + esc(f.issues.join("; ")) + ")</span>" : "";
-        await agentSay("⚠️ <b>" + esc(f.label_en) + "</b>:" + seen + " — confidence " + Number(f.confidence).toFixed(2) + why +
-                       "<br><span class='mut'>" + esc(f.question_fr) + "</span>");
+        const seen = f.display != null && f.display !== "" ? t("i_read", { v: val(f.display) }) : t("cant_field");
+        const why = f.issues && f.issues.length ? " <span class='mut'>" + val("(" + f.issues.join("; ") + ")") + "</span>" : "";
+        await agentSay("⚠️ <b>" + val(lbl(f)) + "</b>:" + seen + " — " + t("confidence") + " " + val(Number(f.confidence).toFixed(2)) + why +
+                       "<br><span class='mut'>" + question(f) + "</span>");
         const opts = [];
-        if (f.display != null && f.display !== "") opts.push({ label: "✅ That's right", value: "confirm" });
-        opts.push({ label: "⌨️ Type the value", value: "type" }, { label: "◻️ Unknown", value: "unknown" },
-                  { label: "⏭️ Skip", value: "skip" });
+        if (f.display != null && f.display !== "") opts.push({ label: t("b_right"), value: "confirm" });
+        opts.push({ label: t("b_type"), value: "type" }, { label: t("b_unknown"), value: "unknown" },
+                  { label: t("b_skip"), value: "skip" });
         const c = await askButtons(opts);
         if (c === "skip") return;
         if (c === "confirm") return sendAnswers({ [f.key]: { confirm: true } });
         if (c === "unknown") {
           if (await sendAnswers({ [f.key]: { status: "UNKNOWN" } }))
-            await agentSay("Marked as <b>UNKNOWN</b> — missing info is a real answer, not an error 👌", { fast: true });
+            await agentSay(t("marked_unknown", { st: esc(stName("UNKNOWN")) }), { fast: true });
           return;
         }
-        await agentSay("Type the value for <b>" + esc(f.label_en) + "</b>:", { fast: true });
-        await typeUntilAccepted(f.key, f.label_en);
+        await agentSay(t("type_for", { label: val(lbl(f)) }), { fast: true });
+        await typeUntilAccepted(f.key, lbl(f));
       }
 
       // Keeps asking until the server accepts the value (a date must be a date, Pos/Neg must be Pos/Neg...).
@@ -836,28 +1157,28 @@
           const v = await waitText();
           if (await sendAnswers({ [key]: { text: v } })) {
             const nf = (await api("GET", "/records/" + S.rec.id)).fields[key];
-            await agentSay(esc(label) + " = <b>" + esc(nf.display ?? v) + "</b> ✓ <span class='mut'>(entered by midwife)</span>", { fast: true });
+            await agentSay(val(label) + " = <b>" + val(nf.display ?? v) + "</b> ✓ <span class='mut'>" + t("by_midwife") + "</span>", { fast: true });
             return;
           }
-          await agentSay("Try again, or send <b>?</b> if it's unknown.", { fast: true });
+          await agentSay(t("try_again"), { fast: true });
         }
       }
 
       async function reviewQuestions() {
         const queue = S.rec.needs_review.slice();
         if (!queue.length) {
-          await agentSay("Everything was read with confidence ✅", { fast: true });
+          await agentSay(t("all_ok"), { fast: true });
           return reviewMenu();
         }
-        await agentSay(queue.length + " field(s) need your eyes. Least confident first:", { fast: true });
+        await agentSay(t("need_eyes", { n: queue.length }), { fast: true });
         for (const f of queue.slice(0, ASK_FIRST)) await askOne(f);
         const rest = S.rec.needs_review.filter(f => !queue.slice(0, ASK_FIRST).some(q => q.key === f.key));
         if (rest.length) {
-          await agentSay(rest.length + " more field(s) are flagged.");
+          await agentSay(t("more_flagged", { n: rest.length }));
           const c = await askButtons([
-            { label: "🔍 Go through them", value: "all" },
-            { label: "✅ They're right as read", value: "confirm" },
-            { label: "⚠️ Leave them flagged", value: "leave" }
+            { label: t("b_all"), value: "all" },
+            { label: t("b_as_read"), value: "confirm" },
+            { label: t("b_leave"), value: "leave" }
           ]);
           if (c === "all") for (const f of rest) await askOne(f);
           else if (c === "confirm") {
@@ -871,55 +1192,54 @@
 
       async function reviewMenu() {
         const c = await askButtons([
-          { label: "✅ Confirm all", value: "confirm" },
-          { label: "✏️ Correct a field", value: "correct" },
-          { label: "📸 Retake photo", value: "retake" }
+          { label: t("b_confirm_all"), value: "confirm" },
+          { label: t("b_correct"), value: "correct" },
+          { label: t("b_retake"), value: "retake" }
         ]);
         if (c === "retake") {
           S.awaitingPhoto = true;
-          await agentSay("No problem — send the photo again (tap 📎). Flat page, good light, whole page in the frame 🙂");
+          await agentSay(t("retake2"));
           return;
         }
         if (c === "correct") return correctField();
         try {
-          if (S.rec.state === "MANUAL_REVIEW_REQUIRED") { await agentSay("Enter at least one value first ✏️", { fast: true }); return reviewMenu(); }
+          if (S.rec.state === "MANUAL_REVIEW_REQUIRED") { await agentSay(t("enter_first"), { fast: true }); return reviewMenu(); }
           S.rec = await api("POST", "/records/" + S.rec.id + "/validate");
-        } catch (e) { await agentSay("⚠️ " + esc(errText(e))); return reviewMenu(); }
+        } catch (e) { await agentSay("⚠️ " + val(errText(e))); return reviewMenu(); }
         setState("VALIDATED");
-        await agentSay("Record <b>validated</b> ✅ Now, which patient is this?", { fast: true });
+        await agentSay(t("validated"), { fast: true });
         linking();
       }
 
       async function correctField() {
         const full = await api("GET", "/records/" + S.rec.id);
         const all = Object.values(full.fields);
-        await agentSay("Type part of the field name (e.g. <i>tension</i>, <i>weight</i>, <i>DPA</i>):", { fast: true });
+        await agentSay(t("field_search"), { fast: true });
         const q = (await waitText()).toLowerCase();
         const hits = all.filter(f => (f.label_en + " " + f.label_fr + " " + f.key).toLowerCase().includes(q)).slice(0, 8);
         if (!hits.length) {
-          await agentSay("No field matches “" + esc(q) + "”.", { fast: true });
+          await agentSay(t("no_match", { q: esc(q) }), { fast: true });
           return reviewMenu();
         }
         const k = await askButtons(hits.map(f => ({
-          label: esc(f.label_en) + (f.key.includes(".") ? " <span class='mut'>(" + esc(f.key) + ")</span>" : ""), value: f.key })));
+          label: val(lbl(f)) + (f.key.includes(".") ? " <span class='mut'>(<bdi>" + esc(f.key) + "</bdi>)</span>" : ""), value: f.key })));
         const f = full.fields[k];
-        await agentSay("Send the correct value for <b>" + esc(f.label_en) + "</b>" +
-                       (f.display ? " (now: " + esc(f.display) + ")" : "") + ":", { fast: true });
-        await typeUntilAccepted(k, f.label_en);
+        await agentSay(t("send_correct", { label: val(lbl(f)), now: f.display ? t("now", { v: val(f.display) }) : "" }), { fast: true });
+        await typeUntilAccepted(k, lbl(f));
         reviewMenu();
       }
 
       function patientCard(p) {
-        const when = p.last_visit ? new Date(p.last_visit).toLocaleDateString() : "—";
-        const near = p.distance > 0 ? " <span class='mut'>(1 character different)</span>" : "";
-        return '<div class="pcard"><b>👤 ' + esc(p.code) + "</b>" + near + "<br>" + p.visits + " page(s) on file · " +
-               esc((p.pages || []).join(", ") || "—") + '<br><span class="mut">last visit: ' + esc(when) + "</span></div>";
+        const last = p.last_visit ? when(new Date(p.last_visit), true) : "—";
+        const near = p.distance > 0 ? " <span class='mut'>" + t("one_char") + "</span>" : "";
+        return '<div class="pcard"><b>👤 ' + val(p.code) + "</b>" + near + "<br>" + t("on_file", { n: p.visits }) + " · " +
+               esc((p.pages || []).map(pageName).join(", ") || "—") + '<br><span class="mut">' + t("last_visit") + " " + val(last) + "</span></div>";
       }
 
       async function link(code, create) {
         try {
           S.rec = await api("POST", "/records/" + S.rec.id + "/link", { patient_code: code, create });
-        } catch (e) { await agentSay("⚠️ " + esc(errText(e))); return false; }
+        } catch (e) { await agentSay("⚠️ " + val(errText(e))); return false; }
         setState("PATIENT_LINKED");
         await delay(250);
         setState("SAVED");
@@ -929,68 +1249,68 @@
       async function linking() {
         const opts = [];
         if (S.rec.record_number) {
-          await agentSay("The page says patient code <b>" + esc(S.rec.record_number) + "</b>.", { fast: true });
-          opts.push({ label: "👍 Use " + esc(S.rec.record_number), value: "page" });
+          await agentSay(t("page_code", { code: val(S.rec.record_number) }), { fast: true });
+          opts.push({ label: t("b_use", { code: val(S.rec.record_number) }), value: "page" });
         }
-        opts.push({ label: "🔗 I have a code", value: "code" }, { label: "🆕 New patient", value: "new" });
+        opts.push({ label: t("b_have_code"), value: "code" }, { label: t("b_new_patient"), value: "new" });
         const c = await askButtons(opts);
         if (c === "new") {
           const { code } = await api("GET", "/patients/new-code");
           if (await link(code, true))
-            await agentSay("Created profile <b>" + esc(code) + "</b> 🔗 Write this code on the registry page — the next visit will link to it.", { fast: true });
+            await agentSay(t("created", { code: val(code) }), { fast: true });
           return finish();
         }
         let code = S.rec.record_number;
         if (c === "code") {
-          await agentSay("Send me the patient's code:", { fast: true });
+          await agentSay(t("send_code"), { fast: true });
           code = await waitText();
         }
         let matches = [];
         try { matches = await api("GET", "/patients?code=" + encodeURIComponent(code)); }
-        catch (e) { await agentSay("⚠️ " + esc(errText(e))); return linking(); }
+        catch (e) { await agentSay("⚠️ " + val(errText(e))); return linking(); }
         if (!matches.length) {
-          await agentSay("No profile has code <b>" + esc(code) + "</b> (and no near match).", { fast: true });
+          await agentSay(t("no_profile", { code: val(code) }), { fast: true });
           const m = await askButtons([
-            { label: "🆕 Create it", value: "create" },
-            { label: "🔗 Try another code", value: "again" },
-            { label: "🤷 I'm not sure", value: "unsure" }
+            { label: t("b_create"), value: "create" },
+            { label: t("b_again"), value: "again" },
+            { label: t("b_unsure"), value: "unsure" }
           ]);
           if (m === "create") {
             if (await link(code, true))
-              await agentSay("Created profile <b>" + esc(code) + "</b> 🔗 Write this code on the registry page — the next visit will link to it.", { fast: true });
+              await agentSay(t("created", { code: val(code) }), { fast: true });
             return finish();
           }
           if (m === "again") return linking();
-          await agentSay("Kept <b>unlinked</b> for now — a supervisor can merge profiles later. Better safe than duplicated 👍", { fast: true });
+          await agentSay(t("unlinked"), { fast: true });
           return finish();
         }
-        await agentSay(matches.length + " profile(s) match this code. You decide — I never link on my own:", { fast: true });
+        await agentSay(t("n_match", { n: matches.length }), { fast: true });
         matches.forEach(p => addMsg("in", patientCard(p)));
-        const btns = matches.map(p => ({ label: "👤 Link to " + esc(p.code), value: p.code }));
-        btns.push({ label: "None of these — create new", value: "none" }, { label: "🤷 I'm not sure", value: "unsure" });
+        const btns = matches.map(p => ({ label: t("b_link", { code: val(p.code) }), value: p.code }));
+        btns.push({ label: t("b_none"), value: "none" }, { label: t("b_unsure"), value: "unsure" });
         const m = await askButtons(btns);
         if (m === "unsure") {
-          await agentSay("Kept <b>unlinked</b> for now — a supervisor can merge profiles later. Better safe than duplicated 👍", { fast: true });
+          await agentSay(t("unlinked"), { fast: true });
           return finish();
         }
         if (m === "none") {
           const { code: fresh } = await api("GET", "/patients/new-code");
           if (await link(fresh, true))
-            await agentSay("Created profile <b>" + esc(fresh) + "</b> 🔗 Write this code on the registry page — the next visit will link to it.", { fast: true });
+            await agentSay(t("created", { code: val(fresh) }), { fast: true });
           return finish();
         }
         if (await link(m, false))
-          await agentSay("Visit linked to profile <b>" + esc(m) + "</b> ✅", { fast: true });
+          await agentSay(t("linked", { code: val(m) }), { fast: true });
         return finish();
       }
 
       // End of one record: sync, then the next page sent from the phone, or a new visit.
       async function finish() {
         await syncNow();
-        const opts = [{ label: "🔄 Start a new visit", value: "new" }];
-        if (S.toReview.length) opts.unshift({ label: "📋 Review the next page sent from the phone (" + S.toReview.length + ")", value: "next" });
+        const opts = [{ label: t("b_new_visit"), value: "new" }];
+        if (S.toReview.length) opts.unshift({ label: t("b_next", { n: S.toReview.length }), value: "next" });
         const c = await askButtons(opts);
-        if (c === "next") { sysMsg("Next page"); S.flowActive = false; S.rec = null; setState(null); return reviewNext(); }
+        if (c === "next") { sysMsg(t("sys_next")); S.flowActive = false; S.rec = null; setState(null); return reviewNext(); }
         if (c === "new") reset();
       }
 
@@ -1000,17 +1320,34 @@
         S.waiter = null;
         S.rec = null;
         setState(null);
-        sysMsg("New visit");
+        sysMsg(t("sys_new"));
         refreshStatus();
         greeting();
       }
 
       async function greeting() {
-        await agentSay("👋 Hello! I'm the <b>DayOne agent</b> — the pregnancy registry, digitized.", { fast: true });
-        await agentSay("📸 Send a photo of a registry page (tap 📎). It works without network too: photos wait, encrypted on this phone, and are sent when the connection returns (try the <b>📶 Online</b> switch in the header). Send <b>/new</b> anytime to start over.");
+        await agentSay(t("hello"), { fast: true });
+        await agentSay(t("hello2"));
         if (!Outbox.ok)
-          await agentSay("⚠️ This page isn't on a secure address, so it <b>can't keep photos on the phone</b> while offline — photos are sent straight to the server. Open it over https:// (see README, Phone setup).", { fast: true });
+          await agentSay(t("insecure"), { fast: true });
       }
+
+      /* ================= Language picker =================
+         New messages use the new language right away; messages already in the chat stay as they
+         were (like a real chat). Before any record is started, the greeting is shown again. */
+      document.getElementById("lang").addEventListener("change", e => {
+        LANG = LANGS[e.target.value] ? e.target.value : "en";
+        try { localStorage.setItem("dayone.lang", LANG); } catch (err) { /* not remembered */ }
+        applyLang();
+        updateConn();
+        refreshStatus();
+        if (!S.flowActive && !S.awaitingPhoto && !S.waiter) {
+          chat.innerHTML = "";
+          greeting();
+        } else {
+          sysMsg(t("lang_set"));
+        }
+      });
 
       /* ================= Image preview & send ================= */
       const preview = document.getElementById("preview");
@@ -1036,7 +1373,7 @@
 
       function sendPendingImage() {
         if (!pendingImage) return;
-        const cap = pcaption.value.trim() || input.value.trim() || "Registry page 📸";
+        const cap = pcaption.value.trim() || input.value.trim() || t("caption_default");
         const url = pendingImage;
         clearPreview();
         input.value = "";
@@ -1059,11 +1396,11 @@
           return;
         }
         if (S.flowActive && !S.awaitingPhoto) {
-          agentSay("Tap a button to continue 🙂 or send <b>/new</b> to start over.", { fast: true });
+          agentSay(t("tap_button"), { fast: true });
         } else if (S.awaitingPhoto) {
-          agentSay("I'm waiting for a photo 📸 — tap 📎 to upload the page again.", { fast: true });
+          agentSay(t("want_photo"), { fast: true });
         } else {
-          agentSay("I'm the DayOne agent 🩺 Send a photo of a registry page (tap 📎) to start a record.", { fast: true });
+          agentSay(t("intro"), { fast: true });
         }
       }
 
@@ -1074,7 +1411,7 @@
           return;
         }
         if (S.flowActive) {
-          agentSay("I'm still working on one record — finish this visit (or send <b>/new</b>) before starting another.", { fast: true });
+          agentSay(t("busy"), { fast: true });
           return;
         }
         startFromPhoto(dataUrl, shown);
@@ -1095,6 +1432,7 @@
       /* ================= Init ================= */
       if ("serviceWorker" in navigator && window.isSecureContext)
         navigator.serviceWorker.register("/sw.js").catch(e => console.warn("offline page cache unavailable:", e));
+      applyLang();
       lastOnline = phoneOnline();
       updateConn();
       refreshStatus();
