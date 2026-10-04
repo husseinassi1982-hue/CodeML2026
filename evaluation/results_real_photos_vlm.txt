@@ -1,0 +1,135 @@
+# python -m tools.evaluate_real --backend vlm --show  (commit 5e65757, adapter vlm_ocr_lora_v2, RTX 4060 Laptop 8 GB,
+# model loaded with device_map={'':0}; 2026-10-04)
+1-1.jpg: cover [booklet_cover] 11/15 correct, 54.8s  {'NEEDS_REVIEW': 6, 'NOT_PROVIDED': 1, 'KNOWN': 8}
+1-2.jpg: identification [booklet_identification] 15/16 correct, 11.2s  {'NEEDS_REVIEW': 9, 'NOT_PROVIDED': 5, 'KNOWN': 5}
+1-3.jpg: identification [booklet_obstetric_history] 16/19 correct, 10.4s  {'NOT_PROVIDED': 43, 'NEEDS_REVIEW': 8, 'NOT_APPLICABLE': 2, 'KNOWN': 6}
+1-4.jpg: current_pregnancy [booklet_pregnancy_left] 28/43 correct, 59.3s  {'NEEDS_REVIEW': 62, 'NOT_PROVIDED': 18, 'NOT_APPLICABLE': 8, 'KNOWN': 6}
+1-5.jpg: current_pregnancy [booklet_pregnancy_right] 25/34 correct, 62.5s  {'NOT_PROVIDED': 103, 'NEEDS_REVIEW': 68, 'KNOWN': 8, 'NOT_APPLICABLE': 3}
+real photos: 95/127 correct (75%) | silent errors 3 (2%) | sent to review 69 (54%)
+    -    1-1.jpg record_number                              expected={'value': '164125'}  got [NEEDS_REVIEW] '164/25' raw='164/25' 0.60
+    -    1-1.jpg region                                     expected={'accept': ['Casa-Settat', 'Casablanca-Settat', 'Casa-Sttat']}  got [NEEDS_REVIEW] 'RAS' raw='RAS' 0.37
+    -    1-1.jpg province                                   expected={'accept': ['El Jadida', 'ElJadida']}  got [NEEDS_REVIEW] 'Gardès' raw='Gardès' 0.27
+    -    1-1.jpg facility_name                              expected={'accept': ['CS Sidi Smail', 'C/S Sidi Smail', 'CS Sidi Smaïl', 'CSR Sidi Smail']}  got [NEEDS_REVIEW] 'CSU Sidi smail' raw='CFS Sidi smail' 0.31
+  ok     1-1.jpg facility_type                              expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.85
+  ok     1-1.jpg coverage_mode                              expected={'value': 'fixed'}  got [NEEDS_REVIEW] 'fixed' raw=None 0.60
+  ok     1-1.jpg high_risk                                  expected={'value': False}  got [KNOWN] '☐' raw=None 1.00
+  ok     1-1.jpg risk.anemia                                expected={'value': False}  got [KNOWN] '☐' raw=None 0.99
+  ok     1-1.jpg risk.hypertension                          expected={'value': False}  got [NEEDS_REVIEW] '☐' raw=None 0.74
+  ok     1-1.jpg risk.diabetes                              expected={'value': False}  got [KNOWN] '☐' raw=None 1.00
+  ok     1-1.jpg risk.cardiopathy                           expected={'value': False}  got [KNOWN] '☐' raw=None 1.00
+  ok     1-1.jpg risk.metrorrhagia                          expected={'value': False}  got [KNOWN] '☐' raw=None 1.00
+  ok     1-1.jpg risk.infection                             expected={'value': False}  got [KNOWN] '☐' raw=None 1.00
+  ok     1-1.jpg risk.preeclampsia                          expected={'value': False}  got [KNOWN] '☐' raw=None 1.00
+  ok     1-1.jpg risk.eclampsia                             expected={'value': False}  got [KNOWN] '☐' raw=None 0.91
+    -    1-2.jpg age                                        expected={'value': 21}  got [NEEDS_REVIEW] None raw='21ans' 0.45
+  ok     1-2.jpg education_level                            expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.44
+  ok     1-2.jpg profession                                 expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.86
+  ok     1-2.jpg husband_profession                         expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.47
+  ok     1-2.jpg consanguinity                              expected={'value': False}  got [KNOWN] '☐' raw=None 1.00
+  ok     1-2.jpg desired_pregnancy                          expected={'value': False}  got [KNOWN] '☐' raw=None 1.00
+  ok     1-2.jpg family_history.woman_family.hypertension   expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.99
+  ok     1-2.jpg family_history.woman_family.hereditary     expected={'span': 'RAS'}  got [NEEDS_REVIEW] 'Diabète' raw='Diabète' 0.17
+  ok     1-2.jpg family_history.woman_family.malformations  expected={'span': 'RAS'}  got [NEEDS_REVIEW] 'RAS' raw='RAS' 0.74
+  ok     1-2.jpg family_history.woman_family.allergies      expected={'span': 'RAS'}  got [NEEDS_REVIEW] 'Famille' raw='Famille' 0.20
+  ok     1-2.jpg family_history.husband_family.hypertension expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.44
+  ok     1-2.jpg family_history.husband_family.hereditary   expected={'span': 'RAS'}  got [NEEDS_REVIEW] 'Neg' raw='Nég' 0.28
+  ok     1-2.jpg family_history.husband_family.malformations expected={'span': 'RAS'}  got [NEEDS_REVIEW] 'RAS' raw='RAS' 0.45
+  ok     1-2.jpg woman_history.medical.hypertension         expected={'span': 'RAS'}  got [KNOWN] 'RAS' raw='RAS' 0.94
+  ok     1-2.jpg woman_history.surgical.hypertension        expected={'span': 'RAS'}  got [KNOWN] 'RAS' raw='RAS' 0.96
+  ok     1-2.jpg woman_history.gynecological.hypertension   expected={'span': 'RAS'}  got [KNOWN] 'RAS' raw='RAS' 0.93
+  ok     1-3.jpg obstetric_anomalies.count.abortion         expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.90
+  ok     1-3.jpg obstetric_anomalies.date.abortion          expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.90
+  ok     1-3.jpg obstetric_anomalies.date.fetal_death       expected={'span': 'RAS'}  got [NEEDS_REVIEW] '16/11/2023' raw='16/11/2023' 0.21
+  ok     1-3.jpg previous_delivery.1.date                   expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.90
+  ok     1-3.jpg previous_delivery.1.mode                   expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.90
+  ok     1-3.jpg previous_delivery.3.date                   expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.90
+    -    1-3.jpg gravidity                                  expected={'value': 1}  got [NEEDS_REVIEW] '12' raw='12G' 0.25
+  ok     1-3.jpg parity                                     expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.90
+    -    1-3.jpg living_children                            expected={'value': 0}  got [NOT_PROVIDED] None raw=None 0.90
+  ok     1-3.jpg tetanus_dose_1                             expected={'value': False}  got [KNOWN] '☐' raw=None 1.00
+  ok     1-3.jpg tetanus_dose_2                             expected={'value': False}  got [NEEDS_REVIEW] '☐' raw=None 0.71
+  ok     1-3.jpg tetanus_dose_3                             expected={'value': False}  got [KNOWN] '☐' raw=None 0.88
+  ok     1-3.jpg tetanus_dose_4                             expected={'value': False}  got [KNOWN] '☐' raw=None 0.77
+  ok     1-3.jpg tetanus_dose_5                             expected={'value': False}  got [KNOWN] '☐' raw=None 0.88
+  ok     1-3.jpg rubella_vaccinated                         expected={'value': False}  got [KNOWN] '☐' raw=None 1.00
+  ok     1-3.jpg hepatitis_b_vaccinated                     expected={'value': False}  got [KNOWN] '☐' raw=None 0.94
+    -    1-3.jpg rubella_vaccination_date                   expected={'status': 'NOT_PROVIDED'}  got [NEEDS_REVIEW] '11/11/2025' raw='11/11/25' 0.18
+  ok     1-3.jpg hepatitis_b_vaccination_date               expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.90
+  ok     1-3.jpg cervical_screening                         expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.90
+  ok     1-4.jpg lmp_date                                   expected={'value': '13/05/2025'}  got [NEEDS_REVIEW] '13/05/2025' raw='13/05/2025' 0.76
+  ok     1-4.jpg height_cm                                  expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.90
+  ok     1-4.jpg blood_group                                expected={'value': 'A'}  got [NEEDS_REVIEW] 'A' raw=None 0.75
+  ok     1-4.jpg rhesus                                     expected={'value': 'positive'}  got [NEEDS_REVIEW] 'positive' raw=None 0.75
+    -    1-4.jpg visits.t1_v1.appointment_date              expected={'value': '11/09/25', 'alt': ['visits.t1_v1.attended_date']}  got [NEEDS_REVIEW] '11/03/2025' raw='11/03/25' 0.52
+  ok     1-4.jpg visits.t1_v2.appointment_date              expected={'value': '13/10/25', 'alt': ['visits.t1_v2.attended_date']}  got [NEEDS_REVIEW] '08/10/2025' raw='08/10/25' 0.67
+    -    1-4.jpg visits.t1_v3.appointment_date              expected={'value': '13/11/25', 'alt': ['visits.t1_v3.attended_date']}  got [NEEDS_REVIEW] '13/01/2025' raw='13/01/25' 0.29
+  ok     1-4.jpg visits.t1_v1.gestational_age_weeks         expected={'value': '16SA+3j'}  got [NEEDS_REVIEW] '16 SA + 3 j' raw='16SA+3j' 0.60
+  ok     1-4.jpg visits.t1_v2.gestational_age_weeks         expected={'value': '20SA+2j'}  got [NEEDS_REVIEW] '20 SA + 2 j' raw='20SA+2j' 0.86
+  ok     1-4.jpg visits.t1_v3.gestational_age_weeks         expected={'value': '25SA+3j'}  got [NEEDS_REVIEW] '25 SA + 3 j' raw='25SA+3j' 0.44
+  ok     1-4.jpg visits.t1_v1.weight_kg                     expected={'accept': ['NF'], 'status': 'NOT_APPLICABLE'}  got [NOT_APPLICABLE] 'NF (non fait)' raw='NF' 0.83
+    -    1-4.jpg visits.t1_v1.blood_pressure                expected={'value': '11/7'}  got [NEEDS_REVIEW] '101/7' raw='101/7' 0.50
+    -    1-4.jpg visits.t1_v2.blood_pressure                expected={'value': '11/7'}  got [NEEDS_REVIEW] '117/7' raw='117/7' 0.47
+    -    1-4.jpg visits.t1_v3.blood_pressure                expected={'value': '11/7'}  got [NEEDS_REVIEW] '117/60' raw='117/60' 0.25
+    -    1-4.jpg visits.t1_v1.skeletal_anomalies            expected={'value': 'RAS'}  got [NEEDS_REVIEW] 'RAS, colorées' raw='RAS, colorées' 0.26
+  ok     1-4.jpg visits.t1_v2.skeletal_anomalies            expected={'value': 'RAS'}  got [NEEDS_REVIEW] 'RAS' raw='RAS' 0.65
+  ok     1-4.jpg visits.t1_v3.skeletal_anomalies            expected={'value': 'RAS'}  got [NEEDS_REVIEW] 'RAS' raw='RAS' 0.35
+  SILENT 1-4.jpg visits.t1_v1.conjunctivae                  expected={'value': 'colorées'}  got [KNOWN] 'RAS' raw='RAS' 0.96
+    -    1-4.jpg visits.t1_v2.conjunctivae                  expected={'value': 'colorées'}  got [NEEDS_REVIEW] 'Cobaltées' raw='Cobaltées' 0.38
+    -    1-4.jpg visits.t1_v3.conjunctivae                  expected={'value': 'colorées'}  got [NEEDS_REVIEW] 'RAS' raw='RAS' 0.56
+  ok     1-4.jpg visits.t1_v1.breast_exam                   expected={'value': 'RAS'}  got [KNOWN] 'RAS' raw='RAS' 0.97
+    -    1-4.jpg visits.t1_v2.breast_exam                   expected={'value': 'RAS'}  got [NEEDS_REVIEW] 'Touffues RAS' raw='Touffues\nRAS' 0.32
+  ok     1-4.jpg visits.t1_v3.breast_exam                   expected={'value': 'RAS'}  got [NEEDS_REVIEW] 'RAS' raw='RAS' 0.28
+  ok     1-4.jpg visits.t1_v1.edema                         expected={'value': 'Non'}  got [NEEDS_REVIEW] 'Non' raw='0' 0.44
+    -    1-4.jpg visits.t1_v2.edema                         expected={'value': 'Non'}  got [NEEDS_REVIEW] 'Oui' raw='Oui' 0.40
+  ok     1-4.jpg visits.t1_v2.fetal_movements               expected={'value': 'Oui'}  got [NEEDS_REVIEW] 'Oui' raw='Oui' 0.28
+  ok     1-4.jpg visits.t1_v3.fetal_movements               expected={'value': 'Oui'}  got [NEEDS_REVIEW] 'Oui' raw='+' 0.88
+    -    1-4.jpg visits.t1_v2.fundal_height_cm              expected={'value': 19}  got [NEEDS_REVIEW] '25' raw='25cm' 0.42
+    -    1-4.jpg visits.t1_v3.fundal_height_cm              expected={'value': 22}  got [NEEDS_REVIEW] '29' raw='29 cm' 0.39
+  ok     1-4.jpg visits.t1_v1.cervix                        expected={'span': 'RAS'}  got [NEEDS_REVIEW] 'RAS' raw='RAS' 0.53
+    -    1-4.jpg visits.t1_v2.cervix                        expected={'span': 'RAS'}  got [NOT_APPLICABLE] '—' raw='—' 0.31
+  ok     1-4.jpg visits.t1_v3.cervix                        expected={'span': 'RAS'}  got [NEEDS_REVIEW] 'RAS' raw='RAS' 0.70
+  ok     1-4.jpg visits.t1_v1.glycosuria                    expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.90
+  ok     1-4.jpg visits.t1_v1.syphilis                      expected={'value': 'negative'}  got [KNOWN] 'Négatif' raw='nég, nég' 0.89
+  ok     1-4.jpg visits.t1_v1.hiv                           expected={'value': 'negative'}  got [NEEDS_REVIEW] 'Négatif' raw='nég' 0.72
+  ok     1-4.jpg visits.t1_v1.hemoglobin_g_dl               expected={'value': '11,1'}  got [NEEDS_REVIEW] '11.1' raw='11,1 g/dL' 0.54
+  ok     1-4.jpg visits.t1_v1.platelets                     expected={'accept': ['233000/mm3', '233000/mm³', '233000']}  got [NEEDS_REVIEW] '233000/mm3' raw='233000/mm3' 0.81
+    -    1-4.jpg visits.t1_v1.glycemia_g_l                  expected={'value': '0,76'}  got [NEEDS_REVIEW] '0.16' raw='0,16g/L' 0.50
+  ok     1-4.jpg visits.t1_v1.iron                          expected={'value': 'Oui'}  got [KNOWN] 'Oui' raw='Reçu' 0.96
+  ok     1-4.jpg visits.t1_v2.iron                          expected={'value': 'Oui'}  got [NEEDS_REVIEW] 'Oui' raw='oui' 0.71
+  ok     1-4.jpg visits.t1_v3.iron                          expected={'value': 'Oui'}  got [KNOWN] 'Oui' raw='Reçu' 0.99
+  ok     1-4.jpg visits.t1_v2.glycosuria                    expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.83
+  ok     1-4.jpg visits.t1_v3.glycosuria                    expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.90
+  ok     1-5.jpg expected_delivery_date                     expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.62
+  ok     1-5.jpg term_exceeded_date                         expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.90
+    -    1-5.jpg visits.t2_v1.appointment_date              expected={'value': '23/12/25', 'alt': ['visits.t2_v1.attended_date']}  got [NEEDS_REVIEW] '23/11/2025' raw='23/11/2025' 0.41
+  ok     1-5.jpg visits.t2_v1.gestational_age_weeks         expected={'value': '31SA+1j'}  got [NEEDS_REVIEW] '31 SA + 1 j' raw='31SA+1j' 0.47
+  ok     1-5.jpg visits.t2_v1.weight_kg                     expected={'value': 62}  got [NEEDS_REVIEW] '62 kg' raw='62 kg' 0.77
+    -    1-5.jpg visits.t2_v1.blood_pressure                expected={'value': '12/7'}  got [NEEDS_REVIEW] '110/70' raw='11/7' 0.44
+  ok     1-5.jpg visits.t2_v1.skeletal_anomalies            expected={'value': 'RAS'}  got [NEEDS_REVIEW] 'RAS' raw='RAS' 0.83
+  ok     1-5.jpg visits.t2_v1.breast_exam                   expected={'value': 'RAS', 'alt': ['visits.t2_v1.edema']}  got [NEEDS_REVIEW] 'RAS' raw='RAS' 0.77
+  ok     1-5.jpg visits.t2_v1.iron                          expected={'value': 'Oui'}  got [NEEDS_REVIEW] 'Oui' raw='Reçu' 0.55
+  ok     1-5.jpg visits.t2_v2.weight_kg                     expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.90
+  ok     1-5.jpg visits.t2_v2.blood_pressure                expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.90
+  ok     1-5.jpg visits.t2_v3.weight_kg                     expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.90
+  ok     1-5.jpg visits.m7.weight_kg                        expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.90
+  ok     1-5.jpg visits.m7.blood_pressure                   expected={'status': 'NOT_PROVIDED'}  got [NOT_PROVIDED] None raw=None 0.90
+  SILENT 1-5.jpg visits.m8.attended_date                    expected={'value': '20/1/26', 'alt': ['visits.m8.appointment_date']}  got [KNOWN] '20/11/2026' raw='20/11/26' 0.95
+    -    1-5.jpg visits.m9.attended_date                    expected={'accept': ['21/02/26', '24/02/26'], 'alt': ['visits.m9.appointment_date']}  got [NEEDS_REVIEW] '24/02/2026' raw='24/02/2026' 0.35
+  SILENT 1-5.jpg visits.m8.gestational_age_weeks            expected={'value': '35SA+1j'}  got [KNOWN] '36 SA + 1 j' raw='36SA+1j' 0.93
+  ok     1-5.jpg visits.m9.gestational_age_weeks            expected={'value': '40SA+1j'}  got [NEEDS_REVIEW] '40 SA + 1 j' raw='40SA+1j' 0.43
+    -    1-5.jpg visits.m8.weight_kg                        expected={'value': 63}  got [NEEDS_REVIEW] '63.7 kg' raw='63.7kg' 0.55
+  ok     1-5.jpg visits.m9.weight_kg                        expected={'accept': ['61', '64', '61kg', '64kg']}  got [NEEDS_REVIEW] '64 kg' raw='64 kg' 0.61
+    -    1-5.jpg visits.m8.blood_pressure                   expected={'value': '12/7'}  got [NEEDS_REVIEW] '121/76' raw='121/76' 0.37
+    -    1-5.jpg visits.m9.blood_pressure                   expected={'value': '12/8'}  got [NEEDS_REVIEW] '118/8' raw='118/8' 0.47
+  ok     1-5.jpg visits.m8.skeletal_anomalies               expected={'value': 'RAS'}  got [KNOWN] 'RAS' raw='RAS' 0.99
+  ok     1-5.jpg visits.m9.skeletal_anomalies               expected={'value': 'RAS'}  got [NEEDS_REVIEW] 'RAS' raw='RAS' 0.70
+  ok     1-5.jpg visits.m8.conjunctivae                     expected={'value': 'RAS'}  got [KNOWN] 'RAS' raw='RAS' 1.00
+  ok     1-5.jpg visits.m9.conjunctivae                     expected={'value': 'colorées'}  got [NEEDS_REVIEW] 'Colorées' raw='colorées' 0.47
+  ok     1-5.jpg visits.m8.breast_exam                      expected={'value': 'RAS'}  got [KNOWN] 'RAS' raw='RAS' 0.99
+  ok     1-5.jpg visits.m9.breast_exam                      expected={'value': 'RAS'}  got [NEEDS_REVIEW] 'RAS' raw='RAS' 0.28
+    -    1-5.jpg visits.m8.edema                            expected={'value': 'Non'}  got [NEEDS_REVIEW] 'Oui' raw='RAS' 0.55
+  ok     1-5.jpg visits.m9.edema                            expected={'value': 'Non'}  got [NEEDS_REVIEW] 'Non' raw='0' 0.40
+  ok     1-5.jpg visits.m8.fundal_height_cm                 expected={'value': 28}  got [NEEDS_REVIEW] '28' raw='28cm' 0.73
+  ok     1-5.jpg visits.m9.fundal_height_cm                 expected={'value': 27}  got [NEEDS_REVIEW] '27' raw='27cm' 0.69
+  ok     1-5.jpg visits.m8.iron                             expected={'value': 'Oui'}  got [KNOWN] 'Oui' raw='Reçu' 0.98
+  ok     1-5.jpg visits.m9.iron                             expected={'value': 'Oui'}  got [NEEDS_REVIEW] 'Oui' raw='Reçu' 0.58
