@@ -14,6 +14,7 @@ BACKEND_DIR = Path(__file__).resolve().parent.parent
 REPO_ROOT = BACKEND_DIR.parent
 FIXTURES_DIR = REPO_ROOT / "fixtures"
 FRONTEND_FILE = REPO_ROOT / "front_end2.HTML"
+PWA_DIR = REPO_ROOT / "pwa"  # service worker, manifest, icon: lets the chat open and queue photos offline
 
 for p in (REPO_ROOT, REPO_ROOT / "offlineModule"):
     if str(p) not in sys.path:

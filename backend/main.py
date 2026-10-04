@@ -44,7 +44,20 @@ def bad_value(_: Request, e: ValueError):
 
 @app.get("/", include_in_schema=False)
 def chat_page():
-    return FileResponse(config.FRONTEND_FILE, media_type="text/html")
+    return FileResponse(config.FRONTEND_FILE, media_type="text/html", headers={"Cache-Control": "no-cache"})
+
+
+# Served from the root so the service worker controls the whole site (its scope is its folder).
+# no-cache: while online the phone re-checks them, so a new version of the chat arrives.
+def _pwa_route(name: str, media_type: str):
+    """Serve pwa/<name> at /<name> (the phone's offline app shell)."""
+    app.get("/" + name, include_in_schema=False)(
+        lambda: FileResponse(config.PWA_DIR / name, media_type=media_type, headers={"Cache-Control": "no-cache"}))
+
+
+_pwa_route("sw.js", "text/javascript")
+_pwa_route("manifest.webmanifest", "application/manifest+json")
+_pwa_route("icon.svg", "image/svg+xml")
 
 
 @app.get("/health")

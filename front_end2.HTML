@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#075e54" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <title>DayOne Agent — WhatsApp prototype</title>
     <style>
       * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -297,7 +300,7 @@
       <div class="strip">
         <div id="chips" style="display: contents"></div>
         <span id="qbadge"></span>
-        <div class="lock">🔒 Encrypted local storage · names &amp; identifiers never stored · paper registry stays the reference</div>
+        <div class="lock" id="lock">🔒 Photos kept encrypted on this phone until sent · names &amp; identifiers never stored · paper registry stays the reference</div>
       </div>
 
       <div id="chat"></div>
@@ -321,18 +324,84 @@
       /* DayOne chat, wired to the real backend (backend/main.py).
          Opened from http://localhost:8000 it talks to the same server; opened from disk
          (file://) it talks to http://localhost:8000. No demo data: every field, status,
-         confidence and patient suggestion comes from the API. */
+         confidence and patient suggestion comes from the API.
+
+         Offline-first on the phone: the page itself is cached by a service worker (pwa/sw.js),
+         and every photo is first saved ENCRYPTED on the phone (Outbox below). It is uploaded to
+         the processing server when the phone has network, and deleted from the phone only once
+         the server confirms it has it. With no network the midwife can keep photographing pages. */
       const API = location.protocol === "file:" ? "http://localhost:8000" : "";
 
       /* Record lifecycle as defined by the backend (offline.State) */
       const STATES = ["CAPTURED", "PENDING_AI", "AI_PROCESSED", "TO_REVIEW", "VALIDATED", "PATIENT_LINKED", "SAVED", "SYNCED"];
       const ASK_FIRST = 5; // review questions asked one by one before offering a shortcut
 
-      const S = { online: true, aiNeedsNetwork: false, extractor: "?", flowActive: false, awaitingPhoto: false,
-                  waiter: null, rec: null };
+      const S = { simOffline: false, extractor: "?", flowActive: false, awaitingPhoto: false,
+                  waiter: null, rec: null, toReview: [], flushing: false, uploading: new Set(), retryTimer: null, retrying: false };
+
+      // The phone has network if the OS says so and the demo switch is not set to offline.
+      function phoneOnline() { return navigator.onLine && !S.simOffline; }
+
+      /* ================= Phone-side offline store =================
+         Photos wait here, encrypted with AES-GCM (WebCrypto). The key is generated on the phone
+         and is not exportable: the page can use it, nothing can read it out. Needs a secure page
+         (https://, or http://localhost); see README "Phone setup". */
+      const Outbox = (() => {
+        const ok = !!(window.isSecureContext && window.crypto && crypto.subtle && window.indexedDB);
+        let dbp = null, keyp = null;
+        function db() {
+          return dbp = dbp || new Promise((res, rej) => {
+            const r = indexedDB.open("dayone", 1);
+            r.onupgradeneeded = () => {
+              r.result.createObjectStore("keys");
+              r.result.createObjectStore("outbox", { keyPath: "id" });
+            };
+            r.onsuccess = () => res(r.result);
+            r.onerror = () => rej(r.error);
+          });
+        }
+        async function tx(store, mode, fn) {
+          const d = await db();
+          return new Promise((res, rej) => {
+            const t = d.transaction(store, mode);
+            const req = fn(t.objectStore(store));
+            t.oncomplete = () => res(req.result);
+            t.onerror = t.onabort = () => rej(t.error);
+          });
+        }
+        function key() {
+          return keyp = keyp || (async () => {
+            const k = await tx("keys", "readonly", st => st.get("photo"));
+            if (k) return k;
+            const fresh = await crypto.subtle.generateKey({ name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]);
+            await tx("keys", "readwrite", st => st.put(fresh, "photo"));
+            return fresh;
+          })();
+        }
+        async function add(blob, midwife_id) {
+          const iv = crypto.getRandomValues(new Uint8Array(12));
+          const data = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, await key(), await blob.arrayBuffer());
+          const item = { id: crypto.randomUUID(), iv, data, type: blob.type || "image/jpeg",
+                         captured_at: new Date().toISOString(), midwife_id };
+          await tx("outbox", "readwrite", st => st.put(item));
+          return item;
+        }
+        async function list() {
+          const all = await tx("outbox", "readonly", st => st.getAll());
+          return all.sort((a, b) => a.captured_at.localeCompare(b.captured_at));
+        }
+        async function open(item) {
+          const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: item.iv }, await key(), item.data);
+          return new Blob([plain], { type: item.type });
+        }
+        function remove(id) { return tx("outbox", "readwrite", st => st.delete(id)); }
+        async function count() { return ok ? (await list()).length : 0; }
+        return { ok, add, list, open, remove, count };
+      })();
 
       /* ================= API ================= */
       async function api(method, path, body, isForm) {
+        if (!phoneOnline()) throw { offline: true, detail: "No connection — try again when the network is back." };
         let res;
         try {
           res = await fetch(API + path, {
@@ -472,52 +541,124 @@
       }
 
       async function refreshStatus() {
-        try {
-          const st = await api("GET", "/status");
-          S.online = st.online;
-          S.aiNeedsNetwork = st.ai_needs_network;
-          S.extractor = st.extractor;
-          const ai = st.counts.PENDING_AI, sync = st.counts.SAVED + st.counts.SYNC_FAILED;
-          qbadge.style.display = ai + sync > 0 ? "inline-block" : "none";
-          if (ai + sync > 0) qbadge.textContent = "⏳ " + ai + " AI · " + sync + " sync queued";
-          updateConn();
-          return st;
-        } catch (e) {
-          statusline.textContent = "⚠️ server not reachable";
-          return null;
+        let onPhone = 0;
+        try { onPhone = await Outbox.count(); } catch (e) { /* storage blocked: counts as empty */ }
+        let st = null;
+        if (phoneOnline()) {
+          try { st = await api("GET", "/status"); S.extractor = st.extractor; } catch (e) { /* shown below */ }
         }
+        const ai = st ? st.counts.PENDING_AI : 0, sync = st ? st.counts.SAVED + st.counts.SYNC_FAILED : 0;
+        const parts = [];
+        if (onPhone) parts.push("📱 " + onPhone + " on phone");
+        if (ai) parts.push(ai + " AI");
+        if (sync) parts.push(sync + " sync");
+        qbadge.style.display = parts.length ? "inline-block" : "none";
+        qbadge.textContent = "⏳ " + parts.join(" · ");
+        updateConn();
+        if (phoneOnline() && !st) statusline.textContent = "⚠️ server not reachable — photos stay on the phone";
+        return st;
       }
 
       /* ================= Connection toggle ================= */
       function updateConn() {
-        connBtn.textContent = S.online ? "📶 Online" : "✈️ Offline";
-        connBtn.className = S.online ? "" : "off";
-        statusline.textContent = (S.online ? "online" : "offline — queuing on device") +
+        const on = phoneOnline();
+        connBtn.textContent = on ? "📶 Online" : "✈️ Offline";
+        connBtn.className = on ? "" : "off";
+        statusline.textContent = (on ? "online" : "offline — photos kept on this phone") +
           (S.extractor === "fixture" ? " · demo extractor" : "");
       }
-      connBtn.onclick = () => setOnline(!S.online);
+      // Demo switch: makes the phone behave as if it had no network (nothing is sent to the server).
+      // Real network changes on the phone do the same thing on their own (online/offline events).
+      connBtn.onclick = () => { S.simOffline = !S.simOffline; networkChanged(); };
+      window.addEventListener("online", networkChanged);
+      window.addEventListener("offline", networkChanged);
 
-      async function setOnline(v) {
-        try { await api("POST", "/connectivity", { online: v }); }
-        catch (e) { await agentSay("⚠️ " + esc(errText(e))); return; }
-        S.online = v;
+      // Called on every network change (real or simulated): going offline only updates the header,
+      // coming back online sends the photos waiting on the phone.
+      let lastOnline = null;
+      async function networkChanged() {
+        const on = phoneOnline();
+        if (on === lastOnline) return;
+        lastOnline = on;
         updateConn();
-        if (!v) { sysMsg("✈️ Connection lost"); await refreshStatus(); return; }
+        if (!on) { sysMsg("✈️ Connection lost — photos will be kept on this phone"); await refreshStatus(); return; }
         sysMsg("📶 Connection restored");
-        const st = await refreshStatus();
-        if (!st) return;
-        if (st.counts.PENDING_AI > 0) {
-          await agentSay("Processing " + st.counts.PENDING_AI + " queued photo(s)…", { fast: true });
-          await working(api("POST", "/queue/process"));
-          if (S.rec && S.rec.state === "PENDING_AI") { await continueRecord(S.rec.id); return; }
+        await sendOutbox();
+      }
+
+      /* Uploads every photo waiting on the phone (oldest first), runs the AI on them, then
+         starts the review of the first one if the midwife isn't busy with another record. */
+      async function sendOutbox() {
+        clearTimeout(S.retryTimer);
+        if (S.flushing || !phoneOnline()) return;
+        S.flushing = true;
+        try {
+          const items = Outbox.ok ? await Outbox.list() : [];
+          if (items.length) {
+            if (!S.retrying) await agentSay("📤 Sending " + items.length + " photo(s) saved on this phone…", { fast: true });
+            for (const item of items) {
+              if (S.uploading.has(item.id)) continue;
+              let rec;
+              try { rec = await uploadItem(item); }
+              catch (e) {
+                // Server unreachable: keep the photos, try again quietly in the background.
+                if (!S.retrying) await agentSay("⚠️ " + esc(errText(e)) + " — the photos stay on the phone, I'll keep trying.", { fast: true });
+                S.retrying = true;
+                S.retryTimer = setTimeout(sendOutbox, 20000);
+                await refreshStatus();
+                return;
+              }
+              S.toReview.push(rec.id);
+            }
+            if (S.retrying) sysMsg("📤 Photos saved on the phone have been sent");
+            S.retrying = false;
+          }
+          const st = await refreshStatus();
+          if (st && st.counts.PENDING_AI > 0) {
+            await agentSay("Reading " + st.counts.PENDING_AI + " page(s)…", { fast: true });
+            try { await working(api("POST", "/queue/process")); } catch (e) { await agentSay("⚠️ " + esc(errText(e))); }
+          }
+          await syncNow();
+        } finally { S.flushing = false; }
+        if (!S.flowActive) await reviewNext();
+      }
+
+      // The phone's copy is deleted only after the server has answered that it stored the photo.
+      async function uploadItem(item) {
+        if (S.uploading.has(item.id)) throw { detail: "already being sent" };
+        S.uploading.add(item.id);
+        try {
+          const form = new FormData();
+          form.append("photo", await Outbox.open(item), "page.jpg");
+          form.append("midwife_id", item.midwife_id);
+          form.append("captured_at", item.captured_at);
+          const rec = await api("POST", "/records", form, true);
+          await Outbox.remove(item.id);
+          return rec;
+        } finally { S.uploading.delete(item.id); }
+      }
+
+      // Review the pages that were uploaded from the phone's outbox, one at a time.
+      async function reviewNext() {
+        while (S.toReview.length) {
+          const id = S.toReview.shift();
+          let rec;
+          try { rec = await api("GET", "/records/" + id); } catch (e) { S.toReview.unshift(id); return; }
+          S.flowActive = true;
+          S.rec = rec;
+          if (S.toReview.length) sysMsg(S.toReview.length + " more page(s) waiting after this one");
+          addMsg("in", "📋 Page photographed " + esc(new Date(rec.captured_at).toLocaleString()) + ":");
+          if (rec.state === "SUSPECTED_DUPLICATE") return askDuplicate(rec);
+          return continueRecord(id);
         }
-        await syncNow();
       }
 
       async function syncNow() {
+        if (!phoneOnline()) return;
         const st = await refreshStatus();
         if (!st || st.counts.SAVED + st.counts.SYNC_FAILED === 0) return;
-        const r = await working(api("POST", "/sync"));
+        let r;
+        try { r = await working(api("POST", "/sync")); } catch (e) { return; }
         if (r.synced.length) {
           if (S.rec && r.synced.includes(S.rec.id)) setState("SYNCED");
           await agentSay("📤 " + r.synced.length + " record(s) <b>SYNCED</b> to the health system ✅", { fast: true });
@@ -527,36 +668,68 @@
       }
 
       /* ================= Agent flows ================= */
+      // A new photo: saved encrypted on the phone first, then sent right away if there is network,
+      // otherwise left in the outbox (PENDING_AI) so the midwife can carry on photographing pages.
       async function startFromPhoto(dataUrl, shown) {
         S.flowActive = true;
         if (!shown) addMsg("out", "Registry page 📸", { img: dataUrl });
         const blob = await (await fetch(dataUrl)).blob();
-        const form = new FormData();
-        form.append("photo", blob, "page.jpg");
-        form.append("midwife_id", "mw-demo");
-        let rec;
-        try { rec = await api("POST", "/records", form, true); }
-        catch (e) { await agentSay("⚠️ " + esc(errText(e))); S.flowActive = false; return; }
-        S.rec = rec;
-        setState("CAPTURED");
-        await agentSay("Photo received — stored <b>encrypted</b> on this device. Names, ID numbers and phone numbers are never read 🔒", { fast: true });
-
-        if (rec.state === "SUSPECTED_DUPLICATE") {
-          await agentSay("🤔 I've already received <b>this exact photo</b> before. Is it really a new page?");
-          const c = await askButtons([
-            { label: "📸 Yes, process it", value: "go" },
-            { label: "🗑️ No, it's a duplicate", value: "drop" }
-          ]);
-          if (c === "drop") { await agentSay("OK, I've set it aside 👍", { fast: true }); return finish(); }
-          rec = await api("POST", "/records/" + rec.id + "/retry");
+        let item = null;
+        if (Outbox.ok) {
+          try { item = await Outbox.add(blob, "mw-demo"); }
+          catch (e) { await agentSay("⚠️ Couldn't save the photo on this phone (" + esc(String(e && e.message || e)) + ")."); }
         }
-        S.rec = rec;
-        setState("PENDING_AI");
-        if (S.aiNeedsNetwork && !S.online) {
-          await refreshStatus();
-          await agentSay("📴 No connection. Saved in the offline queue: <b>Pending AI processing</b>. Nothing is lost — I'll read it when the connection returns.");
+        if (!item && !phoneOnline()) {
+          await agentSay("📴 No connection, and this page can't store photos safely on the phone (it needs a secure https:// address). Keep the photo in your gallery and send it when you're back online.");
+          S.flowActive = false;
           return;
         }
+        setState("CAPTURED");
+        if (item) await agentSay("Photo saved <b>encrypted on this phone</b>. Names, ID numbers and phone numbers are never read 🔒", { fast: true });
+        if (!phoneOnline()) {
+          setState("PENDING_AI");
+          await refreshStatus();
+          await agentSay("📴 No connection. Kept on the phone: <b>Pending AI processing</b>. Nothing is lost — I'll send it and read it when the network returns. You can photograph the next page 📸");
+          S.flowActive = false;
+          setState(null);
+          return;
+        }
+        let rec;
+        try {
+          if (item) rec = await uploadItem(item);
+          else {
+            const form = new FormData();
+            form.append("photo", blob, "page.jpg");
+            form.append("midwife_id", "mw-demo");
+            rec = await api("POST", "/records", form, true);
+          }
+        } catch (e) {
+          await refreshStatus();
+          await agentSay("⚠️ " + esc(errText(e)) + (item ? "<br>The photo stays on the phone; I'll send it when the server is reachable." : ""));
+          S.flowActive = false;
+          return;
+        }
+        S.rec = rec;
+        if (rec.state === "SUSPECTED_DUPLICATE") return askDuplicate(rec);
+        setState("PENDING_AI");
+        await continueRecord(rec.id);
+      }
+
+      // The server has seen this exact photo before: the midwife decides whether to process it again.
+      async function askDuplicate(rec) {
+        S.flowActive = true;
+        S.rec = rec;
+        setState("CAPTURED");
+        await agentSay("🤔 I've already received <b>this exact photo</b> before. Is it really a new page?");
+        const c = await askButtons([
+          { label: "📸 Yes, process it", value: "go" },
+          { label: "🗑️ No, it's a duplicate", value: "drop" }
+        ]);
+        if (c === "drop") { await agentSay("OK, I've set it aside 👍", { fast: true }); return finish(); }
+        try { rec = await api("POST", "/records/" + rec.id + "/retry"); }
+        catch (e) { await agentSay("⚠️ " + esc(errText(e))); return finish(); }
+        S.rec = rec;
+        setState("PENDING_AI");
         await continueRecord(rec.id);
       }
 
@@ -811,9 +984,13 @@
         return finish();
       }
 
+      // End of one record: sync, then the next page sent from the phone, or a new visit.
       async function finish() {
         await syncNow();
-        const c = await askButtons([{ label: "🔄 Start a new visit", value: "new" }]);
+        const opts = [{ label: "🔄 Start a new visit", value: "new" }];
+        if (S.toReview.length) opts.unshift({ label: "📋 Review the next page sent from the phone (" + S.toReview.length + ")", value: "next" });
+        const c = await askButtons(opts);
+        if (c === "next") { sysMsg("Next page"); S.flowActive = false; S.rec = null; setState(null); return reviewNext(); }
         if (c === "new") reset();
       }
 
@@ -830,7 +1007,9 @@
 
       async function greeting() {
         await agentSay("👋 Hello! I'm the <b>DayOne agent</b> — the pregnancy registry, digitized.", { fast: true });
-        await agentSay("📸 Send a photo of a registry page (tap 📎). Toggle <b>✈️ offline mode</b> in the header to see the queue in action. Send <b>/new</b> anytime to start over.");
+        await agentSay("📸 Send a photo of a registry page (tap 📎). It works without network too: photos wait, encrypted on this phone, and are sent when the connection returns (try the <b>📶 Online</b> switch in the header). Send <b>/new</b> anytime to start over.");
+        if (!Outbox.ok)
+          await agentSay("⚠️ This page isn't on a secure address, so it <b>can't keep photos on the phone</b> while offline — photos are sent straight to the server. Open it over https:// (see README, Phone setup).", { fast: true });
       }
 
       /* ================= Image preview & send ================= */
@@ -914,9 +1093,12 @@
       });
 
       /* ================= Init ================= */
+      if ("serviceWorker" in navigator && window.isSecureContext)
+        navigator.serviceWorker.register("/sw.js").catch(e => console.warn("offline page cache unavailable:", e));
+      lastOnline = phoneOnline();
       updateConn();
       refreshStatus();
-      greeting();
+      greeting().then(() => { if (phoneOnline()) sendOutbox(); });
     </script>
   </body>
 </html>

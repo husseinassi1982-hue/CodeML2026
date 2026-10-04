@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import datetime, timezone
 from typing import Optional
 
 from fastapi import APIRouter, File, Form, Query, UploadFile
@@ -17,22 +18,38 @@ MAX_PHOTO_BYTES = 20 * 1024 * 1024
 
 @router.post("", status_code=201)
 async def capture(photo: UploadFile = File(...), midwife_id: str = Form("mw-demo"),
+                  captured_at: Optional[str] = Form(None, description="when the phone took the photo (ISO 8601), "
+                                                                       "if it was kept offline and uploaded later"),
                   demo_page: Optional[str] = Form(None, description="demo only: use this saved real output "
                                                                      "instead of running OCR (see GET /demo/pages)")):
-    """The midwife sends a photo of a registry page. It's encrypted and saved on the device,
-    then queued (PENDING_AI), or parked as SUSPECTED_DUPLICATE if this exact photo was seen before."""
+    """The phone uploads a photo of a registry page (right away, or later from its offline outbox).
+    It's encrypted and saved, then queued (PENDING_AI), or parked as SUSPECTED_DUPLICATE if this
+    exact photo was seen before."""
     data = await photo.read()
     if not data:
         raise rs.ApiError(422, "empty photo")
     if len(data) > MAX_PHOTO_BYTES:
         raise rs.ApiError(413, "photo too large (20 MB max)")
+    taken = _parse_time(captured_at) if captured_at else None
     if demo_page is not None:
         load_fixture(demo_page)  # validates the name before we store anything
     state = get_state()
-    rid = state.store.capture(data, midwife_id=midwife_id)
+    rid = state.store.capture(data, midwife_id=midwife_id, captured_at=taken)
     if demo_page:
         state.store.update_fields(rid, {"demo_page": demo_page})
     return rs.record_view(state, rs.get_record(state, rid))
+
+
+def _parse_time(text: str) -> str:
+    """The phone's capture time (ISO 8601) as UTC ISO text, like the store's own timestamps."""
+    try:
+        t = datetime.fromisoformat(text.replace("Z", "+00:00"))
+    except ValueError:
+        raise rs.ApiError(422, "captured_at must be an ISO 8601 date-time")
+    if t.tzinfo is None:
+        t = t.replace(tzinfo=timezone.utc)
+    # A phone clock running ahead must not block its outbox: never later than now.
+    return min(t, datetime.now(timezone.utc)).astimezone(timezone.utc).isoformat()
 
 
 @router.get("")

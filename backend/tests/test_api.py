@@ -226,3 +226,21 @@ def test_checkbox_and_choice_answers(client, photo):
     assert r.status_code == 422 and "CSCA" in r.json()["detail"]
     f = client.get(f"/records/{rec['id']}").json()["fields"]
     assert f["high_risk"]["value"] is True
+
+
+def test_offline_app_files(client):
+    # the chat page, its service worker and manifest: what the phone caches to open offline
+    assert 'rel="manifest"' in client.get("/").text
+    sw = client.get("/sw.js")
+    assert sw.status_code == 200 and "javascript" in sw.headers["content-type"]
+    assert client.get("/manifest.webmanifest").json()["start_url"] == "/"
+    assert client.get("/health").json()["status"] == "healthy"
+
+
+def test_photo_kept_on_phone_keeps_its_capture_time(client, photo):
+    r = client.post("/records", files={"photo": photo()},
+                    data={"demo_page": "cover_photo", "captured_at": "2026-10-01T08:30:00Z"})
+    assert r.status_code == 201, r.text
+    assert r.json()["captured_at"].startswith("2026-10-01T08:30:00")
+    bad = client.post("/records", files={"photo": photo()}, data={"captured_at": "yesterday"})
+    assert bad.status_code == 422

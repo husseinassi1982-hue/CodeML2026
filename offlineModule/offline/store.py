@@ -95,8 +95,11 @@ class RecordStore:
 
     # ---------- capture ----------
     @_locked
-    def capture(self, image_bytes: bytes, midwife_id: str) -> str:
+    def capture(self, image_bytes: bytes, midwife_id: str, captured_at: str | None = None) -> str:
         """Save the photo + a new record. Returns the record id.
+
+        captured_at: when the photo was taken, if it was taken earlier (e.g. kept
+        on the phone while offline and uploaded later). Defaults to now.
 
         Order matters for crash safety: image file first (written to a temp
         name, then renamed), database row second. If the row insert fails we
@@ -114,16 +117,18 @@ class RecordStore:
         os.replace(tmp, path)  # atomic rename
         try:
             now = _now()
+            taken = captured_at or now
             with self.db:
                 self.db.execute(
                     "INSERT INTO records (id, state, midwife_id, captured_at, updated_at,"
                     " image_sha256) VALUES (?,?,?,?,?,?)",
-                    (record_id, State.CAPTURED.value, midwife_id, now, now, sha),
+                    (record_id, State.CAPTURED.value, midwife_id, taken, now, sha),
                 )
                 self.db.execute(
                     "INSERT INTO history (record_id, at, old_state, new_state, note)"
                     " VALUES (?,?,NULL,?,?)",
-                    (record_id, now, State.CAPTURED.value, "photo captured"),
+                    (record_id, taken, State.CAPTURED.value,
+                     "photo captured" if captured_at is None else "photo captured on the phone"),
                 )
         except Exception:
             path.unlink(missing_ok=True)

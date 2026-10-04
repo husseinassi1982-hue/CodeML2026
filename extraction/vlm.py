@@ -8,7 +8,8 @@ each field's crop again with the trained model and merges the two readings:
                                      the CPU's kept, with the alternative noted, when it was sure)
 * the model sees EMPTY, the CPU read something -> NEEDS_REVIEW
 
-Needs a CUDA GPU (~6-7 GB: Colab/Kaggle T4, RTX 4060 laptop) and the adapter (`vlm_ocr_lora_v2.zip`,
+Needs a CUDA GPU (~6-7 GB: Colab/Kaggle T4, RTX 4060 laptop), unsloth or plain transformers + peft +
+bitsandbytes (requirements-vlm.txt; works on native Windows), and the adapter (`vlm_ocr_lora_v2.zip`,
 GitHub release of this repo, or notebooks/finetune_vlm_ocr.ipynb). Enabled with DAYONE_VLM=1; the
 adapter folder or zip is DAYONE_VLM_ADAPTER (default: ./vlm_ocr_lora_v2[.zip] or models/...). Without a
 GPU or the adapter the extractor runs exactly as before (CPU only). Runs locally: no data leaves the
@@ -113,23 +114,54 @@ def _load():
         info = json.loads((adapter / "training_info.json").read_text()) if (adapter / "training_info.json").exists() else {}
         base = info.get("base_model", "unsloth/Qwen3-VL-8B-Instruct-unsloth-bnb-4bit")
         rank = int(info.get("lora_rank", 16))
-        from peft import set_peft_model_state_dict
-        from safetensors.torch import load_file
-        from unsloth import FastVisionModel
-
-        # the same way the adapter was trained and re-loaded in the notebook
-        model, tok = FastVisionModel.from_pretrained(base, load_in_4bit=True)
-        model = FastVisionModel.get_peft_model(model, finetune_vision_layers=True, finetune_language_layers=True,
-                                               finetune_attention_modules=True, finetune_mlp_modules=True,
-                                               r=rank, lora_alpha=rank, lora_dropout=0, bias="none", random_state=3407)
-        set_peft_model_state_dict(model, load_file(str(adapter / "adapter_model.safetensors")))
-        FastVisionModel.for_inference(model)
+        loader = os.environ.get("DAYONE_VLM_LOADER", "auto")  # auto | unsloth | hf
+        if loader == "unsloth" or (loader == "auto" and _has("unsloth")):
+            model, tok = _load_unsloth(base, adapter, rank)
+        else:  # plain Hugging Face: works on native Windows, where unsloth is hard to install
+            model, tok = _load_hf(base, adapter)
         _MODEL = (model, tok, int(info.get("max_side", MAX_SIDE)))
         log.info("vision model loaded: %s + %s", base, adapter)
     except Exception as e:  # no GPU, no adapter, packages missing: CPU pipeline only
         _FAILED = str(e)
         log.warning("vision model not used (%s): CPU OCR only", e)
     return _MODEL
+
+
+def _has(module: str) -> bool:
+    """Is this package installed (without importing it)?"""
+    import importlib.util
+
+    return importlib.util.find_spec(module) is not None
+
+
+def _load_unsloth(base: str, adapter: Path, rank: int):
+    """Linux / Colab: unsloth's fast loader, exactly as in training."""
+    from peft import set_peft_model_state_dict
+    from safetensors.torch import load_file
+    from unsloth import FastVisionModel
+
+    # the same way the adapter was trained and re-loaded in the notebook
+    model, tok = FastVisionModel.from_pretrained(base, load_in_4bit=True)
+    model = FastVisionModel.get_peft_model(model, finetune_vision_layers=True, finetune_language_layers=True,
+                                           finetune_attention_modules=True, finetune_mlp_modules=True,
+                                           r=rank, lora_alpha=rank, lora_dropout=0, bias="none", random_state=3407)
+    set_peft_model_state_dict(model, load_file(str(adapter / "adapter_model.safetensors")))
+    FastVisionModel.for_inference(model)
+    return model, tok
+
+
+def _load_hf(base: str, adapter: Path):
+    """transformers + peft + bitsandbytes. The base checkpoint is already 4-bit (its quantization
+    settings come with it); the adapter is a standard PEFT LoRA and carries the processor files."""
+    import torch
+    from peft import PeftModel
+    from transformers import AutoModelForImageTextToText, AutoProcessor
+
+    dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
+    model = AutoModelForImageTextToText.from_pretrained(base, device_map="cuda", dtype=dtype)
+    model = PeftModel.from_pretrained(model, str(adapter))
+    model.eval()
+    return model, AutoProcessor.from_pretrained(str(adapter))
 
 
 def load_or_raise():

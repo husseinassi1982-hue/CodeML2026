@@ -1,0 +1,11 @@
+{
+  "name": "DayOne Agent",
+  "short_name": "DayOne",
+  "description": "Photograph a page of the maternal registry; works offline, sends when the network returns.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ece5dd",
+  "theme_color": "#075e54",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

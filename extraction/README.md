@@ -148,7 +148,9 @@ extract("photo.jpg", backend="vlm")       # the trained model reads every handwr
   out before the model sees anything) and checkboxes; each field's area plus a margin is given to the
   model with the field's label and expected format, exactly as in training. Confidence = probability of
   the least certain generated token; below the bar (0.80 scans / 0.88 photos) the field goes to review.
-* **Needs** a CUDA GPU with ~7 GB free (Colab/Kaggle T4, RTX 4060 laptop), `pip install unsloth`, and the
+* **Needs** a CUDA GPU with ~7 GB free (Colab/Kaggle T4, RTX 4060 laptop), PyTorch with CUDA, then
+  either `pip install unsloth` (Linux/Colab) or `pip install -r requirements-vlm.txt` (plain transformers +
+  peft + bitsandbytes, also native Windows; `DAYONE_VLM_LOADER=auto|unsloth|hf` picks), and the
   adapter `vlm_ocr_lora_v2.zip` (GitHub release *vlm-ocr-v2* of this repo) in the repo folder or at
   `DAYONE_VLM_ADAPTER`. Everything runs on that machine: nothing is sent anywhere.
 * **Without them** `backend="vlm"` raises `backend_unavailable`: in the app (`DAYONE_EXTRACTOR=vlm`) the
