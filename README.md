@@ -154,6 +154,7 @@ Extraction, local CPU backend (details and method: [extraction/README.md](extrac
 | Specimen pages, held-out patients 8-10, clean | 98.9% (written values 99.6%) | 1 / 1692 | 1.7% |
 | Same, simulated phone photos (medium) | 81.9% (written values 91.9%) | 15 (1.9%) | 24% |
 | **Real booklet photos (5 pages, 127 hand-transcribed fields)** | **67%** | **1** | 52% |
+| Same, vision model v2 reading the handwriting (`backend="vlm"`, GPU) | 75% | 3 | 54% |
 
 Fine-tuned vision model (exact transcription of single field crops):
 
@@ -161,7 +162,7 @@ Fine-tuned vision model (exact transcription of single field crops):
 |---|---|---|
 | Specimen pages (300) | 64% | 95% |
 | Synthetic crops in the midwife's formats | 58% | 94% |
-| Real booklet photos (93) | 46% | 50.5% (first model; v2 not measured yet) |
+| Real booklet photos (93) | 46% | 50.5% (first model; v2 measured on whole pages above) |
 
 The synthetic tests are easy; real cursive is the hard part. The design choice is that the system
 **asks rather than guesses**: on real photos about half the fields go to the midwife, almost none are
@@ -174,7 +175,9 @@ accepted wrongly.
 * Arabic handwriting is not read.
 * The real booklet's delivery and postpartum pages were not in the data: not supported yet (the
   specimen layout of those pages is).
-* The vision model needs a GPU and has not yet been benchmarked on the real photos.
+* The vision model needs a GPU. On the 5 real photos it reads more fields right than the CPU OCR
+  (75% vs 67%, mostly on the dense visit table) but makes more confident mistakes (3 vs 1) and is
+  ~9x slower; a stricter confidence bar or using it as a second reader (`DAYONE_VLM=1`) is safer.
 * WhatsApp is simulated (web chat); the Business API sandbox is not connected.
 * The phone's key is a non-exportable browser key; a native app would keep it in the OS keystore. The
   server's key is in a local file for the demo.
