@@ -311,7 +311,6 @@
 
       <div class="composer">
         <button class="cbtn" id="attach" title="Send a registry photo">📎</button>
-        <button class="cbtn" id="sample" title="Generate a synthetic registry page">📄</button>
         <input id="input" placeholder="Type a message…" autocomplete="off" />
         <button class="cbtn" id="send" title="Send">➤</button>
         <input type="file" id="file" accept="image/*" hidden />
@@ -321,14 +320,16 @@
     <script>
       /* DayOne chat, wired to the real backend (backend/main.py).
          Opened from http://localhost:8000 it talks to the same server; opened from disk
-         (file://) it talks to http://localhost:8000. */
+         (file://) it talks to http://localhost:8000. No demo data: every field, status,
+         confidence and patient suggestion comes from the API. */
       const API = location.protocol === "file:" ? "http://localhost:8000" : "";
 
+      /* Record lifecycle as defined by the backend (offline.State) */
       const STATES = ["CAPTURED", "PENDING_AI", "AI_PROCESSED", "TO_REVIEW", "VALIDATED", "PATIENT_LINKED", "SAVED", "SYNCED"];
       const ASK_FIRST = 5; // review questions asked one by one before offering a shortcut
 
       const S = { online: true, aiNeedsNetwork: false, extractor: "?", flowActive: false, awaitingPhoto: false,
-                  waiter: null, rec: null, sampleIdx: 0 };
+                  waiter: null, rec: null };
 
       /* ================= API ================= */
       async function api(method, path, body, isForm) {
@@ -434,7 +435,6 @@
             el.innerHTML = b.label;
             el.onclick = () => {
               document.querySelectorAll(".btns").forEach(e => e.remove());
-              addMsg("out", b.label);
               res(b.value);
             };
             wrap.appendChild(el);
@@ -526,63 +526,14 @@
         await refreshStatus();
       }
 
-      /* ================= Synthetic sample pages ================= */
-      // The sample button doesn't run OCR on the drawing: it asks the server for a saved real
-      // extractor output on fictional patient 1 (fixtures/), so the demo works on any laptop.
-      const SAMPLES = [
-        { page: "cover_photo", title: "FICHE DE SURVEILLANCE", rows: [
-          ["N° de la fiche :", "2026-823-001"], ["Région :", "Rabat-Salé-Kénitra"], ["Province :", "Kénitra"],
-          ["Établissement :", "CSCA Al Wifaq"], ["Type :", "CSCA"], ["Mode :", "Fixe"]] },
-        { page: "current_pregnancy_photo", title: "GROSSESSE ACTUELLE", rows: [
-          ["DDR :", "18/04/2026"], ["DPA :", "23/01/2027"], ["Poids (kg) :", "64"],
-          ["TA :", "11/7"], ["BCF :", "+"], ["Sérologie VIH :", "nég"]] }
-      ];
-
-      function sampleRegistry(sample) {
-        const c = document.createElement("canvas");
-        c.width = 520; c.height = 680;
-        const x = c.getContext("2d");
-        x.fillStyle = "#f7f2e4";
-        x.fillRect(0, 0, 520, 680);
-        const g = x.createLinearGradient(0, 0, 520, 680);
-        g.addColorStop(0, "rgba(40,40,40,0.18)");
-        g.addColorStop(0.5, "rgba(0,0,0,0)");
-        g.addColorStop(1, "rgba(20,20,20,0.28)");
-        x.fillStyle = g;
-        x.fillRect(0, 0, 520, 680);
-        x.fillStyle = "#1f3a5f";
-        x.font = "bold 21px Georgia";
-        x.fillText(sample.title, 28, 52);
-        sample.rows.forEach((r, i) => {
-          const y = 110 + i * 80;
-          x.fillStyle = "#33475b";
-          x.font = "16px Georgia";
-          x.fillText(r[0], 30, y);
-          x.fillStyle = "#25456e";
-          x.font = '25px "Segoe Script", "Comic Sans MS", cursive';
-          x.fillText(r[1], 200, y + 2);
-          x.strokeStyle = "rgba(80,100,120,0.45)";
-          x.lineWidth = 1;
-          x.beginPath();
-          x.moveTo(28, y + 14);
-          x.lineTo(492, y + 14);
-          x.stroke();
-        });
-        // a timestamp makes every sample photo different (the same photo twice is flagged as a duplicate)
-        x.fillStyle = "rgba(0,0,0,0.35)";
-        x.font = "11px monospace";
-        x.fillText("photo " + new Date().toISOString(), 30, 660);
-        return c.toDataURL("image/jpeg", 0.72);
-      }
-
       /* ================= Agent flows ================= */
-      async function startFromPhoto(dataUrl, demoPage) {
+      async function startFromPhoto(dataUrl, shown) {
         S.flowActive = true;
+        if (!shown) addMsg("out", "Registry page 📸", { img: dataUrl });
         const blob = await (await fetch(dataUrl)).blob();
         const form = new FormData();
         form.append("photo", blob, "page.jpg");
         form.append("midwife_id", "mw-demo");
-        if (demoPage) form.append("demo_page", demoPage);
         let rec;
         try { rec = await api("POST", "/records", form, true); }
         catch (e) { await agentSay("⚠️ " + esc(errText(e))); S.flowActive = false; return; }
@@ -596,7 +547,7 @@
             { label: "📸 Yes, process it", value: "go" },
             { label: "🗑️ No, it's a duplicate", value: "drop" }
           ]);
-          if (c === "drop") { await agentSay("OK, I've set it aside 👍", { fast: true }); return finish(false); }
+          if (c === "drop") { await agentSay("OK, I've set it aside 👍", { fast: true }); return finish(); }
           rec = await api("POST", "/records/" + rec.id + "/retry");
         }
         S.rec = rec;
@@ -753,7 +704,7 @@
         ]);
         if (c === "retake") {
           S.awaitingPhoto = true;
-          await agentSay("No problem — send the photo again (tap 📎) or tap 📄 for a sample page.");
+          await agentSay("No problem — send the photo again (tap 📎). Flat page, good light, whole page in the frame 🙂");
           return;
         }
         if (c === "correct") return correctField();
@@ -814,49 +765,55 @@
           const { code } = await api("GET", "/patients/new-code");
           if (await link(code, true))
             await agentSay("Created profile <b>" + esc(code) + "</b> 🔗 Write this code on the registry page — the next visit will link to it.", { fast: true });
-          return finish(true);
+          return finish();
         }
         let code = S.rec.record_number;
         if (c === "code") {
           await agentSay("Send me the patient's code:", { fast: true });
           code = await waitText();
         }
-        const matches = await api("GET", "/patients?code=" + encodeURIComponent(code));
-        const exact = matches.find(m => m.distance === 0);
+        let matches = [];
+        try { matches = await api("GET", "/patients?code=" + encodeURIComponent(code)); }
+        catch (e) { await agentSay("⚠️ " + esc(errText(e))); return linking(); }
         if (!matches.length) {
-          await agentSay("No profile has code <b>" + esc(code) + "</b> yet.", { fast: true });
+          await agentSay("No profile has code <b>" + esc(code) + "</b> (and no near match).", { fast: true });
           const m = await askButtons([
-            { label: "🆕 Create profile " + esc(code), value: "create" },
-            { label: "🤷 Leave unlinked for now", value: "unsure" }
+            { label: "🆕 Create it", value: "create" },
+            { label: "🔗 Try another code", value: "again" },
+            { label: "🤷 I'm not sure", value: "unsure" }
           ]);
-          if (m === "create" && await link(code, true))
-            await agentSay("Created profile <b>" + esc(S.rec.patient_code) + "</b> and linked this page ✅", { fast: true });
-          return finish(m === "create");
+          if (m === "create") {
+            if (await link(code, true))
+              await agentSay("Created profile <b>" + esc(code) + "</b> 🔗 Write this code on the registry page — the next visit will link to it.", { fast: true });
+            return finish();
+          }
+          if (m === "again") return linking();
+          await agentSay("Kept <b>unlinked</b> for now — a supervisor can merge profiles later. Better safe than duplicated 👍", { fast: true });
+          return finish();
         }
-        await agentSay(matches.length === 1 && exact ? "Found this profile:" :
-                       matches.length + " profile(s) match <b>" + esc(code) + "</b>. A misread digit could link the wrong woman, so you choose:", { fast: true });
+        await agentSay(matches.length + " profile(s) match this code. You decide — I never link on my own:", { fast: true });
         matches.forEach(p => addMsg("in", patientCard(p)));
-        const m = await askButtons(matches.map(p => ({ label: "👤 Link to " + esc(p.code), value: p.code })).concat(
-          exact ? [] : [{ label: "🆕 None — create " + esc(code), value: "__new" }],
-          [{ label: "🤷 I'm not sure", value: "__unsure" }]));
-        if (m === "__unsure") {
-          await agentSay("Kept <b>unlinked</b> for now — a supervisor can link it later. Better safe than mixed up 👍", { fast: true });
-          return finish(false);
+        const btns = matches.map(p => ({ label: "👤 Link to " + esc(p.code), value: p.code }));
+        btns.push({ label: "None of these — create new", value: "none" }, { label: "🤷 I'm not sure", value: "unsure" });
+        const m = await askButtons(btns);
+        if (m === "unsure") {
+          await agentSay("Kept <b>unlinked</b> for now — a supervisor can merge profiles later. Better safe than duplicated 👍", { fast: true });
+          return finish();
         }
-        const ok = m === "__new" ? await link(code, true) : await link(m, false);
-        if (ok) await agentSay("Page linked to <b>" + esc(S.rec.patient_code) + "</b>'s profile ✅", { fast: true });
-        finish(ok);
+        if (m === "none") {
+          const { code: fresh } = await api("GET", "/patients/new-code");
+          if (await link(fresh, true))
+            await agentSay("Created profile <b>" + esc(fresh) + "</b> 🔗 Write this code on the registry page — the next visit will link to it.", { fast: true });
+          return finish();
+        }
+        if (await link(m, false))
+          await agentSay("Visit linked to profile <b>" + esc(m) + "</b> ✅", { fast: true });
+        return finish();
       }
 
-      async function finish(saved) {
-        if (saved) {
-          if (S.online) await syncNow();
-          else {
-            await refreshStatus();
-            await agentSay("📴 Saved on the device and queued for sync. It will upload when the connection returns.");
-          }
-        }
-        const c = await askButtons([{ label: "🔄 Next page", value: "new" }]);
+      async function finish() {
+        await syncNow();
+        const c = await askButtons([{ label: "🔄 Start a new visit", value: "new" }]);
         if (c === "new") reset();
       }
 
@@ -865,16 +822,15 @@
         S.awaitingPhoto = false;
         S.waiter = null;
         S.rec = null;
-        document.querySelectorAll(".btns").forEach(e => e.remove());
         setState(null);
+        sysMsg("New visit");
         refreshStatus();
-        sysMsg("New page");
         greeting();
       }
 
       async function greeting() {
         await agentSay("👋 Hello! I'm the <b>DayOne agent</b> — the pregnancy registry, digitized.", { fast: true });
-        await agentSay("📸 Send a photo of a registry page (tap 📎) or tap 📄 for a sample page. Toggle <b>✈️ offline mode</b> in the header to see the queue in action. Send <b>/new</b> anytime to start over.");
+        await agentSay("📸 Send a photo of a registry page (tap 📎). Toggle <b>✈️ offline mode</b> in the header to see the queue in action. Send <b>/new</b> anytime to start over.");
       }
 
       /* ================= Image preview & send ================= */
@@ -882,11 +838,9 @@
       const pimg = document.getElementById("pimg");
       const pcaption = document.getElementById("pcaption");
       let pendingImage = null;
-      let pendingDemo = null;
 
-      function showPreview(dataUrl, demoPage) {
+      function showPreview(dataUrl) {
         pendingImage = dataUrl;
-        pendingDemo = demoPage || null;
         pimg.src = dataUrl;
         pcaption.value = "";
         preview.style.display = "flex";
@@ -895,7 +849,6 @@
       }
       function clearPreview() {
         pendingImage = null;
-        pendingDemo = null;
         preview.style.display = "none";
       }
       document.getElementById("pclear").onclick = clearPreview;
@@ -905,11 +858,11 @@
       function sendPendingImage() {
         if (!pendingImage) return;
         const cap = pcaption.value.trim() || input.value.trim() || "Registry page 📸";
-        const url = pendingImage, demo = pendingDemo;
+        const url = pendingImage;
         clearPreview();
         input.value = "";
         addMsg("out", esc(cap), { img: url });
-        onPhoto(url, demo);
+        onPhoto(url, true);
       }
 
       /* ================= User input ================= */
@@ -928,49 +881,41 @@
         }
         if (S.flowActive && !S.awaitingPhoto) {
           agentSay("Tap a button to continue 🙂 or send <b>/new</b> to start over.", { fast: true });
+        } else if (S.awaitingPhoto) {
+          agentSay("I'm waiting for a photo 📸 — tap 📎 to upload the page again.", { fast: true });
         } else {
-          agentSay("Send a photo of a registry page (tap 📎) or tap 📄 for a sample page 📸", { fast: true });
+          agentSay("I'm the DayOne agent 🩺 Send a photo of a registry page (tap 📎) to start a record.", { fast: true });
         }
       }
 
-      function onPhoto(dataUrl, demoPage) {
+      function onPhoto(dataUrl, shown) {
         if (S.awaitingPhoto) {
           S.awaitingPhoto = false;
-          startFromPhoto(dataUrl, demoPage);
-          return;
-        }
-        if (S.flowActive && S.rec && S.rec.state === "PENDING_AI") {
-          agentSay("This page is saved and waiting for processing. Send <b>/new</b> to photograph the next one — it will be processed later 📥", { fast: true });
+          startFromPhoto(dataUrl, shown);
           return;
         }
         if (S.flowActive) {
-          agentSay("I'm still working on one page — finish it (or send <b>/new</b>) before starting another.", { fast: true });
+          agentSay("I'm still working on one record — finish this visit (or send <b>/new</b>) before starting another.", { fast: true });
           return;
         }
-        startFromPhoto(dataUrl, demoPage);
+        startFromPhoto(dataUrl, shown);
       }
 
       document.getElementById("send").onclick = sendText;
       input.addEventListener("keydown", e => { if (e.key === "Enter") sendText(); });
       document.getElementById("attach").onclick = () => document.getElementById("file").click();
-      document.getElementById("sample").onclick = () => {
-        const s = SAMPLES[S.sampleIdx % SAMPLES.length];
-        S.sampleIdx += 1;
-        showPreview(sampleRegistry(s), s.page);
-      };
       document.getElementById("file").addEventListener("change", e => {
         const f = e.target.files[0];
         if (!f) return;
         const r = new FileReader();
-        r.onload = () => showPreview(r.result, null);
+        r.onload = () => showPreview(r.result);
         r.readAsDataURL(f);
         e.target.value = "";
       });
 
       /* ================= Init ================= */
-      refreshStatus().then(st => {
-        if (!st) addMsg("in", "⚠️ Can't reach the DayOne server. Start it with <b>cd backend &amp;&amp; uvicorn main:app</b>, then reload.");
-      });
+      updateConn();
+      refreshStatus();
       greeting();
     </script>
   </body>
