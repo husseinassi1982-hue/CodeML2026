@@ -23,7 +23,7 @@ def ocr_available() -> bool:
 
 def active_extractor() -> str:
     """What actually runs: the configured backend, or fixtures if the OCR isn't installed."""
-    if config.EXTRACTOR in ("local", "vlm") and not ocr_available():
+    if config.EXTRACTOR == "local" and not ocr_available():
         return "fixture"
     return config.EXTRACTOR
 
@@ -52,8 +52,8 @@ def make_extract_fn(state: AppState):
         except ExtractionError as e:
             if e.code == "unreadable_image":
                 raise PermanentFailure(f"unreadable_image: {e}") from e
-            if mode in ("claude", "vlm"):
-                # cloud down / no GPU model on this machine: wait in the queue, no attempt used
+            if mode == "claude":
+                # cloud down: wait in the queue, no attempt used
                 raise ConnectionError(str(e)) from e
             raise  # local model failed: counts as an attempt, gives up after 3
         return {"extraction": result.model_dump(mode="json")}

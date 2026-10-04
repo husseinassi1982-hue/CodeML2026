@@ -1,9 +1,0 @@
-# Person 1 - the fine-tuned vision model (backend "vlm"), on a machine with an NVIDIA GPU (~7 GB free).
-# Works on native Windows and on Linux. Install PyTorch with CUDA FIRST (not from this file):
-#   pip install torch --index-url https://download.pytorch.org/whl/cu128
-# then:  pip install -r requirements-extraction.txt -r requirements-vlm.txt
-transformers>=4.57   # first version with Qwen3-VL
-peft>=0.17
-bitsandbytes>=0.45   # 4-bit weights; ships Windows CUDA wheels
-accelerate>=1.0
-safetensors

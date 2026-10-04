@@ -1,4 +1,4 @@
-"""python -m extraction PHOTO [--backend local|vlm|claude] [--ui]
+"""python -m extraction PHOTO [--backend local|claude] [--ui]
    python -m extraction --download-models   (once, while online: fetch the optional medium OCR model)"""
 
 import argparse
@@ -13,7 +13,7 @@ def main():
     ap.add_argument("image", nargs="?")
     ap.add_argument("--download-models", action="store_true",
                     help="fetch the optional medium OCR model now, so later runs work fully offline")
-    ap.add_argument("--backend", default="local", choices=["local", "vlm", "claude"])
+    ap.add_argument("--backend", default="local", choices=["local", "claude"])
     ap.add_argument("--ui", action="store_true", help="print the {label, value, conf, status} shape used by the chat UI")
     ap.add_argument("--review", action="store_true", help="print only the fields that need review")
     a = ap.parse_args()

@@ -78,15 +78,13 @@ def score_field(page_type, key, exp, fields):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--show", action="store_true")
-    ap.add_argument("--backend", default="local", choices=["local", "vlm"],
-                    help="vlm: the fine-tuned vision model reads (GPU + vlm_ocr_lora_v2 needed)")
     a = ap.parse_args()
     truth = json.loads(TRUTH.read_text(encoding="utf-8"))["photos"]
     tot = ok = silent = review = 0
     rows = []
     for photo, info in truth.items():
         t0 = time.time()
-        r = extract(REGISTRY / photo, backend=a.backend)
+        r = extract(REGISTRY / photo)
         dt = time.time() - t0
         n_ok = 0
         for key, exp in info["fields"].items():
@@ -103,7 +101,7 @@ def main():
         print(f"{photo}: {r.page_type} [{r.layout}] {n_ok}/{len(info['fields'])} correct, {dt:.1f}s  {r.summary}")
     print(f"\nreal photos: {ok}/{tot} correct ({ok / tot:.0%}) | silent errors {silent} ({silent / tot:.0%}) | "
           f"sent to review {review} ({review / tot:.0%})")
-    (EVAL_DIR / ("results_real_photos.json" if a.backend == "local" else f"results_real_photos_{a.backend}.json")).write_text(json.dumps(
+    (EVAL_DIR / "results_real_photos.json").write_text(json.dumps(
         {"photos": len(truth), "fields": tot, "correct": ok, "silent_errors": silent, "sent_to_review": review},
         indent=2))
     if a.show:

@@ -2,7 +2,6 @@
 
     from extraction import extract
     result = extract("photo.jpg")            # local OCR backend (default, offline)
-    result = extract("photo.jpg", backend="vlm")   # fine-tuned vision model reads (GPU), offline
     result = extract(jpeg_bytes, backend="claude")
     print(result.model_dump_json(indent=2))
 """
@@ -34,16 +33,12 @@ def get_backend(name: str):
             from .backends.local import LocalBackend
 
             _backends[name] = LocalBackend()
-        elif name == "vlm":
-            from .backends.local import LocalBackend
-
-            _backends[name] = LocalBackend(reader="vlm")
         elif name == "claude":
             from .backends.claude import ClaudeBackend
 
             _backends[name] = ClaudeBackend()
         else:
-            raise ValueError(f"unknown backend {name!r} (use 'local', 'vlm' or 'claude')")
+            raise ValueError(f"unknown backend {name!r} (use 'local' or 'claude')")
     return _backends[name]
 
 

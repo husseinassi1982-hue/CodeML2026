@@ -982,7 +982,7 @@ def word_crops(page: Page, loc) -> dict[str, "WordInk"]:
             if r.kind in ("text", "cell") and r.rect[2] > r.rect[0] + 4 and r.rect[3] > r.rect[1] + 4}
 
 
-def extract(img: np.ndarray, lines: list[OcrLine], layout: Layout, threshold: float, read_text: bool = True):
+def extract(img: np.ndarray, lines: list[OcrLine], layout: Layout, threshold: float):
     """-> (fields dict, warnings, pii rectangles, page). FieldResult objects use catalog keys."""
     from . import ocr
     from .backends.common import field_result
@@ -999,12 +999,12 @@ def extract(img: np.ndarray, lines: list[OcrLine], layout: Layout, threshold: fl
 
     inks = word_crops(page, loc)
     crops = {k: ink.clean for k, ink in inks.items() if ink.present and not ink.is_dash}
-    keys = list(crops) if read_text else []  # read_text=False: layout only (another reader reads)
+    keys = list(crops)
     small = dict(zip(keys, ocr.read_crops([crops[k] for k in keys], model="small")))
     # without the medium model there is no independent second reading: no agreement bonus
     medium = dict(zip(keys, ocr.read_crops([crops[k] for k in keys], model="medium"))) if ocr.medium_available() else {}
     field_reads = _field_readings(layout.page_type, keys, crops)
-    span_reads = _span_readings(page, loc) if loc.spans and read_text else [("", 0.0)] * len(loc.spans)
+    span_reads = _span_readings(page, loc) if loc.spans else [("", 0.0)] * len(loc.spans)
 
     for r in loc.regions:
         try:

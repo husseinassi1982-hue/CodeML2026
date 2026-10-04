@@ -6,7 +6,7 @@ import time
 
 import numpy as np
 
-from .. import booklet, ocr, validate, vlm
+from .. import booklet, ocr, validate
 from ..align import align
 from ..catalog import fields_for
 from ..imageproc import analyze_text_crop, checkbox_score, image_quality, text_crop_for_ocr, warp_region
@@ -53,19 +53,9 @@ def _plausible_fallback(need, crops, reads) -> dict:
 
 
 class LocalBackend:
-    """reader="cpu": the CPU OCR reads the handwriting (+ the vision model too with DAYONE_VLM=1).
-    reader="vlm": only the fine-tuned vision model reads it (GPU); the CPU does layout only."""
-
     name = "local-ocr"
 
-    def __init__(self, reader: str = "cpu"):
-        self.reader = reader
-        if reader == "vlm":
-            self.name = "vlm"
-
     def extract(self, img: np.ndarray) -> PageExtraction:
-        if self.reader == "vlm":
-            vlm.load_or_raise()  # no GPU / adapter: backend_unavailable -> the page waits in the queue
         t0 = time.time()
         quality = image_quality(img)
         lines = ocr.read_page(img)
@@ -97,8 +87,6 @@ class LocalBackend:
                                     printed=printed_crop(al.page_type, geo["region"]))
             todo.append((f, ink))
         need = [(f, ink) for f, ink in todo if ink.present and not ink.is_dash]
-        if self.reader == "vlm":
-            need = []  # the vision model reads instead (below); the CPU only detects ink
         crops = {f.key: text_crop_for_ocr(i) for f, i in need}
         reads = dict(zip(crops, ocr.read_crops(list(crops.values())))) if crops else {}
         fallback = _plausible_fallback(need, crops, reads) if crops else {}
@@ -132,42 +120,21 @@ class LocalBackend:
                 val, d = decide_radio(scores, page_conf)
                 fields[f.key] = field_result(f, d.status, d.confidence, value=val, display=val, issues=d.issues)
 
-        # 3) the fine-tuned vision model (GPU): the only reader (reader="vlm"), or a second one (DAYONE_VLM=1)
-        name = self.name
-        keys_all = [f.key for f in fields_for(al.page_type) if f.kind in ("text", "cell") and not f.pii and f.key in fields]
-        if self.reader == "vlm":
-            vlm.read_only(fields, vlm.specimen_crops(img, H, al.page_type, keys_all), al.page_type, threshold,
-                          field_result)
-        elif vlm.wanted() and vlm.available():
-            keys = [f.key for f in fields_for(al.page_type) if f.kind in ("text", "cell") and not f.pii and f.key in fields]
-            vlm.read_and_merge(fields, vlm.specimen_crops(img, H, al.page_type, keys), al.page_type, threshold)
-            name += "+vlm"
-
         # keep catalog order
         ordered = {f.key: fields[f.key] for f in fields_for(al.page_type) if f.key in fields}
         validate.check(al.page_type, ordered)
         ocr.trim_memory()
         warnings = list(al.warnings) + [f"image quality: {i}" for i in quality.issues]
-        return finish(al.page_type, al.confidence, ordered, quality, name, VERSION,
+        return finish(al.page_type, al.confidence, ordered, quality, self.name, VERSION,
                       int((time.time() - t0) * 1000), warnings, layout="specimen")
 
     def _booklet(self, img, lines, lay, score, quality, t0) -> PageExtraction:
         threshold = known_threshold(0)  # always a photo
-        fields, warns, _, page = booklet.extract(img, lines, lay, threshold, read_text=self.reader != "vlm")
-        name = self.name
-        if self.reader == "vlm":  # the vision model is the only reader
-            loc = booklet.locate(page, lay)
-            keys = [r.key for r in loc.regions if r.kind in ("text", "cell") and r.key in fields]
-            vlm.read_only(fields, vlm.booklet_crops(page, loc, keys), lay.page_type, threshold, field_result)
-        elif vlm.wanted() and vlm.available():  # optional second reader (GPU), DAYONE_VLM=1
-            loc = booklet.locate(page, lay)
-            keys = [r.key for r in loc.regions if r.kind in ("text", "cell") and r.key in fields]
-            vlm.read_and_merge(fields, vlm.booklet_crops(page, loc, keys), lay.page_type, threshold)
-            name += "+vlm"
+        fields, warns, _, _ = booklet.extract(img, lines, lay, threshold)
         ordered = {f.key: fields[f.key] for f in fields_for(lay.page_type) if f.key in fields}
         validate.check(lay.page_type, ordered)
         ocr.trim_memory()
         warnings = [f"real booklet page ({lay.name}): handwriting is harder to read, more fields go to review"]
         warnings += warns + [f"image quality: {i}" for i in quality.issues]
-        return finish(lay.page_type, score, ordered, quality, name, VERSION, int((time.time() - t0) * 1000),
+        return finish(lay.page_type, score, ordered, quality, self.name, VERSION, int((time.time() - t0) * 1000),
                       warnings, layout=lay.name)
